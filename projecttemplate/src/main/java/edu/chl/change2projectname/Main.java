@@ -1,9 +1,15 @@
 package edu.chl.change2projectname;
 
-import edu.chl.change2projectname.controller.ProjectController;
-import edu.chl.change2projectname.model.Project;
-import edu.chl.change2projectname.view.ProjectView;
+
+
+import model.Project;
+import controller.ProjectController;
+
+import view.ProjectView;
+
+
 import javax.swing.SwingUtilities;
+
 
 /*
   Application entry class (if using standard java and Swing)

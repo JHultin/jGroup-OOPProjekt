@@ -1,7 +1,11 @@
 package edu.chl.change2projectname.view;
 
+
 import edu.chl.change2projectname.model.Project;
+import edu.chl.change2projectname.controller.ProjectController;
+
 import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
