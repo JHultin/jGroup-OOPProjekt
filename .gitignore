@@ -1,2 +1,3 @@
 *.class
 projecttemplate/target/
+.idea/
