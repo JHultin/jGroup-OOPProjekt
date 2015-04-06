@@ -1,3 +1,11 @@
 *.class
-projecttemplate/target/
+
+# Intellij
 .idea/
+projecttemplate/.idea/
+*.iml
+*.iws
+
+# Maven
+projecttemplate/log/
+projecttemplate/target/
