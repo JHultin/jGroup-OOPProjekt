@@ -7,10 +7,12 @@
 
 # Intellij
 .idea/
-projecttemplate/.idea/
+rocc/.idea/
 *.iml
 *.iws
 
 # Maven
-projecttemplate/log/
-projecttemplate/target/
+log/
+rocc/log/
+target/
+rocc/target/
