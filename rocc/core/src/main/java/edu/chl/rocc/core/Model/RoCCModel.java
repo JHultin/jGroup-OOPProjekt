@@ -18,9 +18,9 @@ public class RoCCModel {
 
     public void keyPressed(int keyCode){
         if (keyCode == Input.Keys.RIGHT){
-            this.moveSideways();
+            this.moveSideways(Direction.RIGHT);
         } else if (keyCode == Input.Keys.LEFT){
-            this.moveSideways();
+            this.moveSideways(Direction.LEFT);
         }
     }
 
@@ -28,8 +28,8 @@ public class RoCCModel {
 
     }
 
-    private void moveSideways(){
-        level.move();
+    private void moveSideways(Direction dir){
+        level.move(dir);
     }
 
     public Sprite getSprite(){
