@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -17,24 +18,29 @@ import java.util.List;
  *
  * Created by Jacob on 2015-04-22.
  */
-public class RoCCView{
+public class RoCCView {
 
     private RoCCModel model;
 
+    private Sprite sprite;
 
-    public RoCCView(RoCCModel model){
+
+    public RoCCView(RoCCModel model) {
         this.model = model;
 
+        this.sprite = new Sprite(new Texture(Gdx.files.internal("libgdx-logo.png")));
     }
 
-    public void draw(SpriteBatch batch){
+    public void draw(SpriteBatch batch) {
 
-    /*    for(Sprite sprite : model.getSprites()){
+        batch.draw(sprite, sprite.getX(), sprite.getY());
+
+    /*
+        for(Sprite sprite : model.getSprites()){
             batch.draw(sprite, sprite.getX(), sprite.getY());
         }
-     */
+        */
     }
-
 
 
 }
