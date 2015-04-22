@@ -5,31 +5,54 @@ import com.badlogic.gdx.InputProcessor;
 import edu.chl.rocc.core.Model.RoCCModel;
 import edu.chl.rocc.core.RoCC;
 
+import java.util.ArrayList;
+
 /**
  * Created by Joel on 2015-04-22.
  */
-public class RoCCController {
+public class RoCCController implements Runnable{
 
     private final RoCCModel model;
-    private final RoCC main;
+    private Thread thread;
+    private ArrayList<Integer> keys;
+    private boolean isRunning = true;
 
     public RoCCController(RoCCModel model, RoCC main){
         this.model = model;
-        this.main = main;
         Gdx.input.setInputProcessor(new PrimaryProcessor());
+        keys = new ArrayList<Integer>();
+        thread = new Thread(this);
+        thread.start();
+
+    }
+
+    @Override
+    public void run() {
+        while (this.isRunning){
+            try {
+                for (int key : keys){
+                    model.keyPressed(key);
+                }
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                this.isRunning = false;
+            }
+        }
     }
 
     private class PrimaryProcessor implements InputProcessor{
 
         @Override
         public boolean keyDown(int keycode) {
-            model.keyPressed(keycode);
+            if (!keys.contains(keycode))
+                keys.add(keycode);
             return false;
         }
 
         @Override
         public boolean keyUp(int keycode) {
-            model.keyReleased(keycode);
+            if (keys.contains(keycode))
+                keys.remove((Integer)keycode);
             return false;
         }
 
