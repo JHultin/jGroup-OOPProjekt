@@ -21,6 +21,10 @@ public class RoCCModel {
             this.moveSideways(Direction.RIGHT);
         } else if (keyCode == Input.Keys.LEFT){
             this.moveSideways(Direction.LEFT);
+        } else if (keyCode == Input.Keys.UP){
+            this.moveSideways(Direction.UP);
+        } else if (keyCode == Input.Keys.DOWN){
+            this.moveSideways(Direction.DOWN);
         }
     }
 
