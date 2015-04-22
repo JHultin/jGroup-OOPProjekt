@@ -58,8 +58,13 @@ public class Character {
         this.setHP(this.getHP() - value);
     }
 
-    public void move(){
-        sprite.translateX(1f);
+    public void move(Direction dir){
+        if(dir.equals(Direction.LEFT)){
+            sprite.translateX(-15f);
+        } else if(dir.equals(Direction.RIGHT)){
+            sprite.translateX(15f);
+        }
+
     }
 
     public Sprite getSprite(){
