@@ -1,11 +1,21 @@
 package edu.chl.rocc.core.controller;
 
 import com.badlogic.gdx.InputProcessor;
+import edu.chl.rocc.core.Model.RoCCModel;
+import edu.chl.rocc.core.RoCC;
 
 /**
  * Created by Joel on 2015-04-22.
  */
 public class RoCCController {
+
+    private final RoCCModel model;
+    private final RoCC main;
+
+    public RoCCController(RoCCModel model, RoCC main){
+        this.model = model;
+        this.main = main;
+    }
 
     private class PrimaryProcessor implements InputProcessor{
 

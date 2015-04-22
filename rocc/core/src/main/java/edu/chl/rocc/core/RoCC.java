@@ -5,16 +5,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import edu.chl.rocc.core.Model.RoCCModel;
+import edu.chl.rocc.core.controller.RoCCController;
 
 public class RoCC implements ApplicationListener {
 	Texture texture;
 	SpriteBatch batch;
 	float elapsed;
+    private RoCCModel model;
+    private RoCCController controller;
 
-	@Override
+
+    @Override
 	public void create () {
 		texture = new Texture(Gdx.files.internal("libgdx-logo.png"));
 		batch = new SpriteBatch();
+        model = new RoCCModel();
+        controller = new RoCCController(model, this);
 	}
 
 	@Override
