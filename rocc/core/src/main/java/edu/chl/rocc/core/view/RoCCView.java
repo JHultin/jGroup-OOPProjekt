@@ -22,20 +22,23 @@ public class RoCCView {
 
     private RoCCModel model;
 
+    //A temporary variable to test if the
     private Sprite sprite;
 
 
     public RoCCView(RoCCModel model) {
         this.model = model;
 
-        this.sprite = new Sprite(new Texture(Gdx.files.internal("libgdx-logo.png")));
+       // this.sprite = new Sprite(new Texture(Gdx.files.internal("characterSprite.png")));
     }
 
     public void draw(SpriteBatch batch) {
 
-        batch.draw(sprite, sprite.getX(), sprite.getY());
+        Sprite characterSprite = model.getSprite();
+        batch.draw(characterSprite, characterSprite.getX(), characterSprite.getY());
 
-    /*
+
+        /*
         for(Sprite sprite : model.getSprites()){
             batch.draw(sprite, sprite.getX(), sprite.getY());
         }

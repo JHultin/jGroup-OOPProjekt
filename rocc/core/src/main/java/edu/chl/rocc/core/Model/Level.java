@@ -1,5 +1,7 @@
 package edu.chl.rocc.core.Model;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 import java.util.ArrayList;
 
 /**
@@ -10,12 +12,19 @@ public class Level {
     private int score;
     private ArrayList <String> highscore;
 
+    private Character character;
+
     public Level(){
 
+        character = new Character();
     }
 
     public void move(){
-        Character character = new Character();
         character.move();
+    }
+
+
+    public Sprite getCharacterSprite(){
+        return character.getSprite();
     }
 }

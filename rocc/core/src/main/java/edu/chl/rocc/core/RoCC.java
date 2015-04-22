@@ -42,7 +42,7 @@ public class RoCC implements ApplicationListener {
 	@Override
 	public void render () {
 		elapsed += Gdx.graphics.getDeltaTime();
-		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 

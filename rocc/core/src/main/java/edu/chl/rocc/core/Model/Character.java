@@ -62,4 +62,8 @@ public class Character {
         sprite.translateX(1f);
     }
 
+    public Sprite getSprite(){
+        return sprite;
+    }
+
 }
