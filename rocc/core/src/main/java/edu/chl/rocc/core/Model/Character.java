@@ -1,5 +1,8 @@
 package edu.chl.rocc.core.Model;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 /**
  * A class for the playable characters.
  * Handeling data and setters/getters.
@@ -8,11 +11,13 @@ package edu.chl.rocc.core.Model;
  */
 public class Character {
 
+    private Sprite sprite;
     private int maxHealth = 100;
     private int healthPoints;
 
     public Character(){
         this.setHP(maxHealth);
+        sprite = new Sprite(new Texture("characterSprite.png"));
     }
 
     /*
