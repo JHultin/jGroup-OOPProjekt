@@ -2,6 +2,7 @@ package edu.chl.rocc.core.Model;
 
 import com.badlogic.gdx.Input;
 
+
 /**
  * Created by Yen on 2015-04-22.
  */
@@ -24,6 +25,7 @@ public class RoCCModel {
     }
 
     private void moveSideways(){
-
+        
     }
+
 }
