@@ -63,6 +63,10 @@ public class Character {
             sprite.translateX(-15f);
         } else if(dir.equals(Direction.RIGHT)){
             sprite.translateX(15f);
+        } else if(dir.equals(Direction.UP)){
+            sprite.translateY(15f);
+        } else if(dir.equals(Direction.DOWN)){
+            sprite.translateY(-15f);
         }
 
     }
