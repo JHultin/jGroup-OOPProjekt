@@ -28,7 +28,23 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="gwt" url="file://$PROJECT_DIR$/rocc/html" />
+    <file type="web" url="file://$PROJECT_DIR$/rocc/html" />
+  </component>
   <component name="IdProvider" IDEtalkID="F901489C088E27CD29A08D1823C17FCF" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/rocc/pom.xml" />
+        <option value="$PROJECT_DIR$/rocc/core/pom.xml" />
+        <option value="$PROJECT_DIR$/rocc/desktop/pom.xml" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
