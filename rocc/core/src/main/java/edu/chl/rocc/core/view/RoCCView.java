@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
+import edu.chl.rocc.core.Model.RoCCModel;
 
 import java.util.List;
 
@@ -28,9 +29,10 @@ public class RoCCView{
 
     public void draw(SpriteBatch batch){
 
-        for(Sprite sprite : model.getSprites()){
+    /*    for(Sprite sprite : model.getSprites()){
             batch.draw(sprite, sprite.getX(), sprite.getY());
         }
+     */
     }
 
 
