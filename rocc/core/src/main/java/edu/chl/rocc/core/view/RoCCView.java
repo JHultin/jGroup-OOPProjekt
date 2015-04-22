@@ -28,15 +28,12 @@ public class RoCCView {
 
     public RoCCView(RoCCModel model) {
         this.model = model;
-
-       // this.sprite = new Sprite(new Texture(Gdx.files.internal("characterSprite.png")));
     }
 
     public void draw(SpriteBatch batch) {
 
         Sprite characterSprite = model.getSprite();
         batch.draw(characterSprite, characterSprite.getX(), characterSprite.getY());
-
 
         /*
         for(Sprite sprite : model.getSprites()){
