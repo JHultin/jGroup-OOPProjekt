@@ -21,11 +21,13 @@ public class RoCCController {
 
         @Override
         public boolean keyDown(int keycode) {
+            model.keyPressed(keycode);
             return false;
         }
 
         @Override
         public boolean keyUp(int keycode) {
+            model.keyReleased(keycode);
             return false;
         }
 
