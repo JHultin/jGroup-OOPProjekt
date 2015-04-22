@@ -29,7 +29,7 @@ public class RoCCModel {
     }
 
     private void moveSideways(){
-
+        level.move();
     }
 
     public Sprite getSprite(){
