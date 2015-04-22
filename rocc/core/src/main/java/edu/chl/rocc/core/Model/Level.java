@@ -1,7 +1,6 @@
 package edu.chl.rocc.core.Model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.google.gwt.i18n.client.HasDirection;
 
 import java.util.ArrayList;
 
