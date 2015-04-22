@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/jGroup-OOPProjekt.iml" filepath="$PROJECT_DIR$/.idea/jGroup-OOPProjekt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rocc/core/rocc-core.iml" filepath="$PROJECT_DIR$/rocc/core/rocc-core.iml" />
     </modules>
   </component>
 </project>
