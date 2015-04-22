@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import edu.chl.rocc.core.Model.RoCCModel;
 import edu.chl.rocc.core.RoCC;
@@ -15,6 +16,7 @@ public class RoCCController {
     public RoCCController(RoCCModel model, RoCC main){
         this.model = model;
         this.main = main;
+        Gdx.input.setInputProcessor(new PrimaryProcessor());
     }
 
     private class PrimaryProcessor implements InputProcessor{

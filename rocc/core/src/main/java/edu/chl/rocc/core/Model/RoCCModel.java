@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.Model;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 
 /**
@@ -8,8 +9,11 @@ import com.badlogic.gdx.Input;
  */
 public class RoCCModel {
 
+    private Level level;
+
+
     public RoCCModel(){
-        //Level level= new Level();
+        level= new Level();
     }
 
     public void keyPressed(int keyCode){
@@ -25,7 +29,11 @@ public class RoCCModel {
     }
 
     private void moveSideways(){
-        
+        level.move();
+    }
+
+    public Sprite getSprite(){
+        return level.getCharacterSprite();
     }
 
 }
