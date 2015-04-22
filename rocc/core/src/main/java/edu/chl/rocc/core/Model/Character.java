@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.Model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -17,7 +18,7 @@ public class Character {
 
     public Character(){
         this.setHP(maxHealth);
-        sprite = new Sprite(new Texture("characterSprite.png"));
+        sprite = new Sprite(new Texture(Gdx.files.internal("characterSprite.png")));
     }
 
     /*
@@ -55,6 +56,10 @@ public class Character {
     */
     public void decHP(int value){
         this.setHP(this.getHP() - value);
+    }
+
+    public void move(){
+        sprite.translateX(1f);
     }
 
 }
