@@ -1,7 +1,9 @@
 package edu.chl.rocc.core.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import edu.chl.rocc.core.Model.Direction;
 import edu.chl.rocc.core.Model.RoCCModel;
 import edu.chl.rocc.core.RoCC;
 
@@ -31,7 +33,15 @@ public class RoCCController implements Runnable{
         while (this.isRunning){
             try {
                 for (int key : keys){
-                    model.keyPressed(key);
+                    if (key == Input.Keys.RIGHT){
+                        model.moveSideways(Direction.RIGHT);
+                    } else if (key == Input.Keys.LEFT){
+                        model.moveSideways(Direction.LEFT);
+                    } else if (key == Input.Keys.UP){
+                        model.moveSideways(Direction.UP);
+                    } else if (key == Input.Keys.DOWN){
+                        model.moveSideways(Direction.DOWN);
+                    }
                 }
                 Thread.sleep(50);
             } catch (InterruptedException e) {

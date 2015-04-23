@@ -16,23 +16,8 @@ public class RoCCModel {
         level= new Level();
     }
 
-    public void keyPressed(int keyCode){
-        if (keyCode == Input.Keys.RIGHT){
-            this.moveSideways(Direction.RIGHT);
-        } else if (keyCode == Input.Keys.LEFT){
-            this.moveSideways(Direction.LEFT);
-        } else if (keyCode == Input.Keys.UP){
-            this.moveSideways(Direction.UP);
-        } else if (keyCode == Input.Keys.DOWN){
-            this.moveSideways(Direction.DOWN);
-        }
-    }
 
-    public void keyReleased(int keyCode){
-
-    }
-
-    private void moveSideways(Direction dir){
+    public void moveSideways(Direction dir){
         level.move(dir);
     }
 
