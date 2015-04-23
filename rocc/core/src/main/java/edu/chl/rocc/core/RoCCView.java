@@ -16,7 +16,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import edu.chl.rocc.core.Model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 
-public class RoCC implements ApplicationListener {
+public class RoCCView implements ApplicationListener {
 	private Texture characterTexture;
 	private SpriteBatch batch;
 	private float elapsed;

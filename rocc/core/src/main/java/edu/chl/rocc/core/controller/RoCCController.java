@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import edu.chl.rocc.core.Model.Direction;
 import edu.chl.rocc.core.Model.RoCCModel;
-import edu.chl.rocc.core.RoCC;
+import edu.chl.rocc.core.RoCCView;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class RoCCController implements Runnable{
     private ArrayList<Integer> keys;
     private boolean isRunning = true;
 
-    public RoCCController(RoCCModel model, RoCC main){
+    public RoCCController(RoCCModel model, RoCCView main){
         this.model = model;
         Gdx.input.setInputProcessor(new PrimaryProcessor());
         keys = new ArrayList<Integer>();
