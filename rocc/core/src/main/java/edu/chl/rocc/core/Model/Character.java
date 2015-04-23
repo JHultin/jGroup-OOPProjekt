@@ -15,9 +15,12 @@ public class Character {
     private Sprite sprite;
     private int maxHealth = 100;
     private int healthPoints;
+    private int xPos, yPos;
 
     public Character(){
         this.setHP(maxHealth);
+        this.xPos = 0;
+        this.yPos = 0;
         sprite = new Sprite(new Texture(Gdx.files.internal("characterSprite.png")));
     }
 
@@ -60,19 +63,23 @@ public class Character {
 
     public void move(Direction dir){
         if(dir.equals(Direction.LEFT)){
-            sprite.translateX(-15f);
+            xPos -= 15;
         } else if(dir.equals(Direction.RIGHT)){
-            sprite.translateX(15f);
+            xPos += 15;
         } else if(dir.equals(Direction.UP)){
-            sprite.translateY(15f);
+            yPos += 15;
         } else if(dir.equals(Direction.DOWN)){
-            sprite.translateY(-15f);
+            yPos -= 15;
         }
 
     }
 
-    public Sprite getSprite(){
-        return sprite;
+    public int getX(){
+        return xPos;
+    }
+
+    public int getY(){
+        return yPos;
     }
 
 }

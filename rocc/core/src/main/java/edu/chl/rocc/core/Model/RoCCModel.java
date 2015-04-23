@@ -21,8 +21,11 @@ public class RoCCModel {
         level.move(dir);
     }
 
-    public Sprite getSprite(){
-        return level.getCharacterSprite();
+    public int getCharacterXPos(){
+        return level.getCharacterXPos();
     }
 
+    public int getCharacterYPos(){
+        return level.getCharacterYPos();
+    }
 }

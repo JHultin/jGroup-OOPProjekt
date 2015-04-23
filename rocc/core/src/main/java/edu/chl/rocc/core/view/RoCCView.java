@@ -32,8 +32,8 @@ public class RoCCView {
 
     public void draw(SpriteBatch batch) {
 
-        Sprite characterSprite = model.getSprite();
-        batch.draw(characterSprite, characterSprite.getX(), characterSprite.getY());
+        //Sprite characterSprite = model.getSprite();
+        //batch.draw(characterSprite, characterSprite.getX(), characterSprite.getY());
 
         /*
         for(Sprite sprite : model.getSprites()){

@@ -18,7 +18,7 @@ import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.view.RoCCView;
 
 public class RoCC implements ApplicationListener {
-	Texture texture;
+	Texture characterTexture;
 	SpriteBatch batch;
 	float elapsed;
     private RoCCModel model;
@@ -27,7 +27,7 @@ public class RoCC implements ApplicationListener {
 
     @Override
 	public void create () {
-		texture = new Texture(Gdx.files.internal("libgdx-logo.png"));
+        characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
 		batch = new SpriteBatch();
 
         model = new RoCCModel();
@@ -46,7 +46,8 @@ public class RoCC implements ApplicationListener {
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
-        view.draw(batch);
+        batch.draw(characterTexture, model.getCharacterXPos(), model.getCharacterYPos());
+        //view.draw(batch);
 
 		batch.end();
 	}

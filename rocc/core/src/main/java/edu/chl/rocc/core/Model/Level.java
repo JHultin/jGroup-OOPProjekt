@@ -24,7 +24,11 @@ public class Level {
     }
 
 
-    public Sprite getCharacterSprite(){
-        return character.getSprite();
+    public int getCharacterXPos(){
+        return character.getX();
+    }
+
+    public int getCharacterYPos(){
+        return character.getY();
     }
 }
