@@ -15,15 +15,14 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import edu.chl.rocc.core.Model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
-import edu.chl.rocc.core.view.RoCCView;
 
 public class RoCC implements ApplicationListener {
-	Texture characterTexture;
-	SpriteBatch batch;
-	float elapsed;
+	private Texture characterTexture;
+	private SpriteBatch batch;
+	private float elapsed;
     private RoCCModel model;
     private RoCCController controller;
-    private RoCCView view;
+
 
     @Override
 	public void create () {
@@ -32,7 +31,6 @@ public class RoCC implements ApplicationListener {
 
         model = new RoCCModel();
         controller = new RoCCController(model, this);
-        view = new RoCCView(model);
 	}
 
 	@Override
