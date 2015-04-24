@@ -3,8 +3,8 @@ package edu.chl.rocc.core.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import edu.chl.rocc.core.Model.Direction;
-import edu.chl.rocc.core.Model.RoCCModel;
+import edu.chl.rocc.core.model.Direction;
+import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.RoCCView;
 
 import java.util.ArrayList;
@@ -88,6 +88,7 @@ public class RoCCController implements Runnable{
 
         @Override
         public boolean mouseMoved(int screenX, int screenY) {
+            model.aim(screenX, Gdx.graphics.getHeight() - screenY);
             return false;
         }
 
