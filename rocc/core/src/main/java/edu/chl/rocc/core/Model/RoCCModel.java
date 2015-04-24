@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.Model;
+package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,6 +16,9 @@ public class RoCCModel {
         level= new Level();
     }
 
+    public void aim(int x, int y){
+
+    }
 
     public void moveSideways(Direction dir){
         level.move(dir);

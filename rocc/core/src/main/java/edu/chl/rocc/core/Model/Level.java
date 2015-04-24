@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.Model;
+package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
