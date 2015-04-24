@@ -24,8 +24,22 @@ public class RoCCView implements ApplicationListener {
     private RoCCController controller;
 
 
+    /*Map test*/
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private OrthographicCamera camera;
+    //END
+
+
     @Override
 	public void create () {
+        /*Map test*/
+        map = new TmxMapLoader().load("map.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map);
+        camera = new OrthographicCamera();
+        //END
+
+
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
 		batch = new SpriteBatch();
 
@@ -35,6 +49,11 @@ public class RoCCView implements ApplicationListener {
 
 	@Override
 	public void resize (int width, int height) {
+        /*Map test*/
+        camera.viewportWidth = width;
+        camera.viewportHeight = height;
+        camera.update();
+        //END
 	}
 
 	@Override
@@ -42,8 +61,14 @@ public class RoCCView implements ApplicationListener {
 		elapsed += Gdx.graphics.getDeltaTime();
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-		batch.begin();
 
+        /*Map test*/
+        renderer.setView(camera);
+        renderer.render();
+        //END
+
+
+        batch.begin();
         batch.draw(characterTexture, model.getCharacterXPos(), model.getCharacterYPos());
         //view.draw(batch);
 
