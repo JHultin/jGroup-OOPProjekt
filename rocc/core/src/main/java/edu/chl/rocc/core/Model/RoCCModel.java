@@ -5,15 +5,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 
 /**
+ * A class handeling the game model.
+ *
  * Created by Yen on 2015-04-22.
  */
 public class RoCCModel {
 
     private Level level;
-
+    private Player player;
 
     public RoCCModel(){
-        level= new Level();
+        level = new Level();
+        player = new Player();
     }
 
     public void aim(int x, int y){
@@ -21,14 +24,14 @@ public class RoCCModel {
     }
 
     public void moveSideways(Direction dir){
-        level.move(dir);
+        player.move(dir);
     }
 
     public int getCharacterXPos(){
-        return level.getCharacterXPos();
+        return player.getCharacterXPos();
     }
 
     public int getCharacterYPos(){
-        return level.getCharacterYPos();
+        return player.getCharacterYPos();
     }
 }

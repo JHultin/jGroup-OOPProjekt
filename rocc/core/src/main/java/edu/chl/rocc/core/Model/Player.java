@@ -1,5 +1,6 @@
-package edu.chl.rocc.core.Model;
+package edu.chl.rocc.core.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,25 +8,50 @@ import java.util.List;
  */
 public class Player {
 
+    private Character character;
     private List<Direction> moveList;
-
     private List<Character> characters;
 
    // private List<Weapon> weapons;
 
+    /*
+    * Constructor creating a single character and adds it to the character list.
+    */
+    public Player(){
+        this.character = new Character();
 
+        this.characters = new ArrayList<Character>();
+        this.characters.add(this.character);
+    }
 
     public Player(List<Character> characters){
 
         this.characters = characters;
-
     }
-
-
-
 
     public void addToMoveList(Direction direction){
         moveList.add(direction);
+    }
+
+    /*
+    * Move the front character in a given direction.
+    */
+    public void move(Direction dir){
+        character.move(dir);
+    }
+
+    /*
+    * Returns the x-coordinate of the character.
+    */
+    public int getCharacterXPos(){
+        return character.getX();
+    }
+
+    /*
+    * Returns the y-coordinate of the character.
+    */
+    public int getCharacterYPos(){
+        return character.getY();
     }
 
 }

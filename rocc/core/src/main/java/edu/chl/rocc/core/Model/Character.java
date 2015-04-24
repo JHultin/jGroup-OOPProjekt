@@ -48,19 +48,22 @@ public class Character {
     }
 
     /*
-    * Increase character's health with a chosen value.
+    * Increase character's health with a given value.
     */
     public void incHP(int value){
         this.setHP(this.getHP() + value);
     }
 
     /*
-    * Decrease character's health with a chosen value.
+    * Decrease character's health with a given value.
     */
     public void decHP(int value){
         this.setHP(this.getHP() - value);
     }
 
+    /*
+    * Move the character in a given direction.
+    */
     public void move(Direction dir){
         if(dir.equals(Direction.LEFT)){
             xPos -= 15;
@@ -74,10 +77,16 @@ public class Character {
 
     }
 
+    /*
+    * Returns the x-coordinate of the character.
+    */
     public int getX(){
         return xPos;
     }
 
+    /*
+    * Returns the y-coordinate of the character.
+    */
     public int getY(){
         return yPos;
     }
