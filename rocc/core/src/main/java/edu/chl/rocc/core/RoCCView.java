@@ -29,6 +29,8 @@ public class RoCCView implements ApplicationListener {
     private OrthographicCamera camera;
     //END
 
+    private Box2DDebugRenderer b2dr;
+
 
     @Override
 	public void create () {
@@ -44,6 +46,11 @@ public class RoCCView implements ApplicationListener {
 
         model = new RoCCModel();
         controller = new RoCCController(model, this);
+
+
+        b2dr = new Box2DDebugRenderer();
+
+
 	}
 
 	@Override
@@ -60,6 +67,9 @@ public class RoCCView implements ApplicationListener {
 		elapsed += Gdx.graphics.getDeltaTime();
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
+        b2dr.render(model.getLevel().getWorld(),camera.combined);
+
 
         /*Map test*/
         renderer.setView(camera);
