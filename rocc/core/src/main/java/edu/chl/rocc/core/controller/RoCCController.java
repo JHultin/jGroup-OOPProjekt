@@ -19,10 +19,13 @@ public class RoCCController implements Runnable{
     private ArrayList<Integer> keys;
     private boolean isRunning = true;
     private float updateSpeed = 1 / 60f;
+    private Direction lastDir;
 
     public RoCCController(RoCCModel model, RoCCView main){
         this.model = model;
         Gdx.input.setInputProcessor(new PrimaryProcessor());
+        this.lastDir = Direction.NONE;
+
         keys = new ArrayList<Integer>();
         thread = new Thread(this);
         thread.start();
@@ -33,6 +36,21 @@ public class RoCCController implements Runnable{
     public void run() {
         while (this.isRunning){
             try {
+                Direction dir;
+                if (keys.contains(Input.Keys.RIGHT))
+                    if (keys.contains(Input.Keys.LEFT))
+                        dir = Direction.NONE;
+                    else
+                        dir = Direction.RIGHT;
+                else if (keys.contains((Input.Keys.LEFT)))
+                    dir = Direction.LEFT;
+                else
+                    dir = Direction.NONE;
+                //if (dir != lastDir){
+                    model.moveSideways(dir);
+                    lastDir = dir;
+                //}
+                /*
                 for (int key : keys){
                     if (key == Input.Keys.RIGHT){
                         model.moveSideways(Direction.RIGHT);
@@ -44,8 +62,9 @@ public class RoCCController implements Runnable{
                         model.moveSideways(Direction.DOWN);
                     }
                 }
+                */
                 model.updateWorld(updateSpeed);
-                Thread.sleep(50);
+                Thread.sleep((long)(updateSpeed * 1000));
             } catch (InterruptedException e) {
                 this.isRunning = false;
             }
