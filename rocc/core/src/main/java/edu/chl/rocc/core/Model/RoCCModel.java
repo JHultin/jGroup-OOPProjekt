@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 
@@ -14,9 +15,25 @@ public class RoCCModel {
     private Level level;
     private Player player;
 
+    // Camera following the player
+    private OrthographicCamera cam;
+    // Camera showing the HUD
+    private OrthographicCamera hudCam;
+
     public RoCCModel(){
         level = new Level();
         player = new Player();
+
+        cam = new OrthographicCamera();
+        hudCam = new OrthographicCamera();
+    }
+
+    public OrthographicCamera getCamera(){
+        return this.cam;
+    }
+
+    public OrthographicCamera getHUDCamera(){
+        return this.hudCam;
     }
 
     public void aim(int x, int y){

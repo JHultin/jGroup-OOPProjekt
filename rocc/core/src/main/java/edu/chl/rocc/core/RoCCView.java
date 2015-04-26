@@ -25,7 +25,10 @@ public class RoCCView implements ApplicationListener {
     /*Map test*/
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private OrthographicCamera camera;
+    // Camera following the player
+    private OrthographicCamera cam;
+    // Camera showing the HUD
+    private OrthographicCamera hudCam;
     //END
 
     //private Box2DDebugRenderer b2dr;
@@ -36,7 +39,6 @@ public class RoCCView implements ApplicationListener {
         /*Map test*/
         map = new TmxMapLoader().load("map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
-        camera = new OrthographicCamera();
         //END
 
 
@@ -46,6 +48,8 @@ public class RoCCView implements ApplicationListener {
         model = new RoCCModel();
         controller = new RoCCController(model, this);
 
+        cam = this.model.getCamera();
+        hudCam = this.model.getHUDCamera();
 
         //b2dr = new Box2DDebugRenderer();
 
@@ -55,9 +59,9 @@ public class RoCCView implements ApplicationListener {
 	@Override
 	public void resize (int width, int height) {
         /*Map test*/
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
-        camera.update();
+        cam.viewportWidth = width;
+        cam.viewportHeight = height;
+        cam.update();
         //END
 	}
 
@@ -69,9 +73,14 @@ public class RoCCView implements ApplicationListener {
 
         //b2dr.render(model.getLevel().getWorld(),camera.combined);
 
+        // Set camera to follow player
+        /*
+        cam.position.set(..., ...);
+        cam.update();
+        */
 
         /*Map test*/
-        renderer.setView(camera);
+        renderer.setView(cam);
         renderer.render();
         //END
 
