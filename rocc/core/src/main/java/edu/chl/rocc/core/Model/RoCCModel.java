@@ -34,4 +34,14 @@ public class RoCCModel {
     public int getCharacterYPos(){
         return player.getCharacterYPos();
     }
+
+    public Level getLevel(){
+        return level;
+    }
+
+    public void updateWorld(){
+       // level.getWorld().step();
+    }
+
+
 }
