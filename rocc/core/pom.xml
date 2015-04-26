@@ -17,7 +17,14 @@
 			<groupId>com.badlogicgames.gdx</groupId>
 			<artifactId>gdx</artifactId>
 		</dependency>
-	</dependencies>
+
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-box2d</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>
