@@ -3,10 +3,9 @@ package edu.chl.rocc.core.model;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
-import com.badlogic.gdx.math.Vector2;
 
-
-
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
 
 
 /**
@@ -22,9 +21,13 @@ public class Level {
     private ArrayList <String> highscore;
 
     public Level(){
-        world = new World(new Vector2(0, -9.81f)true);
 
+        world = new World(new Vec2(0, -9.81f));
 
+    }
+
+    public void updateWorld(float dt){
+        world.step(dt, 6, 2);
     }
 
     public World getWorld(){

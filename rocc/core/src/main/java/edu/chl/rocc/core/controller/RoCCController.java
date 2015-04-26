@@ -18,6 +18,7 @@ public class RoCCController implements Runnable{
     private Thread thread;
     private ArrayList<Integer> keys;
     private boolean isRunning = true;
+    private float updateSpeed = 1 / 60f;
 
     public RoCCController(RoCCModel model, RoCCView main){
         this.model = model;
@@ -43,6 +44,7 @@ public class RoCCController implements Runnable{
                         model.moveSideways(Direction.DOWN);
                     }
                 }
+                model.updateWorld(updateSpeed);
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 this.isRunning = false;

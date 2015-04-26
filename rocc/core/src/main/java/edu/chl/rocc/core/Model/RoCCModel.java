@@ -39,8 +39,8 @@ public class RoCCModel {
         return level;
     }
 
-    public void updateWorld(){
-       // level.getWorld().step();
+    public void updateWorld(float dt){
+        level.updateWorld(dt);
     }
 
 

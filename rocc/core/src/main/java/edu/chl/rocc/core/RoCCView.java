@@ -11,7 +11,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 
@@ -29,7 +28,7 @@ public class RoCCView implements ApplicationListener {
     private OrthographicCamera camera;
     //END
 
-    private Box2DDebugRenderer b2dr;
+    //private Box2DDebugRenderer b2dr;
 
 
     @Override
@@ -48,7 +47,7 @@ public class RoCCView implements ApplicationListener {
         controller = new RoCCController(model, this);
 
 
-        b2dr = new Box2DDebugRenderer();
+        //b2dr = new Box2DDebugRenderer();
 
 
 	}
@@ -68,7 +67,7 @@ public class RoCCView implements ApplicationListener {
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        b2dr.render(model.getLevel().getWorld(),camera.combined);
+        //b2dr.render(model.getLevel().getWorld(),camera.combined);
 
 
         /*Map test*/
