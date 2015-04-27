@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 
@@ -31,6 +32,7 @@ public class RoCCView implements ApplicationListener {
     private OrthographicCamera hudCam;
     //END
 
+
     //private Box2DDebugRenderer b2dr;
 
 
@@ -41,15 +43,17 @@ public class RoCCView implements ApplicationListener {
         renderer = new OrthogonalTiledMapRenderer(map);
         //END
 
+        cam = new OrthographicCamera();
+        //cam.setToOrtho(false, 10, 10);
+        hudCam = new OrthographicCamera();
+        //hudCam.setToOrtho(false, 10, 10);
+
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
 		batch = new SpriteBatch();
 
         model = new RoCCModel();
         controller = new RoCCController(model, this);
-
-        cam = this.model.getCamera();
-        hudCam = this.model.getHUDCamera();
 
         //b2dr = new Box2DDebugRenderer();
 
@@ -75,7 +79,7 @@ public class RoCCView implements ApplicationListener {
 
         // Set camera to follow player
         /*
-        cam.position.set(..., ...);
+        cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
         cam.update();
         */
 
