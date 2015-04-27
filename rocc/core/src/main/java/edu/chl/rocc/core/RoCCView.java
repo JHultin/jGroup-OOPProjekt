@@ -39,7 +39,7 @@ public class RoCCView implements ApplicationListener {
     @Override
 	public void create () {
         /*Map test*/
-        map = new TmxMapLoader().load("map.tmx");
+        map = new TmxMapLoader().load("ground-map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         //END
 
