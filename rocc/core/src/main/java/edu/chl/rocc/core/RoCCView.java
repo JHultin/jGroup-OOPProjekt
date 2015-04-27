@@ -53,11 +53,10 @@ public class RoCCView implements ApplicationListener {
 		batch = new SpriteBatch();
 
         model = new RoCCModel();
+        model.constructWorld(map);
         controller = new RoCCController(model, this);
 
         //b2dr = new Box2DDebugRenderer();
-
-        model.constructWorld(map);
 
 	}
 
