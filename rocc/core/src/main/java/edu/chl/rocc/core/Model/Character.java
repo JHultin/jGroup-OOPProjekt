@@ -30,14 +30,16 @@ public class Character {
         BodyDef def = new BodyDef();
         def.position.set(160,120);
         def.type = BodyType.DYNAMIC;
-        body = world.createBody(def);
+        body = this.world.createBody(def);
 
-        //Defining & Creating a fixture
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(50,5);
-        FixtureDef fdef = new FixtureDef();
-        fdef.shape = shape;
-        body.createFixture(fdef);
+
+        PolygonShape shape = new PolygonShape();    //delete! Something else should be fixture
+        shape.setAsBox(50,5);                       //delete! Something else should be fixture
+
+        //Defining & creating fixture
+        FixtureDef fDef = new FixtureDef();
+        fDef.shape = shape;                         //delete! Something else should be fixture
+        body.createFixture(fDef);
     }
 
     /*
