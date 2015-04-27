@@ -57,6 +57,7 @@ public class RoCCView implements ApplicationListener {
 
         //b2dr = new Box2DDebugRenderer();
 
+        model.constructWorld(map);
 
 	}
 
