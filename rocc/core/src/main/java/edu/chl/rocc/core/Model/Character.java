@@ -3,6 +3,8 @@ package edu.chl.rocc.core.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.World;
 
 /**
  * A class for the playable characters.
@@ -12,16 +14,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Character {
 
-    private Sprite sprite;
+    private final World world;
     private int maxHealth = 100;
     private int healthPoints;
     private int xPos, yPos;
+    private Body body
 
-    public Character(){
+    public Character(World world){
         this.setHP(maxHealth);
         this.xPos = 0;
         this.yPos = 0;
-        sprite = new Sprite(new Texture(Gdx.files.internal("characterSprite.png")));
+        this.world = world;
     }
 
     /*
