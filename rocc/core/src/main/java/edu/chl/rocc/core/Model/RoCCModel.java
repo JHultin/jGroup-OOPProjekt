@@ -17,7 +17,7 @@ public class RoCCModel {
 
     public RoCCModel(){
         level = new Level();
-        player = new Player();
+        player = new Player(level.getWorld());
     }
 
     public void aim(int x, int y){

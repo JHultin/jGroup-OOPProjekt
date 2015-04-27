@@ -18,7 +18,7 @@ public class Character {
     private int maxHealth = 100;
     private int healthPoints;
     private int xPos, yPos;
-    private Body body
+    private Body body;
 
     public Character(World world){
         this.setHP(maxHealth);

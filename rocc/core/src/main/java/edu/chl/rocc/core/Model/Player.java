@@ -1,5 +1,7 @@
 package edu.chl.rocc.core.model;
 
+import org.jbox2d.dynamics.World;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +19,8 @@ public class Player {
     /*
     * Constructor creating a single character and adds it to the character list.
     */
-    public Player(){
-        this.character = new Character();
+    public Player(World world){
+        this.character = new Character(world);
 
         this.characters = new ArrayList<Character>();
         this.characters.add(this.character);
