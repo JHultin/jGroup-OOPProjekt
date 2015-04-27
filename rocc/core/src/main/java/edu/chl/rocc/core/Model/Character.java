@@ -3,8 +3,8 @@ package edu.chl.rocc.core.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.dynamics.*;
 
 /**
  * A class for the playable characters.
@@ -25,6 +25,19 @@ public class Character {
         this.xPos = 0;
         this.yPos = 0;
         this.world = world;
+
+        //Defining & creating body
+        BodyDef def = new BodyDef();
+        def.position.set(160,120);
+        def.type = BodyType.DYNAMIC;
+        body = world.createBody(def);
+
+        //Defining & Creating a fixture
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(50,5);
+        FixtureDef fdef = new FixtureDef();
+        fdef.shape = shape;
+        body.createFixture(fdef);
     }
 
     /*
