@@ -31,18 +31,25 @@ public class RoCCModel {
 
     }
 
-    public void ceateWorld(TiledMap tMap){
+    // Creates a logical box2d map mimicing the tiled-map
+    public void constructWorld(TiledMap tMap){
+        // Get the layer with information about the solid ground
         TiledMapTileLayer tileLayer = (TiledMapTileLayer)tMap.getLayers().get("ground");
 
+        // Create a tile for each block on the map
         for (int row = 0; row < tileLayer.getHeight(); row++){
             for (int col = 0; col < tileLayer.getWidth(); col++){
                 TiledMapTileLayer.Cell cell = tileLayer.getCell(col, row);
 
+                // If there is a tile at the position
                 if (cell != null && cell.getTile() != null){
+
+                    // Create a body definiion
                     BodyDef bDef = new BodyDef();
                     bDef.type = BodyType.STATIC;
                     bDef.position.set(32 * (col + 0.5f), 32 * (row + 0.5f));
 
+                    // And a fixture definition
                     ChainShape cs = new ChainShape();
                     Vec2[] v = new Vec2[4];
                     v[0] = new Vec2( -32f, -32f);
@@ -55,6 +62,7 @@ public class RoCCModel {
                     fDef.friction = 0;
                     fDef.shape = cs;
 
+                    // Then let the level create the block in the world
                     level.addBlock(bDef, fDef);
                 }
             }

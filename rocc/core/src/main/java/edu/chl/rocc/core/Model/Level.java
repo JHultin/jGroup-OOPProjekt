@@ -28,6 +28,7 @@ public class Level {
 
     }
 
+    // Adds a block for the map to the world
     public void addBlock(BodyDef bDef, FixtureDef fDef){
 
         world.createBody(bDef).createFixture(fDef);
