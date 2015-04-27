@@ -39,24 +39,25 @@ public class RoCCView implements ApplicationListener {
     @Override
 	public void create () {
         /*Map test*/
-        map = new TmxMapLoader().load("map.tmx");
+        map = new TmxMapLoader().load("ground-map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         //END
 
         cam = new OrthographicCamera();
-        //cam.setToOrtho(false, 10, 10);
+        cam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
         hudCam = new OrthographicCamera();
-        //hudCam.setToOrtho(false, 10, 10);
+        hudCam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
 
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
 		batch = new SpriteBatch();
 
+
         model = new RoCCModel();
+        model.constructWorld(map);
         controller = new RoCCController(model, this);
 
         //b2dr = new Box2DDebugRenderer();
-
 
 	}
 
@@ -78,10 +79,11 @@ public class RoCCView implements ApplicationListener {
         //b2dr.render(model.getLevel().getWorld(),camera.combined);
 
         // Set camera to follow player
-        /*
+
         cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
         cam.update();
-        */
+        batch.setProjectionMatrix(cam.combined);
+
 
         /*Map test*/
         renderer.setView(cam);

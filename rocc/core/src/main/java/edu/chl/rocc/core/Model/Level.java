@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.util.ArrayList;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 
@@ -23,6 +25,13 @@ public class Level {
     public Level(){
 
         world = new World(new Vec2(0, -9.81f));
+
+    }
+
+    // Adds a block for the map to the world
+    public void addBlock(BodyDef bDef, FixtureDef fDef){
+
+        world.createBody(bDef).createFixture(fDef);
 
     }
 
