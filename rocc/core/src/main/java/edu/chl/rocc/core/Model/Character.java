@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.dynamics.*;
 
 /**
  * A class for the playable characters.
@@ -26,6 +26,21 @@ public class Character {
         this.xPos = 0;
         this.yPos = 0;
         this.world = world;
+
+        //Defining & creating body
+        BodyDef def = new BodyDef();
+        def.position.set(160,120);
+        def.type = BodyType.DYNAMIC;
+        body = this.world.createBody(def);
+
+
+        PolygonShape shape = new PolygonShape();    //delete! Something else should be fixture
+        shape.setAsBox(50,5);                       //delete! Something else should be fixture
+
+        //Defining & creating fixture
+        FixtureDef fDef = new FixtureDef();
+        fDef.shape = shape;                         //delete! Something else should be fixture
+        body.createFixture(fDef);
     }
 
     /*
@@ -70,13 +85,13 @@ public class Character {
     */
     public void move(Direction dir){
         if(dir.equals(Direction.LEFT)){
-            xPos -= 15;
+            //xPos -= 15;
+            body.applyForceToCenter(new Vec2(-200, 0));
         } else if(dir.equals(Direction.RIGHT)){
             //xPos += 15;
-            body.applyForceToCenter(new Vec2(200, 0));
+            body.applyForceToCenter(new Vec2(500, 0));
         } else if(dir.equals(Direction.UP)){
-            //yPos += 15;
-            body.applyForceToCenter(new Vec2(200, 0));
+            yPos += 15;
         } else if(dir.equals(Direction.DOWN)){
             yPos -= 15;
         }
