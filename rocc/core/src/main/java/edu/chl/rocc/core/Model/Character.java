@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 /**
@@ -17,14 +18,11 @@ public class Character {
     private final World world;
     private int maxHealth = 100;
     private int healthPoints;
-    private int xPos, yPos;
     private Body body;
     private int width, height;
 
     public Character(World world){
         this.setHP(maxHealth);
-        this.xPos = 0;
-        this.yPos = 0;
         this.world = world;
         this.width = 18;
         this.height = 35;
@@ -85,13 +83,15 @@ public class Character {
     */
     public void move(Direction dir){
         if(dir.equals(Direction.LEFT)){
-            xPos -= 15;
+            body.applyForceToCenter(new Vec2(-1000, 0));
         } else if(dir.equals(Direction.RIGHT)){
-            xPos += 15;
+            body.applyForceToCenter(new Vec2(1000, 0));
         } else if(dir.equals(Direction.UP)){
-            yPos += 15;
+
         } else if(dir.equals(Direction.DOWN)){
-            yPos -= 15;
+
+        } else if (dir.equals(Direction.NONE)){
+
         }
 
     }
@@ -99,15 +99,15 @@ public class Character {
     /*
     * Returns the x-coordinate of the character.
     */
-    public int getX(){
-        return xPos;
+    public float getX(){
+        return body.getPosition().x;
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
-    public int getY(){
-        return yPos;
+    public float getY(){
+        return body.getPosition().y;
     }
 
 }

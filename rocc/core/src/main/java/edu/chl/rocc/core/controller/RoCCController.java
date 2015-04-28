@@ -46,10 +46,10 @@ public class RoCCController implements Runnable{
                     dir = Direction.LEFT;
                 else
                     dir = Direction.NONE;
-                //if (dir != lastDir){
+                if (dir != lastDir){
                     model.moveSideways(dir);
                     lastDir = dir;
-                //}
+                }
                 /*
                 for (int key : keys){
                     if (key == Input.Keys.RIGHT){

@@ -45,14 +45,14 @@ public class Player {
     /*
     * Returns the x-coordinate of the character.
     */
-    public int getCharacterXPos(){
+    public float getCharacterXPos(){
         return character.getX();
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
-    public int getCharacterYPos(){
+    public float getCharacterYPos(){
         return character.getY();
     }
 
