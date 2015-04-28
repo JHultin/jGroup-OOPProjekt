@@ -51,12 +51,13 @@ public class RoCCModel {
 
                     // And a fixture definition
                     ChainShape cs = new ChainShape();
-                    Vec2[] v = new Vec2[4];
-                    v[0] = new Vec2( -32f, -32f);
-                    v[1] = new Vec2( -32f,  32f);
-                    v[2] = new Vec2(  32f,  32f);
-                    v[3] = new Vec2(  32f, -32f);
-                    cs.createChain(v, 4);
+                    Vec2[] v = new Vec2[5];
+                    v[0] = new Vec2( -16f, -16f);
+                    v[1] = new Vec2( -16f,  16f);
+                    v[2] = new Vec2(  16f,  16f);
+                    v[3] = new Vec2(  16f, -16f);
+                    v[4] = new Vec2( -16f, -16f);
+                    cs.createChain(v, 5);
 
                     FixtureDef fDef = new FixtureDef();
                     fDef.friction = 0;
@@ -73,11 +74,13 @@ public class RoCCModel {
         player.move(dir);
     }
 
-    public int getCharacterXPos(){
+    public void jump() { player.jump(); }
+
+    public float getCharacterXPos(){
         return player.getCharacterXPos();
     }
 
-    public int getCharacterYPos(){
+    public float getCharacterYPos(){
         return player.getCharacterYPos();
     }
 
@@ -85,9 +88,7 @@ public class RoCCModel {
         return level;
     }
 
-    public void updateWorld(float dt){
-        level.updateWorld(dt);
-    }
+    public void updateWorld(float dt){level.updateWorld(dt); }
 
 
 }

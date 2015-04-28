@@ -1,8 +1,5 @@
 package edu.chl.rocc.core.model;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
@@ -18,14 +15,14 @@ public class Character {
     private final World world;
     private int maxHealth = 100;
     private int healthPoints;
-    private int xPos, yPos;
     private Body body;
+    private int width, height;
 
     public Character(World world){
         this.setHP(maxHealth);
-        this.xPos = 0;
-        this.yPos = 0;
         this.world = world;
+        this.width = 18;
+        this.height = 35;
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -33,13 +30,11 @@ public class Character {
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
 
-
-        PolygonShape shape = new PolygonShape();    //delete! Something else should be fixture
-        shape.setAsBox(50,5);                       //delete! Something else should be fixture
-
         //Defining & creating fixture
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width,height);
         FixtureDef fDef = new FixtureDef();
-        fDef.shape = shape;                         //delete! Something else should be fixture
+        fDef.shape = shape;
         body.createFixture(fDef);
     }
 
@@ -85,31 +80,35 @@ public class Character {
     */
     public void move(Direction dir){
         if(dir.equals(Direction.LEFT)){
-            //xPos -= 15;
-            body.applyForceToCenter(new Vec2(-200, 0));
+            body.applyForceToCenter(new Vec2(-1000, 0));
         } else if(dir.equals(Direction.RIGHT)){
-            //xPos += 15;
-            body.applyForceToCenter(new Vec2(500, 0));
+            body.applyForceToCenter(new Vec2(1000, 0));
         } else if(dir.equals(Direction.UP)){
-            yPos += 15;
+
         } else if(dir.equals(Direction.DOWN)){
-            yPos -= 15;
+
+        } else if (dir.equals(Direction.NONE)){
+
         }
 
+    }
+
+    public void jump(){
+        body.applyForceToCenter(new Vec2(0, 1000));
     }
 
     /*
     * Returns the x-coordinate of the character.
     */
-    public int getX(){
-        return xPos;
+    public float getX(){
+        return body.getPosition().x-width;
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
-    public int getY(){
-        return yPos;
+    public float getY(){
+        return body.getPosition().y-height;
     }
 
 }
