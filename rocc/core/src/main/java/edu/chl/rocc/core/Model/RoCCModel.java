@@ -73,6 +73,8 @@ public class RoCCModel {
         player.move(dir);
     }
 
+    public void jump() { player.jump(); }
+
     public float getCharacterXPos(){
         return player.getCharacterXPos();
     }

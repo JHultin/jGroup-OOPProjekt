@@ -75,7 +75,9 @@ public class RoCCController implements Runnable{
 
         @Override
         public boolean keyDown(int keycode) {
-            if (!keys.contains(keycode))
+            if (keycode == Input.Keys.SPACE)
+                model.jump();
+            else if (!keys.contains(keycode))
                 keys.add(keycode);
             return false;
         }

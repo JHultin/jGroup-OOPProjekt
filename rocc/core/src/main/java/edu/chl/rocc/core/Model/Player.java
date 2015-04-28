@@ -42,6 +42,8 @@ public class Player {
         character.move(dir);
     }
 
+    public void jump() { characters.get(0).jump(); }
+
     /*
     * Returns the x-coordinate of the character.
     */
