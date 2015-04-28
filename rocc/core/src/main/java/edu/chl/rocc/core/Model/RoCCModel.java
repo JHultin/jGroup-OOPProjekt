@@ -88,9 +88,7 @@ public class RoCCModel {
         return level;
     }
 
-    public void updateWorld(float dt){
-        level.updateWorld(dt);
-    }
+    public void updateWorld(float dt){level.updateWorld(dt); }
 
 
 }
