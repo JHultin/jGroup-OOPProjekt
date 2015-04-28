@@ -22,10 +22,13 @@ public class Character {
     private int maxHealth = 100;
     private int healthPoints;
     private Body body;
+    private int width, height;
 
     public Character(World world){
         this.setHP(maxHealth);
         this.world = world;
+        this.width = 18;
+        this.height = 35;
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -33,13 +36,11 @@ public class Character {
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
 
-
-        PolygonShape shape = new PolygonShape();    //delete! Something else should be fixture
-        shape.setAsBox(50,5);                       //delete! Something else should be fixture
-
         //Defining & creating fixture
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width,height);
         FixtureDef fDef = new FixtureDef();
-        fDef.shape = shape;                         //delete! Something else should be fixture
+        fDef.shape = shape;
         body.createFixture(fDef);
     }
 
