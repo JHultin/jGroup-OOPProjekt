@@ -51,12 +51,13 @@ public class RoCCModel {
 
                     // And a fixture definition
                     ChainShape cs = new ChainShape();
-                    Vec2[] v = new Vec2[4];
+                    Vec2[] v = new Vec2[5];
                     v[0] = new Vec2( -16f, -16f);
                     v[1] = new Vec2( -16f,  16f);
                     v[2] = new Vec2(  16f,  16f);
                     v[3] = new Vec2(  16f, -16f);
-                    cs.createChain(v, 4);
+                    v[4] = new Vec2( -16f, -16f);
+                    cs.createChain(v, 5);
 
                     FixtureDef fDef = new FixtureDef();
                     fDef.friction = 0;
