@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.World;
 
 /**
  * A class for the playable characters.
@@ -86,9 +89,11 @@ public class Character {
         if(dir.equals(Direction.LEFT)){
             xPos -= 15;
         } else if(dir.equals(Direction.RIGHT)){
-            xPos += 15;
+            //xPos += 15;
+            body.applyForceToCenter(new Vec2(200, 0));
         } else if(dir.equals(Direction.UP)){
-            yPos += 15;
+            //yPos += 15;
+            body.applyForceToCenter(new Vec2(200, 0));
         } else if(dir.equals(Direction.DOWN)){
             yPos -= 15;
         }
