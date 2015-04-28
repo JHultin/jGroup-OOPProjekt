@@ -100,14 +100,14 @@ public class Character {
     * Returns the x-coordinate of the character.
     */
     public float getX(){
-        return body.getPosition().x;
+        return body.getPosition().x-width;
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
     public float getY(){
-        return body.getPosition().y;
+        return body.getPosition().y-height;
     }
 
 }
