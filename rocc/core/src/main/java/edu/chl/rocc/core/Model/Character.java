@@ -101,6 +101,10 @@ public class Character {
 
     }
 
+    public void jump(){
+        body.applyForceToCenter(new Vec2(0, 1000));
+    }
+
     /*
     * Returns the x-coordinate of the character.
     */
