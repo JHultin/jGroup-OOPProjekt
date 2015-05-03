@@ -17,7 +17,7 @@ import org.jbox2d.dynamics.FixtureDef;
  *
  * Created by Yen on 2015-04-22.
  */
-public class RoCCModel {
+public class RoCCModel implements IRoCCModel{
 
     private Level level;
     private Player player;

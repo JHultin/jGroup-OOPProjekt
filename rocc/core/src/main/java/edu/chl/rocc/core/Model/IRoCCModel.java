@@ -1,0 +1,25 @@
+package edu.chl.rocc.core.model;
+
+import com.badlogic.gdx.maps.tiled.TiledMap;
+
+/**
+ * Created by Joel on 2015-05-03.
+ */
+public interface IRoCCModel {
+
+    public void aim(int x, int y);
+
+    public void constructWorld(TiledMap tMap);
+
+    public void moveSideways(Direction dir);
+
+    public void jump();
+
+    public float getCharacterXPos();
+
+    public float getCharacterYPos();
+
+    public Level getLevel();
+
+    public void updateWorld(float dt);
+}

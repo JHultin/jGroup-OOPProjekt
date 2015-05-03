@@ -9,7 +9,7 @@ import edu.chl.rocc.core.model.Player;
  */
 public class PhyPlayer implements IPlayer {
 
-    private Player player;
+    private IPlayer player;
 
     @Override
     public void jump() {
