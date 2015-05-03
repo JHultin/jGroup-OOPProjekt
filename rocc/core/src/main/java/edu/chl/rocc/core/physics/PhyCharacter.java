@@ -8,7 +8,7 @@ import edu.chl.rocc.core.model.Character;
  */
 public class PhyCharacter implements ICharacter {
 
-    private Character character;
+    private ICharacter character;
 
     @Override
     public int getHP() {
