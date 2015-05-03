@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Jacob on 2015-04-22.
  */
-public class Player {
+public class Player implements IPlayer {
 
     private Character character;
     private List<Direction> moveList;
@@ -29,10 +29,6 @@ public class Player {
     public Player(List<Character> characters){
 
         this.characters = characters;
-    }
-
-    public void addToMoveList(Direction direction){
-        moveList.add(direction);
     }
 
     /*
