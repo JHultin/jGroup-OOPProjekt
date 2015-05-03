@@ -1,10 +1,8 @@
 package edu.chl.rocc.core.model;
 
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
@@ -17,7 +15,7 @@ import org.jbox2d.dynamics.FixtureDef;
  *
  * Created by Yen on 2015-04-22.
  */
-public class RoCCModel implements IRoCCModel{
+public class RoCCModel implements IRoCCModel {
 
     private Level level;
     private Player player;

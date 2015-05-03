@@ -2,9 +2,8 @@ package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.model.Direction;
-import edu.chl.rocc.core.model.IRoCCModel;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Level;
-import edu.chl.rocc.core.model.RoCCModel;
 
 /**
  * Created by Joel on 2015-05-03.

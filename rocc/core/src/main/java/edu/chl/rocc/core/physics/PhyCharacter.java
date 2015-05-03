@@ -1,7 +1,7 @@
 package edu.chl.rocc.core.physics;
 
+import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
-import edu.chl.rocc.core.model.Character;
 
 /**
  * Created by Joel on 2015-05-03.

@@ -3,6 +3,8 @@ package edu.chl.rocc.core.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -16,7 +18,7 @@ import org.jbox2d.dynamics.World;
  *
  * @author Jenny Orell
  */
-public class Character implements ICharacter{
+public class Character implements ICharacter {
 
     private final World world;
     private int maxHealth = 100;

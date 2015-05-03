@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import org.jbox2d.dynamics.World;
 
 import java.util.ArrayList;

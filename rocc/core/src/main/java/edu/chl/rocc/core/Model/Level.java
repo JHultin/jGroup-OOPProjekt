@@ -1,9 +1,8 @@
 package edu.chl.rocc.core.model;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
 import java.util.ArrayList;
 
+import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
@@ -13,7 +12,7 @@ import org.jbox2d.dynamics.World;
 /**
  * Created by Yen on 2015-04-22.
  */
-public class Level {
+public class Level implements ILevel {
 
 
     private World world;
