@@ -10,7 +10,7 @@ import org.jbox2d.dynamics.*;
  *
  * @author Jenny Orell
  */
-public class Character {
+public class Character implements ICharacter{
 
     private final World world;
     private int maxHealth = 100;
