@@ -1,8 +1,7 @@
 package edu.chl.rocc.core.physics;
 
 import edu.chl.rocc.core.model.Direction;
-import edu.chl.rocc.core.model.IPlayer;
-import edu.chl.rocc.core.model.Player;
+import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 
 /**
  * Created by Joel on 2015-05-03.
