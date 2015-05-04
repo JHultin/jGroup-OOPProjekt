@@ -16,12 +16,12 @@ public class GameViewManager {
 
     //The numbers doesn't meen anything special
     private static final int PLAY = 919123;
-    private static final int MENU = 87;
+    private static final int MENU = 872122;
 
     public GameViewManager(RoCCView view){
         this.view = view;
         gameView = new Stack<GameView>();
-        pushState(PLAY);
+        pushState(MENU);
     }
 
     public void update(float dt){

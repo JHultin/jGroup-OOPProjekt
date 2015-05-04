@@ -46,7 +46,7 @@ public class MenuView extends GameView {
         batch.begin();
 
         //Draw title
-        titleFont.draw(batch,title, (Variables.WIDTH-width)/2,Variables.HEIGHT*0.8f);
+        titleFont.draw(batch,title, (Variables.WIDTH)/2,Variables.HEIGHT*0.8f);
 
         //Draws menu items
         for(int i = 0; i<menuItem.length; i++){
