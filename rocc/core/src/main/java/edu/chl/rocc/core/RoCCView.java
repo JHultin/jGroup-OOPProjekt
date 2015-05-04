@@ -18,7 +18,7 @@ public class RoCCView implements ApplicationListener {
     private RoCCController controller;
 
 	private SpriteBatch batch;
-	private float elapsed;
+//	private float elapsed;
     private static final float STEP = 1/60f;
 
     private GameViewManager gameViewManager;
@@ -56,16 +56,13 @@ public class RoCCView implements ApplicationListener {
 
 	@Override
 	public void render () {
-        elapsed += Gdx.graphics.getDeltaTime();
+//        elapsed += Gdx.graphics.getDeltaTime();
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        while(elapsed >= STEP){
-            elapsed -= STEP;
 
-            gameViewManager.update(STEP);
-            gameViewManager.render();
-        }
+        gameViewManager.update(STEP);
+        gameViewManager.render();
     }
 
 	@Override
