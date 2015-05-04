@@ -25,7 +25,6 @@ public class RoCCView implements ApplicationListener {
     private RoCCModel model;
     private RoCCController controller;
 
-//    private Texture characterTexture;
 	private SpriteBatch batch;
 	private float elapsed;
     private static final float STEP = 1/60f;

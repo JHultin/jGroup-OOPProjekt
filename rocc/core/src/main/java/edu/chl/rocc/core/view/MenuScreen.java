@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import edu.chl.rocc.core.model.Variables;
 
 /**
+ * This class is supposed to contain all the information
+ * for the main menu screen,
  * Created by Jacob on 2015-04-28.
  */
 public class MenuScreen extends GameView {
