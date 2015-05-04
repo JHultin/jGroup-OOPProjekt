@@ -5,7 +5,7 @@ import edu.chl.rocc.core.RoCCView;
 import java.util.Stack;
 
 /**
- * A class which manage the different views.
+ * A class which manages the different views.
  *
  * Created by Jacob on 2015-05-04.
  */
@@ -14,6 +14,7 @@ public class GameViewManager {
     private RoCCView view;
     private Stack<GameView> gameView;
 
+    //The numbers doesn't meen anything special
     private static final int PLAY = 919123;
     private static final int MENU = 87;
 
@@ -46,8 +47,8 @@ public class GameViewManager {
     }
 
     public void popState(){
-        GameView gv = gameView.pop();
-        gv.dispose();
+        GameView previousGameView = gameView.pop();
+        previousGameView.dispose();
     }
 
     /**
@@ -55,9 +56,9 @@ public class GameViewManager {
      */
     private GameView getView(int view){
         if(view == PLAY){
-            return new PlayScreen(this);
+            return new PlayView(this);
         }else if (view == MENU){
-            return new MenuScreen(this);
+            return new MenuView(this);
         }else {
             return null;
         }
