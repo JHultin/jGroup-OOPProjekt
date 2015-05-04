@@ -13,18 +13,20 @@ import com.badlogic.gdx.math.Vector2;
  * graphical data required for playing a level.
  * Created by Jacob on 2015-04-28.
  */
-public class PlayScreen extends GameView{
+public class PlayView extends GameView{
 
     private Texture characterTexture;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
 
-    public PlayScreen (GameViewManager gsm){
+    public PlayView(GameViewManager gsm){
         super(gsm);
 
         map = new TmxMapLoader().load("ground-map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
+
+        model.constructWorld(map);
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
         batch = new SpriteBatch();
