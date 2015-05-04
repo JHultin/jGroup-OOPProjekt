@@ -1,5 +1,6 @@
 package edu.chl.rocc.core;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,89 +15,67 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
+import edu.chl.rocc.core.model.Variables;
+import edu.chl.rocc.core.view.GameViewManager;
+import edu.chl.rocc.core.view.PlayScreen;
 
+//implements ApplicationListener
 public class RoCCView implements ApplicationListener {
-	private Texture characterTexture;
-	private SpriteBatch batch;
-	private float elapsed;
+
     private RoCCModel model;
     private RoCCController controller;
 
+//    private Texture characterTexture;
+	private SpriteBatch batch;
+	private float elapsed;
+    private static final float STEP = 1/60f;
 
-    /*Map test*/
-    private TiledMap map;
-    private OrthogonalTiledMapRenderer renderer;
+    private GameViewManager gameViewManager;
+
     // Camera following the player
     private OrthographicCamera cam;
     // Camera showing the HUD
     private OrthographicCamera hudCam;
-    //END
-
 
     //private Box2DDebugRenderer b2dr;
 
-
     @Override
 	public void create () {
-        /*Map test*/
-        map = new TmxMapLoader().load("ground-map.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
-        //END
+
+        model = new RoCCModel();
+        controller = new RoCCController(model, this);
+
+        batch = new SpriteBatch();
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
         hudCam = new OrthographicCamera();
         hudCam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
 
+        gameViewManager = new GameViewManager(this);
 
-        characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
-		batch = new SpriteBatch();
-
-
-        model = new RoCCModel();
-        model.constructWorld(map);
-        controller = new RoCCController(model, this);
-
-        //b2dr = new Box2DDebugRenderer();
-
-	}
+    }
 
 	@Override
 	public void resize (int width, int height) {
-        /*Map test*/
         cam.viewportWidth = width;
         cam.viewportHeight = height;
         cam.update();
-        //END
 	}
 
 	@Override
 	public void render () {
-		elapsed += Gdx.graphics.getDeltaTime();
+        elapsed += Gdx.graphics.getDeltaTime();
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        //b2dr.render(model.getLevel().getWorld(),camera.combined);
+        while(elapsed >= STEP){
+            elapsed -= STEP;
 
-        // Set camera to follow player
-
-        cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
-        cam.update();
-        batch.setProjectionMatrix(cam.combined);
-
-
-        /*Map test*/
-        renderer.setView(cam);
-        renderer.render();
-        //END
-
-
-        batch.begin();
-        batch.draw(characterTexture, model.getCharacterXPos(), model.getCharacterYPos());
-        //view.draw(batch);
-
-		batch.end();
-	}
+            gameViewManager.update(STEP);
+            gameViewManager.render();
+        }
+    }
 
 	@Override
 	public void pause () {
@@ -109,4 +88,24 @@ public class RoCCView implements ApplicationListener {
 	@Override
 	public void dispose () {
 	}
+
+
+    public SpriteBatch getSpriteBatch(){
+        return batch;
+    }
+    public OrthographicCamera getHudCam(){
+        return hudCam;
+    }
+    public OrthographicCamera getCam(){
+        return cam;
+    }
+
+    public RoCCController getController(){
+        return controller;
+    }
+
+    public RoCCModel getModel(){
+        return model;
+    }
+
 }
