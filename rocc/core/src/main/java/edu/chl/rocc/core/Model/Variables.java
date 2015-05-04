@@ -1,4 +1,4 @@
-package edu.chl.rocc.core;
+package edu.chl.rocc.core.model;
 
 /**
  * A class containing global variables
