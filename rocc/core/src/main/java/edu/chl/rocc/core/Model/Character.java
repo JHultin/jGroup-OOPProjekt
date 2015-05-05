@@ -28,6 +28,10 @@ public class Character implements ICharacter {
         this.setHP(maxHealth);
     }
 
+    public Character(World world, int x, int y){
+        this.setHP(maxHealth);
+    }
+
     /*
     * Returns the character's health.
     */

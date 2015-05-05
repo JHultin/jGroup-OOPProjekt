@@ -84,6 +84,14 @@ public class RoCCModel implements IRoCCModel {
         return player.getCharacterYPos();
     }
 
+    public float getFollowerXPos(int i){
+        return player.getFollowerXPos(i);
+    }
+
+    public float getFollowerYPos(int i){
+        return player.getFollowerYPos(i);
+    }
+
     public Level getLevel(){
         return level;
     }
