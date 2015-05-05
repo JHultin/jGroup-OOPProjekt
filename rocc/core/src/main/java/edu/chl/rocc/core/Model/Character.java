@@ -14,45 +14,11 @@ import org.jbox2d.dynamics.*;
  */
 public class Character implements ICharacter {
 
-    private final World world;
     private int maxHealth = 100;
     private int healthPoints;
-    private Body body;
-    private int width, height;
-    private int BIT_Body;
-    private int BIT_Ground;
 
-    public Character(World world){
+    public Character(){
         this.setHP(maxHealth);
-        this.world = world;
-        this.width = 18;
-        this.height = 35;
-        this.BIT_Body = 4;
-        this.BIT_Ground = 2;
-        this.world.setContactListener(new MyContactListener()); //Ska flyttas
-
-        //Defining & creating body
-        BodyDef def = new BodyDef();
-        def.position.set(160,120);
-        def.type = BodyType.DYNAMIC;
-        body = this.world.createBody(def);
-
-        //Defining & creating fixture
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width,height);
-        FixtureDef fDef = new Fixture();
-        fDef.shape = shape;
-        fDef.filter.categoryBits = BIT_Body;
-        fDef.filter.maskBits = BIT_Ground;
-        body.createFixture(fDef).setUserData("playerBody");
-
-        //create foot sensor
-        shape.setAsBox(width,height/4,new Vec2(0,-30),0);
-        fDef.shape = shape;
-        fDef.filter.categoryBits = BIT_Body;
-        fDef.filter.maskBits = BIT_Ground;
-        fDef.isSensor = true;
-        body.createFixture(fDef).setUserData("footSensor");
     }
 
     /*
