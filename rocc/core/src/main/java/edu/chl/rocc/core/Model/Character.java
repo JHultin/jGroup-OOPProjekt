@@ -62,6 +62,7 @@ public class Character implements ICharacter {
         this.setHP(this.getHP() + value);
     }
 
+    
     /*
     * Decrease character's health with a given value.
     */
