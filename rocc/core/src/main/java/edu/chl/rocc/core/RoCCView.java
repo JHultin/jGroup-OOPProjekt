@@ -77,7 +77,7 @@ public class RoCCView implements ApplicationListener {
 	public void dispose () {
 	}
 
-
+    //Getters
     public SpriteBatch getSpriteBatch(){
         return batch;
     }

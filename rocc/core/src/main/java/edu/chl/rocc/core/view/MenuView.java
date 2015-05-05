@@ -27,7 +27,6 @@ public class MenuView extends GameView {
 
     public MenuView(GameViewManager gsm){
         super(gsm);
-
 /*
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(
                 Gdx.files.internal("fonts/Retro Computer_DEMO.ttf")
@@ -37,7 +36,7 @@ public class MenuView extends GameView {
         titleFont.setColor(Color.WHITE);
 
         font = generator.generateFont(24);
-*/
+  */
     }
 
     @Override
