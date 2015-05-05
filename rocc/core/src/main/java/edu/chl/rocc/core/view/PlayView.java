@@ -36,7 +36,7 @@ public class PlayView extends GameView{
     }
 
     @Override
-    public void update(float dt) {
+    public void update() {
 
     }
 

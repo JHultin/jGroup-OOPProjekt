@@ -24,8 +24,8 @@ public class GameViewManager {
         pushState(MENU);
     }
 
-    public void update(float dt){
-        gameView.peek().update(dt);
+    public void update(){
+        gameView.peek().update();
     }
 
     public void render(){
