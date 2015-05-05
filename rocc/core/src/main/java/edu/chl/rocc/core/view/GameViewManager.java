@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.view;
 
 import edu.chl.rocc.core.RoCCView;
+import edu.chl.rocc.core.model.Variables;
 
 import java.util.Stack;
 
@@ -14,14 +15,10 @@ public class GameViewManager {
     private RoCCView view;
     private Stack<GameView> gameView;
 
-    //The numbers doesn't meen anything special
-    private static final int PLAY = 919123;
-    private static final int MENU = 872122;
-
     public GameViewManager(RoCCView view){
         this.view = view;
         gameView = new Stack<GameView>();
-        pushState(MENU);
+        pushState(Variables.PLAY);
     }
 
     public void update(){
@@ -55,9 +52,9 @@ public class GameViewManager {
      * Here we can add the different views
      */
     private GameView getView(int view){
-        if(view == PLAY){
+        if(view == Variables.PLAY){
             return new PlayView(this);
-        }else if (view == MENU){
+        }else if (view == Variables.MENU){
             return new MenuView(this);
         }else {
             return null;

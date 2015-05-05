@@ -16,4 +16,10 @@ public class Variables {
     //Width and Height of the camera
     public static final int WIDTH = 320;
     public static final int HEIGHT = 240;
+
+    //The numbers doesn't meen anything special
+    public static final int PLAY = 919123;
+    public static final int MENU = 872122;
+
+
 }
