@@ -19,7 +19,7 @@ public class RoCCView implements ApplicationListener {
 
 	private SpriteBatch batch;
 //	private float elapsed;
-    private static final float STEP = 1/60f;
+//  private static final float STEP = 1/60f;
 
     private GameViewManager gameViewManager;
 
