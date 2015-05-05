@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.physics;
 
+import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
 import org.jbox2d.collision.shapes.PolygonShape;
