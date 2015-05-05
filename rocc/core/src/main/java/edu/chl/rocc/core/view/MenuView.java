@@ -4,14 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.sun.beans.editors.ColorEditor;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import edu.chl.rocc.core.model.Variables;
 
-import java.awt.*;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * This class is supposed to contain all the information
@@ -23,19 +18,33 @@ public class MenuView extends GameView {
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont font = new BitmapFont();
 
+//    private FreeTypeFontGenerator generator;
+
     private String title = "Ruins of Corosa City";
 
-    //private List<String> menuList;
+    //A variable to check which menuItem is selected
     private int currentItem;
     private String [] menuItem = {"New Game","Load Game","Options","Highscore","Exit"};
 
 
     public MenuView(GameViewManager gsm){
         super(gsm);
+
+
+/*
+        generator = new FreeTypeFontGenerator(
+                Gdx.files.internal("fonts/Retro Computer_DEMO.ttf")
+        );
+
+        titleFont = generator.generateFont(56);
+        titleFont.setColor(Color.WHITE);
+
+        font = generator.generateFont(24);
+*/
     }
 
     @Override
-    public void update(float dt) {
+    public void update() {
 
     }
 

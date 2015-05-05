@@ -35,7 +35,7 @@ public abstract class GameView {
         hudCam = view.getHudCam();
     }
 
-    public abstract void update(float dt);
+    public abstract void update();
     public abstract void render();
     public abstract void dispose();
 

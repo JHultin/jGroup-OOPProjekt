@@ -61,7 +61,7 @@ public class RoCCView implements ApplicationListener {
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
 
-        gameViewManager.update(STEP);
+        gameViewManager.update();
         gameViewManager.render();
     }
 
