@@ -18,8 +18,6 @@ public class MenuView extends GameView {
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont font = new BitmapFont();
 
-//    private FreeTypeFontGenerator generator;
-
     private String title = "Ruins of Corosa City";
 
     //A variable to check which menuItem is selected
@@ -30,9 +28,8 @@ public class MenuView extends GameView {
     public MenuView(GameViewManager gsm){
         super(gsm);
 
-
 /*
-        generator = new FreeTypeFontGenerator(
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(
                 Gdx.files.internal("fonts/Retro Computer_DEMO.ttf")
         );
 
