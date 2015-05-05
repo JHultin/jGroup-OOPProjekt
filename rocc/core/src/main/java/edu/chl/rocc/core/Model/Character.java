@@ -25,12 +25,16 @@ public class Character implements ICharacter {
     private int healthPoints;
     private Body body;
     private int width, height;
+    private int BIT_Body;
+    private int BIT_Ground;
 
     public Character(World world){
         this.setHP(maxHealth);
         this.world = world;
         this.width = 18;
         this.height = 35;
+        this.BIT_Body = 4;
+        this.BIT_Ground = 2;
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -43,7 +47,12 @@ public class Character implements ICharacter {
         shape.setAsBox(width,height);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
-        body.createFixture(fDef);
+        fDef.filter.categoryBits = BIT_Body;
+        fDef.filter.maskBits = BIT_Ground;
+        body.createFixture(fDef).setUserData("playerBody");
+
+        //create foot sensor
+
     }
 
     /*

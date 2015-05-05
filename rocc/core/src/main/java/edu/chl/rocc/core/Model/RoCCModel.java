@@ -60,6 +60,8 @@ public class RoCCModel implements IRoCCModel {
                     FixtureDef fDef = new FixtureDef();
                     fDef.friction = 0;
                     fDef.shape = cs;
+                    fDef.filter.categoryBits = 2;  // As Character variable BIT_Ground
+                    fDef.filter.maskBits = 4;      // As Character variable BIT_Body
 
                     // Then let the level create the block in the world
                     level.addBlock(bDef, fDef);
