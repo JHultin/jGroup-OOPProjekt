@@ -30,7 +30,7 @@ public class Level implements ILevel {
     // Adds a block for the map to the world
     public void addBlock(BodyDef bDef, FixtureDef fDef){
 
-        world.createBody(bDef).createFixture(fDef);
+        world.createBody(bDef).createFixture(fDef).setUserData("ground");
 
     }
 

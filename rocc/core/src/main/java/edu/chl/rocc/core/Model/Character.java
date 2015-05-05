@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -28,6 +29,7 @@ public class Character implements ICharacter {
         this.height = 35;
         this.BIT_Body = 4;
         this.BIT_Ground = 2;
+        this.world.setContactListener(new MyContactListener()); //Ska flyttas?
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -38,14 +40,19 @@ public class Character implements ICharacter {
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width,height);
-        FixtureDef fDef = new FixtureDef();
+        FixtureDef fDef = new Fixture   gith    Def();
         fDef.shape = shape;
         fDef.filter.categoryBits = BIT_Body;
         fDef.filter.maskBits = BIT_Ground;
         body.createFixture(fDef).setUserData("playerBody");
 
         //create foot sensor
-
+        shape.setAsBox(width,height/4,new Vec2(0,-30),0);
+        fDef.shape = shape;
+        fDef.filter.categoryBits = BIT_Body;
+        fDef.filter.maskBits = BIT_Ground;
+        fDef.isSensor = true;
+        body.createFixture(fDef).setUserData("footSensor");
     }
 
     /*
