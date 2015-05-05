@@ -62,36 +62,25 @@ public class Character implements ICharacter {
     * Move the character in a given direction.
     */
     public void move(Direction dir){
-        if(dir.equals(Direction.LEFT)){
-            body.applyForceToCenter(new Vec2(-1000, 0));
-        } else if(dir.equals(Direction.RIGHT)){
-            body.applyForceToCenter(new Vec2(1000, 0));
-        } else if(dir.equals(Direction.UP)){
-
-        } else if(dir.equals(Direction.DOWN)){
-
-        } else if (dir.equals(Direction.NONE)){
-
-        }
 
     }
 
     public void jump(){
-        body.applyForceToCenter(new Vec2(0, 1000));
+
     }
 
     /*
     * Returns the x-coordinate of the character.
     */
     public float getX(){
-        return body.getPosition().x-width;
+        return 0;
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
     public float getY(){
-        return body.getPosition().y-height;
+        return 0;
     }
 
 }
