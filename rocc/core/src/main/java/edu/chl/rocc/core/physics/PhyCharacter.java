@@ -73,23 +73,32 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void move(Direction dir) {
-        // body.move
+
+        if(dir.equals(Direction.LEFT)){
+            body.applyForceToCenter(new Vec2(-1000, 0));
+        } else if(dir.equals(Direction.RIGHT)){
+            body.applyForceToCenter(new Vec2(1000, 0));
+        } else if(dir.equals(Direction.UP)){
+
+        } else if(dir.equals(Direction.DOWN)){
+
+        } else if (dir.equals(Direction.NONE)){
+
+        }
     }
 
     @Override
     public void jump() {
-        // body.move
+        body.applyForceToCenter(new Vec2(0, 1000));
     }
 
     @Override
     public float getX() {
-        // return body.x
-        return 0;
+        return body.getPosition().x-width;
     }
 
     @Override
     public float getY() {
-        // return body.y
-        return 0;
+        return body.getPosition().y-height;
     }
 }

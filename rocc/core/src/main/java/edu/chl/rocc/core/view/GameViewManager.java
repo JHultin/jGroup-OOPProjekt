@@ -18,7 +18,7 @@ public class GameViewManager {
     public GameViewManager(RoCCView view){
         this.view = view;
         gameView = new Stack<GameView>();
-        pushState(Variables.PLAY);
+        pushState(ViewVariables.PLAY);
     }
 
     public void update(){
@@ -52,9 +52,9 @@ public class GameViewManager {
      * Here we can add the different views
      */
     private GameView getView(int view){
-        if(view == Variables.PLAY){
+        if(view == ViewVariables.PLAY){
             return new PlayView(this);
-        }else if (view == Variables.MENU){
+        }else if (view == ViewVariables.MENU){
             return new MenuView(this);
         }else {
             return null;
