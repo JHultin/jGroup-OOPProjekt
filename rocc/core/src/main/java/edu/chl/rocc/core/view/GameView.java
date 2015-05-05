@@ -7,6 +7,8 @@ import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.model.RoCCModel;
 
 /**
+ * A abstract class which contains the common variables
+ * and methods needed in the different Game views.
  * Created by Jacob on 2015-05-04.
  */
 public abstract class GameView {
