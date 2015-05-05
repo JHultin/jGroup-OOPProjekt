@@ -36,7 +36,7 @@ public class Character implements ICharacter {
         this.height = 35;
         this.BIT_Body = 4;
         this.BIT_Ground = 2;
-        this.world.setContactListener(new MyContactListener()); //Ska flyttas?
+        this.world.setContactListener(new MyContactListener()); //Ska flyttas
 
         //Defining & creating body
         BodyDef def = new BodyDef();
