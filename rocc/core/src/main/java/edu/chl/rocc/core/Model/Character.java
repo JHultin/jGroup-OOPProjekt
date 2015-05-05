@@ -29,7 +29,7 @@ public class Character implements ICharacter {
         this.height = 35;
         this.BIT_Body = 4;
         this.BIT_Ground = 2;
-        this.world.setContactListener(new MyContactListener()); //Ska flyttas?
+        this.world.setContactListener(new MyContactListener()); //Ska flyttas
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -40,7 +40,7 @@ public class Character implements ICharacter {
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width,height);
-        FixtureDef fDef = new Fixture   gith    Def();
+        FixtureDef fDef = new Fixture();
         fDef.shape = shape;
         fDef.filter.categoryBits = BIT_Body;
         fDef.filter.maskBits = BIT_Ground;
