@@ -19,11 +19,13 @@ public class MyContactListener implements ContactListener {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
-        if(fa.getUserData() != null && fa.getUserData().equals("playerBody")){  //Should check with footsensor instead
+        if(fa.getUserData() != null && fa.getUserData().equals("footSensor")){
             playerOnGround = true;
+            System.out.println("Player on ground");
         }
-        if(fb.getUserData() != null && fb.getUserData().equals("playerBody")){
+        if(fb.getUserData() != null && fb.getUserData().equals("footSensor")){
             playerOnGround = true;
+            System.out.println("Player on ground");
         }
     }
 
@@ -34,11 +36,13 @@ public class MyContactListener implements ContactListener {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
-        if(fa.getUserData() != null && fa.getUserData().equals("playerBody")){
+        if(fa.getUserData() != null && fa.getUserData().equals("footSensor")){
             playerOnGround = false;
+            System.out.println("Player not on ground");
         }
-        if(fb.getUserData() != null && fb.getUserData().equals("playerBody")){
+        if(fb.getUserData() != null && fb.getUserData().equals("footSensor")){
             playerOnGround = false;
+            System.out.println("Player not on ground");
         }
 
     }
