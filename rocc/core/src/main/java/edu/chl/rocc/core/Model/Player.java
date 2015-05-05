@@ -1,7 +1,9 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
-import org.jbox2d.common.Vec2;
+
+import edu.chl.rocc.core.physics.PhyCharacter;
 import org.jbox2d.dynamics.World;
 
 import java.util.ArrayList;
@@ -12,10 +14,10 @@ import java.util.List;
  */
 public class Player implements IPlayer {
 
-    private Character character;
-    private Character follower;
+    private ICharacter character;
+
     private List<Direction> moveList;
-    private List<Character> characters;
+    private List<ICharacter> characters;
 
    // private List<Weapon> weapons;
 
@@ -24,17 +26,13 @@ public class Player implements IPlayer {
     */
     public Player(World world){
 
-        // call factory instead
-        this.character = new MainCharacter(world);
-        this.follower = new MutantCharacter(world, 100, 150);
+        this.character = new PhyCharacter(world);
 
-        this.characters = new ArrayList<Character>();
-
-        addCharacter(this.character);
-        addCharacter(this.follower);
+        this.characters = new ArrayList<ICharacter>();
+        this.characters.add(this.character);
     }
 
-    public Player(List<Character> characters){
+    public Player(List<ICharacter> characters){
 
         this.characters = characters;
     }
