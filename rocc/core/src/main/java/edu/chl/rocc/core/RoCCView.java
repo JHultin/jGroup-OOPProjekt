@@ -17,7 +17,9 @@ import edu.chl.rocc.core.controller.RoCCController;
 
 public class RoCCView implements ApplicationListener {
 	private Texture characterTexture;
+    private Texture followerTexture;
 	private SpriteBatch batch;
+    private SpriteBatch batchFollower;
 	private float elapsed;
     private RoCCModel model;
     private RoCCController controller;
@@ -52,6 +54,9 @@ public class RoCCView implements ApplicationListener {
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
 		batch = new SpriteBatch();
 
+        followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
+        batchFollower = new SpriteBatch();
+
 
         model = new RoCCModel();
         model.constructWorld(map);
@@ -83,6 +88,7 @@ public class RoCCView implements ApplicationListener {
         cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
         cam.update();
         batch.setProjectionMatrix(cam.combined);
+        batchFollower.setProjectionMatrix(cam.combined);
 
 
         /*Map test*/
@@ -93,9 +99,13 @@ public class RoCCView implements ApplicationListener {
 
         batch.begin();
         batch.draw(characterTexture, model.getCharacterXPos(), model.getCharacterYPos());
+
+        batchFollower.begin();
+        batch.draw(followerTexture, model.getFollowerXPos(1), model.getFollowerYPos(1));
         //view.draw(batch);
 
 		batch.end();
+        batchFollower.end();
 	}
 
 	@Override

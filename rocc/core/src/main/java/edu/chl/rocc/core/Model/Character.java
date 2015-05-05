@@ -39,6 +39,26 @@ public class Character implements ICharacter {
         body.createFixture(fDef);
     }
 
+    public Character(World world, int x, int y){
+        this.setHP(maxHealth);
+        this.world = world;
+        this.width = 10;
+        this.height = 20;
+
+        //Defining & creating body
+        BodyDef def = new BodyDef();
+        def.position.set(x, y);
+        def.type = BodyType.DYNAMIC;
+        body = this.world.createBody(def);
+
+        //Defining & creating fixture
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width,height);
+        FixtureDef fDef = new FixtureDef();
+        fDef.shape = shape;
+        body.createFixture(fDef);
+    }
+
     /*
     * Returns the character's health.
     */
