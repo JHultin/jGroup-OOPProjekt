@@ -1,10 +1,7 @@
 package edu.chl.rocc.core.model;
 
-import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.collision.shapes.PolygonShape;
-import org.jbox2d.dynamics.*;
+
 
 /**
  * A class for the playable characters.
@@ -51,7 +48,7 @@ public class Character implements ICharacter {
         this.setHP(this.getHP() + value);
     }
 
-    
+
     /*
     * Decrease character's health with a given value.
     */

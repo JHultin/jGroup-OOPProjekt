@@ -15,17 +15,13 @@ public class PhyCharacter implements ICharacter {
     private final World world;
     private ICharacter character;
     private float width, height;
-    private short BIT_Body;
-    private short BIT_Ground;
     private Body body;
 
     public PhyCharacter(World world){
         this.world = world;
+        this.world.setContactListener(new MyContactListener());
         this.width = 18;
         this.height = 35;
-        this.BIT_Body = 4;
-        this.BIT_Ground = 2;
-        this.world.setContactListener(new MyContactListener()); //Ska flyttas
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -38,15 +34,15 @@ public class PhyCharacter implements ICharacter {
         shape.setAsBox(width,height);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
-        fDef.filter.categoryBits = BIT_Body;
-        fDef.filter.maskBits = BIT_Ground;
+        fDef.filter.categoryBits = PhyVariables.BITBODY.getValue();
+        fDef.filter.maskBits = PhyVariables.BITGROUND.getValue();
         body.createFixture(fDef).setUserData("playerBody");
 
         //create foot sensor
         shape.setAsBox(width,height/4,new Vec2(0,-30),0);
         fDef.shape = shape;
-        fDef.filter.categoryBits = BIT_Body;
-        fDef.filter.maskBits = BIT_Ground;
+        fDef.filter.categoryBits = PhyVariables.BITBODY.getValue();
+        fDef.filter.maskBits = PhyVariables.BITGROUND.getValue();
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("footSensor");
     }

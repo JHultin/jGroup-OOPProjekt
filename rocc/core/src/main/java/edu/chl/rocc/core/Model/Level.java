@@ -22,9 +22,7 @@ public class Level implements ILevel {
     private ArrayList <String> highscore;
 
     public Level(){
-
         world = new World(new Vec2(0, -9.81f));
-
     }
 
     // Adds a block for the map to the world
