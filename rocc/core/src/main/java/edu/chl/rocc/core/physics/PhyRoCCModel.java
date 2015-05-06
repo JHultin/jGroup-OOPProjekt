@@ -2,6 +2,7 @@ package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Level;
@@ -85,7 +86,7 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public Level getLevel() {
+    public ILevel getLevel() {
         return this.model.getLevel();
     }
 
