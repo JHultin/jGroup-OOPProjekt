@@ -7,7 +7,7 @@ package edu.chl.rocc.core.view;
 public class ViewVariables {
 
     //The numbers doesn't meen anything special
-    protected static final int PLAY = 919123;
-    protected static final int MENU = 872122;
+    public static final int PLAY = 919123;
+    public static final int MENU = 872122;
 
 }
