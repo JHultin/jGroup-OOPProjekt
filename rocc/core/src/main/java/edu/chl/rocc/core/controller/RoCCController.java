@@ -3,6 +3,7 @@ package edu.chl.rocc.core.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.RoCCView;
@@ -14,14 +15,14 @@ import java.util.ArrayList;
  */
 public class RoCCController implements Runnable{
 
-    private final RoCCModel model;
+    private final IRoCCModel model;
     private Thread thread;
     private ArrayList<Integer> keys;
     private boolean isRunning = true;
     private float updateSpeed = 1 / 60f;
     private Direction lastDir;
 
-    public RoCCController(RoCCModel model, RoCCView main){
+    public RoCCController(IRoCCModel model, RoCCView main){
         this.model = model;
         Gdx.input.setInputProcessor(new PrimaryProcessor());
         this.lastDir = Direction.NONE;

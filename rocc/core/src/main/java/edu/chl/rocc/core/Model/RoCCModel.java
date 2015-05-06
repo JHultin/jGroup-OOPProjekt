@@ -4,6 +4,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import edu.chl.rocc.core.factories.ILevelFactory;
 import edu.chl.rocc.core.factories.IPlayerFactory;
+import edu.chl.rocc.core.m2phyInterfaces.ILevel;
+import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
@@ -19,12 +21,12 @@ import org.jbox2d.dynamics.FixtureDef;
  */
 public class RoCCModel implements IRoCCModel {
 
-    private Level level;
-    private Player player;
+    private ILevel level;
+    private IPlayer player;
 
     public RoCCModel(ILevelFactory levelFactory, IPlayerFactory playerFactory){
-        level = new Level();
-        player = new Player(level.getWorld());
+        level = levelFactory.createLevel("");
+        player = playerFactory.createPlayer("");
     }
 
     public void aim(int x, int y){
@@ -50,15 +52,7 @@ public class RoCCModel implements IRoCCModel {
         return player.getCharacterYPos();
     }
 
-    public float getFollowerXPos(int i){
-        return player.getFollowerXPos(i);
-    }
-
-    public float getFollowerYPos(int i){
-        return player.getFollowerYPos(i);
-    }
-
-    public Level getLevel(){
+    public ILevel getLevel(){
         return level;
     }
 

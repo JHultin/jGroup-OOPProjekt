@@ -15,9 +15,6 @@ import java.util.List;
  */
 public class Player implements IPlayer {
 
-    private ICharacter character;
-    private ICharacter follower;
-    private List<Direction> moveList;
     private List<ICharacter> characters;
 
    // private List<Weapon> weapons;
@@ -26,9 +23,9 @@ public class Player implements IPlayer {
     * Constructor creating a single character and adds it to the character list.
     */
     public Player(ICharacterFactory characterFactory, World world){
-        this.character = new PhyCharacter(world);
 
         this.characters = new ArrayList<ICharacter>();
+        this.characters.add(characterFactory.createCharacter(""));
     }
 
     public Player(List<ICharacter> characters){
@@ -59,14 +56,14 @@ public class Player implements IPlayer {
     * Returns the x-coordinate of the character.
     */
     public float getCharacterXPos(){
-        return character.getX();
+        return characters.get(0).getX();
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
     public float getCharacterYPos(){
-        return character.getY();
+        return characters.get(0).getY();
     }
 
     /*
@@ -91,7 +88,7 @@ public class Player implements IPlayer {
     }
 
     public void changeActiveCharacter(Character c){
-        this.character = characters.get(characters.indexOf(c) + 1);
+        //this.character = characters.get(characters.indexOf(c) + 1);
     }
 
 }

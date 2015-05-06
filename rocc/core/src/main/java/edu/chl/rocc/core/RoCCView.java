@@ -6,11 +6,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.math.Vector2;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.model.Variables;
+import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 
 //implements ApplicationListener
@@ -18,9 +19,7 @@ public class RoCCView implements ApplicationListener {
 	private Texture characterTexture;
     private Texture followerTexture;
 	private SpriteBatch batch;
-    private SpriteBatch batchFollower;
-	private float elapsed;
-    private RoCCModel model;
+    private IRoCCModel model;
     private RoCCController controller;
 //	private float elapsed;
 //  private static final float STEP = 1/60f;
@@ -37,7 +36,7 @@ public class RoCCView implements ApplicationListener {
     @Override
 	public void create () {
 
-        model = new RoCCModel();
+        model = new PhyRoCCModel();
         controller = new RoCCController(model, this);
 
         batch = new SpriteBatch();
@@ -52,7 +51,6 @@ public class RoCCView implements ApplicationListener {
 		batch = new SpriteBatch();
 
         followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
-        batchFollower = new SpriteBatch();
 
         controller = new RoCCController(model, this);
 
@@ -81,17 +79,12 @@ public class RoCCView implements ApplicationListener {
         cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
         cam.update();
         batch.setProjectionMatrix(cam.combined);
-        batchFollower.setProjectionMatrix(cam.combined);
 
         batch.begin();
         batch.draw(characterTexture, model.getCharacterXPos(), model.getCharacterYPos());
-
-        batchFollower.begin();
-        batch.draw(followerTexture, model.getFollowerXPos(1), model.getFollowerYPos(1));
         //view.draw(batch);
 
 		batch.end();
-        batchFollower.end();
 	}
 
 	@Override
@@ -121,7 +114,7 @@ public class RoCCView implements ApplicationListener {
         return controller;
     }
 
-    public RoCCModel getModel(){
+    public IRoCCModel getModel(){
         return model;
     }
 
