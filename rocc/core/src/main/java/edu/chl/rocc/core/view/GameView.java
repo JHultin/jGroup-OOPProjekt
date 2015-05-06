@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.controller.RoCCController;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
 
 /**
@@ -17,7 +18,7 @@ public abstract class GameView {
 
 
     protected RoCCController controller;
-    protected RoCCModel model;
+    protected IRoCCModel model;
     protected RoCCView view;
 
     protected SpriteBatch batch;
