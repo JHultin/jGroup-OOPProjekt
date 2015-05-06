@@ -2,6 +2,7 @@ package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.factories.PhyLevelFactory;
 import edu.chl.rocc.core.factories.PhyPlayerFactory;
 import edu.chl.rocc.core.factories.PlayerFactory;
@@ -48,7 +49,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 // If there is a tile at the position
                 if (cell != null && cell.getTile() != null){
 
-                    // Create a body definiion
+                    // Create a body definition
                     BodyDef bDef = new BodyDef();
                     bDef.type = BodyType.STATIC;
                     bDef.position.set(32 * (col + 0.5f), 32 * (row + 0.5f));
