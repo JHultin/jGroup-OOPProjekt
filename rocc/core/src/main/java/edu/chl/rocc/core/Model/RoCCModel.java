@@ -1,17 +1,12 @@
 package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import edu.chl.rocc.core.factories.ILevelFactory;
 import edu.chl.rocc.core.factories.IPlayerFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
+import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import org.jbox2d.collision.shapes.ChainShape;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
 
 
 /**
@@ -21,8 +16,11 @@ import org.jbox2d.dynamics.FixtureDef;
  */
 public class RoCCModel implements IRoCCModel {
 
+
     private ILevel level;
     private IPlayer player;
+    private MyContactListener listener = new MyContactListener();
+
 
     public RoCCModel(ILevelFactory levelFactory, IPlayerFactory playerFactory){
         level = levelFactory.createLevel("");
@@ -36,13 +34,16 @@ public class RoCCModel implements IRoCCModel {
     // Creates a logical box2d map mimicing the tiled-map
     public void constructWorld(TiledMap tMap){
 
+
     }
 
     public void moveSideways(Direction dir){
         player.move(dir);
     }
 
-    public void jump() { player.jump(); }
+    public void jump() {
+        player.jump();
+    }
 
     public float getCharacterXPos(){
         return player.getCharacterXPos();
