@@ -2,15 +2,20 @@ package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import edu.chl.rocc.core.factories.PhyLevelFactory;
+import edu.chl.rocc.core.factories.PhyPlayerFactory;
+import edu.chl.rocc.core.factories.PlayerFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Level;
+import edu.chl.rocc.core.model.RoCCModel;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 
 /**
  * Created by Joel on 2015-05-03.
@@ -18,6 +23,12 @@ import org.jbox2d.dynamics.FixtureDef;
 public class PhyRoCCModel implements IRoCCModel {
 
     private IRoCCModel model;
+    private World world;
+
+    public PhyRoCCModel(){
+        this.world = new World(new Vec2(0, -9.81f));
+        model = new RoCCModel(new PhyLevelFactory(world), new PhyPlayerFactory(world));
+    }
 
     @Override
     public void aim(int x, int y) {
