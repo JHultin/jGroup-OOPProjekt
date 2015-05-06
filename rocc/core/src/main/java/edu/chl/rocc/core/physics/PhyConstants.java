@@ -8,4 +8,6 @@ public enum PhyConstants {
 
     //The gravity in standard newton
     public static final float GRAVITY = -9.81f;
+
+    public static final int BLOCK_SIZE = 32;
 }

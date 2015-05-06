@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.physics;
 
+import static edu.chl.rocc.core.GlobalConstants.PPM;
 import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
@@ -20,12 +21,12 @@ public class PhyCharacter implements ICharacter {
     public PhyCharacter(World world){
         this.world = world;
         this.world.setContactListener(new MyContactListener());
-        this.width = 18;
-        this.height = 35;
+        this.width = 18 / PPM;
+        this.height = 35 / PPM;
 
         //Defining & creating body
         BodyDef def = new BodyDef();
-        def.position.set(160,120);
+        def.position.set(160 / PPM, 120 /PPM);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
 
@@ -39,7 +40,7 @@ public class PhyCharacter implements ICharacter {
         body.createFixture(fDef).setUserData("playerBody");
 
         //create foot sensor
-        shape.setAsBox(width,height/4,new Vec2(0,-30),0);
+        shape.setAsBox(width, height/4, new Vec2(0, -30 / PPM) ,0);
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
@@ -71,9 +72,9 @@ public class PhyCharacter implements ICharacter {
     public void move(Direction dir) {
 
         if(dir.equals(Direction.LEFT)){
-            body.applyForceToCenter(new Vec2(-1000, 0));
+            body.applyForceToCenter(new Vec2(-100, 0));
         } else if(dir.equals(Direction.RIGHT)){
-            body.applyForceToCenter(new Vec2(1000, 0));
+            body.applyForceToCenter(new Vec2(100, 0));
         } else if(dir.equals(Direction.UP)){
 
         } else if(dir.equals(Direction.DOWN)){
@@ -85,16 +86,16 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jump() {
-            body.applyForceToCenter(new Vec2(0, 1000));
+            body.applyForceToCenter(new Vec2(0, 100));
     }
 
     @Override
     public float getX() {
-        return body.getPosition().x-width;
+        return (body.getPosition().x-width) * PPM;
     }
 
     @Override
     public float getY() {
-        return body.getPosition().y-height;
+        return (body.getPosition().y-height) * PPM ;
     }
 }

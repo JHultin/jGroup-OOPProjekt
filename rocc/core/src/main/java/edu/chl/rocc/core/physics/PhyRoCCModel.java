@@ -1,15 +1,14 @@
 package edu.chl.rocc.core.physics;
 
+import static edu.chl.rocc.core.GlobalConstants.PPM;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.factories.PhyLevelFactory;
 import edu.chl.rocc.core.factories.PhyPlayerFactory;
-import edu.chl.rocc.core.factories.PlayerFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.model.Level;
 import edu.chl.rocc.core.model.RoCCModel;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
@@ -52,16 +51,17 @@ public class PhyRoCCModel implements IRoCCModel {
                     // Create a body definition
                     BodyDef bDef = new BodyDef();
                     bDef.type = BodyType.STATIC;
-                    bDef.position.set(32 * (col + 0.5f), 32 * (row + 0.5f));
+                    bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) /PPM,
+                            PhyConstants.BLOCK_SIZE * (row + 0.5f) /PPM);
 
                     // And a fixture definition
                     ChainShape cs = new ChainShape();
                     Vec2[] v = new Vec2[5];
-                    v[0] = new Vec2( -16f, -16f);
-                    v[1] = new Vec2( -16f,  16f);
-                    v[2] = new Vec2(  16f,  16f);
-                    v[3] = new Vec2(  16f, -16f);
-                    v[4] = new Vec2( -16f, -16f);
+                    v[0] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
+                    v[1] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
+                    v[2] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
+                    v[3] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
+                    v[4] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
                     cs.createChain(v, 5);
 
                     FixtureDef fDef = new FixtureDef();
