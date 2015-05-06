@@ -17,9 +17,9 @@ public interface IRoCCModel {
 
     public void jump();
 
-    public float getCharacterXPos();
+    public float getCharacterXPos(int i);
 
-    public float getCharacterYPos();
+    public float getCharacterYPos(int i);
 
     public ILevel getLevel();
 

@@ -44,12 +44,12 @@ public class RoCCModel implements IRoCCModel {
         player.jump();
     }
 
-    public float getCharacterXPos(){
-        return player.getCharacterXPos();
+    public float getCharacterXPos(int i){
+        return player.getCharacterXPos(i);
     }
 
-    public float getCharacterYPos(){
-        return player.getCharacterYPos();
+    public float getCharacterYPos(int i){
+        return player.getCharacterYPos(i);
     }
 
     public ILevel getLevel(){
