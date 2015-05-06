@@ -14,7 +14,6 @@ import org.jbox2d.dynamics.World;
  */
 public class Level implements ILevel {
 
-
     private World world;
     private int time;
     private int score;
@@ -27,8 +26,8 @@ public class Level implements ILevel {
 
     // Adds a block for the map to the world
     public void addBlock(BodyDef bDef, FixtureDef fDef){
-
         world.createBody(bDef).createFixture(fDef).setUserData("ground");
+
 
     }
 

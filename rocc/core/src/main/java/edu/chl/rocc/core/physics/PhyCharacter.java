@@ -34,15 +34,15 @@ public class PhyCharacter implements ICharacter {
         shape.setAsBox(width,height);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
-        fDef.filter.categoryBits = PhyVariables.BITBODY.getValue();
-        fDef.filter.maskBits = PhyVariables.BITGROUND.getValue();
+        fDef.filter.categoryBits = BitMask.BIT_BODY;
+        fDef.filter.maskBits = BitMask.BIT_GROUND;
         body.createFixture(fDef).setUserData("playerBody");
 
         //create foot sensor
         shape.setAsBox(width,height/4,new Vec2(0,-30),0);
         fDef.shape = shape;
-        fDef.filter.categoryBits = PhyVariables.BITBODY.getValue();
-        fDef.filter.maskBits = PhyVariables.BITGROUND.getValue();
+        fDef.filter.categoryBits = BitMask.BIT_BODY;
+        fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("footSensor");
     }
@@ -85,7 +85,7 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jump() {
-        body.applyForceToCenter(new Vec2(0, 1000));
+            body.applyForceToCenter(new Vec2(0, 1000));
     }
 
     @Override
