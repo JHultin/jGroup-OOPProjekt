@@ -2,10 +2,9 @@ package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import edu.chl.rocc.core.factories.PhyLevelFactory;
-import edu.chl.rocc.core.factories.PhyPlayerFactory;
-import edu.chl.rocc.core.factories.PlayerFactory;
+import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
+import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Level;
@@ -22,12 +21,18 @@ import org.jbox2d.dynamics.World;
  */
 public class PhyRoCCModel implements IRoCCModel {
 
+    private ICharacterFactory characterFactory;
+
     private IRoCCModel model;
     private World world;
 
     public PhyRoCCModel(){
         this.world = new World(new Vec2(0, -9.81f));
         model = new RoCCModel(new PhyLevelFactory(world), new PhyPlayerFactory(world));
+        characterFactory = new PhyCharacterFactory(world);
+
+        createCharacter();
+
     }
 
     @Override
@@ -76,6 +81,10 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    public void createCharacter(){
+        model.getPlayer().addCharacter(characterFactory.createCharacter(""));
+    }
+
     @Override
     public void moveSideways(Direction dir) {
         this.model.moveSideways(dir);
@@ -99,6 +108,14 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public ILevel getLevel() {
         return this.model.getLevel();
+    }
+
+    public IPlayer getPlayer(){
+        return this.model.getPlayer();
+    }
+
+    public IRoCCModel getModel(){
+        return model;
     }
 
     @Override

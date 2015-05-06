@@ -14,4 +14,6 @@ public interface IPlayer {
     public float getCharacterXPos(int i);
 
     public float getCharacterYPos(int i);
+
+    public void addCharacter(ICharacter c);
 }

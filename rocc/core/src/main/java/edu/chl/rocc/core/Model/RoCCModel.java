@@ -1,8 +1,11 @@
 package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import edu.chl.rocc.core.factories.ICharacterFactory;
 import edu.chl.rocc.core.factories.ILevelFactory;
 import edu.chl.rocc.core.factories.IPlayerFactory;
+import edu.chl.rocc.core.factories.PhyCharacterFactory;
+import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.controller.MyContactListener;
@@ -52,8 +55,16 @@ public class RoCCModel implements IRoCCModel {
         return player.getCharacterYPos(i);
     }
 
+    public void addCharacter(ICharacter c){
+        this.player.addCharacter(c);
+    }
+
     public ILevel getLevel(){
         return level;
+    }
+
+    public IPlayer getPlayer(){
+        return this.player;
     }
 
     public void updateWorld(float dt){level.updateWorld(dt); }
