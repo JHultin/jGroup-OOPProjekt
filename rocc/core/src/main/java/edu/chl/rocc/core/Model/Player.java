@@ -29,7 +29,9 @@ public class Player implements IPlayer {
         this.character = new PhyCharacter(world);
 
         this.characters = new ArrayList<ICharacter>();
-        this.characters.add(this.character);
+
+        addCharacter(this.character);
+        addCharacter(new PhyCharacter(world));
     }
 
     public Player(List<ICharacter> characters){
@@ -87,12 +89,15 @@ public class Player implements IPlayer {
     /*
     * Adds a character to the character list.
     */
-    public void addCharacter(Character c){
+    public void addCharacter(ICharacter c){
         characters.add(c);
     }
 
-    public void changeActiveCharacter(Character c){
-        this.character = characters.get(characters.indexOf(c) + 1);
+    /*
+    * Change which character the player is playing as.
+    */
+    public void changeActiveCharacter(ICharacter c){
+        //this.character = characters.get(characters.indexOf(c) + 1);
     }
 
 }

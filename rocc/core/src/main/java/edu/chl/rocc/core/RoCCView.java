@@ -26,6 +26,7 @@ public class RoCCView implements ApplicationListener {
     private RoCCController controller;
 
 	private SpriteBatch batch;
+    private SpriteBatch batchFollower;
 //	private float elapsed;
 //  private static final float STEP = 1/60f;
 
@@ -45,6 +46,7 @@ public class RoCCView implements ApplicationListener {
         controller = new RoCCController(model, this);
 
         batch = new SpriteBatch();
+        batchFollower = new SpriteBatch();
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
@@ -87,6 +89,9 @@ public class RoCCView implements ApplicationListener {
     //Getters
     public SpriteBatch getSpriteBatch(){
         return batch;
+    }
+    public SpriteBatch getSpriteBatchFollower(){
+        return this.batchFollower;
     }
     public OrthographicCamera getHudCam(){
         return hudCam;
