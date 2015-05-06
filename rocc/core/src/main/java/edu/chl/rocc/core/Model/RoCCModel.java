@@ -2,6 +2,8 @@ package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import edu.chl.rocc.core.factories.ILevelFactory;
+import edu.chl.rocc.core.factories.IPlayerFactory;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
@@ -20,7 +22,7 @@ public class RoCCModel implements IRoCCModel {
     private Level level;
     private Player player;
 
-    public RoCCModel(){
+    public RoCCModel(ILevelFactory levelFactory, IPlayerFactory playerFactory){
         level = new Level();
         player = new Player(level.getWorld());
     }

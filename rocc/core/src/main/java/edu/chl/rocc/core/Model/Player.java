@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.factories.ICharacterFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import org.jbox2d.common.Vec2;
@@ -24,10 +25,8 @@ public class Player implements IPlayer {
     /*
     * Constructor creating a single character and adds it to the character list.
     */
-    public Player(World world){
-        // call factory instead
-        this.character = new MainCharacter(world);
-        this.follower = new MutantCharacter(world, 100, 150);
+    public Player(ICharacterFactory characterFactory, World world){
+        this.character = new PhyCharacter(world);
 
         this.characters = new ArrayList<ICharacter>();
     }

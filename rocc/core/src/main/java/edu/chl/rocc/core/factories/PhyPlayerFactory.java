@@ -1,0 +1,13 @@
+package edu.chl.rocc.core.factories;
+
+import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
+
+/**
+ * Created by Joel on 2015-05-06.
+ */
+public class PhyPlayerFactory implements IPlayerFactory {
+    @Override
+    public IPlayer createPlayer(String name) {
+        return null;
+    }
+}
