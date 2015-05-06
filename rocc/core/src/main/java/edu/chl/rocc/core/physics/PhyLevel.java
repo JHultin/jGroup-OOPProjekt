@@ -20,7 +20,7 @@ public class PhyLevel implements ILevel {
 
     @Override
     public void addBlock(BodyDef bDef, FixtureDef fDef) {
-
+        world.createBody(bDef).createFixture(fDef).setUserData("ground");
     }
 
     @Override
@@ -30,6 +30,6 @@ public class PhyLevel implements ILevel {
 
     @Override
     public World getWorld() {
-        return null;
+        return this.world;
     }
 }

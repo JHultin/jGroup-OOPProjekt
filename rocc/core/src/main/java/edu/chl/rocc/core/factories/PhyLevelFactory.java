@@ -17,6 +17,6 @@ public class PhyLevelFactory implements ILevelFactory {
 
     @Override
     public ILevel createLevel(String name) {
-        return new PhyLevel();
+        return new PhyLevel(this.world);
     }
 }

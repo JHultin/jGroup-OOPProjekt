@@ -19,7 +19,6 @@ public class RoCCModel implements IRoCCModel {
 
     private ILevel level;
     private IPlayer player;
-    private MyContactListener listener = new MyContactListener();
 
 
     public RoCCModel(ILevelFactory levelFactory, IPlayerFactory playerFactory){
