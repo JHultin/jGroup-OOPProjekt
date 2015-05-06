@@ -32,7 +32,7 @@ public class Level implements ILevel {
     }
 
     public void updateWorld(float dt){
-        world.step(dt, 6, 2);
+
     }
 
     public World getWorld(){

@@ -12,6 +12,11 @@ import org.jbox2d.dynamics.World;
 public class PhyLevel implements ILevel {
 
     private Level level;
+    private final World world;
+
+    public PhyLevel(World world) {
+        this.world = world;
+    }
 
     @Override
     public void addBlock(BodyDef bDef, FixtureDef fDef) {
@@ -20,7 +25,7 @@ public class PhyLevel implements ILevel {
 
     @Override
     public void updateWorld(float dt) {
-
+        world.step(dt, 6, 2);
     }
 
     @Override
