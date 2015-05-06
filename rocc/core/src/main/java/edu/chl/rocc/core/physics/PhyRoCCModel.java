@@ -27,7 +27,7 @@ public class PhyRoCCModel implements IRoCCModel {
     private World world;
 
     public PhyRoCCModel(){
-        this.world = new World(new Vec2(0, -9.81f));
+        this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
         model = new RoCCModel(new PhyLevelFactory(world), new PhyPlayerFactory(world));
     }
 
