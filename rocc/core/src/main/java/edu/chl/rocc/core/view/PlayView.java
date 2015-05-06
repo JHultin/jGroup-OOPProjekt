@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 public class PlayView extends GameView{
 
     private Texture characterTexture;
+    private Texture followerTexture;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
@@ -29,7 +30,10 @@ public class PlayView extends GameView{
         model.constructWorld(map);
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
+        followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
         batch = new SpriteBatch();
+        batchFollower = new SpriteBatch();
+
 
         //b2dr = new Box2DDebugRenderer();
 

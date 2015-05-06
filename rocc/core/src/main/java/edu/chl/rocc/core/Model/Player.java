@@ -29,6 +29,7 @@ public class Player implements IPlayer {
 
         this.characters = new ArrayList<ICharacter>();
         addCharacter(characterFactory.createCharacter(""));
+        addCharacter(characterFactory.createCharacter(""));
     }
 
     public Player(List<ICharacter> characters){
@@ -78,7 +79,7 @@ public class Player implements IPlayer {
     /*
     * Change which character the player is playing as.
     */
-    public void changeActiveCharacter(ICharacter c){
+    public void changeActiveCharacter(){
         if(activePlayerIndex++ < characters.size()){
             activePlayerIndex++;
         } else{

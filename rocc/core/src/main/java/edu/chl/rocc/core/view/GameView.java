@@ -22,6 +22,7 @@ public abstract class GameView {
     protected RoCCView view;
 
     protected SpriteBatch batch;
+    protected SpriteBatch batchFollower;
 
     // Camera following the player
     protected OrthographicCamera cam;

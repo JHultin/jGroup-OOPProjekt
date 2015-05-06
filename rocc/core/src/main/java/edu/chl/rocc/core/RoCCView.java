@@ -14,6 +14,9 @@ import edu.chl.rocc.core.model.Variables;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //implements ApplicationListener
 public class RoCCView implements ApplicationListener {
 	private Texture characterTexture;
@@ -103,6 +106,7 @@ public class RoCCView implements ApplicationListener {
     public SpriteBatch getSpriteBatch(){
         return batch;
     }
+
     public OrthographicCamera getHudCam(){
         return hudCam;
     }
