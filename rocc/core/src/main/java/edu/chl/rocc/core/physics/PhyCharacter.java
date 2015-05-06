@@ -29,7 +29,7 @@ public class PhyCharacter implements ICharacter {
 
         //Defining & creating body
         BodyDef def = new BodyDef();
-        def.position.set(160 / PPM, 120 /PPM);
+        def.position.set(160 / PPM, 400 /PPM);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
 
@@ -75,9 +75,9 @@ public class PhyCharacter implements ICharacter {
     public void move(Direction dir) {
 
         if(dir.equals(Direction.LEFT)){
-            body.applyForceToCenter(new Vec2(-100, 0));
+            body.applyForceToCenter(new Vec2(-50, 0));
         } else if(dir.equals(Direction.RIGHT)){
-            body.applyForceToCenter(new Vec2(100, 0));
+            body.applyForceToCenter(new Vec2(50, 0));
         } else if(dir.equals(Direction.UP)){
 
         } else if(dir.equals(Direction.DOWN)){
@@ -89,7 +89,6 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jump() {
-
         if(this.listener.isPlayerOnGround() > 0){
             body.applyForceToCenter(new Vec2(0, 100));
         }
