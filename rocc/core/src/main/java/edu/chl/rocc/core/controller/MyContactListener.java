@@ -11,7 +11,7 @@ import org.jbox2d.dynamics.contacts.Contact;
  */
 public class MyContactListener implements ContactListener {
 
-    private int playerOnGround = 0;
+    private int playerOnGround;
 
     //called when contact between two fixtures begins
     @Override

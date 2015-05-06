@@ -17,12 +17,15 @@ public class PhyCharacter implements ICharacter {
     private ICharacter character;
     private float width, height;
     private Body body;
+    private MyContactListener listener;
 
     public PhyCharacter(World world){
         this.world = world;
-        this.world.setContactListener(new MyContactListener());
         this.width = 18 / PPM;
         this.height = 35 / PPM;
+        this.listener = new MyContactListener();
+        this.world.setContactListener(this.listener);
+
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -86,7 +89,10 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jump() {
+
+        if(this.listener.isPlayerOnGround() > 0){
             body.applyForceToCenter(new Vec2(0, 100));
+        }
     }
 
     @Override
