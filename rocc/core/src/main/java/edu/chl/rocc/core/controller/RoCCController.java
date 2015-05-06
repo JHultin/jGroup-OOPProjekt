@@ -19,12 +19,16 @@ public class RoCCController implements Runnable{
     private Thread thread;
     private boolean isRunning = true;
     private float updateSpeed = 1 / 60f;
-    private GameProcessor gProcessor;
+    private GameProcessor gameProcessor;
+    private MenuProcessor menuProcessor;
+
 
     public RoCCController(IRoCCModel model, RoCCView main){
         this.model = model;
-        gProcessor = new GameProcessor();
-        Gdx.input.setInputProcessor(gProcessor);
+        gameProcessor = new GameProcessor();
+        menuProcessor = new MenuProcessor();
+
+        Gdx.input.setInputProcessor(gameProcessor);
         thread = new Thread(this);
         thread.start();
 
@@ -34,13 +38,13 @@ public class RoCCController implements Runnable{
         if (str.equals("game")) {
             isRunning = false;
             thread.interrupt();
-            Gdx.input.setInputProcessor(gProcessor);
+            Gdx.input.setInputProcessor(gameProcessor);
             thread = new Thread(this);
             thread.start();
         } else if ("menu".equals(str)){
             isRunning = false;
             thread.interrupt();
-            Gdx.input.setInputProcessor(gProcessor);
+            Gdx.input.setInputProcessor(menuProcessor);
             thread = new Thread(this);
             thread.start();
         }
@@ -50,7 +54,7 @@ public class RoCCController implements Runnable{
     public void run() {
         while (this.isRunning){
             try {
-                gProcessor.sendUpdate();
+                gameProcessor.sendUpdate();
                 Thread.sleep((long)(updateSpeed * 1000));
             } catch (InterruptedException e) {
                 this.isRunning = false;
@@ -127,6 +131,65 @@ public class RoCCController implements Runnable{
         @Override
         public boolean mouseMoved(int screenX, int screenY) {
             model.aim(screenX, Gdx.graphics.getHeight() - screenY);
+            return false;
+        }
+
+        @Override
+        public boolean scrolled(int amount) {
+            return false;
+        }
+    }
+
+    /**
+     * An inner class to handle the menu input.
+     */
+    private class MenuProcessor implements InputProcessor{
+
+        private ArrayList<Integer> keys;
+
+        private MenuProcessor (){
+
+        }
+
+        @Override
+        public boolean keyDown(int keycode) {
+            if (keycode == Input.Keys.ENTER) {
+                return true;
+            }else if (keycode == Input.Keys.UP){
+                return true;
+            }else if (keycode == Input.Keys.DOWN){
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean keyUp(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyTyped(char character) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            return false;
+        }
+
+        @Override
+        public boolean mouseMoved(int screenX, int screenY) {
             return false;
         }
 
