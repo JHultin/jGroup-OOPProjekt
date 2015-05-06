@@ -34,7 +34,6 @@ public class RoCCModel implements IRoCCModel {
     // Creates a logical box2d map mimicing the tiled-map
     public void constructWorld(TiledMap tMap){
 
-
     }
 
     public void moveSideways(Direction dir){
