@@ -17,17 +17,14 @@ public class RoCCController implements Runnable{
 
     private final IRoCCModel model;
     private Thread thread;
-    private ArrayList<Integer> keys;
     private boolean isRunning = true;
     private float updateSpeed = 1 / 60f;
-    private Direction lastDir;
+    private PrimaryProcessor pProcessor;
 
     public RoCCController(IRoCCModel model, RoCCView main){
         this.model = model;
-        Gdx.input.setInputProcessor(new PrimaryProcessor());
-        this.lastDir = Direction.NONE;
-
-        keys = new ArrayList<Integer>();
+        pProcessor = new PrimaryProcessor();
+        Gdx.input.setInputProcessor(pProcessor);
         thread = new Thread(this);
         thread.start();
 
@@ -37,34 +34,7 @@ public class RoCCController implements Runnable{
     public void run() {
         while (this.isRunning){
             try {
-                Direction dir;
-                if (keys.contains(Input.Keys.RIGHT))
-                    if (keys.contains(Input.Keys.LEFT))
-                        dir = Direction.NONE;
-                    else
-                        dir = Direction.RIGHT;
-                else if (keys.contains((Input.Keys.LEFT)))
-                    dir = Direction.LEFT;
-                else
-                    dir = Direction.NONE;
-                if (dir != lastDir){
-                    model.moveSideways(dir);
-                    lastDir = dir;
-                }
-                /*
-                for (int key : keys){
-                    if (key == Input.Keys.RIGHT){
-                        model.moveSideways(Direction.RIGHT);
-                    } else if (key == Input.Keys.LEFT){
-                        model.moveSideways(Direction.LEFT);
-                    } else if (key == Input.Keys.UP){
-                        model.moveSideways(Direction.UP);
-                    } else if (key == Input.Keys.DOWN){
-                        model.moveSideways(Direction.DOWN);
-                    }
-                }
-                */
-                model.updateWorld(updateSpeed);
+                pProcessor.sendUpdate();
                 Thread.sleep((long)(updateSpeed * 1000));
             } catch (InterruptedException e) {
                 this.isRunning = false;
@@ -73,6 +43,34 @@ public class RoCCController implements Runnable{
     }
 
     private class PrimaryProcessor implements InputProcessor{
+
+        private ArrayList<Integer> keys;
+        private Direction lastDir;
+
+        private PrimaryProcessor (){
+
+            this.lastDir = Direction.NONE;
+            keys = new ArrayList<Integer>();
+        }
+
+        private void sendUpdate(){
+            Direction dir;
+            if (keys.contains(Input.Keys.RIGHT))
+                if (keys.contains(Input.Keys.LEFT))
+                    dir = Direction.NONE;
+                else
+                    dir = Direction.RIGHT;
+            else if (keys.contains((Input.Keys.LEFT)))
+                dir = Direction.LEFT;
+            else
+                dir = Direction.NONE;
+            if (dir != lastDir){
+                model.moveSideways(dir);
+                lastDir = dir;
+            }
+            model.updateWorld(updateSpeed);
+        }
+
 
         @Override
         public boolean keyDown(int keycode) {
