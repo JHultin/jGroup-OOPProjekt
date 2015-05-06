@@ -5,7 +5,6 @@ import edu.chl.rocc.core.factories.ILevelFactory;
 import edu.chl.rocc.core.factories.IPlayerFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
-import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 
 
