@@ -21,7 +21,7 @@ public interface IRoCCModel {
 
     public float getCharacterYPos();
 
-    public Level getLevel();
+    public ILevel getLevel();
 
     public void updateWorld(float dt);
 }

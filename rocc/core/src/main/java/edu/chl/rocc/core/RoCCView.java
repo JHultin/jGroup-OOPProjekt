@@ -6,23 +6,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.model.Variables;
+import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 
 //implements ApplicationListener
 public class RoCCView implements ApplicationListener {
 
-    /*
-	private Texture characterTexture;
-    private Texture followerTexture;
-	private SpriteBatch batch;
-    private SpriteBatch batchFollower;
-	private float elapsed;
-	*/
-
-    private RoCCModel model;
+    //private RoCCModel model;
+    private IRoCCModel model;
     private RoCCController controller;
 
 	private SpriteBatch batch;
@@ -42,7 +37,7 @@ public class RoCCView implements ApplicationListener {
     @Override
 	public void create () {
 
-        model = new RoCCModel();
+        model = new PhyRoCCModel();
         controller = new RoCCController(model, this);
 
         batch = new SpriteBatch();
@@ -104,7 +99,7 @@ public class RoCCView implements ApplicationListener {
         return controller;
     }
 
-    public RoCCModel getModel(){
+    public IRoCCModel getModel(){
         return model;
     }
 

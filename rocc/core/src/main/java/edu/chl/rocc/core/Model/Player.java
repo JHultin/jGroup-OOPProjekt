@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.factories.ICharacterFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 
@@ -14,9 +15,9 @@ import java.util.List;
  */
 public class Player implements IPlayer {
 
-    private ICharacter character;
+    //private ICharacter character;
+    //private List<Direction> moveList;
 
-    private List<Direction> moveList;
     private List<ICharacter> characters;
 
    // private List<Weapon> weapons;
@@ -24,14 +25,10 @@ public class Player implements IPlayer {
     /*
     * Constructor creating a single character and adds it to the character list.
     */
-    public Player(World world){
-
-        this.character = new PhyCharacter(world);
+    public Player(ICharacterFactory characterFactory, World world){
 
         this.characters = new ArrayList<ICharacter>();
-
-        addCharacter(this.character);
-        addCharacter(new PhyCharacter(world));
+        this.characters.add(characterFactory.createCharacter(""));
     }
 
     public Player(List<ICharacter> characters){
@@ -43,11 +40,10 @@ public class Player implements IPlayer {
     * Move the front character in a given direction.
     */
     public void move(Direction dir){
-
         for(int i=0; i < characters.size(); i++){
             characters.get(i).move(dir);
         }
-        //character.move(dir);
+        //characters.get(0).move(dir);
     }
 
     public void jump() {
@@ -62,14 +58,14 @@ public class Player implements IPlayer {
     * Returns the x-coordinate of the character.
     */
     public float getCharacterXPos(){
-        return character.getX();
+        return characters.get(0).getX();
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
     public float getCharacterYPos(){
-        return character.getY();
+        return characters.get(0).getY();
     }
 
     /*
