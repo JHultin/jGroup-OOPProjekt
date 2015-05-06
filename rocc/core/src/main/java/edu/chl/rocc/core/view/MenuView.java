@@ -20,7 +20,7 @@ public class MenuView extends GameView {
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont font = new BitmapFont();
 
-    private String title = "Ruins of Corosa City";
+    private String title = "Ruins of Corrosa City";
 
     //A variable to check which menuItem is selected
     private int currentItem;
@@ -88,7 +88,5 @@ public class MenuView extends GameView {
     public void setCurrentItem(int newItem){
         currentItem = newItem;
     }
-
-
 
 }
