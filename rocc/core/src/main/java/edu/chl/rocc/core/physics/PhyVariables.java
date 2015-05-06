@@ -4,15 +4,15 @@ package edu.chl.rocc.core.physics;
  * Created by Yen on 2015-05-05.
  */
 public enum PhyVariables {
-    BITBODY(4),BITGROUND(2);
+    BITBODY((short) 4),BITGROUND((short)2);
 
-    private int value;
+    private short value;
 
-    private PhyVariables(int value){
+    private PhyVariables(short value){
         this.value = value;
     }
 
-    public int getValue() {
+    public short getValue() {
         return value;
     }
 };

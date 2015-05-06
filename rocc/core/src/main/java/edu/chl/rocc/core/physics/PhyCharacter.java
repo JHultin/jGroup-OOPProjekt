@@ -1,8 +1,10 @@
 package edu.chl.rocc.core.physics;
 
+import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
+import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -85,7 +87,7 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jump() {
-        body.applyForceToCenter(new Vec2(0, 1000));
+            body.applyForceToCenter(new Vec2(0, 1000));
     }
 
     @Override
