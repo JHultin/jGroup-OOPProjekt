@@ -15,8 +15,7 @@ import java.util.List;
  */
 public class Player implements IPlayer {
 
-    //private ICharacter character;
-    //private List<Direction> moveList;
+    private int activePlayerIndex;
 
     private List<ICharacter> characters;
 
@@ -27,8 +26,10 @@ public class Player implements IPlayer {
     */
     public Player(ICharacterFactory characterFactory, World world){
 
+        activePlayerIndex = 0;
+
         this.characters = new ArrayList<ICharacter>();
-        this.characters.add(characterFactory.createCharacter(""));
+        addCharacter(characterFactory.createCharacter(""));
     }
 
     public Player(List<ICharacter> characters){
@@ -57,28 +58,14 @@ public class Player implements IPlayer {
     /*
     * Returns the x-coordinate of the character.
     */
-    public float getCharacterXPos(){
-        return characters.get(0).getX();
+    public float getCharacterXPos(int i){
+        return characters.get(i).getX();
     }
 
     /*
     * Returns the y-coordinate of the character.
     */
-    public float getCharacterYPos(){
-        return characters.get(0).getY();
-    }
-
-    /*
-    * Returns the x-coordinate of the chosen follower.
-    */
-    public float getFollowerXPos(int i){
-        return characters.get(i).getX();
-    }
-
-    /*
-    * Returns the y-coordinate of the chosen follower.
-    */
-    public float getFollowerYPos(int i){
+    public float getCharacterYPos(int i){
         return characters.get(i).getY();
     }
 
@@ -93,7 +80,11 @@ public class Player implements IPlayer {
     * Change which character the player is playing as.
     */
     public void changeActiveCharacter(ICharacter c){
-        //this.character = characters.get(characters.indexOf(c) + 1);
+        if(activePlayerIndex++ < characters.size()){
+            activePlayerIndex++;
+        } else{
+            activePlayerIndex = 0;
+        }
     }
 
 }

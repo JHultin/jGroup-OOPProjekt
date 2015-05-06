@@ -16,7 +16,6 @@ import edu.chl.rocc.core.view.GameViewManager;
 //implements ApplicationListener
 public class RoCCView implements ApplicationListener {
 
-    //private RoCCModel model;
     private IRoCCModel model;
     private RoCCController controller;
 

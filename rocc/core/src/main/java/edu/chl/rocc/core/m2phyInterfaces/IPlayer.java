@@ -11,11 +11,7 @@ public interface IPlayer {
 
     public void move(Direction dir);
 
-    public float getCharacterXPos();
+    public float getCharacterXPos(int i);
 
-    public float getCharacterYPos();
-
-    public float getFollowerXPos(int i);
-
-    public float getFollowerYPos(int i);
+    public float getCharacterYPos(int i);
 }

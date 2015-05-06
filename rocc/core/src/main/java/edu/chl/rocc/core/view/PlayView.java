@@ -45,7 +45,7 @@ public class PlayView extends GameView{
         //b2dr.render(model.getLevel().getWorld(),camera.combined);
 
         //Set camera to follow player
-        cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
+        cam.position.set(new Vector2(model.getCharacterXPos(0), model.getCharacterYPos(0)), 0);
         cam.update();
         batch.setProjectionMatrix(cam.combined);
 
@@ -54,7 +54,7 @@ public class PlayView extends GameView{
         renderer.render();
 
         batch.begin();
-        batch.draw(characterTexture, model.getCharacterXPos(), model.getCharacterYPos());
+        batch.draw(characterTexture, model.getCharacterXPos(0), model.getCharacterYPos(0));
         //view.draw(batch);
         batch.end();
 
