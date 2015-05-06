@@ -19,22 +19,38 @@ public class RoCCController implements Runnable{
     private Thread thread;
     private boolean isRunning = true;
     private float updateSpeed = 1 / 60f;
-    private PrimaryProcessor pProcessor;
+    private GameProcessor gProcessor;
 
     public RoCCController(IRoCCModel model, RoCCView main){
         this.model = model;
-        pProcessor = new PrimaryProcessor();
-        Gdx.input.setInputProcessor(pProcessor);
+        gProcessor = new GameProcessor();
+        Gdx.input.setInputProcessor(gProcessor);
         thread = new Thread(this);
         thread.start();
 
+    }
+
+    public void setState(String str){
+        if (str.equals("game")) {
+            isRunning = false;
+            thread.interrupt();
+            Gdx.input.setInputProcessor(gProcessor);
+            thread = new Thread(this);
+            thread.start();
+        } else if ("menu".equals(str)){
+            isRunning = false;
+            thread.interrupt();
+            Gdx.input.setInputProcessor(gProcessor);
+            thread = new Thread(this);
+            thread.start();
+        }
     }
 
     @Override
     public void run() {
         while (this.isRunning){
             try {
-                pProcessor.sendUpdate();
+                gProcessor.sendUpdate();
                 Thread.sleep((long)(updateSpeed * 1000));
             } catch (InterruptedException e) {
                 this.isRunning = false;
@@ -42,12 +58,12 @@ public class RoCCController implements Runnable{
         }
     }
 
-    private class PrimaryProcessor implements InputProcessor{
+    private class GameProcessor implements InputProcessor{
 
         private ArrayList<Integer> keys;
         private Direction lastDir;
 
-        private PrimaryProcessor (){
+        private GameProcessor (){
 
             this.lastDir = Direction.NONE;
             keys = new ArrayList<Integer>();
