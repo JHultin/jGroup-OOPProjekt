@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.factories.ICharacterFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.physics.PhyCharacter;
@@ -22,7 +23,7 @@ public class Player implements IPlayer {
     /*
     * Constructor creating a single character and adds it to the character list.
     */
-    public Player(World world){
+    public Player(ICharacterFactory characterFactory, World world){
         this.character = new PhyCharacter(world);
 
         this.characters = new ArrayList<ICharacter>();
