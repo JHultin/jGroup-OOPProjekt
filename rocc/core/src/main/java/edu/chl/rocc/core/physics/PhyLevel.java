@@ -11,7 +11,7 @@ import org.jbox2d.dynamics.World;
  */
 public class PhyLevel implements ILevel {
 
-    private Level level;
+    private ILevel level;
     private final World world;
 
     public PhyLevel(World world) {
