@@ -24,7 +24,7 @@ public class PhyPlayer implements IPlayer {
 
     @Override
     public void move(Direction dir) {
-        this.move(dir);
+        this.player.move(dir);
     }
 
     @Override
