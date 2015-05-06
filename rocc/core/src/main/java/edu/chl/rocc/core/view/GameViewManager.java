@@ -18,7 +18,7 @@ public class GameViewManager {
     public GameViewManager(RoCCView view){
         this.view = view;
         gameView = new Stack<GameView>();
-        pushState(ViewVariables.PLAY);
+        pushState(ViewVariables.MENU);
     }
 
     public void update(){
