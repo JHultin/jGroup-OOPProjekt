@@ -21,10 +21,12 @@ public class RoCCController implements Runnable{
     private float updateSpeed = 1 / 60f;
     private GameProcessor gameProcessor;
     private MenuProcessor menuProcessor;
+    private RoCCView main;
 
 
     public RoCCController(IRoCCModel model, RoCCView main){
         this.model = model;
+        this.main = main;
         gameProcessor = new GameProcessor();
         menuProcessor = new MenuProcessor();
 
