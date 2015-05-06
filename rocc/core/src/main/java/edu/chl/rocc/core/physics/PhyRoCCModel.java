@@ -66,8 +66,8 @@ public class PhyRoCCModel implements IRoCCModel {
                     FixtureDef fDef = new FixtureDef();
                     fDef.friction = 0;
                     fDef.shape = cs;
-                    fDef.filter.categoryBits = 2;  // As Character variable BIT_Ground
-                    fDef.filter.maskBits = 4;      // As Character variable BIT_Body
+                    fDef.filter.categoryBits = BitMask.BIT_GROUND;
+                    fDef.filter.maskBits = BitMask.BIT_BODY;
 
                     // Then let the level create the block in the world
                     model.getLevel().addBlock(bDef, fDef);
