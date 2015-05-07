@@ -32,7 +32,6 @@ public class PlayView extends GameView{
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
         followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
         batch = new SpriteBatch();
-        batchFollower = new SpriteBatch();
 
 
         //b2dr = new Box2DDebugRenderer();
@@ -53,12 +52,12 @@ public class PlayView extends GameView{
         cam.update();
         batch.setProjectionMatrix(cam.combined);
 
-
         renderer.setView(cam);
         renderer.render();
 
         batch.begin();
         batch.draw(characterTexture, model.getCharacterXPos(0), model.getCharacterYPos(0));
+        batch.draw(followerTexture, model.getCharacterXPos(1), model.getCharacterYPos(1));
         //view.draw(batch);
         batch.end();
 

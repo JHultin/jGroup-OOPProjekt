@@ -24,6 +24,11 @@ public class RoCCView implements ApplicationListener {
 	private SpriteBatch batch;
     private IRoCCModel model;
     private RoCCController controller;
+<<<<<<< HEAD
+=======
+
+	private SpriteBatch batch;
+>>>>>>> Fixed the follower
 //	private float elapsed;
 //  private static final float STEP = 1/60f;
 
@@ -101,12 +106,6 @@ public class RoCCView implements ApplicationListener {
 	@Override
 	public void dispose () {
 	}
-
-    //Setters
-    public void setView(){
-
-    }
-
     //Getters
     public SpriteBatch getSpriteBatch(){
         return batch;

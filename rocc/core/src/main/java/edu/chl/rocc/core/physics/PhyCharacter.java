@@ -90,7 +90,7 @@ public class PhyCharacter implements ICharacter {
     @Override
     public void jump() {
         if(this.listener.isPlayerOnGround() > 0){
-            body.applyForceToCenter(new Vec2(0, 100));
+            body.applyForceToCenter(new Vec2(0, 200));
         }
     }
 
