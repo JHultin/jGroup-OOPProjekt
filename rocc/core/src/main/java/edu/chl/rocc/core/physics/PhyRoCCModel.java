@@ -34,9 +34,6 @@ public class PhyRoCCModel implements IRoCCModel {
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
         model = new RoCCModel(new PhyLevelFactory(world), new PhyPlayerFactory(world));
         characterFactory = new PhyCharacterFactory(world);
-
-        createCharacter();
-
     }
 
     @Override
@@ -85,11 +82,6 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
     }
-
-    public void createCharacter(){
-        model.getPlayer().addCharacter(characterFactory.createCharacter(""));
-    }
-
     @Override
     public void moveSideways(Direction dir) {
         this.model.moveSideways(dir);
