@@ -66,6 +66,13 @@ public class Character implements ICharacter {
     public void move(Direction dir){
     }
 
+    public void moveFollower(int i){
+
+    }
+
+    /*
+    * Make the character jump by changing its y-coordinate.
+    */
     public void jump(){
     }
 

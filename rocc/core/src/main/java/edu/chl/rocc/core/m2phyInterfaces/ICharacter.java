@@ -17,6 +17,8 @@ public interface ICharacter {
 
     public void move(Direction dir);
 
+    public void moveFollower(int i);
+
     public void jump();
 
     public float getX();
