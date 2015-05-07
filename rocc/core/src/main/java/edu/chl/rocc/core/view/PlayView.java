@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -43,8 +44,6 @@ public class PlayView extends GameView{
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
         followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
-        batch = new SpriteBatch();
-
         //b2dr = new Box2DDebugRenderer();
     }
 
@@ -54,7 +53,7 @@ public class PlayView extends GameView{
     }
 
     @Override
-    public void render() {
+    public void render(SpriteBatch batch, OrthographicCamera cam, OrthographicCamera hudCam) {
         //b2dr.render(model.getLevel().getWorld(),camera.combined);
 
        //Set camera to follow player

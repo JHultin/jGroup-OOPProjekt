@@ -6,43 +6,32 @@ import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
+import edu.chl.rocc.core.view.observers.IViewObservable;
+import edu.chl.rocc.core.view.observers.IViewObserver;
+
+import java.util.ArrayList;
 import java.util.List;
 /**
  * A abstract class which contains the common variables
  * and methods needed in the different Game views.
  * Created by Jacob on 2015-05-04.
  */
-public abstract class GameView {
+public abstract class GameView implements IViewObservable {
 
-    protected GameViewManager gameViewManager;
-
-    protected RoCCController controller;
-    protected IRoCCModel model;
-    protected RoCCView view;
-
-    protected SpriteBatch batch;
+    //An arraylist to hold all of the observers
+    protected ArrayList<IViewObserver> observerArrayList;
 
     // Camera following the player
     protected OrthographicCamera cam;
     // Camera showing the HUD
     protected OrthographicCamera hudCam;
 
-    protected GameView(GameViewManager gameViewManager){
-        this.gameViewManager = gameViewManager;
-        view = this.gameViewManager.getView();
-        model = view.getModel();
-        controller = view.getController();
+    protected GameView(){
 
-        batch = view.getSpriteBatch();
-
-        cam = view.getCam();
-        hudCam = view.getHudCam();
     }
 
     public abstract void update();
-    public abstract void render();
+    public abstract void render(SpriteBatch batch, OrthographicCamera cam, OrthographicCamera hudCam);
     public abstract void dispose();
-
-
 
 }

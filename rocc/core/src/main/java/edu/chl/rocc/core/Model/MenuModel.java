@@ -50,9 +50,11 @@ public class MenuModel implements IModel{
      * @return
      */
     public boolean isSelected(int index){
-        if(index == currentItem){
-            return true;
-        }
-        return false;
+        return index == currentItem;
     }
+
+    public String[] getMenuItems(){
+        return menuItems;
+    }
+
 }

@@ -1,11 +1,14 @@
 package edu.chl.rocc.core.view;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.model.RoCCModel;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -15,14 +18,8 @@ import java.util.Stack;
  */
 public class GameViewManager {
 
-    private RoCCView view;
-    private Stack<GameView> gameView;
-
-    public GameViewManager(RoCCView view){
-        this.view = view;
-        gameView = new Stack<GameView>();
-        pushState(ViewVariables.PLAY);
-    }
+    private HashMap<String, GameView> viewHashMap;
+    private GameView activeView;
 
     public GameViewManager(IModel menuModel, IRoCCModel roccModel){
         viewHashMap = new HashMap<String, GameView>();
@@ -35,39 +32,12 @@ public class GameViewManager {
      }
 
 
-    public void render(){
-        gameView.peek().render();
+    public void update(){
+        activeView.update();
     }
 
-    public RoCCView getView(){
-        return view;
-    }
-
-    public void setView(int view) {
-        popState();
-        pushState(view);
-    }
-
-    public void pushState(int view){
-        gameView.push(getView(view));
-    }
-
-    public void popState(){
-        GameView previousGameView = gameView.pop();
-        previousGameView.dispose();
-    }
-
-    /**
-     * Here we can add the different views
-     */
-    private GameView getView(int view){
-        if(view == ViewVariables.PLAY){
-            return new PlayView(this);
-        }else if (view == ViewVariables.MENU){
-            return new MenuView(this);
-        }else {
-            return null;
-        }
+    public void render(SpriteBatch batch, OrthographicCamera cam, OrthographicCamera hudCam){
+        activeView.render(batch, cam,hudCam);
     }
 
 }

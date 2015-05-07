@@ -4,11 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import edu.chl.rocc.core.controller.MenuController;
 import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.model.Variables;
+import edu.chl.rocc.core.view.observers.IViewObserver;
+
+import java.util.ArrayList;
 
 
 /**
@@ -25,10 +29,6 @@ public class MenuView extends GameView {
 
     private MenuModel menuModel;
 
-    //A variable to check which menuItem is selected
-    private int currentItem;
-    private String [] menuItem = {"New Game","Load Game","Options","Highscore","Exit"};
-
     public MenuView(IModel menuModel){
         this.menuModel = (MenuModel)menuModel;
         observerArrayList = new ArrayList<IViewObserver>();
@@ -40,7 +40,7 @@ public class MenuView extends GameView {
     }
 
     @Override
-    public void render() {
+    public void render(SpriteBatch batch, OrthographicCamera cam, OrthographicCamera hudCam) {
         batch.setProjectionMatrix(cam.combined);
 
         batch.begin();
@@ -52,12 +52,12 @@ public class MenuView extends GameView {
         for(int i = 0; i<menuModel.getMenuItems().length; i++){
 
             //Checks if the item is selected
-            if(currentItem == i){
+            if(menuModel.isSelected(i)){
                 font.setColor(Color.RED);
             }else{
                 font.setColor(Color.WHITE);
             }
-            font.draw(batch, menuItem[i], Variables.WIDTH / 2, Variables.HEIGHT / 2 - 35 * i);
+            font.draw(batch, menuModel.getMenuItems()[i], Variables.WIDTH / 2, Variables.HEIGHT / 2 - 35 * i);
         }
         batch.end();
     }
@@ -67,16 +67,22 @@ public class MenuView extends GameView {
 
     }
 
-    public int getCurrentItem(){
-        return currentItem;
+    @Override
+    public void register(IViewObserver observer) {
+        observerArrayList.add(observer);
     }
 
-    public int getItemLength(){
-        return menuItem.length;
+    @Override
+    public void unregister(IViewObserver observer) {
+        observerArrayList.remove(observer);
     }
 
-    public void setCurrentItem(int newItem){
-        currentItem = newItem;
-    }
-
-}
+    @Override
+    public void notifyObserver() {
+        /**
+         * Figure out what parameters the viewUpdated will take.
+         */
+        for(IViewObserver observer : observerArrayList){
+            observer.viewUpdated();
+        }
+    }}

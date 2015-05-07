@@ -149,8 +149,6 @@ public class RoCCController implements Runnable{
      */
     private class MenuProcessor implements InputProcessor{
 
-        private ArrayList<Integer> keys;
-
         private MenuProcessor (){
 
         }
