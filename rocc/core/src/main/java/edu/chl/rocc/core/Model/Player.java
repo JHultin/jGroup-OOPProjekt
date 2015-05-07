@@ -46,7 +46,6 @@ public class Player implements IPlayer {
 
         for(int i=1; i < characters.size(); i++){
             if(Math.abs(characters.get(i).getX() - characters.get(0).getX()) > 120 / PPM){
-                //characters.get(i).move(dir);
 
                 if(characters.get(0).getX() - characters.get(i).getX() > 0){
                     characters.get(i).moveFollower(1);
