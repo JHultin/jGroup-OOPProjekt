@@ -87,6 +87,10 @@ public class PhyCharacter implements ICharacter {
         }
     }
 
+    public void moveFollower(int i){
+        body.applyForceToCenter(new Vec2(100 * i, 0));
+    }
+
     @Override
     public void jump() {
 

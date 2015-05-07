@@ -10,6 +10,8 @@ import org.jbox2d.dynamics.World;
 import java.util.ArrayList;
 import java.util.List;
 
+import static edu.chl.rocc.core.GlobalConstants.PPM;
+
 /**
  * Created by Jacob on 2015-04-22.
  */
@@ -43,16 +45,30 @@ public class Player implements IPlayer {
     * Move the front character in a given direction.
     */
     public void move(Direction dir){
-        for(int i=0; i < characters.size(); i++){
-            characters.get(i).move(dir);
+
+        characters.get(0).move(dir);
+
+        for(int i=1; i < characters.size(); i++){
+            if(Math.abs(characters.get(i).getX() - characters.get(0).getX()) > 120 / PPM){
+                //characters.get(i).move(dir);
+
+                if(characters.get(0).getX() - characters.get(i).getX() > 0){
+                    characters.get(i).moveFollower(1);
+                } else{
+                    characters.get(i).moveFollower(-1);
+                }
+
+            }
         }
     }
 
     public void jump() {
-
+        /*
         for(int i=0; i < characters.size(); i++){
             characters.get(i).jump();
         }
+        */
+        characters.get(0).jump();
     }
 
     /*
