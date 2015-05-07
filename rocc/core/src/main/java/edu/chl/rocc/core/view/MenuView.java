@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import edu.chl.rocc.core.controller.MenuController;
+import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.model.Variables;
 
@@ -22,26 +23,15 @@ public class MenuView extends GameView {
 
     private String title = "Ruins of Corrosa City";
 
+    private MenuModel menuModel;
+
     //A variable to check which menuItem is selected
     private int currentItem;
     private String [] menuItem = {"New Game","Load Game","Options","Highscore","Exit"};
 
-    private MenuController controller;
-
-    public MenuView(GameViewManager gsm){
-        super(gsm);
-
-        controller = new MenuController(this,gameViewManager);
-/*
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(
-                Gdx.files.internal("fonts/Retro Computer_DEMO.ttf")
-        );
-
-        titleFont = generator.generateFont(56);
-        titleFont.setColor(Color.WHITE);
-
-        font = generator.generateFont(24);
-  */
+    public MenuView(IModel menuModel){
+        this.menuModel = (MenuModel)menuModel;
+        observerArrayList = new ArrayList<IViewObserver>();
     }
 
     @Override
@@ -59,7 +49,7 @@ public class MenuView extends GameView {
         titleFont.draw(batch,title, (Variables.WIDTH)/2,Variables.HEIGHT*0.8f);
 
         //Draws menu items
-        for(int i = 0; i<menuItem.length; i++){
+        for(int i = 0; i<menuModel.getMenuItems().length; i++){
 
             //Checks if the item is selected
             if(currentItem == i){

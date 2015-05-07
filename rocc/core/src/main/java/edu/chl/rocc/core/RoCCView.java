@@ -9,6 +9,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.model.Variables;
@@ -42,7 +43,8 @@ public class RoCCView implements ApplicationListener {
 	public void create () {
 
         model = new PhyRoCCModel();
-        controller = new RoCCController(model, this);
+        menuModel = new MenuModel();
+        controller = new RoCCController(model, menuModel,this);
 
         batch = new SpriteBatch();
 
@@ -51,8 +53,7 @@ public class RoCCView implements ApplicationListener {
         hudCam = new OrthographicCamera();
         hudCam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
 
-        gameViewManager = new GameViewManager(this);
-
+        gameViewManager = new GameViewManager(menuModel, model);
     }
 
 	@Override

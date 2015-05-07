@@ -8,6 +8,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import java.util.List;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.model.RoCCModel;
+import edu.chl.rocc.core.view.observers.IViewObserver;
+
+import java.util.ArrayList;
 
 /**
  * This class is supposed to contain the
@@ -22,14 +27,19 @@ public class PlayView extends GameView{
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
+    private IRoCCModel model;
 
-    public PlayView(GameViewManager gsm){
-        super(gsm);
+
+    public PlayView(IModel model){
+
+        this.model = (IRoCCModel)model;
+
+        observerArrayList = new ArrayList<IViewObserver>();
 
         map = new TmxMapLoader().load("ground-map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
 
-        model.constructWorld(map);
+        this.model.constructWorld(map);
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
         followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
@@ -65,5 +75,4 @@ public class PlayView extends GameView{
     public void dispose() {
 
     }
-
 }

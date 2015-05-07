@@ -5,15 +5,13 @@ package edu.chl.rocc.core.view;
  */
 public class ViewFactory {
 
-    public static GameView createView(int view, GameViewManager manager){
-        if(view == ViewVariables.PLAY){
-            return new PlayView(manager);
+    public static GameView createView(String view, IModel model){
+        if(view.equals("PLAY")){
+            return new PlayView(model);
         }
-        if(view == ViewVariables.MENU){
-            return new MenuView(manager);
+        if(view.equals("MENU")){
+            return new MenuView(model);
         }
         return null;
     }
-
-
 }
