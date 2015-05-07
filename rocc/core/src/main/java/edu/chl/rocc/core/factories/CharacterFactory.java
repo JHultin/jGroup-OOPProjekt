@@ -8,7 +8,7 @@ import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 public class CharacterFactory implements ICharacterFactory {
 
     @Override
-    public ICharacter createCharacter(String name) {
+    public ICharacter createCharacter(String name, int x, int y) {
         return null;
     }
 }

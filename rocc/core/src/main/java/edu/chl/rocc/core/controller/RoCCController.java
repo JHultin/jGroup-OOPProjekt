@@ -17,54 +17,44 @@ public class RoCCController implements Runnable{
 
     private final IRoCCModel model;
     private Thread thread;
-    private ArrayList<Integer> keys;
     private boolean isRunning = true;
     private float updateSpeed = 1 / 60f;
-    private Direction lastDir;
+    private GameProcessor gameProcessor;
+    private MenuProcessor menuProcessor;
+
 
     public RoCCController(IRoCCModel model, RoCCView main){
         this.model = model;
-        Gdx.input.setInputProcessor(new PrimaryProcessor());
-        this.lastDir = Direction.NONE;
+        gameProcessor = new GameProcessor();
+        menuProcessor = new MenuProcessor();
 
-        keys = new ArrayList<Integer>();
+        Gdx.input.setInputProcessor(gameProcessor);
         thread = new Thread(this);
         thread.start();
 
+    }
+
+    public void setState(String str){
+        if (str.equals("game")) {
+            isRunning = false;
+            thread.interrupt();
+            Gdx.input.setInputProcessor(gameProcessor);
+            thread = new Thread(this);
+            thread.start();
+        } else if ("menu".equals(str)){
+            isRunning = false;
+            thread.interrupt();
+            Gdx.input.setInputProcessor(menuProcessor);
+            thread = new Thread(this);
+            thread.start();
+        }
     }
 
     @Override
     public void run() {
         while (this.isRunning){
             try {
-                Direction dir;
-                if (keys.contains(Input.Keys.RIGHT))
-                    if (keys.contains(Input.Keys.LEFT))
-                        dir = Direction.NONE;
-                    else
-                        dir = Direction.RIGHT;
-                else if (keys.contains((Input.Keys.LEFT)))
-                    dir = Direction.LEFT;
-                else
-                    dir = Direction.NONE;
-                if (dir != lastDir){
-                    model.moveSideways(dir);
-                    lastDir = dir;
-                }
-                /*
-                for (int key : keys){
-                    if (key == Input.Keys.RIGHT){
-                        model.moveSideways(Direction.RIGHT);
-                    } else if (key == Input.Keys.LEFT){
-                        model.moveSideways(Direction.LEFT);
-                    } else if (key == Input.Keys.UP){
-                        model.moveSideways(Direction.UP);
-                    } else if (key == Input.Keys.DOWN){
-                        model.moveSideways(Direction.DOWN);
-                    }
-                }
-                */
-                model.updateWorld(updateSpeed);
+                gameProcessor.sendUpdate();
                 Thread.sleep((long)(updateSpeed * 1000));
             } catch (InterruptedException e) {
                 this.isRunning = false;
@@ -72,7 +62,35 @@ public class RoCCController implements Runnable{
         }
     }
 
-    private class PrimaryProcessor implements InputProcessor{
+    private class GameProcessor implements InputProcessor{
+
+        private ArrayList<Integer> keys;
+        private Direction lastDir;
+
+        private GameProcessor (){
+
+            this.lastDir = Direction.NONE;
+            keys = new ArrayList<Integer>();
+        }
+
+        private void sendUpdate(){
+            Direction dir;
+            if (keys.contains(Input.Keys.RIGHT))
+                if (keys.contains(Input.Keys.LEFT))
+                    dir = Direction.NONE;
+                else
+                    dir = Direction.RIGHT;
+            else if (keys.contains((Input.Keys.LEFT)))
+                dir = Direction.LEFT;
+            else
+                dir = Direction.NONE;
+            if (dir != lastDir){
+                model.moveSideways(dir);
+                lastDir = dir;
+            }
+            model.updateWorld(updateSpeed);
+        }
+
 
         @Override
         public boolean keyDown(int keycode) {
@@ -113,6 +131,65 @@ public class RoCCController implements Runnable{
         @Override
         public boolean mouseMoved(int screenX, int screenY) {
             model.aim(screenX, Gdx.graphics.getHeight() - screenY);
+            return false;
+        }
+
+        @Override
+        public boolean scrolled(int amount) {
+            return false;
+        }
+    }
+
+    /**
+     * An inner class to handle the menu input.
+     */
+    private class MenuProcessor implements InputProcessor{
+
+        private ArrayList<Integer> keys;
+
+        private MenuProcessor (){
+
+        }
+
+        @Override
+        public boolean keyDown(int keycode) {
+            if (keycode == Input.Keys.ENTER) {
+                return true;
+            }else if (keycode == Input.Keys.UP){
+                return true;
+            }else if (keycode == Input.Keys.DOWN){
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean keyUp(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyTyped(char character) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            return false;
+        }
+
+        @Override
+        public boolean mouseMoved(int screenX, int screenY) {
             return false;
         }
 

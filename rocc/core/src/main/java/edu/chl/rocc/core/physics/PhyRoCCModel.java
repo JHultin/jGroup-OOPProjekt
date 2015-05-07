@@ -2,7 +2,11 @@ package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import edu.chl.rocc.core.factories.*;
+import edu.chl.rocc.core.controller.MyContactListener;
+import edu.chl.rocc.core.factories.ICharacterFactory;
+import edu.chl.rocc.core.factories.PhyCharacterFactory;
+import edu.chl.rocc.core.factories.PhyLevelFactory;
+import edu.chl.rocc.core.factories.PhyPlayerFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.model.Direction;
@@ -31,7 +35,7 @@ public class PhyRoCCModel implements IRoCCModel {
         model = new RoCCModel(new PhyLevelFactory(world), new PhyPlayerFactory(world));
         characterFactory = new PhyCharacterFactory(world);
 
-        createCharacter();
+        createCharacter(200, 200);
 
     }
 
@@ -53,7 +57,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 // If there is a tile at the position
                 if (cell != null && cell.getTile() != null){
 
-                    // Create a body definiion
+                    // Create a body definition
                     BodyDef bDef = new BodyDef();
                     bDef.type = BodyType.STATIC;
                     bDef.position.set(32 * (col + 0.5f), 32 * (row + 0.5f));
@@ -71,8 +75,8 @@ public class PhyRoCCModel implements IRoCCModel {
                     FixtureDef fDef = new FixtureDef();
                     fDef.friction = 0;
                     fDef.shape = cs;
-                    fDef.filter.categoryBits = 2;  // As Character variable BIT_Ground
-                    fDef.filter.maskBits = 4;      // As Character variable BIT_Body
+                    fDef.filter.categoryBits = BitMask.BIT_GROUND;
+                    fDef.filter.maskBits = BitMask.BIT_BODY;
 
                     // Then let the level create the block in the world
                     model.getLevel().addBlock(bDef, fDef);
@@ -81,8 +85,8 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
-    public void createCharacter(){
-        model.getPlayer().addCharacter(characterFactory.createCharacter(""));
+    public void createCharacter(int x, int y){
+        model.getPlayer().addCharacter(characterFactory.createCharacter("", x, y));
     }
 
     @Override

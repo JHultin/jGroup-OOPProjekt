@@ -17,7 +17,7 @@ public class PhyCharacter implements ICharacter {
     private float width, height;
     private Body body;
 
-    public PhyCharacter(World world){
+    public PhyCharacter(World world, int x, int y){
         this.world = world;
         this.world.setContactListener(new MyContactListener());
         this.width = 18;
@@ -25,7 +25,8 @@ public class PhyCharacter implements ICharacter {
 
         //Defining & creating body
         BodyDef def = new BodyDef();
-        def.position.set(160,120);
+        def.position.set(x,y);
+        //def.position.set(160,120);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
 
