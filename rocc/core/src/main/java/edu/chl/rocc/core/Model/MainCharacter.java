@@ -13,8 +13,8 @@ public class MainCharacter extends PhyCharacter {
 
     private static final int MAX_HEALTH = 150;
 
-    public MainCharacter(World world){
-        super(world);
+    public MainCharacter(World world, int x, int y){
+        super(world, x, y);
     }
 
     public int getMaxHP(){

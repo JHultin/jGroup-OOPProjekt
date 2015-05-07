@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.physics;
 
 import edu.chl.rocc.core.factories.PhyCharacterFactory;
+import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.model.Player;
@@ -35,6 +36,10 @@ public class PhyPlayer implements IPlayer {
     @Override
     public float getCharacterYPos(int i) {
         return this.player.getCharacterYPos(i);
+    }
+
+    public void addCharacter(ICharacter c){
+        player.addCharacter(c);
     }
 
 }

@@ -8,6 +8,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.List;
+
 /**
  * This class is supposed to contain the
  * graphical data required for playing a level.
@@ -16,6 +18,8 @@ import com.badlogic.gdx.math.Vector2;
 public class PlayView extends GameView{
 
     private Texture characterTexture;
+    private Texture followerTexture;
+    private List<Texture> textures;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
@@ -29,10 +33,10 @@ public class PlayView extends GameView{
         model.constructWorld(map);
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
+        followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
         batch = new SpriteBatch();
 
         //b2dr = new Box2DDebugRenderer();
-
     }
 
     @Override
@@ -49,12 +53,12 @@ public class PlayView extends GameView{
         cam.update();
         batch.setProjectionMatrix(cam.combined);
 
-
         renderer.setView(cam);
         renderer.render();
 
         batch.begin();
         batch.draw(characterTexture, model.getCharacterXPos(0), model.getCharacterYPos(0));
+        batch.draw(followerTexture, model.getCharacterXPos(1), model.getCharacterYPos(1));
         //view.draw(batch);
         batch.end();
 

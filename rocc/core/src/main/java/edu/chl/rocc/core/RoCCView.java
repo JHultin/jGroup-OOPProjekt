@@ -2,6 +2,7 @@ package edu.chl.rocc.core;
 
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -13,6 +14,9 @@ import edu.chl.rocc.core.model.Variables;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //implements ApplicationListener
 public class RoCCView implements ApplicationListener {
 
@@ -20,7 +24,6 @@ public class RoCCView implements ApplicationListener {
     private RoCCController controller;
 
 	private SpriteBatch batch;
-    private SpriteBatch batchFollower;
 //	private float elapsed;
 //  private static final float STEP = 1/60f;
 
@@ -40,7 +43,6 @@ public class RoCCView implements ApplicationListener {
         controller = new RoCCController(model, this);
 
         batch = new SpriteBatch();
-        batchFollower = new SpriteBatch();
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
@@ -80,17 +82,9 @@ public class RoCCView implements ApplicationListener {
 	public void dispose () {
 	}
 
-    //Setters
-    public void setView(){
-
-    }
-
     //Getters
     public SpriteBatch getSpriteBatch(){
         return batch;
-    }
-    public SpriteBatch getSpriteBatchFollower(){
-        return this.batchFollower;
     }
     public OrthographicCamera getHudCam(){
         return hudCam;

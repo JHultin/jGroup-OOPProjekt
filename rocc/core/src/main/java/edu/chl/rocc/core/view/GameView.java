@@ -7,6 +7,8 @@ import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
 
+import java.util.List;
+
 /**
  * A abstract class which contains the common variables
  * and methods needed in the different Game views.
@@ -15,7 +17,6 @@ import edu.chl.rocc.core.model.RoCCModel;
 public abstract class GameView {
 
     protected GameViewManager gameViewManager;
-
 
     protected RoCCController controller;
     protected IRoCCModel model;
@@ -33,7 +34,9 @@ public abstract class GameView {
         view = this.gameViewManager.getView();
         model = view.getModel();
         controller = view.getController();
+
         batch = view.getSpriteBatch();
+
         cam = view.getCam();
         hudCam = view.getHudCam();
     }

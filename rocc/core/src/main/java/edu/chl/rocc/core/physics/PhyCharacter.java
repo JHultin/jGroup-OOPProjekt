@@ -19,7 +19,7 @@ public class PhyCharacter implements ICharacter {
     private Body body;
     private MyContactListener listener;
 
-    public PhyCharacter(World world){
+    public PhyCharacter(World world, int x, int y){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
@@ -29,7 +29,7 @@ public class PhyCharacter implements ICharacter {
 
         //Defining & creating body
         BodyDef def = new BodyDef();
-        def.position.set(160 / PPM, 400 /PPM);
+        def.position.set(x / PPM, y / PPM);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
 
@@ -90,7 +90,7 @@ public class PhyCharacter implements ICharacter {
     @Override
     public void jump() {
         if(this.listener.isPlayerOnGround() > 0){
-            body.applyForceToCenter(new Vec2(0, 100));
+            body.applyForceToCenter(new Vec2(0, 200));
         }
     }
 

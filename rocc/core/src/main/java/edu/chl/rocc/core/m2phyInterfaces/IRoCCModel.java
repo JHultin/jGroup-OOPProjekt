@@ -23,5 +23,7 @@ public interface IRoCCModel {
 
     public ILevel getLevel();
 
+    public IPlayer getPlayer();
+
     public void updateWorld(float dt);
 }

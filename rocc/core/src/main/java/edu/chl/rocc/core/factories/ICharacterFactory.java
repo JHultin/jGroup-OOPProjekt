@@ -7,6 +7,6 @@ import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
  */
 public interface ICharacterFactory {
 
-    public ICharacter createCharacter(String name);
+    public ICharacter createCharacter(String name, int x, int y);
 
 }
