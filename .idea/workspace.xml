@@ -29,12 +29,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MenuView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/MenuView.java">
+      <file leaf-file-name="RoCCView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241">
               <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
               <folding />
+=======
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1887">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="e#2273#2274#0" expanded="true" />
+                <element signature="e#2318#2319#0" expanded="true" />
+                <element signature="e#2362#2363#0" expanded="true" />
+                <element signature="e#2395#2396#0" expanded="true" />
+                <element signature="e#2430#2431#0" expanded="true" />
+                <element signature="e#2458#2459#0" expanded="true" />
+              </folding>
+>>>>>>> fixed invisible Stickman problem
             </state>
           </provider>
         </entry>
@@ -42,6 +55,7 @@
       <file leaf-file-name="PlayView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/PlayView.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.29109588" vertical-offset="17" max-vertical-offset="1887">
               <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
               <folding />
@@ -55,6 +69,16 @@
             <state vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="1088">
               <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding />
+=======
+            <state vertical-scroll-proportion="0.044386424" vertical-offset="289" max-vertical-offset="1513">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding>
+                <element signature="e#2089#2090#0" expanded="true" />
+                <element signature="e#2136#2137#0" expanded="true" />
+                <element signature="e#2204#2205#0" expanded="true" />
+                <element signature="e#2254#2255#0" expanded="true" />
+              </folding>
+>>>>>>> fixed invisible Stickman problem
             </state>
           </provider>
         </entry>
@@ -62,10 +86,39 @@
       <file leaf-file-name="RoCCController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/controller/RoCCController.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3264">
               <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+=======
+            <state vertical-scroll-proportion="0.0" vertical-offset="446" max-vertical-offset="4114">
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+>>>>>>> fixed invisible Stickman problem
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3492#3493#0" expanded="true" />
+                <element signature="e#3528#3529#0" expanded="true" />
+                <element signature="e#3633#3634#0" expanded="true" />
+                <element signature="e#3669#3670#0" expanded="true" />
+                <element signature="e#3772#3773#0" expanded="true" />
+                <element signature="e#3808#3809#0" expanded="true" />
+                <element signature="e#3904#3905#0" expanded="true" />
+                <element signature="e#3940#3941#0" expanded="true" />
+                <element signature="e#4190#4191#0" expanded="true" />
+                <element signature="e#4226#4227#0" expanded="true" />
+                <element signature="e#5197#5198#0" expanded="true" />
+                <element signature="e#5233#5234#0" expanded="true" />
+                <element signature="e#5302#5303#0" expanded="true" />
+                <element signature="e#5338#5339#0" expanded="true" />
+                <element signature="e#5443#5444#0" expanded="true" />
+                <element signature="e#5479#5480#0" expanded="true" />
+                <element signature="e#5582#5583#0" expanded="true" />
+                <element signature="e#5618#5619#0" expanded="true" />
+                <element signature="e#5714#5715#0" expanded="true" />
+                <element signature="e#5750#5751#0" expanded="true" />
+                <element signature="e#5831#5832#0" expanded="true" />
+                <element signature="e#5867#5868#0" expanded="true" />
+                <element signature="e#5932#5933#0" expanded="true" />
+                <element signature="e#5968#5969#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,9 +158,9 @@
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/model/MenuModel.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/ViewFactory.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/MenuView.java" />
-        <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/controller/RoCCController.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/GameViewManager.java" />
+        <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/PlayView.java" />
       </list>
     </option>
@@ -170,6 +223,111 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+<<<<<<< HEAD
+=======
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jGroup-OOPProjekt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jGroup-OOPProjekt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jGroup-OOPProjekt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jGroup-OOPProjekt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jGroup-OOPProjekt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+>>>>>>> fixed invisible Stickman problem
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -500,10 +658,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="40483000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+=======
+    <option name="totallyTimeSpent" value="40621000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+>>>>>>> fixed invisible Stickman problem
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -512,7 +677,11 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+=======
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+>>>>>>> fixed invisible Stickman problem
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18955223" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08432432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -695,6 +864,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/factories/ICharacterFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3994778" vertical-offset="0" max-vertical-offset="383">
@@ -751,6 +921,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> fixed invisible Stickman problem
     <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/model/Level.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="629">
@@ -758,6 +930,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/model/Variables.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4229765" vertical-offset="59" max-vertical-offset="442">
@@ -779,6 +952,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> fixed invisible Stickman problem
     <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/model/RoCCModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.73368144" vertical-offset="451" max-vertical-offset="867">
@@ -786,6 +961,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/GlobalConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
@@ -814,6 +990,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> fixed invisible Stickman problem
     <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/model/Character.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="943" max-vertical-offset="1326">
@@ -825,6 +1003,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="671" max-vertical-offset="1530">
           <caret line="60" column="34" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -863,6 +1042,14 @@
         </state>
       </provider>
     </entry>
+=======
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> fixed invisible Stickman problem
     <entry file="file://$PROJECT_DIR$/rocc/assets/characterSprite.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -873,6 +1060,7 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/rocc/assets/followerSprite.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -897,32 +1085,78 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3264">
           <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+=======
+    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/controller/RoCCController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="446" max-vertical-offset="4114">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+>>>>>>> fixed invisible Stickman problem
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3492#3493#0" expanded="true" />
+            <element signature="e#3528#3529#0" expanded="true" />
+            <element signature="e#3633#3634#0" expanded="true" />
+            <element signature="e#3669#3670#0" expanded="true" />
+            <element signature="e#3772#3773#0" expanded="true" />
+            <element signature="e#3808#3809#0" expanded="true" />
+            <element signature="e#3904#3905#0" expanded="true" />
+            <element signature="e#3940#3941#0" expanded="true" />
+            <element signature="e#4190#4191#0" expanded="true" />
+            <element signature="e#4226#4227#0" expanded="true" />
+            <element signature="e#5197#5198#0" expanded="true" />
+            <element signature="e#5233#5234#0" expanded="true" />
+            <element signature="e#5302#5303#0" expanded="true" />
+            <element signature="e#5338#5339#0" expanded="true" />
+            <element signature="e#5443#5444#0" expanded="true" />
+            <element signature="e#5479#5480#0" expanded="true" />
+            <element signature="e#5582#5583#0" expanded="true" />
+            <element signature="e#5618#5619#0" expanded="true" />
+            <element signature="e#5714#5715#0" expanded="true" />
+            <element signature="e#5750#5751#0" expanded="true" />
+            <element signature="e#5831#5832#0" expanded="true" />
+            <element signature="e#5867#5868#0" expanded="true" />
+            <element signature="e#5932#5933#0" expanded="true" />
+            <element signature="e#5968#5969#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/GameViewManager.java">
+    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.91122717" vertical-offset="365" max-vertical-offset="816">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/MenuView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="1292">
-          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
-          <folding />
+=======
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1887">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#2273#2274#0" expanded="true" />
+            <element signature="e#2318#2319#0" expanded="true" />
+            <element signature="e#2362#2363#0" expanded="true" />
+            <element signature="e#2395#2396#0" expanded="true" />
+            <element signature="e#2430#2431#0" expanded="true" />
+            <element signature="e#2458#2459#0" expanded="true" />
+          </folding>
+>>>>>>> fixed invisible Stickman problem
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/PlayView.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.29109588" vertical-offset="17" max-vertical-offset="1887">
           <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
           <folding />
+=======
+        <state vertical-scroll-proportion="0.044386424" vertical-offset="289" max-vertical-offset="1513">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#2089#2090#0" expanded="true" />
+            <element signature="e#2136#2137#0" expanded="true" />
+            <element signature="e#2204#2205#0" expanded="true" />
+            <element signature="e#2254#2255#0" expanded="true" />
+          </folding>
+>>>>>>> fixed invisible Stickman problem
         </state>
       </provider>
     </entry>

@@ -10,14 +10,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.MenuModel;
-import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.model.Variables;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 //implements ApplicationListener
 public class RoCCView implements ApplicationListener {
@@ -68,9 +64,11 @@ public class RoCCView implements ApplicationListener {
 //        elapsed += Gdx.graphics.getDeltaTime();
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
         batch.setProjectionMatrix(cam.combined);
+
         gameViewManager.update();
-        gameViewManager.render();
+        gameViewManager.render(batch, cam, hudCam);
     }
 
 	@Override
