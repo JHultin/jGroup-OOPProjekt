@@ -19,6 +19,8 @@ public class PhyCharacter implements ICharacter {
     private float width, height;
     private Body body;
     private MyContactListener listener;
+    private int leftV;
+    private int rightV;
 
     public PhyCharacter(World world){
         this.world = world;
@@ -77,14 +79,22 @@ public class PhyCharacter implements ICharacter {
 
         if(dir.equals(Direction.LEFT)){
            body.applyForceToCenter(new Vec2(-50, 0));
+            leftV  = leftV + 1;
         } else if(dir.equals(Direction.RIGHT)){
             body.applyForceToCenter(new Vec2(50, 0));
+            rightV = rightV + 1;
         } else if(dir.equals(Direction.UP)){
 
         } else if(dir.equals(Direction.DOWN)){
 
         } else if (dir.equals(Direction.NONE)){
-
+            if(leftV > 0){
+                body.applyForceToCenter(new Vec2(50, 0));
+                leftV = leftV - 1;
+            }else if(rightV > 0){
+                body.applyForceToCenter(new Vec2(-50, 0));
+                rightV = rightV - 1;
+            }
         }
     }
 
