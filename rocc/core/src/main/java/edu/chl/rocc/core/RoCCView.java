@@ -3,6 +3,7 @@ package edu.chl.rocc.core;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -21,14 +22,10 @@ import java.util.List;
 public class RoCCView implements ApplicationListener {
 	private Texture characterTexture;
     private Texture followerTexture;
-	private SpriteBatch batch;
     private IRoCCModel model;
     private RoCCController controller;
-<<<<<<< HEAD
-=======
 
 	private SpriteBatch batch;
->>>>>>> Fixed the follower
 //	private float elapsed;
 //  private static final float STEP = 1/60f;
 
@@ -55,16 +52,8 @@ public class RoCCView implements ApplicationListener {
         hudCam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
 
         gameViewManager = new GameViewManager(this);
-        characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
-		batch = new SpriteBatch();
 
-        followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
-
-        controller = new RoCCController(model, this);
-
-        //b2dr = new Box2DDebugRenderer();
-
-	}
+    }
 
 	@Override
 	public void resize (int width, int height) {
@@ -78,22 +67,10 @@ public class RoCCView implements ApplicationListener {
 //        elapsed += Gdx.graphics.getDeltaTime();
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+        batch.setProjectionMatrix(cam.combined);
         gameViewManager.update();
         gameViewManager.render();
-        //b2dr.render(model.getLevel().getWorld(),camera.combined);
-
-        // Set camera to follow player
-
-        cam.position.set(new Vector2(model.getCharacterXPos(0), model.getCharacterYPos(0)), 0);
-        cam.update();
-        batch.setProjectionMatrix(cam.combined);
-
-        batch.begin();
-        batch.draw(characterTexture, model.getCharacterXPos(0), model.getCharacterYPos(0));
-        //view.draw(batch);
-
-		batch.end();
-	}
+    }
 
 	@Override
 	public void pause () {

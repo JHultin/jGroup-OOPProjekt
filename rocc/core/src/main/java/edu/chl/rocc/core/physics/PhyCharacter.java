@@ -22,7 +22,7 @@ public class PhyCharacter implements ICharacter {
     private int leftV;
     private int rightV;
 
-    public PhyCharacter(World world){
+    public PhyCharacter(World world, int x, int y, String userData){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
@@ -32,7 +32,7 @@ public class PhyCharacter implements ICharacter {
 
         //Defining & creating body
         BodyDef def = new BodyDef();
-        def.position.set(160 / PPM, 400 /PPM);
+        def.position.set(x / PPM, y / PPM);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
 
@@ -51,7 +51,7 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData("");
+        body.createFixture(fDef).setUserData(userData);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import java.util.List;
 
 /**
  * This class is supposed to contain the
@@ -17,6 +18,7 @@ public class PlayView extends GameView{
 
     private Texture characterTexture;
     private Texture followerTexture;
+    private List<Texture> textures;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
@@ -32,10 +34,6 @@ public class PlayView extends GameView{
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
         followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
         batch = new SpriteBatch();
-
-
-        //b2dr = new Box2DDebugRenderer();
-
     }
 
     @Override

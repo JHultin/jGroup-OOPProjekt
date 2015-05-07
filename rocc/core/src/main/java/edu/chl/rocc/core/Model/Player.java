@@ -17,8 +17,11 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
  */
 public class Player implements IPlayer {
 
+    private final List<ICharacter> characters;
+
     private int activePlayerIndex;
-    private List<ICharacter> characters;
+    //Index of the active character in list 'characters'
+    private int activeCharacterIndex;
 
    // private List<Weapon> weapons;
 
@@ -27,15 +30,13 @@ public class Player implements IPlayer {
     */
     public Player(ICharacterFactory characterFactory, World world){
 
-        activePlayerIndex = 0;
         this.characters = new ArrayList<ICharacter>();
+        activeCharacterIndex = 0;
 
-        activePlayerIndex = 0;
-        
         //Creates the front/main character.
-        addCharacter(characterFactory.createCharacter("", 160, 800));
+        addCharacter(characterFactory.createCharacter("firstCharacter", 160, 800));
         //Creates a follower.
-        addCharacter(characterFactory.createCharacter("", 100, 800));
+        addCharacter(characterFactory.createCharacter("secondCharacter", 100, 800));
     }
 
     public Player(List<ICharacter> characters){
@@ -48,20 +49,36 @@ public class Player implements IPlayer {
     */
     public void move(Direction dir){
         characters.get(0).move(dir);
-        moveFollowers();
+        moveFollowers(dir);
     }
 
     /*
     * Move the follower characters towards the front character.
     */
-    public void moveFollowers(){
-        for(int i=1; i < characters.size(); i++){
+    public void moveFollowers(Direction dir){
+        if(dir != Direction.NONE) {
 
-            if(getDistance(i) > 120 / PPM){
-                characters.get(i).moveFollower(getDirection(i));
+            for (int i = 1; i < characters.size(); i++) {
+
+            /*
+            if(getDistance(i) > 200){
+                characters.get(i).moveFollower(dir);
+            } else{
+                characters.get(i).moveFollower(Direction.NONE);
+            }
+            */
+                float distance = characters.get(0).getX() - characters.get(i).getX();
+
+                if (distance > 200) {
+                    characters.get(i).moveFollower(Direction.RIGHT);
+                } else if (distance < -200) {
+                    characters.get(i).moveFollower(Direction.LEFT);
+                    //characters.get(i).moveFollower(Direction.NONE);
+                } else {
+                    characters.get(i).moveFollower(Direction.NONE);
+                }
             }
         }
-        //character.move(dir);
     }
 
     public void jump() {
@@ -98,10 +115,10 @@ public class Player implements IPlayer {
     * Change which character the player is playing as.
     */
     public void changeActiveCharacter(){
-        if(activePlayerIndex++ < characters.size()){
-            activePlayerIndex++;
+        if(activeCharacterIndex++ < characters.size()){
+            activeCharacterIndex++;
         } else{
-            activePlayerIndex = 0;
+            activeCharacterIndex = 0;
         }
     }
 

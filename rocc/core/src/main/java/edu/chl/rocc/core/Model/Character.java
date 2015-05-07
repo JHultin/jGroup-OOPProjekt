@@ -1,7 +1,7 @@
 package edu.chl.rocc.core.model;
 
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
-import org.jbox2d.dynamics.World;
+
 
 /**
  * A class for the playable characters.
@@ -15,10 +15,6 @@ public class Character implements ICharacter {
     private int healthPoints;
 
     public Character(){
-        this.setHP(maxHealth);
-    }
-
-    public Character(World world, int x, int y){
         this.setHP(maxHealth);
     }
 
@@ -64,20 +60,23 @@ public class Character implements ICharacter {
     * Move the character in a given direction.
     */
     public void move(Direction dir){
+
     }
 
     public void moveFollower(int i){
 
     }
 
-    public void moveFollower(Direction dir){
-
-    }
 
     /*
     * Make the character jump by changing its y-coordinate.
     */
     public void jump(){
+
+    }
+
+    public void moveFollower(Direction dir){
+
     }
 
     /*
