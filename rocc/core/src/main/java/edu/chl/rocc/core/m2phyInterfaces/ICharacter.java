@@ -17,7 +17,7 @@ public interface ICharacter {
 
     public void move(Direction dir);
 
-    public void moveFollower(int i);
+    public void moveFollower(Direction dir);
 
     public void jump();
 

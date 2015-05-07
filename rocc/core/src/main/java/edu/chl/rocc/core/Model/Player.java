@@ -32,7 +32,9 @@ public class Player implements IPlayer {
         this.characters = new ArrayList<ICharacter>();
         activeCharacterIndex = 0;
 
+        //Creates the front/main character.
         addCharacter(characterFactory.createCharacter("firstCharacter", 160, 800));
+        //Creates a follower.
         addCharacter(characterFactory.createCharacter("secondCharacter", 100, 800));
     }
 
@@ -47,16 +49,34 @@ public class Player implements IPlayer {
     public void move(Direction dir){
 
         characters.get(0).move(dir);
+        moveFollowers(dir);
+    }
 
-        for(int i=1; i < characters.size(); i++){
-            if(Math.abs(characters.get(i).getX() - characters.get(0).getX()) > 120 / PPM){
+    /*
+    * Move the follower characters towards the front character.
+    */
+    public void moveFollowers(Direction dir){
+        if(dir != Direction.NONE) {
 
-                if(characters.get(0).getX() - characters.get(i).getX() > 0){
-                    characters.get(i).moveFollower(1);
-                } else{
-                    characters.get(i).moveFollower(-1);
+            for (int i = 1; i < characters.size(); i++) {
+
+            /*
+            if(getDistance(i) > 200){
+                characters.get(i).moveFollower(dir);
+            } else{
+                characters.get(i).moveFollower(Direction.NONE);
+            }
+            */
+                float distance = characters.get(0).getX() - characters.get(i).getX();
+
+                if (distance > 200) {
+                    characters.get(i).moveFollower(Direction.RIGHT);
+                } else if (distance < -200) {
+                    characters.get(i).moveFollower(Direction.LEFT);
+                    //characters.get(i).moveFollower(Direction.NONE);
+                } else {
+                    characters.get(i).moveFollower(Direction.NONE);
                 }
-
             }
         }
     }
@@ -100,6 +120,26 @@ public class Player implements IPlayer {
             activeCharacterIndex++;
         } else{
             activeCharacterIndex = 0;
+        }
+    }
+
+    /*
+    * Returns the distance between the front character and a follower.
+    */
+    public float getDistance(int i){
+        return Math.abs(characters.get(i).getX() - characters.get(0).getX());
+    }
+
+    /*
+    * Returns the x-direction towards the front character from a follower.
+    */
+    public Direction getDirection(int i){
+        if(characters.get(0).getX() - characters.get(i).getX() > 0){
+            return Direction.RIGHT;
+        } else if(characters.get(0).getX() - characters.get(i).getX() < 0){
+            return Direction.LEFT;
+        } else{
+            return Direction.NONE;
         }
     }
 
