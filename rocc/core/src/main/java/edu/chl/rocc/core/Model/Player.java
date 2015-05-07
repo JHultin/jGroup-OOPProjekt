@@ -30,8 +30,8 @@ public class Player implements IPlayer {
         this.characters = new ArrayList<ICharacter>();
         activeCharacterIndex = 0;
 
-        addCharacter(characterFactory.createCharacter("", 160, 120));
-        addCharacter(characterFactory.createCharacter("", 100, 120));
+        addCharacter(characterFactory.createCharacter("", 160, 400));
+        addCharacter(characterFactory.createCharacter("", 100, 400));
     }
 
     public Player(List<ICharacter> characters){
@@ -46,7 +46,6 @@ public class Player implements IPlayer {
         for(int i=0; i < characters.size(); i++){
             characters.get(i).move(dir);
         }
-        //characters.get(0).move(dir);
     }
 
     public void jump() {
@@ -54,7 +53,6 @@ public class Player implements IPlayer {
         for(int i=0; i < characters.size(); i++){
             characters.get(i).jump();
         }
-        //characters.get(0).jump();
     }
 
     /*
@@ -75,6 +73,7 @@ public class Player implements IPlayer {
     * Adds a character to the character list.
     */
     public void addCharacter(ICharacter c){
+        // skicka in string istället
         characters.add(c);
     }
 

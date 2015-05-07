@@ -23,8 +23,6 @@ public abstract class GameView {
     protected RoCCView view;
 
     protected SpriteBatch batch;
-    protected SpriteBatch batchFollower;
-    protected List<SpriteBatch> batches;
 
     // Camera following the player
     protected OrthographicCamera cam;
@@ -37,14 +35,7 @@ public abstract class GameView {
         model = view.getModel();
         controller = view.getController();
 
-        /*
-        for(int i=0; i<view.getSpriteBatchList().size(); i++){
-            view.getSpriteBatchList();
-        }
-        */
-
         batch = view.getSpriteBatch();
-        batchFollower = view.getSpriteBatchFollower();
 
         cam = view.getCam();
         hudCam = view.getHudCam();
