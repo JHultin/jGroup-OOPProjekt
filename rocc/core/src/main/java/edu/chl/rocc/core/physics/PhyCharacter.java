@@ -27,7 +27,7 @@ public class PhyCharacter implements ICharacter {
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.listener = new MyContactListener();
-        this.world.setContactListener(this.listener);
+        this.world.setContactListener(this.listener); //should be made only once so every character has the same listener
 
 
         //Defining & creating body
@@ -43,7 +43,7 @@ public class PhyCharacter implements ICharacter {
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
-        body.createFixture(fDef).setUserData("playerBody");
+        body.createFixture(fDef).setUserData("body");
 
         //create foot sensor
         shape.setAsBox(width, height/4, new Vec2(0, -30 / PPM) ,0);
@@ -51,7 +51,7 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData("footSensor");
+        body.createFixture(fDef).setUserData("");
     }
 
     @Override

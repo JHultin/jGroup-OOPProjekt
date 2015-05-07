@@ -30,7 +30,7 @@ public class Player implements IPlayer {
         activePlayerIndex = 0;
         this.characters = new ArrayList<ICharacter>();
 
-        activeCharacterIndex = 0;
+        activePlayerIndex = 0;
         
         //Creates the front/main character.
         addCharacter(characterFactory.createCharacter("", 160, 800));

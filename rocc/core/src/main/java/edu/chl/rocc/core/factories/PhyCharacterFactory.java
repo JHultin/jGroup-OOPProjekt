@@ -16,7 +16,7 @@ public class PhyCharacterFactory implements ICharacterFactory {
     }
 
     @Override
-    public ICharacter createCharacter(String name) {
-        return new PhyCharacter(world);
+    public ICharacter createCharacter(String name, int x, int y) {
+        return new PhyCharacter(world, x, y, name);
     }
 }

@@ -13,6 +13,8 @@ public class MyContactListener implements ContactListener {
 
     private int playerOnGround;
 
+    private int playerOneOnGround;
+    private int playerTwoOnGround;
     //called when contact between two fixtures begins
     @Override
     public void beginContact(Contact contact) {
@@ -22,6 +24,24 @@ public class MyContactListener implements ContactListener {
         Fixture fb = contact.getFixtureB();
 
         //Kolla om kroppen har en fotsensor, om JA så se vilken kropp den tillhör
+        /*if(fa.isSensor()){
+            if(fa.getBody().getUserData().equals("firstCharacter")){
+                playerOneOnGround++;
+            }else if(fa.getBody().getUserData().equals("secondCharacter")){
+                playerTwoOnGround++;
+            }
+        }
+        if(fb.isSensor()){
+            if(fb.getBody().getUserData().equals("firstCharacter")){
+                playerOneOnGround++;
+            }else if(fb.getBody().getUserData().equals("secondCharacter")){
+                playerTwoOnGround++;
+            }
+        }
+        */
+
+
+
 
 
         //Checks if the are in collision
