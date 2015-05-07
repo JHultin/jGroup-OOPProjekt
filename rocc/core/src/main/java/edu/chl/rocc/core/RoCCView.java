@@ -20,6 +20,7 @@ public class RoCCView implements ApplicationListener {
 	private Texture characterTexture;
     private Texture followerTexture;
     private IRoCCModel model;
+    private MenuModel menuModel;
     private RoCCController controller;
 
 	private SpriteBatch batch;
@@ -82,8 +83,4 @@ public class RoCCView implements ApplicationListener {
 	@Override
 	public void dispose () {
 	}
-    //Getters
-    public SpriteBatch getSpriteBatch(){
-        return batch;
-    }
 }

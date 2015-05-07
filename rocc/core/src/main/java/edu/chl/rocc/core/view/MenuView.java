@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import edu.chl.rocc.core.controller.MenuController;
 import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.model.Variables;
