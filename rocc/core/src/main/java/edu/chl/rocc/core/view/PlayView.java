@@ -55,10 +55,9 @@ public class PlayView extends GameView{
     public void render() {
         //b2dr.render(model.getLevel().getWorld(),camera.combined);
 
-        //Set camera to follow player
-        cam.position.set(new Vector2(model.getCharacterXPos(0), model.getCharacterYPos(0)), 0);
-        cam.update();
-        batch.setProjectionMatrix(cam.combined);
+       //Set camera to follow player
+       cam.position.set(new Vector2(model.getCharacterXPos(0), model.getCharacterYPos(0)), 0);
+       cam.update();
 
         renderer.setView(cam);
         renderer.render();
@@ -68,11 +67,30 @@ public class PlayView extends GameView{
         batch.draw(followerTexture, model.getCharacterXPos(1), model.getCharacterYPos(1));
         //view.draw(batch);
         batch.end();
-
     }
 
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public void register(IViewObserver observer) {
+        observerArrayList.add(observer);
+    }
+
+    @Override
+    public void unregister(IViewObserver observer) {
+        observerArrayList.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        /**
+         * Figure out what parameters the viewUpdated will take.
+         */
+        for(IViewObserver observer : observerArrayList){
+            observer.viewUpdated();
+        }
     }
 }

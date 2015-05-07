@@ -30,7 +30,9 @@ public class RoCCController implements Runnable{
         gameProcessor = new GameProcessor();
         menuProcessor = new MenuProcessor();
 
-        Gdx.input.setInputProcessor(gameProcessor);
+          Gdx.input.setInputProcessor(gameProcessor);
+       // Gdx.input.setInputProcessor(menuProcessor);
+
         thread = new Thread(this);
         thread.start();
 

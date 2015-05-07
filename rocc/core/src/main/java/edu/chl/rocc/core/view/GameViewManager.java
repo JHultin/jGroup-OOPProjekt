@@ -30,7 +30,7 @@ public class GameViewManager {
         viewHashMap.put("MENU", ViewFactory.createView("MENU", menuModel));
         viewHashMap.put("PLAY",ViewFactory.createView("PLAY", roccModel));
 
-        // activeView = viewHashMap.get("PLAY");
+       // activeView = viewHashMap.get("MENU");
         activeView = viewHashMap.get("PLAY");
      }
 
