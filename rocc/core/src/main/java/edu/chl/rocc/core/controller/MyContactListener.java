@@ -11,43 +11,47 @@ import org.jbox2d.dynamics.contacts.Contact;
  */
 public class MyContactListener implements ContactListener {
 
-    private boolean playerOnGround;
+    private int playerOnGround;
 
+    //called when contact between two fixtures begins
     @Override
     public void beginContact(Contact contact) {
 
+        //Fetches the two fixtures
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
+        //Checks if the are in collision
         if(fa.getUserData() != null && fa.getUserData().equals("footSensor")){
-            playerOnGround = true;
-            System.out.println("Player on ground");
+            playerOnGround ++;
+            System.out.println(playerOnGround);
         }
         if(fb.getUserData() != null && fb.getUserData().equals("footSensor")){
-            playerOnGround = true;
-            System.out.println("Player on ground");
+            playerOnGround ++;
+            System.out.println(playerOnGround);
         }
     }
 
-
+    //called when contact between two fixtures ends
     @Override
     public void endContact(Contact contact) {
 
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
+        //checks if not in contact anymore
         if(fa.getUserData() != null && fa.getUserData().equals("footSensor")){
-            playerOnGround = false;
-            System.out.println("Player not on ground");
+            playerOnGround --;
+            System.out.println(playerOnGround);
         }
         if(fb.getUserData() != null && fb.getUserData().equals("footSensor")){
-            playerOnGround = false;
-            System.out.println("Player not on ground");
+            playerOnGround --;
+            System.out.println(playerOnGround);
         }
 
     }
 
-    public boolean isPlayerOnGround(){
+    public int isPlayerOnGround(){
         return playerOnGround;
     }
 

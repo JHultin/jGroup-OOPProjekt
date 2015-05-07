@@ -7,12 +7,6 @@ package edu.chl.rocc.core.model;
  */
 public class Variables {
 
-    //Pixels per meter ratio
-    public static final float PPM = 100;
-
-    //The gravity in standard newton
-    public static final double GRAVITY = -9.81;
-
     //Width and Height of the camera
     public static final int WIDTH = 320;
     public static final int HEIGHT = 240;

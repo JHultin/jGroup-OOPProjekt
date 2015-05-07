@@ -89,7 +89,7 @@ public class RoCCView implements ApplicationListener {
 	public void dispose () {
 	}
 
-    public void addSpriteBatch(SpriteBatch sb){
+    private void addSpriteBatch(SpriteBatch sb){
         batches.add(sb);
     }
 
