@@ -2,6 +2,7 @@ package edu.chl.rocc.core.physics;
 
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 import edu.chl.rocc.core.controller.MyContactListener;
+import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -75,7 +76,7 @@ public class PhyCharacter implements ICharacter {
     public void move(Direction dir) {
 
         if(dir.equals(Direction.LEFT)){
-            body.applyForceToCenter(new Vec2(-50, 0));
+           body.applyForceToCenter(new Vec2(-50, 0));
         } else if(dir.equals(Direction.RIGHT)){
             body.applyForceToCenter(new Vec2(50, 0));
         } else if(dir.equals(Direction.UP)){
@@ -90,7 +91,7 @@ public class PhyCharacter implements ICharacter {
     @Override
     public void jump() {
         if(this.listener.isPlayerOnGround() > 0){
-            body.applyForceToCenter(new Vec2(0, 200));
+            body.applyForceToCenter(new Vec2(0, 250));
         }
     }
 

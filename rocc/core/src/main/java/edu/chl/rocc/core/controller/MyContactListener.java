@@ -24,11 +24,9 @@ public class MyContactListener implements ContactListener {
         //Checks if the are in collision
         if(fa.getUserData() != null && fa.getUserData().equals("footSensor")){
             playerOnGround ++;
-            System.out.println(playerOnGround);
         }
         if(fb.getUserData() != null && fb.getUserData().equals("footSensor")){
             playerOnGround ++;
-            System.out.println(playerOnGround);
         }
     }
 
@@ -42,11 +40,9 @@ public class MyContactListener implements ContactListener {
         //checks if not in contact anymore
         if(fa.getUserData() != null && fa.getUserData().equals("footSensor")){
             playerOnGround --;
-            System.out.println(playerOnGround);
         }
         if(fb.getUserData() != null && fb.getUserData().equals("footSensor")){
             playerOnGround --;
-            System.out.println(playerOnGround);
         }
 
     }
