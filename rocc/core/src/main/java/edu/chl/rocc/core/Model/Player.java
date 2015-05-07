@@ -32,8 +32,8 @@ public class Player implements IPlayer {
         this.characters = new ArrayList<ICharacter>();
         activeCharacterIndex = 0;
 
-        addCharacter(characterFactory.createCharacter("", 160, 400));
-        addCharacter(characterFactory.createCharacter("", 100, 400));
+        addCharacter(characterFactory.createCharacter("", 160, 800));
+        addCharacter(characterFactory.createCharacter("", 100, 800));
     }
 
     public Player(List<ICharacter> characters){
