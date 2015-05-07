@@ -33,9 +33,9 @@ public class Player implements IPlayer {
         activeCharacterIndex = 0;
 
         //Creates the front/main character.
-        addCharacter(characterFactory.createCharacter("", 160, 400));
+        addCharacter(characterFactory.createCharacter("", 160, 800));
         //Creates a follower.
-        addCharacter(characterFactory.createCharacter("", 100, 400));
+        addCharacter(characterFactory.createCharacter("", 100, 800));
     }
 
     public Player(List<ICharacter> characters){
@@ -49,17 +49,34 @@ public class Player implements IPlayer {
     public void move(Direction dir){
 
         characters.get(0).move(dir);
-        moveFollowers();
+        moveFollowers(dir);
     }
 
     /*
     * Move the follower characters towards the front character.
     */
-    public void moveFollowers(){
-        for(int i=1; i < characters.size(); i++){
+    public void moveFollowers(Direction dir){
+        if(dir != Direction.NONE) {
 
-            if(getDistance(i) > 120 / PPM){
-                characters.get(i).moveFollower(getDirection(i));
+            for (int i = 1; i < characters.size(); i++) {
+
+            /*
+            if(getDistance(i) > 200){
+                characters.get(i).moveFollower(dir);
+            } else{
+                characters.get(i).moveFollower(Direction.NONE);
+            }
+            */
+                float distance = characters.get(0).getX() - characters.get(i).getX();
+
+                if (distance > 200) {
+                    characters.get(i).moveFollower(Direction.RIGHT);
+                } else if (distance < -200) {
+                    characters.get(i).moveFollower(Direction.LEFT);
+                    //characters.get(i).moveFollower(Direction.NONE);
+                } else {
+                    characters.get(i).moveFollower(Direction.NONE);
+                }
             }
         }
     }

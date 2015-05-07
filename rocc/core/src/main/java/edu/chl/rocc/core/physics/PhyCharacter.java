@@ -78,10 +78,10 @@ public class PhyCharacter implements ICharacter {
     public void move(Direction dir) {
 
         if(dir.equals(Direction.LEFT)){
-           body.applyForceToCenter(new Vec2(-50, 0));
+           body.setLinearVelocity(new Vec2(-200 / PPM, 0));
             leftV  = leftV + 1;
         } else if(dir.equals(Direction.RIGHT)){
-            body.applyForceToCenter(new Vec2(50, 0));
+            body.setLinearVelocity(new Vec2(200 / PPM, 0));
             rightV = rightV + 1;
         } else if(dir.equals(Direction.UP)){
 
@@ -89,10 +89,10 @@ public class PhyCharacter implements ICharacter {
 
         } else if (dir.equals(Direction.NONE)){
             if(leftV > 0){
-                body.applyForceToCenter(new Vec2(50, 0));
+                body.setLinearVelocity(new Vec2(0, 0));
                 leftV = leftV - 1;
             }else if(rightV > 0){
-                body.applyForceToCenter(new Vec2(-50, 0));
+                body.setLinearVelocity(new Vec2(0, 0));
                 rightV = rightV - 1;
             }
         }

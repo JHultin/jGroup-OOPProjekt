@@ -35,8 +35,6 @@ public class PhyRoCCModel implements IRoCCModel {
         model = new RoCCModel(new PhyLevelFactory(world), new PhyPlayerFactory(world));
         characterFactory = new PhyCharacterFactory(world);
 
-        createCharacter(200, 200);
-
     }
 
     @Override
@@ -84,10 +82,6 @@ public class PhyRoCCModel implements IRoCCModel {
                 }
             }
         }
-    }
-
-    public void createCharacter(int x, int y){
-        model.getPlayer().addCharacter(characterFactory.createCharacter("", x, y));
     }
 
     @Override
