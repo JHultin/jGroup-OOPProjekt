@@ -21,6 +21,9 @@ public class MyContactListener implements ContactListener {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
+        //Kolla om kroppen har en fotsensor, om JA så se vilken kropp den tillhör
+
+
         //Checks if the are in collision
         if(fa.getUserData() != null && fa.getUserData().equals("footSensor")){
             playerOnGround ++;
