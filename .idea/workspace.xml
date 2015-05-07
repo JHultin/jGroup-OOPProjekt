@@ -29,9 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RoCCView.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RoCCView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241">
               <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
@@ -39,22 +40,22 @@
 =======
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1887">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+=======
+            <state vertical-scroll-proportion="0.91122717" vertical-offset="977" max-vertical-offset="1649">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+>>>>>>> small edit in RoCCView and PlayView
               <folding>
-                <element signature="e#2273#2274#0" expanded="true" />
-                <element signature="e#2318#2319#0" expanded="true" />
-                <element signature="e#2362#2363#0" expanded="true" />
-                <element signature="e#2395#2396#0" expanded="true" />
-                <element signature="e#2430#2431#0" expanded="true" />
-                <element signature="e#2458#2459#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
 >>>>>>> fixed invisible Stickman problem
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/PlayView.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state vertical-scroll-proportion="0.29109588" vertical-offset="17" max-vertical-offset="1887">
               <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
@@ -72,11 +73,15 @@
 =======
             <state vertical-scroll-proportion="0.044386424" vertical-offset="289" max-vertical-offset="1513">
               <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+=======
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1462">
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+>>>>>>> small edit in RoCCView and PlayView
               <folding>
-                <element signature="e#2089#2090#0" expanded="true" />
-                <element signature="e#2136#2137#0" expanded="true" />
-                <element signature="e#2204#2205#0" expanded="true" />
-                <element signature="e#2254#2255#0" expanded="true" />
+                <element signature="e#2086#2087#0" expanded="true" />
+                <element signature="e#2133#2134#0" expanded="true" />
+                <element signature="e#2201#2202#0" expanded="true" />
+                <element signature="e#2251#2252#0" expanded="true" />
               </folding>
 >>>>>>> fixed invisible Stickman problem
             </state>
@@ -160,8 +165,8 @@
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/MenuView.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/controller/RoCCController.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/GameViewManager.java" />
-        <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java" />
         <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/PlayView.java" />
+        <option value="$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java" />
       </list>
     </option>
   </component>
@@ -659,12 +664,16 @@
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="40483000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
 =======
     <option name="totallyTimeSpent" value="40621000" />
+=======
+    <option name="totallyTimeSpent" value="42583000" />
+>>>>>>> small edit in RoCCView and PlayView
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -701,9 +710,17 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08432432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2246596" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+>>>>>>> small edit in RoCCView and PlayView
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
@@ -1121,28 +1138,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java">
+    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/PlayView.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state vertical-scroll-proportion="0.91122717" vertical-offset="365" max-vertical-offset="816">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
 =======
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1887">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1462">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+>>>>>>> small edit in RoCCView and PlayView
           <folding>
-            <element signature="e#2273#2274#0" expanded="true" />
-            <element signature="e#2318#2319#0" expanded="true" />
-            <element signature="e#2362#2363#0" expanded="true" />
-            <element signature="e#2395#2396#0" expanded="true" />
-            <element signature="e#2430#2431#0" expanded="true" />
-            <element signature="e#2458#2459#0" expanded="true" />
+            <element signature="e#2086#2087#0" expanded="true" />
+            <element signature="e#2133#2134#0" expanded="true" />
+            <element signature="e#2201#2202#0" expanded="true" />
+            <element signature="e#2251#2252#0" expanded="true" />
           </folding>
 >>>>>>> fixed invisible Stickman problem
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/view/PlayView.java">
+    <entry file="file://$PROJECT_DIR$/rocc/core/src/main/java/edu/chl/rocc/core/RoCCView.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state vertical-scroll-proportion="0.29109588" vertical-offset="17" max-vertical-offset="1887">
           <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
@@ -1150,11 +1171,12 @@
 =======
         <state vertical-scroll-proportion="0.044386424" vertical-offset="289" max-vertical-offset="1513">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.91122717" vertical-offset="977" max-vertical-offset="1649">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+>>>>>>> small edit in RoCCView and PlayView
           <folding>
-            <element signature="e#2089#2090#0" expanded="true" />
-            <element signature="e#2136#2137#0" expanded="true" />
-            <element signature="e#2204#2205#0" expanded="true" />
-            <element signature="e#2254#2255#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
 >>>>>>> fixed invisible Stickman problem
         </state>

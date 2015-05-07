@@ -44,6 +44,8 @@ public class PlayView extends GameView{
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
         followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
         batch = new SpriteBatch();
+
+        //b2dr = new Box2DDebugRenderer();
     }
 
     @Override

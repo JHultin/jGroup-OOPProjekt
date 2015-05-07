@@ -86,20 +86,4 @@ public class RoCCView implements ApplicationListener {
     public SpriteBatch getSpriteBatch(){
         return batch;
     }
-
-    public OrthographicCamera getHudCam(){
-        return hudCam;
-    }
-    public OrthographicCamera getCam(){
-        return cam;
-    }
-
-    public RoCCController getController(){
-        return controller;
-    }
-
-    public IRoCCModel getModel(){
-        return model;
-    }
-
 }
