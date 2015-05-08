@@ -1,6 +1,5 @@
 package edu.chl.rocc.core.physics;
 
-import edu.chl.rocc.core.factories.PhyCharacterFactory;
 import edu.chl.rocc.core.factories.PhyRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.Direction;
