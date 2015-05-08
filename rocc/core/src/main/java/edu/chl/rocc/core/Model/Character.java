@@ -93,4 +93,24 @@ public class Character implements ICharacter {
         return 0;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        } else if (o == null){
+            return false;
+        } else if (this.getClass() != o.getClass()){
+            return false;
+        } else {
+            return this.hashCode() == o.hashCode();
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = super.hashCode();
+        hash += maxHealth * 257;
+        return hash;
+    }
+
 }
