@@ -11,11 +11,12 @@ import org.jbox2d.dynamics.World;
  */
 public class PhyLevel implements ILevel {
 
-    private ILevel level;
+    private final ILevel level;
     private final World world;
 
     public PhyLevel(World world) {
         this.world = world;
+        this.level = new Level();
     }
 
     @Override
@@ -31,5 +32,26 @@ public class PhyLevel implements ILevel {
     @Override
     public World getWorld() {
         return this.world;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        } else if (o == null){
+            return false;
+        } else if (this.getClass() != o.getClass()){
+            return false;
+        } else {
+            return this.hashCode() == o.hashCode();
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = 0;
+        hash += world.hashCode();
+        // hash += level.hashCode(); // For when level gets a hashCode
+        return hash;
     }
 }
