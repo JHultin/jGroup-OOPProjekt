@@ -1,9 +1,11 @@
 package edu.chl.rocc.core.factories;
 
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.physics.PhyCharacter;
+import edu.chl.rocc.core.physics.PhyFood;
 import edu.chl.rocc.core.physics.PhyLevel;
 import edu.chl.rocc.core.physics.PhyPlayer;
 import org.jbox2d.dynamics.World;
@@ -31,5 +33,10 @@ public class PhyRoCCFactory implements IRoCCFactory {
     @Override
     public ICharacter createCharacter(String name, int x, int y) {
         return new PhyCharacter(world, x, y, name);
+    }
+
+    @Override
+    public IFood createFood(String name, int x, int y) {
+        return new PhyFood(x, y);
     }
 }

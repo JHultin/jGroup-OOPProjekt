@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.factories;
 
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 
@@ -14,5 +15,7 @@ public interface IRoCCFactory {
     public ILevel createLevel (String name);
 
     public ICharacter createCharacter(String name, int x, int y);
+
+    public IFood createFood(String name, int x, int y);
 
 }
