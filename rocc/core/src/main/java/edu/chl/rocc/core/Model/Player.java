@@ -3,10 +3,6 @@ package edu.chl.rocc.core.model;
 import edu.chl.rocc.core.factories.ICharacterFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
-import org.jbox2d.common.Vec2;
-import edu.chl.rocc.core.physics.PhyCharacter;
-import org.jbox2d.dynamics.World;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +24,7 @@ public class Player implements IPlayer {
     /*
     * Constructor creating a single character and adds it to the character list.
     */
-    public Player(ICharacterFactory characterFactory, World world){
+    public Player(ICharacterFactory characterFactory){
 
         this.characters = new ArrayList<ICharacter>();
         activeCharacterIndex = 0;
