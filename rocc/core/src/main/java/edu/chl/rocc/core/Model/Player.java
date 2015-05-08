@@ -1,13 +1,10 @@
 package edu.chl.rocc.core.model;
 
-import edu.chl.rocc.core.factories.ICharacterFactory;
 import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import java.util.ArrayList;
 import java.util.List;
-
-import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
  * Created by Jacob on 2015-04-22.
