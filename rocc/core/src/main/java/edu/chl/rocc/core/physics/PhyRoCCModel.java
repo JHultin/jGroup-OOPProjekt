@@ -4,10 +4,7 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import edu.chl.rocc.core.factories.PhyLevelFactory;
-import edu.chl.rocc.core.factories.PhyPlayerFactory;
-import edu.chl.rocc.core.factories.ICharacterFactory;
-import edu.chl.rocc.core.factories.PhyCharacterFactory;
+import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.model.Direction;
@@ -25,15 +22,15 @@ import org.jbox2d.dynamics.World;
  */
 public class PhyRoCCModel implements IRoCCModel {
 
-    private ICharacterFactory characterFactory;
+    private IRoCCFactory factory;
 
     private IRoCCModel model;
     private World world;
 
     public PhyRoCCModel(){
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
-        model = new RoCCModel(new PhyLevelFactory(world), new PhyPlayerFactory(world));
-        characterFactory = new PhyCharacterFactory(world);
+        this.factory = new PhyRoCCFactory(world);
+        model = new RoCCModel(factory);
     }
 
     @Override

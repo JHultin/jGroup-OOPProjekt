@@ -11,7 +11,9 @@ import edu.chl.rocc.core.model.Character;
  */
 public class RoCCFactory implements IRoCCFactory {
 
-    public RoCCFactory
+    public RoCCFactory(){
+
+    }
 
     @Override
     public IPlayer createPlayer(String name) {

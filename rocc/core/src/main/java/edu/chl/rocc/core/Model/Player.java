@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.model;
 
 import edu.chl.rocc.core.factories.ICharacterFactory;
+import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import java.util.ArrayList;
@@ -24,15 +25,15 @@ public class Player implements IPlayer {
     /*
     * Constructor creating a single character and adds it to the character list.
     */
-    public Player(ICharacterFactory characterFactory){
+    public Player(IRoCCFactory factory){
 
         this.characters = new ArrayList<ICharacter>();
         activeCharacterIndex = 0;
 
         //Creates the front/main character.
-        addCharacter(characterFactory.createCharacter("firstCharacter", 160, 800));
+        addCharacter(factory.createCharacter("firstCharacter", 160, 800));
         //Creates a follower.
-        addCharacter(characterFactory.createCharacter("secondCharacter", 100, 800));
+        addCharacter(factory.createCharacter("secondCharacter", 100, 800));
     }
 
     public Player(List<ICharacter> characters){

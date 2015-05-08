@@ -1,10 +1,7 @@
 package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import edu.chl.rocc.core.factories.ICharacterFactory;
-import edu.chl.rocc.core.factories.ILevelFactory;
-import edu.chl.rocc.core.factories.IPlayerFactory;
-import edu.chl.rocc.core.factories.PhyCharacterFactory;
+import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
@@ -21,9 +18,9 @@ public class RoCCModel implements IRoCCModel {
     private ILevel level;
     private IPlayer player;
 
-    public RoCCModel(ILevelFactory levelFactory, IPlayerFactory playerFactory){
-        level = levelFactory.createLevel("");
-        player = playerFactory.createPlayer("");
+    public RoCCModel(IRoCCFactory factory){
+        level = factory.createLevel("");
+        player = factory.createPlayer("");
     }
 
     public void aim(int x, int y){
