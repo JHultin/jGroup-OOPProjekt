@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.physics;
 
+import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.model.Level;
 import org.jbox2d.dynamics.BodyDef;
@@ -32,6 +33,11 @@ public class PhyLevel implements ILevel {
     @Override
     public World getWorld() {
         return this.world;
+    }
+
+    @Override
+    public void addFood(IFood food) {
+
     }
 
     @Override

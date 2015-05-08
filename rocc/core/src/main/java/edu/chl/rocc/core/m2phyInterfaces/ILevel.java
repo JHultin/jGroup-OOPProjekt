@@ -14,4 +14,6 @@ public interface ILevel {
     public void updateWorld(float dt);
 
     public World getWorld();
+
+    public void addFood(IFood food);
 }

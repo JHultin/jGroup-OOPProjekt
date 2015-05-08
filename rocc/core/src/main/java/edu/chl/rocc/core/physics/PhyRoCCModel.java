@@ -2,6 +2,8 @@ package edu.chl.rocc.core.physics;
 
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import edu.chl.rocc.core.factories.*;
@@ -11,6 +13,8 @@ import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import org.jbox2d.collision.shapes.ChainShape;
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -43,6 +47,25 @@ public class PhyRoCCModel implements IRoCCModel {
         // Get the layer with information about the solid ground
         TiledMapTileLayer tileLayer = (TiledMapTileLayer)tMap.getLayers().get("ground");
 
+        BodyDef bDef = new BodyDef();
+        FixtureDef fDef = new FixtureDef();
+
+        ChainShape cs = new ChainShape();
+        Vec2[] v = new Vec2[5];
+        v[0] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
+        v[1] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
+        v[2] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
+        v[3] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
+        v[4] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
+        cs.createChain(v, 5);
+
+        bDef.type = BodyType.STATIC;
+
+        fDef.friction = 0;
+        fDef.shape = cs;
+        fDef.filter.categoryBits = BitMask.BIT_GROUND;
+        fDef.filter.maskBits = BitMask.BIT_BODY;
+
         // Create a tile for each block on the map
         for (int row = 0; row < tileLayer.getHeight(); row++){
             for (int col = 0; col < tileLayer.getWidth(); col++){
@@ -52,31 +75,33 @@ public class PhyRoCCModel implements IRoCCModel {
                 if (cell != null && cell.getTile() != null){
 
                     // Create a body definition
-                    BodyDef bDef = new BodyDef();
-                    bDef.type = BodyType.STATIC;
+
+
                     bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) /PPM,
                             PhyConstants.BLOCK_SIZE * (row + 0.5f) /PPM);
 
                     // And a fixture definition
-                    ChainShape cs = new ChainShape();
-                    Vec2[] v = new Vec2[5];
-                    v[0] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
-                    v[1] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
-                    v[2] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
-                    v[3] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
-                    v[4] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
-                    cs.createChain(v, 5);
-
-                    FixtureDef fDef = new FixtureDef();
-                    fDef.friction = 0;
-                    fDef.shape = cs;
-                    fDef.filter.categoryBits = BitMask.BIT_GROUND;
-                    fDef.filter.maskBits = BitMask.BIT_BODY;
 
                     // Then let the level create the block in the world
                     model.getLevel().addBlock(bDef, fDef);
                 }
             }
+        }
+
+        MapLayer foodLayer = tMap.getLayers().get("food");
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32, 16);
+
+        fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
+        fDef.filter.maskBits = BitMask.BIT_BODY;
+
+        for(MapObject mapObject : foodLayer.getObjects()){
+            float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
+            float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
+            bDef.position.set(x, y);
+
+            model.getLevel().addBlock(bDef, fDef);
         }
     }
     @Override

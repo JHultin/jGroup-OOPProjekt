@@ -37,7 +37,7 @@ public class PlayView extends GameView{
 
         observerArrayList = new ArrayList<IViewObserver>();
 
-        map = new TmxMapLoader().load("ground-map.tmx");
+        map = new TmxMapLoader().load("ground-food-map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
 
         this.model.constructWorld(map);

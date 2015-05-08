@@ -2,6 +2,7 @@ package edu.chl.rocc.core.model;
 
 import java.util.ArrayList;
 
+import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
@@ -34,6 +35,11 @@ public class Level implements ILevel {
 
     public World getWorld(){
         return null;
+    }
+
+    @Override
+    public void addFood(IFood food) {
+
     }
 
 }
