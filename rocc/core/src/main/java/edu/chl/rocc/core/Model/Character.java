@@ -108,8 +108,8 @@ public class Character implements ICharacter {
 
     @Override
     public int hashCode(){
-        int hash = super.hashCode();
-        hash += maxHealth * 257;
+        int hash = 0;
+        hash = hash + maxHealth * 257;
         return hash;
     }
 
