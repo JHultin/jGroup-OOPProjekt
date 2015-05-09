@@ -24,7 +24,7 @@ public class PhyLevel implements ILevel {
 
     @Override
     public void addBlock(BodyDef bDef, FixtureDef fDef) {
-        world.createBody(bDef).createFixture(fDef).setUserData("ground");
+        world.createBody(bDef).createFixture(fDef);
     }
 
     @Override

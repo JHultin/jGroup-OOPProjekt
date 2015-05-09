@@ -63,6 +63,7 @@ public class PhyRoCCModel implements IRoCCModel {
         cs.createChain(v, 5);
 
         bDef.type = BodyType.STATIC;
+        bDef.userData = "ground";
 
         fDef.friction = 0;
         fDef.shape = cs;
@@ -94,14 +95,15 @@ public class PhyRoCCModel implements IRoCCModel {
         MapLayer foodLayer = tMap.getLayers().get("food");
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(32, 16);
+        shape.setAsBox(16, 8);
 
         fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
         fDef.filter.maskBits = BitMask.BIT_BODY;
+        fDef.isSensor = true;
 
         for(MapObject mapObject : foodLayer.getObjects()){
             float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
-            float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
+            float y = ((Float) mapObject.getProperties().get("y") + 8)  / PPM;
             bDef.position.set(x, y);
 
             model.getLevel().addBlock(bDef, fDef);

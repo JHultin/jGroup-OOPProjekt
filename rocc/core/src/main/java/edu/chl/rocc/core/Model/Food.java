@@ -17,11 +17,11 @@ public class Food implements IFood {
 
     @Override
     public float getX() {
-        return x * PPM;
+        return x * PPM - 16;
     }
 
     @Override
     public float getY() {
-        return y * PPM;
+        return y * PPM - 8;
     }
 }
