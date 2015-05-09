@@ -1,5 +1,7 @@
 package edu.chl.rocc.core.controller;
 
+import edu.chl.rocc.core.m2phyInterfaces.IFood;
+import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -50,6 +52,13 @@ public class MyContactListener implements ContactListener {
         }
         if(fb.getUserData() != null && fb.getUserData().equals("footSensor")){
             playerOnGround ++;
+        }
+
+        if(fa.getUserData() != null && fa.getUserData() instanceof IFood){
+            ((ILevel)(fa.getBody().getUserData())).removeFood((IFood)fa.getUserData());
+        }
+        if(fb.getUserData() != null && fb.getUserData() instanceof IFood){
+            ((ILevel)(fb.getBody().getUserData())).removeFood((IFood)fb.getUserData());
         }
     }
 

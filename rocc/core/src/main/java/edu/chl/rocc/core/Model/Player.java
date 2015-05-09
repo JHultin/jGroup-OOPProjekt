@@ -1,16 +1,13 @@
 package edu.chl.rocc.core.model;
 
-import edu.chl.rocc.core.factories.ICharacterFactory;
+import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
-import org.jbox2d.common.Vec2;
-import edu.chl.rocc.core.physics.PhyCharacter;
-import org.jbox2d.dynamics.World;
 
+import java.lang.*;
+import java.lang.Character;
 import java.util.ArrayList;
 import java.util.List;
-
-import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
  * Created by Jacob on 2015-04-22.
@@ -28,15 +25,15 @@ public class Player implements IPlayer {
     /*
     * Constructor creating a single character and adds it to the character list.
     */
-    public Player(ICharacterFactory characterFactory, World world){
+    public Player(IRoCCFactory factory){
 
         this.characters = new ArrayList<ICharacter>();
         activeCharacterIndex = 0;
 
         //Creates the front/main character.
-        addCharacter(characterFactory.createCharacter("firstCharacter", 160, 800));
+        addCharacter(factory.createCharacter("front", 160, 800));
         //Creates a follower.
-        addCharacter(characterFactory.createCharacter("secondCharacter", 100, 800));
+        addCharacter(factory.createCharacter("follow", 100, 800));
     }
 
     public Player(List<ICharacter> characters){
@@ -115,6 +112,12 @@ public class Player implements IPlayer {
         // skicka in string istället
         characters.add(c);
     }
+
+    @Override
+    public List<ICharacter> getCharacters() {
+        return characters;
+    }
+
     /*
     * Change which character the player is playing as.
     */

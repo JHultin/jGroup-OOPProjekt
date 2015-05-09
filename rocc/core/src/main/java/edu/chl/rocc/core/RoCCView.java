@@ -9,20 +9,18 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.model.RoCCModel;
+import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.model.Variables;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 //implements ApplicationListener
 public class RoCCView implements ApplicationListener {
 	private Texture characterTexture;
     private Texture followerTexture;
     private IRoCCModel model;
+    private MenuModel menuModel;
     private RoCCController controller;
 
 	private SpriteBatch batch;
@@ -42,7 +40,8 @@ public class RoCCView implements ApplicationListener {
 	public void create () {
 
         model = new PhyRoCCModel();
-        controller = new RoCCController(model, this);
+        menuModel = new MenuModel();
+        controller = new RoCCController(model, menuModel,this);
 
         batch = new SpriteBatch();
 
@@ -51,8 +50,7 @@ public class RoCCView implements ApplicationListener {
         hudCam = new OrthographicCamera();
         hudCam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
 
-        gameViewManager = new GameViewManager(this);
-
+        gameViewManager = new GameViewManager(menuModel, model);
     }
 
 	@Override
@@ -67,9 +65,11 @@ public class RoCCView implements ApplicationListener {
 //        elapsed += Gdx.graphics.getDeltaTime();
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
         batch.setProjectionMatrix(cam.combined);
+
         gameViewManager.update();
-        gameViewManager.render();
+        gameViewManager.render(batch, cam, hudCam);
     }
 
 	@Override
@@ -83,24 +83,4 @@ public class RoCCView implements ApplicationListener {
 	@Override
 	public void dispose () {
 	}
-    //Getters
-    public SpriteBatch getSpriteBatch(){
-        return batch;
-    }
-
-    public OrthographicCamera getHudCam(){
-        return hudCam;
-    }
-    public OrthographicCamera getCam(){
-        return cam;
-    }
-
-    public RoCCController getController(){
-        return controller;
-    }
-
-    public IRoCCModel getModel(){
-        return model;
-    }
-
 }

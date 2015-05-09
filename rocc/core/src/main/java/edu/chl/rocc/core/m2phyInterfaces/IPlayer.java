@@ -2,6 +2,8 @@ package edu.chl.rocc.core.m2phyInterfaces;
 
 import edu.chl.rocc.core.model.Direction;
 
+import java.util.List;
+
 /**
  * Created by Joel on 2015-05-03.
  */
@@ -16,4 +18,6 @@ public interface IPlayer {
     public float getCharacterYPos(int i);
 
     public void addCharacter(ICharacter c);
+
+    public List<ICharacter> getCharacters();
 }

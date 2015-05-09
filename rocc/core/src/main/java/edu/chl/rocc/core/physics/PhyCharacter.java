@@ -5,6 +5,7 @@ import edu.chl.rocc.core.controller.MyContactListener;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
+import edu.chl.rocc.core.model.Character;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -15,20 +16,20 @@ import org.jbox2d.dynamics.*;
 public class PhyCharacter implements ICharacter {
 
     private final World world;
-    private ICharacter character;
-    private float width, height;
-    private Body body;
+    private final ICharacter character;
+    private final float width, height;
+    private final Body body;
     private MyContactListener listener;
     private int leftV;
     private int rightV;
 
-    public PhyCharacter(World world, int x, int y, String userData){
+    public PhyCharacter(World world, int x, int y, String name){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.listener = new MyContactListener();
         this.world.setContactListener(this.listener); //should be made only once so every character has the same listener
-
+        this.character = new Character(name);
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -42,7 +43,7 @@ public class PhyCharacter implements ICharacter {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE;
         body.createFixture(fDef).setUserData("body");
 
         //create foot sensor
@@ -51,7 +52,7 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData(userData);
+        body.createFixture(fDef).setUserData(name);
     }
 
     @Override
@@ -121,5 +122,33 @@ public class PhyCharacter implements ICharacter {
     @Override
     public float getY() {
         return (body.getPosition().y-height) * PPM ;
+    }
+
+    @Override
+    public String getName() {
+        return character.getName();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        } else if (o == null){
+            return false;
+        } else if (this.getClass() != o.getClass()){
+            return false;
+        } else {
+            return this.hashCode() == o.hashCode();
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = 0;
+        hash += world.hashCode();
+        hash += character.hashCode();
+        hash += width * 733  + height * 547;
+        hash += body.hashCode();
+        return hash;
     }
 }
