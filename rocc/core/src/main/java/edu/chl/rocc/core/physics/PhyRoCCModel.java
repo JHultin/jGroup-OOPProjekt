@@ -105,6 +105,7 @@ public class PhyRoCCModel implements IRoCCModel {
             bDef.position.set(x, y);
 
             model.getLevel().addBlock(bDef, fDef);
+            model.addFood(new PhyFood(x, y));
         }
     }
     @Override
@@ -148,5 +149,10 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public List<IFood> getFoods() {
         return model.getFoods();
+    }
+
+    @Override
+    public void addFood(IFood food) {
+        model.addFood(food);
     }
 }

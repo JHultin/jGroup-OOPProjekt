@@ -31,4 +31,6 @@ public interface IRoCCModel extends IModel {
     public void updateWorld(float dt);
 
     public List<IFood> getFoods();
+
+    public void addFood (IFood food);
 }

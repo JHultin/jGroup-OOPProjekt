@@ -90,5 +90,10 @@ public class RoCCModel implements IRoCCModel {
         return level.getFoods();
     }
 
+    @Override
+    public void addFood(IFood food) {
+        level.addFood(food);
+    }
+
 
 }
