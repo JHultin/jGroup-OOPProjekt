@@ -2,6 +2,8 @@ package edu.chl.rocc.core.physics;
 
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -35,6 +37,11 @@ public class PhyRoCCModel implements IRoCCModel {
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
         this.factory = new PhyRoCCFactory(world);
         model = new RoCCModel(factory);
+
+        //Change cursor/crosshair
+        Pixmap pm = new Pixmap(Gdx.files.internal("crosshair.png"));
+        Gdx.input.setCursorImage(pm, 16, 16);
+        pm.dispose();
     }
 
     @Override
