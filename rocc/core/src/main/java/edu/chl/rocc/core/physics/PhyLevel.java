@@ -39,7 +39,7 @@ public class PhyLevel implements ILevel {
 
     @Override
     public void addFood(IFood food) {
-
+        level.addFood(food);
     }
 
     @Override

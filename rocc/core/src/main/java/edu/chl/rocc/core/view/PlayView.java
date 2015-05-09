@@ -70,6 +70,7 @@ public class PlayView extends GameView{
         batch.begin();
         batch.draw(characterTexture, model.getCharacterXPos(0), model.getCharacterYPos(0));
         batch.draw(followerTexture, model.getCharacterXPos(1), model.getCharacterYPos(1));
+
         for (IFood food : model.getFoods()){
             batch.draw(foodTexture, food.getX(), food.getY());
         }
