@@ -8,14 +8,17 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.HashMap;
 import java.util.List;
 
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.model.RoCCModel;
+import edu.chl.rocc.core.model.Character;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * This class is supposed to contain the
@@ -24,10 +27,7 @@ import java.util.ArrayList;
  */
 public class PlayView extends GameView{
 
-    private Texture characterTexture;
-    private Texture followerTexture;
-    private Texture foodTexture;
-    private List<Texture> textures;
+    private Map<String, Texture> textures;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
@@ -45,9 +45,10 @@ public class PlayView extends GameView{
 
         this.model.constructWorld(map);
 
-        characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
-        followerTexture  = new Texture(Gdx.files.internal("followerSprite.png"));
-        foodTexture      = new Texture(Gdx.files.internal("shaitpizza.png"));
+        textures = new HashMap<String, Texture>();
+        textures.put("front" , new Texture(Gdx.files.internal("characterSprite.png")));
+        textures.put("follow", new Texture(Gdx.files.internal("followerSprite.png")));
+        textures.put("food"  , new Texture(Gdx.files.internal("shaitpizza.png")));
         //b2dr = new Box2DDebugRenderer();
     }
 
@@ -68,11 +69,11 @@ public class PlayView extends GameView{
         renderer.render();
 
         batch.begin();
-        batch.draw(characterTexture, model.getCharacterXPos(0), model.getCharacterYPos(0));
-        batch.draw(followerTexture, model.getCharacterXPos(1), model.getCharacterYPos(1));
+        batch.draw(textures.get("front") , model.getCharacterXPos(0), model.getCharacterYPos(0));
+        batch.draw(textures.get("follow"), model.getCharacterXPos(1), model.getCharacterYPos(1));
 
         for (IFood food : model.getFoods()){
-            batch.draw(foodTexture, food.getX(), food.getY());
+            batch.draw(textures.get("food"), food.getX(), food.getY());
         }
         batch.end();
     }
