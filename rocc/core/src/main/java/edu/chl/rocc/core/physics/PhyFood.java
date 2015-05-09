@@ -10,17 +10,17 @@ public class PhyFood implements IFood {
 
     private final IFood food;
 
-    public PhyFood(int x, int y) {
+    public PhyFood(float x, float y) {
         food = new Food(x, y);
     }
 
     @Override
-    public int getX() {
+    public float getX() {
         return food.getX();
     }
 
     @Override
-    public int getY() {
+    public float getY() {
         return food.getY();
     }
 }

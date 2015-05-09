@@ -2,10 +2,9 @@ package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.factories.*;
-import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
-import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
-import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.m2phyInterfaces.*;
+
+import java.util.List;
 
 
 /**
@@ -85,6 +84,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     public void updateWorld(float dt){level.updateWorld(dt); }
+
+    @Override
+    public List<IFood> getFoods() {
+        return level.getFoods();
+    }
 
 
 }

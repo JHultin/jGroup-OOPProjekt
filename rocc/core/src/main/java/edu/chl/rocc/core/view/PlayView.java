@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import java.util.List;
+
+import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -24,6 +26,7 @@ public class PlayView extends GameView{
 
     private Texture characterTexture;
     private Texture followerTexture;
+    private Texture foodTexture;
     private List<Texture> textures;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -43,7 +46,8 @@ public class PlayView extends GameView{
         this.model.constructWorld(map);
 
         characterTexture = new Texture(Gdx.files.internal("characterSprite.png"));
-        followerTexture = new Texture(Gdx.files.internal("followerSprite.png"));
+        followerTexture  = new Texture(Gdx.files.internal("followerSprite.png"));
+        foodTexture      = new Texture(Gdx.files.internal("shaitpizza.png"));
         //b2dr = new Box2DDebugRenderer();
     }
 
@@ -66,6 +70,9 @@ public class PlayView extends GameView{
         batch.begin();
         batch.draw(characterTexture, model.getCharacterXPos(0), model.getCharacterYPos(0));
         batch.draw(followerTexture, model.getCharacterXPos(1), model.getCharacterYPos(1));
+        for (IFood food : model.getFoods()){
+            batch.draw(foodTexture, food.getX(), food.getY());
+        }
         batch.end();
     }
 

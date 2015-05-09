@@ -5,7 +5,7 @@ package edu.chl.rocc.core.m2phyInterfaces;
  */
 public interface IFood {
 
-    public int getX();
+    public float getX();
 
-    public int getY();
+    public float getY();
 }
