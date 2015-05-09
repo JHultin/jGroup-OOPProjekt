@@ -3,6 +3,9 @@ package edu.chl.rocc.core.model;
 import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
+
+import java.lang.*;
+import java.lang.Character;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,6 +108,12 @@ public class Player implements IPlayer {
         // skicka in string istället
         characters.add(c);
     }
+
+    @Override
+    public List<ICharacter> getCharacters() {
+        return characters;
+    }
+
     /*
     * Change which character the player is playing as.
     */

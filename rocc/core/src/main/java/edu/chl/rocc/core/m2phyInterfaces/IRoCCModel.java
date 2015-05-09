@@ -33,4 +33,6 @@ public interface IRoCCModel extends IModel {
     public List<IFood> getFoods();
 
     public void addFood (IFood food);
+
+    public List<ICharacter> getCharacters();
 }

@@ -7,11 +7,8 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import edu.chl.rocc.core.factories.*;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
-import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
-import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -161,5 +158,10 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addFood(IFood food) {
         model.addFood(food);
+    }
+
+    @Override
+    public List<ICharacter> getCharacters() {
+        return model.getCharacters();
     }
 }

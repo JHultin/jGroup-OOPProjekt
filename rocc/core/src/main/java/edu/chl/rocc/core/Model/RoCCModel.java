@@ -95,5 +95,10 @@ public class RoCCModel implements IRoCCModel {
         level.addFood(food);
     }
 
+    @Override
+    public List<ICharacter> getCharacters() {
+        return player.getCharacters();
+    }
+
 
 }

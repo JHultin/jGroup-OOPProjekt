@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
 import java.util.List;
 
+import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Character;
@@ -69,8 +70,10 @@ public class PlayView extends GameView{
         renderer.render();
 
         batch.begin();
-        batch.draw(textures.get("front") , model.getCharacterXPos(0), model.getCharacterYPos(0));
-        batch.draw(textures.get("follow"), model.getCharacterXPos(1), model.getCharacterYPos(1));
+
+        for (ICharacter character : model.getCharacters()){
+            batch.draw(textures.get(character.getName()), character.getX(), character.getY());
+        }
 
         for (IFood food : model.getFoods()){
             batch.draw(textures.get("food"), food.getX(), food.getY());
