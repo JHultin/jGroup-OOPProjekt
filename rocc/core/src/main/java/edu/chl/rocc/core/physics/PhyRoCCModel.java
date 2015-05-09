@@ -94,6 +94,8 @@ public class PhyRoCCModel implements IRoCCModel {
 
         MapLayer foodLayer = tMap.getLayers().get("food");
 
+        bDef.userData = model.getLevel();
+
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(16, 8);
 
@@ -106,8 +108,11 @@ public class PhyRoCCModel implements IRoCCModel {
             float y = ((Float) mapObject.getProperties().get("y") + 8)  / PPM;
             bDef.position.set(x, y);
 
+            IFood food = new PhyFood(x, y);
+            fDef.userData = food;
+
             model.getLevel().addBlock(bDef, fDef);
-            model.addFood(new PhyFood(x, y));
+            model.addFood(food);
         }
     }
     @Override

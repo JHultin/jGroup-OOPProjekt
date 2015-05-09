@@ -20,4 +20,6 @@ public interface ILevel {
     public void addFood(IFood food);
 
     public List<IFood> getFoods();
+
+    public void removeFood(IFood food);
 }

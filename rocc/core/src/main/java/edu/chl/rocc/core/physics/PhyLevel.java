@@ -48,6 +48,11 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
+    public void removeFood(IFood food) {
+        level.removeFood(food);
+    }
+
+    @Override
     public boolean equals(Object o){
         if (this == o){
             return true;

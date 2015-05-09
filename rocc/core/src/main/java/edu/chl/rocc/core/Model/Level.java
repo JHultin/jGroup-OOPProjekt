@@ -49,4 +49,9 @@ public class Level implements ILevel {
         return foods;
     }
 
+    @Override
+    public void removeFood(IFood food) {
+        foods.remove(food);
+    }
+
 }
