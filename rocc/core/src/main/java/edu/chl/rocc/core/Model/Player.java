@@ -58,7 +58,7 @@ public class Player implements IPlayer {
     public void moveFollowers(Direction dir){
         if(dir != Direction.NONE) {
 
-            for (int i = 1; i < characters.size(); i++) {
+            for (int i=1; i < characters.size(); i++) {
 
             /*
             if(getDistance(i) > 200){
@@ -69,14 +69,18 @@ public class Player implements IPlayer {
             */
                 float distance = characters.get(0).getX() - characters.get(i).getX();
 
-                if (distance > 200) {
+                if (distance > 80) {
                     characters.get(i).moveFollower(Direction.RIGHT);
-                } else if (distance < -200) {
+                } else if (distance < -80) {
                     characters.get(i).moveFollower(Direction.LEFT);
                     //characters.get(i).moveFollower(Direction.NONE);
                 } else {
                     characters.get(i).moveFollower(Direction.NONE);
                 }
+            }
+        } else{
+            for (int k=1; k < characters.size(); k++) {
+                characters.get(k).moveFollower(Direction.NONE);
             }
         }
     }
