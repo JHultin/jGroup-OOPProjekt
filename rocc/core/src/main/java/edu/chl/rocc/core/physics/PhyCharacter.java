@@ -23,13 +23,13 @@ public class PhyCharacter implements ICharacter {
     private int leftV;
     private int rightV;
 
-    public PhyCharacter(World world, int x, int y, String userData){
+    public PhyCharacter(World world, int x, int y, String name){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.listener = new MyContactListener();
         this.world.setContactListener(this.listener); //should be made only once so every character has the same listener
-        this.character = new Character();
+        this.character = new Character(name);
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -52,7 +52,7 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData(userData);
+        body.createFixture(fDef).setUserData(name);
     }
 
     @Override
@@ -122,6 +122,11 @@ public class PhyCharacter implements ICharacter {
     @Override
     public float getY() {
         return (body.getPosition().y-height) * PPM ;
+    }
+
+    @Override
+    public String getName() {
+        return character.getName();
     }
 
     @Override

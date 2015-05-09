@@ -24,4 +24,6 @@ public interface ICharacter {
     public float getX();
 
     public float getY();
+
+    public String getName();
 }

@@ -13,9 +13,11 @@ public class Character implements ICharacter {
 
     private int maxHealth = 100;
     private int healthPoints;
+    private final String name;
 
-    public Character(){
+    public Character(String name){
         this.setHP(maxHealth);
+        this.name = name;
     }
 
     /*
@@ -94,6 +96,11 @@ public class Character implements ICharacter {
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
     public boolean equals(Object o){
         if (this == o){
             return true;
@@ -109,7 +116,8 @@ public class Character implements ICharacter {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash = hash + maxHealth * 257;
+        hash += maxHealth * 257;
+        hash += name.hashCode();
         return hash;
     }
 

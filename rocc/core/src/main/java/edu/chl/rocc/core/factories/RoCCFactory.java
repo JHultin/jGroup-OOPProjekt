@@ -28,7 +28,7 @@ public class RoCCFactory implements IRoCCFactory {
 
     @Override
     public ICharacter createCharacter(String name, int x, int y) {
-        return new Character();
+        return new Character(name);
     }
 
     @Override
