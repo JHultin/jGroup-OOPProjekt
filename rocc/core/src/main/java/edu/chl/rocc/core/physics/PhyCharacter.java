@@ -151,4 +151,12 @@ public class PhyCharacter implements ICharacter {
         hash += body.hashCode();
         return hash;
     }
+
+    /*
+    * Creates and fires a bullet.
+    * Temporarily placed in PhyCharacter, will later be moved to a Weapon class.
+    */
+    public void createBullet(){
+
+    }
 }
