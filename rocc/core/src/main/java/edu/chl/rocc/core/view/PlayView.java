@@ -15,7 +15,6 @@ import java.util.List;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.model.Character;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
 import java.util.ArrayList;
