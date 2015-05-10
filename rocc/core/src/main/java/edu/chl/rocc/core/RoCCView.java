@@ -25,8 +25,8 @@ public class RoCCView extends Game {
 
         gameViewManager = new GameViewManager(menuModel, model);
 
-        gameViewManager.setActiveView("PLAY");
-
+         gameViewManager.setActiveView("PLAY");
+        //gameViewManager.setActiveView("MENU");
         //Sets the current Screen
         setScreen(gameViewManager.getActiveView());
     }
@@ -43,11 +43,12 @@ public class RoCCView extends Game {
 
 	@Override
 	public void pause () {
+        super.pause();
 	}
 
 	@Override
 	public void resume () {
-
+        super.resume();
     }
 
 	@Override
