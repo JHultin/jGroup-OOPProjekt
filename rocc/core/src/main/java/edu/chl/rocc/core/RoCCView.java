@@ -2,7 +2,6 @@ package edu.chl.rocc.core;
 
 import com.badlogic.gdx.Game;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
@@ -11,7 +10,6 @@ import edu.chl.rocc.core.view.ViewFactory;
 
 public class RoCCView extends Game {
     private IRoCCModel model;
-    private MenuModel menuModel;
     private RoCCController controller;
 
     private GameViewManager gameViewManager;
@@ -20,12 +18,11 @@ public class RoCCView extends Game {
 	public void create () {
 
         model = new PhyRoCCModel();
-        menuModel = new MenuModel();
-        controller = new RoCCController(model, menuModel,this);
+        controller = new RoCCController(model,this);
 
-        gameViewManager = new GameViewManager(menuModel, model);
+        gameViewManager = new GameViewManager(model);
 
-         gameViewManager.setActiveView("PLAY");
+        gameViewManager.setActiveView("PLAY");
         //gameViewManager.setActiveView("MENU");
         //Sets the current Screen
         setScreen(gameViewManager.getActiveView());
@@ -55,4 +52,11 @@ public class RoCCView extends Game {
 	public void dispose () {
         super.dispose();
 	}
+
+
+    public void setScreen(String screen){
+        gameViewManager.setActiveView(screen);
+        setScreen(gameViewManager.getActiveView());
+    }
+
 }

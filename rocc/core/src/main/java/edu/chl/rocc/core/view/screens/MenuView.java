@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import edu.chl.rocc.core.model.MenuModel;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.IModel;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -29,8 +29,7 @@ import java.util.ArrayList;
  */
 public class MenuView implements Screen, IViewObservable {
 
-//    private SpriteBatch batch;
-//   private OrthographicCamera cam;
+    private IRoCCModel model;
 
     private BitmapFont titleFont = new BitmapFont();
    // private BitmapFont font = new BitmapFont();
@@ -38,9 +37,8 @@ public class MenuView implements Screen, IViewObservable {
     private TextButton newGame, exit;
 
 
-    private String title = "Ruins of Corrosa City";
+    private String title = "Ruins of Corosa City";
 
-    private MenuModel menuModel;
 
     private ArrayList<IViewObserver> observerArrayList;
 
@@ -62,8 +60,8 @@ public class MenuView implements Screen, IViewObservable {
     private Texture backgroundTexture;
 
 
-    public MenuView(IModel menuModel){
-        this.menuModel = (MenuModel)menuModel;
+    public MenuView(IRoCCModel model){
+        this.model = model;
         observerArrayList = new ArrayList<IViewObserver>();
     }
 

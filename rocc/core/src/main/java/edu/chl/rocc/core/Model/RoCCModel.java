@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.physics.PhyBullet;
@@ -18,7 +19,10 @@ public class RoCCModel implements IRoCCModel {
     private ILevel level;
     private IPlayer player;
 
+
+
     public RoCCModel(IRoCCFactory factory){
+
         level = factory.createLevel("");
         player = factory.createPlayer("");
     }
@@ -112,6 +116,5 @@ public class RoCCModel implements IRoCCModel {
     public List<ICharacter> getCharacters() {
         return player.getCharacters();
     }
-
 
 }

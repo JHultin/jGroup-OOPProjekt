@@ -19,18 +19,17 @@ public class GameViewManager {
     private HashMap<String, Screen> viewHashMap;
     private Screen activeView;
 
-    public GameViewManager(IModel menuModel, IRoCCModel roccModel){
+    public GameViewManager(IRoCCModel model){
         viewHashMap = new HashMap<String,Screen>();
 
         /**
          *  Adds views to a HashMap so that they don't need
          *  to be creating new everytime.
          */
-        viewHashMap.put("MENU", ViewFactory.createView("MENU", menuModel));
-        viewHashMap.put("PLAY",ViewFactory.createView("PLAY", roccModel));
+        viewHashMap.put("MENU", ViewFactory.createView("MENU", model));
+        viewHashMap.put("PLAY",ViewFactory.createView("PLAY", model));
 
-       // activeView = viewHashMap.get("MENU");
-        activeView = viewHashMap.get("PLAY");
+        activeView = viewHashMap.get("MENU");
      }
 
 

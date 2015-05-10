@@ -49,4 +49,5 @@ public interface IRoCCModel extends IModel {
     * Returns a list of all the playable characters.
     */
     public List<ICharacter> getCharacters();
+
 }

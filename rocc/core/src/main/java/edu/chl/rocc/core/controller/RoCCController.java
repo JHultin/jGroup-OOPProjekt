@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
-import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.RoCCView;
 
 import java.util.ArrayList;
@@ -22,13 +21,11 @@ public class RoCCController implements Runnable{
     private GameProcessor gameProcessor;
     private MenuProcessor menuProcessor;
     private RoCCView main;
-    private MenuModel menuModel;
 
 
-    public RoCCController(IRoCCModel model,MenuModel menuModel, RoCCView main){
+    public RoCCController(IRoCCModel model, RoCCView main){
         this.model = model;
         this.main = main;
-        this.menuModel = menuModel;
         gameProcessor = new GameProcessor();
         menuProcessor = new MenuProcessor();
 
@@ -158,16 +155,6 @@ public class RoCCController implements Runnable{
 
         @Override
         public boolean keyDown(int keycode) {
-            if (keycode == Input.Keys.ENTER) {
-                menuModel.select();
-                return true;
-            }else if (keycode == Input.Keys.UP){
-                menuModel.navigate(Direction.UP);
-                return true;
-            }else if (keycode == Input.Keys.DOWN){
-                menuModel.navigate(Direction.DOWN);
-                return true;
-            }
             return false;
         }
 

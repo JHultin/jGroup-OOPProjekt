@@ -44,8 +44,8 @@ public class PlayView implements Screen,IViewObservable{
 
     private ArrayList<IViewObserver> observerArrayList;
 
-    public PlayView(IModel model){
-        this.model = (IRoCCModel)model;
+    public PlayView(IRoCCModel model){
+        this.model = model;
 
 
         batch = new SpriteBatch();

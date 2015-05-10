@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.view;
 
 import com.badlogic.gdx.Screen;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.screens.MenuView;
 import edu.chl.rocc.core.view.screens.PlayView;
 
@@ -9,7 +10,7 @@ import edu.chl.rocc.core.view.screens.PlayView;
  */
 public class ViewFactory {
 
-    public static Screen createView(String view, IModel model){
+    public static Screen createView(String view, IRoCCModel model){
         if(view.equals("PLAY")){
              return new PlayView(model);
         }
