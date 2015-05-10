@@ -70,7 +70,6 @@ public class Player implements IPlayer {
                     characters.get(i).moveFollower(Direction.RIGHT);
                 } else if (distance < -80) {
                     characters.get(i).moveFollower(Direction.LEFT);
-                    //characters.get(i).moveFollower(Direction.NONE);
                 } else {
                     characters.get(i).moveFollower(Direction.NONE);
                 }

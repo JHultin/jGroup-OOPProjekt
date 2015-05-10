@@ -3,6 +3,7 @@ package edu.chl.rocc.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import org.jbox2d.common.Vec2;
@@ -19,22 +20,27 @@ public class Level implements ILevel {
     private int time;
     private int score;
     private ArrayList<IFood> foods;
+    private ArrayList<IBullet> bullets;
 
     private ArrayList <String> highscore;
 
     public Level(){
         foods = new ArrayList<IFood>();
+        bullets = new ArrayList<IBullet>();
     }
 
     // Adds a block for the map to the world
+    @Override
     public void addBlock(BodyDef bDef, FixtureDef fDef){
 
     }
 
+    @Override
     public void updateWorld(float dt){
 
     }
 
+    @Override
     public World getWorld(){
         return null;
     }
@@ -52,6 +58,26 @@ public class Level implements ILevel {
     @Override
     public void removeFood(IFood food) {
         foods.remove(food);
+    }
+
+    @Override
+    public void createBullet(){
+
+    }
+
+    @Override
+    public List<IBullet> getBullets(){
+        return this.bullets;
+    }
+
+    @Override
+    public void addBullet(IBullet bullet){
+        bullets.add(bullet);
+    }
+
+    @Override
+    public void removeBullet(IBullet bullet){
+        bullets.remove(bullet);
     }
 
 }

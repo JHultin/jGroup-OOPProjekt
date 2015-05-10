@@ -99,6 +99,7 @@ public class PhyCharacter implements ICharacter {
         }
     }
 
+    @Override
     public void moveFollower(Direction dir){
 
         this.move(dir);
@@ -150,13 +151,5 @@ public class PhyCharacter implements ICharacter {
         hash += width * 733  + height * 547;
         hash += body.hashCode();
         return hash;
-    }
-
-    /*
-    * Creates and fires a bullet.
-    * Temporarily placed in PhyCharacter, will later be moved to a Weapon class.
-    */
-    public void createBullet(){
-
     }
 }

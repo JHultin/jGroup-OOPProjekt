@@ -1,8 +1,10 @@
 package edu.chl.rocc.core.physics;
 
+import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.model.Level;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
@@ -50,6 +52,27 @@ public class PhyLevel implements ILevel {
     @Override
     public void removeFood(IFood food) {
         level.removeFood(food);
+    }
+
+    @Override
+    public void createBullet(){
+        //IBullet bullet = new PhyBullet(this.getWorld(), ...);
+        //this.addBullet();
+    }
+
+    @Override
+    public List<IBullet> getBullets(){
+        return level.getBullets();
+    }
+
+    @Override
+    public void addBullet(IBullet bullet){
+        level.addBullet(bullet);
+    }
+
+    @Override
+    public void removeBullet(IBullet bullet){
+        level.removeBullet(bullet);
     }
 
     @Override

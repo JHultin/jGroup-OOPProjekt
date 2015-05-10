@@ -21,6 +21,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +30,8 @@ import java.util.List;
 public class PhyRoCCModel implements IRoCCModel {
 
     private IRoCCFactory factory;
+
+    private List<IBullet> bullets;
 
     private IRoCCModel model;
     private World world;
@@ -47,6 +50,10 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void aim(int x, int y) {
         this.model.aim(x, y);
+    }
+
+    public Vec2 getAim(){
+        return null;
     }
 
     @Override
@@ -165,6 +172,16 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addFood(IFood food) {
         model.addFood(food);
+    }
+
+    @Override
+    public List<IBullet> getBullets(){
+        return this.model.getBullets();
+    }
+
+    @Override
+    public void createBullet(){
+        this.model.createBullet();
     }
 
     @Override

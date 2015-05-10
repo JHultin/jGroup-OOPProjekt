@@ -3,12 +3,13 @@ package edu.chl.rocc.core.model;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
+import edu.chl.rocc.core.physics.PhyBullet;
 
 import java.util.List;
 
 
 /**
- * A class handeling the game model.
+ * A class handling the game model.
  *
  * Created by Yen on 2015-04-22.
  */
@@ -34,7 +35,6 @@ public class RoCCModel implements IRoCCModel {
     /*
     * Move the character in a given direction.
     */
-
     public void moveSideways(Direction dir){
         player.move(dir);
     }
@@ -42,9 +42,12 @@ public class RoCCModel implements IRoCCModel {
     /*
     * Make the character jump by changing its y-coordinate.
     */
-
     public void jump() {
         player.jump();
+    }
+
+    public void shoot(){
+        level.createBullet();
     }
 
     /*
@@ -93,6 +96,16 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void addFood(IFood food) {
         level.addFood(food);
+    }
+
+    @Override
+    public List<IBullet> getBullets(){
+        return level.getBullets();
+    }
+
+    @Override
+    public void createBullet(){
+        level.createBullet();
     }
 
     @Override

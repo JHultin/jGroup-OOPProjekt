@@ -20,16 +20,12 @@ public class Character implements ICharacter {
         this.name = name;
     }
 
-    /*
-    * Returns the character's health.
-    */
+    @Override
     public int getHP(){
         return this.healthPoints;
     }
 
-    /*
-    * Set character's health with a chosen value.
-    */
+    @Override
     public void setHP(int value){
         if(value < 0){
             System.out.print("Input value for health points cannot be negative.");
@@ -43,54 +39,31 @@ public class Character implements ICharacter {
         }
     }
 
-    /*
-    * Increase character's health with a given value.
-    */
+    @Override
     public void incHP(int value){
         this.setHP(this.getHP() + value);
     }
 
-
-    /*
-    * Decrease character's health with a given value.
-    */
+    @Override
     public void decHP(int value){
         this.setHP(this.getHP() - value);
     }
 
-    /*
-    * Move the character in a given direction.
-    */
-    public void move(Direction dir){
+    @Override
+    public void move(Direction dir){}
 
-    }
+    @Override
+    public void jump(){}
 
-    public void moveFollower(int i){
+    @Override
+    public void moveFollower(Direction dir){}
 
-    }
-
-
-    /*
-    * Make the character jump by changing its y-coordinate.
-    */
-    public void jump(){
-
-    }
-
-    public void moveFollower(Direction dir){
-
-    }
-
-    /*
-    * Returns the x-coordinate of the character.
-    */
+    @Override
     public float getX(){
         return 0;
     }
 
-    /*
-    * Returns the y-coordinate of the character.
-    */
+    @Override
     public float getY(){
         return 0;
     }

@@ -34,5 +34,19 @@ public interface IRoCCModel extends IModel {
 
     public void addFood (IFood food);
 
+    /*
+    * Returns a list of all current existing projectiles in the level.
+    */
+    public List<IBullet> getBullets();
+
+    /*
+    * Creates a bullet/projectile.
+    * Add it to list of current existing projectiles.
+    */
+    public void createBullet();
+
+    /*
+    * Returns a list of all the playable characters.
+    */
     public List<ICharacter> getCharacters();
 }

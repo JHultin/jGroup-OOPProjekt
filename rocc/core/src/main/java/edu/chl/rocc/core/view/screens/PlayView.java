@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
 import java.util.List;
 
+import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
@@ -61,6 +62,7 @@ public class PlayView implements Screen,IViewObservable{
         textures.put("front" , new Texture(Gdx.files.internal("characterSprite.png")));
         textures.put("follow", new Texture(Gdx.files.internal("followerSprite.png")));
         textures.put("food"  , new Texture(Gdx.files.internal("shaitpizza.png")));
+        textures.put("bullet", new Texture(Gdx.files.internal("bullet.png")));
         //b2dr = new Box2DDebugRenderer();
     }
 
@@ -94,6 +96,10 @@ public class PlayView implements Screen,IViewObservable{
 
         for (IFood food : model.getFoods()){
             batch.draw(textures.get("food"), food.getX(), food.getY());
+        }
+
+        for(IBullet bullet : model.getBullets()){
+            batch.draw(textures.get("bullet"), bullet.getX(), bullet.getY());
         }
         batch.end();
     }
