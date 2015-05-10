@@ -90,14 +90,12 @@ public class RoCCController implements Runnable{
                 dir = Direction.LEFT;
             else
                 dir = Direction.NONE;
-            /*if (dir != lastDir){
+            if (dir != lastDir){
                 model.moveSideways(dir);
                 lastDir = dir;
-            }*/
-            model.moveSideways(dir);
+            }
             model.updateWorld(updateSpeed);
         }
-
 
         @Override
         public boolean keyDown(int keycode) {
