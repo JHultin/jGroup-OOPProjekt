@@ -1,40 +1,20 @@
 package edu.chl.rocc.core;
 
-import com.badlogic.gdx.graphics.GL30;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.Game;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.controller.RoCCController;
-import edu.chl.rocc.core.model.Variables;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
+import edu.chl.rocc.core.view.ViewFactory;
 
-//implements ApplicationListener
-public class RoCCView implements ApplicationListener {
-	private Texture characterTexture;
-    private Texture followerTexture;
+
+public class RoCCView extends Game {
     private IRoCCModel model;
     private MenuModel menuModel;
     private RoCCController controller;
 
-	private SpriteBatch batch;
-//	private float elapsed;
-//  private static final float STEP = 1/60f;
-
     private GameViewManager gameViewManager;
-
-    // Camera following the player
-    private OrthographicCamera cam;
-    // Camera showing the HUD
-    private OrthographicCamera hudCam;
-
-    //private Box2DDebugRenderer b2dr;
 
     @Override
 	public void create () {
@@ -43,33 +23,22 @@ public class RoCCView implements ApplicationListener {
         menuModel = new MenuModel();
         controller = new RoCCController(model, menuModel,this);
 
-        batch = new SpriteBatch();
-
-        cam = new OrthographicCamera();
-        cam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
-        hudCam = new OrthographicCamera();
-        hudCam.setToOrtho(false, Variables.WIDTH, Variables.HEIGHT);
-
         gameViewManager = new GameViewManager(menuModel, model);
+
+        gameViewManager.setActiveView("PLAY");
+
+        //Sets the current Screen
+        setScreen(gameViewManager.getActiveView());
     }
 
 	@Override
 	public void resize (int width, int height) {
-        cam.viewportWidth = width;
-        cam.viewportHeight = height;
-        cam.update();
+        super.resize(width,height);
 	}
 
 	@Override
 	public void render () {
-//        elapsed += Gdx.graphics.getDeltaTime();
-		Gdx.gl.glClearColor(0, 0, 1, 1);
-		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-
-        batch.setProjectionMatrix(cam.combined);
-
-        gameViewManager.update();
-        gameViewManager.render(batch, cam, hudCam);
+		super.render();
     }
 
 	@Override
@@ -78,9 +47,11 @@ public class RoCCView implements ApplicationListener {
 
 	@Override
 	public void resume () {
-	}
+
+    }
 
 	@Override
 	public void dispose () {
+        super.dispose();
 	}
 }

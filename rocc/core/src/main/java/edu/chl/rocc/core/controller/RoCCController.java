@@ -6,9 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.MenuModel;
-import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.RoCCView;
-import edu.chl.rocc.core.view.MenuView;
 
 import java.util.ArrayList;
 
@@ -34,8 +32,8 @@ public class RoCCController implements Runnable{
         gameProcessor = new GameProcessor();
         menuProcessor = new MenuProcessor();
 
-          Gdx.input.setInputProcessor(gameProcessor);
-       // Gdx.input.setInputProcessor(menuProcessor);
+         Gdx.input.setInputProcessor(gameProcessor);
+       //Gdx.input.setInputProcessor(menuProcessor);
 
         thread = new Thread(this);
         thread.start();

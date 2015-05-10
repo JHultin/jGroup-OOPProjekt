@@ -1,6 +1,7 @@
-package edu.chl.rocc.core.view;
+package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -9,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import edu.chl.rocc.core.model.MenuModel;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.model.Variables;
+import edu.chl.rocc.core.view.IModel;
+import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
 import java.util.ArrayList;
@@ -19,7 +22,10 @@ import java.util.ArrayList;
  * for the main menu screen,
  * Created by Jacob on 2015-04-28.
  */
-public class MenuView extends GameView {
+public class MenuView implements Screen, IViewObservable {
+
+    private SpriteBatch batch;
+    private OrthographicCamera cam;
 
     private BitmapFont titleFont = new BitmapFont();
     private BitmapFont font = new BitmapFont();
@@ -28,18 +34,30 @@ public class MenuView extends GameView {
 
     private MenuModel menuModel;
 
+    private ArrayList<IViewObserver> observerArrayList;
+
+
+
     public MenuView(IModel menuModel){
         this.menuModel = (MenuModel)menuModel;
         observerArrayList = new ArrayList<IViewObserver>();
+
+        batch = new SpriteBatch();
+        cam = new OrthographicCamera();
+
+    }
+
+
+    @Override
+    public void show() {
+
     }
 
     @Override
-    public void update() {
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0, 0, 1, 1);
+        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-    }
-
-    @Override
-    public void render(SpriteBatch batch, OrthographicCamera cam, OrthographicCamera hudCam) {
         batch.setProjectionMatrix(cam.combined);
 
         batch.begin();
@@ -59,6 +77,29 @@ public class MenuView extends GameView {
             font.draw(batch, menuModel.getMenuItems()[i], Variables.WIDTH / 2, Variables.HEIGHT / 2 - 35 * i);
         }
         batch.end();
+
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        cam.viewportWidth = width;
+        cam.viewportHeight = height;
+        cam.update();
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
     }
 
     @Override
@@ -66,6 +107,9 @@ public class MenuView extends GameView {
 
     }
 
+    /**
+     * Implemented Observable methods.
+     */
     @Override
     public void register(IViewObserver observer) {
         observerArrayList.add(observer);
@@ -84,4 +128,5 @@ public class MenuView extends GameView {
         for(IViewObserver observer : observerArrayList){
             observer.viewUpdated();
         }
-    }}
+    }
+}
