@@ -60,13 +60,15 @@ public class RoCCController implements Runnable{
 
     public void setState(String str){
         gvm.setActiveView(str);
-        main.setScreen(gvm.getActiveView());
+
         if (str.equals("game")) {
             TiledMap tiledMap = new TmxMapLoader().load("ground-food-map.tmx");
             ((PlayView) gvm.getActiveView()).setMap(tiledMap);
             model.constructWorld(tiledMap);
             this.collisionListener = new CollisionListener();
             model.setCollisionListener(this.collisionListener);
+            model.addCharacter("front");
+            model.addCharacter("follow");
             isRunning = false;
             thread.interrupt();
             Gdx.input.setInputProcessor(gameProcessor);
@@ -82,6 +84,8 @@ public class RoCCController implements Runnable{
             thread.start();
             isRunning = true;
         }
+
+        main.setScreen(gvm.getActiveView());
     }
 
     @Override

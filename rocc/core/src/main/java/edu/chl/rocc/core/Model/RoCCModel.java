@@ -23,11 +23,11 @@ public class RoCCModel implements IRoCCModel {
 
 
     public RoCCModel(IRoCCFactory factory){
-
         level = factory.createLevel("");
         player = factory.createPlayer("");
     }
 
+    @Override
     public void aim(int x, int y){
 
     }
@@ -70,9 +70,9 @@ public class RoCCModel implements IRoCCModel {
     /*
     * Adds a character to the character list.
     */
-    public void addCharacter(ICharacter c){
+    /*public void addCharacter(ICharacter c){
         this.player.addCharacter(c);
-    }
+    }*/
 
     @Override
     public ILevel getLevel(){
@@ -127,6 +127,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void setCollisionListener(CollisionListener collisionListener) {
 
+    }
+
+    @Override
+    public void addCharacter(String name) {
+        this.player.addCharacter(name);
     }
 
 }

@@ -223,5 +223,10 @@ public class PhyRoCCModel implements IRoCCModel {
     public void setCollisionListener(CollisionListener collisionListener) {
         this.world.setContactListener(collisionListener);
     }
+
+    @Override
+    public void addCharacter(String name) {
+        this.model.addCharacter(name);
+    }
 }
 
