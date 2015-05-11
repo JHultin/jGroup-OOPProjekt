@@ -126,14 +126,25 @@ public class PhyRoCCModel implements IRoCCModel {
             model.addFood(food);
         }
     }
+
     @Override
     public void moveSideways(Direction dir) {
         this.model.moveSideways(dir);
     }
 
     @Override
+    public void moveFollowers(Direction dir){
+        this.model.moveFollowers(dir);
+    }
+
+    @Override
     public void jump() {
         this.model.jump();
+    }
+
+    @Override
+    public void shoot(){
+        this.model.shoot();
     }
 
     @Override
@@ -151,6 +162,7 @@ public class PhyRoCCModel implements IRoCCModel {
         return this.model.getLevel();
     }
 
+    @Override
     public IPlayer getPlayer(){
         return this.model.getPlayer();
     }

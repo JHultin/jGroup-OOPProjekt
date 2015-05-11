@@ -36,7 +36,7 @@ public class PhyBullet implements IBullet {
         //Defining & creating body
         BodyDef def = new BodyDef();
         def.position.set(x / PPM, y / PPM);
-        def.type = BodyType.DYNAMIC;
+        def.type = BodyType.KINEMATIC;
         body = this.world.createBody(def);
 
         //Defining & creating fixture

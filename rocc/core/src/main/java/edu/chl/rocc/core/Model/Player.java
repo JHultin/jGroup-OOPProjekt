@@ -41,17 +41,13 @@ public class Player implements IPlayer {
         this.characters = characters;
     }
 
-    /*
-    * Move the front character in a given direction.
-    */
+    @Override
     public void move(Direction dir){
         characters.get(0).move(dir);
         moveFollowers(dir);
     }
 
-    /*
-    * Move the follower characters towards the front character.
-    */
+    @Override
     public void moveFollowers(Direction dir){
         if(dir != Direction.NONE) {
 
@@ -81,6 +77,7 @@ public class Player implements IPlayer {
         }
     }
 
+    @Override
     public void jump() {
         /*
         for(int i=0; i < characters.size(); i++){
@@ -90,23 +87,17 @@ public class Player implements IPlayer {
         characters.get(0).jump();
     }
 
-    /*
-    * Returns the x-coordinate of the character.
-    */
+    @Override
     public float getCharacterXPos(int i){
         return characters.get(i).getX();
     }
 
-    /*
-    * Returns the y-coordinate of the character.
-    */
+    @Override
     public float getCharacterYPos(int i){
         return characters.get(i).getY();
     }
 
-    /*
-    * Adds a character to the character list.
-    */
+    @Override
     public void addCharacter(ICharacter c){
         // skicka in string istället
         characters.add(c);
