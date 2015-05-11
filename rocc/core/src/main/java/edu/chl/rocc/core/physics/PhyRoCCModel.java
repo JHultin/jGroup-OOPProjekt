@@ -189,7 +189,9 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public void removeBodies(List<Body> bodiesToRemove) {
-
+        for (Body body : bodiesToRemove){
+            world.destroyBody(body);
+        }
     }
 
     @Override
