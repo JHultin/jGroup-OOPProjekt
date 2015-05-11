@@ -42,9 +42,16 @@ public interface ICharacter {
     */
     public void jump();
 
+<<<<<<< HEAD
     /*
     * Returns the x-coordinate of the character.
     */
+=======
+    public void hitGround();
+
+    public void leftGround();
+
+>>>>>>> jump fixed and enemy created
     public float getX();
 
     /*

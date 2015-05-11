@@ -98,6 +98,7 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+<<<<<<< HEAD
     public List<IBullet> getBullets(){
         return level.getBullets();
     }
@@ -111,5 +112,16 @@ public class RoCCModel implements IRoCCModel {
     public List<ICharacter> getCharacters() {
         return player.getCharacters();
     }
+=======
+    public List<IEnemy> getEnemies() {
+        return level.getEnemies();
+    }
+
+    @Override
+    public void addEnemy(IEnemy enemy) {
+        level.addEnemy(enemy);
+    }
+
+>>>>>>> jump fixed and enemy created
 
 }

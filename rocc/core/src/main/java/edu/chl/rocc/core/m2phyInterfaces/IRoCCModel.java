@@ -58,6 +58,7 @@ public interface IRoCCModel{
 
     public void addFood (IFood food);
 
+<<<<<<< HEAD
     /*
     * Returns a list of all current existing projectiles in the level.
     */
@@ -74,4 +75,9 @@ public interface IRoCCModel{
     */
     public List<ICharacter> getCharacters();
 
+=======
+    public List<IEnemy> getEnemies();
+
+    public void addEnemy(IEnemy enemy);
+>>>>>>> jump fixed and enemy created
 }

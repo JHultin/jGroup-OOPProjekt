@@ -5,6 +5,8 @@ import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.model.Level;
 import org.jbox2d.common.Vec2;
+import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
+import jdk.nashorn.internal.ir.Flags;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
@@ -18,6 +20,7 @@ public class PhyLevel implements ILevel {
 
     private final ILevel level;
     private final World world;
+    public static boolean isUpdating;
 
     public PhyLevel(World world) {
         this.world = world;
@@ -71,8 +74,23 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public void removeBullet(IBullet bullet){
+    public void removeBullet(IBullet bullet) {
         level.removeBullet(bullet);
+
+    }
+    @Override
+    public List<IEnemy> getEnemies(){
+        return level.getEnemies();
+    }
+
+    @Override
+    public void addEnemy(IEnemy enemy) {
+        level.addEnemy(enemy);
+    }
+
+    @Override
+    public void removeEnemy(IEnemy enemy) {
+        level.removeEnemy(enemy);
     }
 
     @Override

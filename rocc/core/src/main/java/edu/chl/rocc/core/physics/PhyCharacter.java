@@ -1,8 +1,7 @@
 package edu.chl.rocc.core.physics;
 
 import static edu.chl.rocc.core.GlobalConstants.PPM;
-import edu.chl.rocc.core.controller.MyContactListener;
-import edu.chl.rocc.core.controller.RoCCController;
+
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.model.Character;
@@ -19,17 +18,16 @@ public class PhyCharacter implements ICharacter {
     private final ICharacter character;
     private final float width, height;
     private final Body body;
-    private MyContactListener listener;
     private int leftV;
     private int rightV;
+    private int characterOnGround;
 
-    public PhyCharacter(World world, int x, int y, String name){
+
+    public PhyCharacter(World world, int x, int y){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
-        this.listener = new MyContactListener();
-        this.world.setContactListener(this.listener); //should be made only once so every character has the same listener
-        this.character = new Character(name);
+        this.character = new Character("");
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -44,7 +42,7 @@ public class PhyCharacter implements ICharacter {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY;
         body.createFixture(fDef).setUserData("body");
 
         //create foot sensor
@@ -53,7 +51,7 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData("footSensor");
+        body.createFixture(fDef).setUserData(this);
     }
 
     @Override
@@ -107,9 +105,19 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jump() {
-        if(this.listener.isPlayerOnGround() > 0){
-            body.applyForceToCenter(new Vec2(0, 250));
-        }
+       if(characterOnGround > 0) {
+           this.body.applyForceToCenter(new Vec2(0, 250));
+       }
+    }
+
+    @Override
+    public void hitGround(){
+        characterOnGround++;
+    }
+
+    @Override
+    public void leftGround(){
+        characterOnGround--;
     }
 
     @Override
