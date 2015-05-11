@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.physics;
 
+import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
@@ -22,7 +23,7 @@ public class PhyLevel implements ILevel {
     private final World world;
     public static boolean isUpdating;
 
-    private Vec2 aim;
+    private float aimX, aimY;
 
     public PhyLevel(World world) {
         this.world = world;
@@ -119,10 +120,19 @@ public class PhyLevel implements ILevel {
 
     @Override
     public void setAim(float x, float y){
-        this.aim = new Vec2(x / PPM, y / PPM);
+        this.aimX = x;
+        this.aimY = y;
     }
 
-    public Vec2 getAim(){
-        return this.aim;
+    public Vector2 getAim(){
+        return new Vector2(this.getAimX(), this.getAimY());
+    }
+
+    public float getAimX(){
+        return this.aimX;
+    }
+
+    public float getAimY(){
+        return this.aimY;
     }
 }

@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.physics;
 
+import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.factories.PhyRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
@@ -40,7 +41,7 @@ public class PhyPlayer implements IPlayer {
         this.player.moveFollowers(dir);
     }
 
-    public void shoot(float x, float y, Vec2 vec){
+    public void shoot(float x, float y, Vector2 vec){
         createBullet(x, y, vec, "");
     }
 
@@ -72,7 +73,7 @@ public class PhyPlayer implements IPlayer {
     * Creates and fires a bullet.
     * Temporarily placed in PhyPlayer, will later be moved to a Weapon class.
     */
-    public void createBullet(float x, float y, Vec2 vec, String name){
+    public void createBullet(float x, float y, Vector2 vec, String name){
         IBullet bullet = new PhyBullet(this.world, x, y, vec, name);
     }
 }

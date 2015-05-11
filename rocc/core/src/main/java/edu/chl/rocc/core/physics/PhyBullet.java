@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.physics;
 
+import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.model.Bullet;
 import org.jbox2d.collision.shapes.CircleShape;
@@ -19,9 +20,9 @@ public class PhyBullet implements IBullet {
     private final IBullet bullet;
 
     private final Body body;
-    private final Vec2 direction;
+    private final Vector2 direction;
 
-    public PhyBullet(World world, float x, float y, Vec2 vec, String name){
+    public PhyBullet(World world, float x, float y, Vector2 vec, String name){
         this.world = world;
         this.direction = vec;
         this.bullet = new Bullet(x / PPM, y / PPM, name);
@@ -40,15 +41,11 @@ public class PhyBullet implements IBullet {
         fDef.filter.categoryBits = BitMask.BIT_BULLET;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         body.createFixture(fDef).setUserData("bullet");
-
-        //Fire the bullet.
-        //this.fire(direction);
-        //this.fire(vec);
     }
 
     @Override
     public void fire(){
-        body.setLinearVelocity(this.getDirection());
+        body.setLinearVelocity(this.getVelocity());
     }
 
     @Override
@@ -66,7 +63,11 @@ public class PhyBullet implements IBullet {
         return this.bullet.getName();
     }
 
-    public Vec2 getDirection(){
+    public Vector2 getDirection(){
         return this.direction;
+    }
+
+    public Vec2 getVelocity(){
+        return new Vec2(500 / PPM, 0);
     }
 }
