@@ -13,6 +13,7 @@ import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
+import javax.swing.text.View;
 import java.util.ArrayList;
 
 /**
@@ -25,10 +26,10 @@ public class RoCCController implements Runnable{
     private boolean isRunning = true;
     private float updateSpeed = 1 / 60f;
     private GameProcessor gameProcessor;
-    private MenuProcessor menuProcessor;
     private final RoCCView main;
     private final GameViewManager gvm;
 
+    private ViewChooser viewChooser;
 
     public RoCCController(RoCCView main){
         this.model = new PhyRoCCModel();
@@ -37,11 +38,14 @@ public class RoCCController implements Runnable{
         this.gvm = new GameViewManager(model);
 
         this.gameProcessor = new GameProcessor();
-        this.menuProcessor = new MenuProcessor(this.gvm.getViewObserver());
+
 
         this.gvm.setActiveView("menu");
         this.main.setScreen(this.gvm.getActiveView());
-        System.out.println("main setScreen called");
+
+
+        viewChooser = new ViewChooser(gvm.getViewObserver());
+
 
         this.thread = new Thread(this);
         this.thread.start();
@@ -61,7 +65,6 @@ public class RoCCController implements Runnable{
         } else if ("menu".equals(str)){
             isRunning = false;
             thread.interrupt();
-            Gdx.input.setInputProcessor(menuProcessor);
             thread = new Thread(this);
             thread.start();
             isRunning = true;
@@ -161,56 +164,15 @@ public class RoCCController implements Runnable{
         }
     }
 
+
     /**
-     * An inner class to handle the menu input.
+     * An inner class which gets updated when a menubutton is clicked.
      */
-    private class MenuProcessor implements InputProcessor, IViewObserver{
+    public class ViewChooser implements  IViewObserver{
 
-
-        private MenuProcessor (IViewObservable observable){
-            observable.register(this);
+        public ViewChooser(IViewObservable observerable){
+            observerable.register(this);
         }
-
-        @Override
-        public boolean keyDown(int keycode) {
-            return false;
-        }
-
-        @Override
-        public boolean keyUp(int keycode) {
-            return false;
-        }
-
-        @Override
-        public boolean keyTyped(char character) {
-            return false;
-        }
-
-        @Override
-        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-            return false;
-        }
-
-        @Override
-        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-            return false;
-        }
-
-        @Override
-        public boolean touchDragged(int screenX, int screenY, int pointer) {
-            return false;
-        }
-
-        @Override
-        public boolean mouseMoved(int screenX, int screenY) {
-            return false;
-        }
-
-        @Override
-        public boolean scrolled(int amount) {
-            return false;
-        }
-
 
         @Override
         public void viewUpdated(String screen) {
@@ -218,4 +180,7 @@ public class RoCCController implements Runnable{
                 setState("game");
         }
     }
+
+
+
 }
