@@ -15,6 +15,7 @@ import java.util.List;
 public class Player implements IPlayer {
 
     private final List<ICharacter> characters;
+    private IRoCCFactory factory;
 
     private int activePlayerIndex;
     //Index of the active character in list 'characters'
@@ -29,11 +30,7 @@ public class Player implements IPlayer {
 
         this.characters = new ArrayList<ICharacter>();
         activeCharacterIndex = 0;
-
-        //Creates the front/main character.
-        addCharacter(factory.createCharacter("front", 160, 800));
-        //Creates a follower.
-        addCharacter(factory.createCharacter("follow", 100, 800));
+        this.factory = factory;
     }
 
     public Player(List<ICharacter> characters){
@@ -101,6 +98,13 @@ public class Player implements IPlayer {
     public void addCharacter(ICharacter c){
         // skicka in string istället
         characters.add(c);
+    }
+
+    @Override
+    public void addCharacter(String name) {
+        characters.add(this.factory.createCharacter(name,
+                characters.size() == 0 ? 160 : 120 - (characters.size() * 20),
+                400));
     }
 
     @Override

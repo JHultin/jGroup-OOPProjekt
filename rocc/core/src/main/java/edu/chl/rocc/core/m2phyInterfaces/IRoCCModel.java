@@ -83,4 +83,8 @@ public interface IRoCCModel{
     public void addEnemy(IEnemy enemy);
 
     public void setCollisionListener(CollisionListener collisionListener);
+
+    //public void addCharacter(ICharacter character);
+
+    public void addCharacter(String name);
 }

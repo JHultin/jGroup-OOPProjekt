@@ -35,6 +35,7 @@ public interface IPlayer {
     * Adds a character to the character list.
     */
     public void addCharacter(ICharacter c);
+    public void addCharacter(String name);
 
     /**
      * @return list of all characters.
