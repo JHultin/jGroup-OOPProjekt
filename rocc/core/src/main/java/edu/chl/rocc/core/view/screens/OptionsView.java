@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -23,6 +25,7 @@ public class OptionsView implements Screen, IViewObservable{
     private IRoCCModel model;
 
     private ArrayList<IViewObserver> observerArrayList;
+
 
     private Stage stage;
     private TextureAtlas textureAtlas;
@@ -69,7 +72,6 @@ public class OptionsView implements Screen, IViewObservable{
         table = new Table(skin);
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-
         /**
          * Creating Options title
          */
@@ -80,10 +82,19 @@ public class OptionsView implements Screen, IViewObservable{
 
 
         /**
+         * Initialize buttons
+         */
+        createButtons();
+
+        /**
          * adds to table
          */
         //adds title
         table.add(titleLabel);
+        table.row();
+
+        float buttonWidth = 200;
+        table.add(backButton).width(buttonWidth);
 
 
         stage.addActor(backgroundImage);
@@ -103,7 +114,8 @@ public class OptionsView implements Screen, IViewObservable{
 
     @Override
     public void resize(int width, int height) {
-
+        //Lets the view scale
+        stage.getViewport().update(width,height,true);
     }
 
     @Override
@@ -126,6 +138,34 @@ public class OptionsView implements Screen, IViewObservable{
 
     }
 
+    public void createButtons(){
+        //Sets the button style
+        textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.up = skin.getDrawable("buttonUp");
+        textButtonStyle.down = skin.getDrawable("buttonDown");
+        //Moves the buttontext one pixel when pressed.
+        textButtonStyle.pressedOffsetX = 1;
+        textButtonStyle.font = font;
+        textButtonStyle.fontColor = Color.BLACK;
+
+        backButton = new TextButton("Back", textButtonStyle);
+
+        //Padding to button
+        backButton.pad(20);
+
+
+        /**
+         * add listener to buttons
+         */
+        backButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                notifyObserver("menu");
+            }
+        });
+
+    }
+
 
     /**
      * Implemented Observable methods.
@@ -144,6 +184,7 @@ public class OptionsView implements Screen, IViewObservable{
     public void notifyObserver(String screen) {
         for(IViewObserver observer : observerArrayList){
             observer.viewUpdated(screen);
+            System.out.println("menu");
         }
     }
 }

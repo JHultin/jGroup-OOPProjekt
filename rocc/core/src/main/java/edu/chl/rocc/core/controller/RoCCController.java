@@ -193,9 +193,9 @@ public class RoCCController implements Runnable{
         public void viewUpdated(String screen) {
             if (screen.equals("game"))
                 setState("game");
-            else if (screen.equals("options"))
+            if (screen.equals("options"))
                 setState("options");
-            else if (screen.equals("menu"))
+            if (screen.equals("menu"))
                 setState("menu");
         }
     }
