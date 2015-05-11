@@ -8,13 +8,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.HashMap;
-import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
@@ -24,6 +23,7 @@ import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.view.AnimationHandler;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -49,7 +49,6 @@ public class PlayView implements Screen,IViewObservable{
 
     private ArrayList<IViewObserver> observerArrayList;
 
-    //HUD test
     private BitmapFont scoreFont = new BitmapFont();
     private Label.LabelStyle labelStyle;
     private Label scoreLabel;
@@ -57,17 +56,20 @@ public class PlayView implements Screen,IViewObservable{
 
     private Stage stage;
     private Table table;
-    //HUD TEST END
+
+
+
+    //ANIMATION TEST
+    private AnimationHandler animation;
+
+    //ANIMATION TEST END
 
 
     public PlayView(IRoCCModel model){
         this.model = model;
-
-
         batch = new SpriteBatch();
         cam = new OrthographicCamera();
 
-        //HUDTEST
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         table = new Table();
@@ -91,13 +93,18 @@ public class PlayView implements Screen,IViewObservable{
             table.getCell(cell.getActor()).pad(15);
         }
 
-
         //Add table to stage
         stage.addActor(table);
 
-        //HUDTEST END
-
         observerArrayList = new ArrayList<IViewObserver>();
+
+
+        //ANIMATION TEST
+        Texture motherTexture = new Texture(Gdx.files.internal("motherCharacter/motherMoveRight.png"));
+        TextureRegion[] textureRegions = TextureRegion.split(motherTexture, 42, 50)[0];
+        animation = new AnimationHandler(textureRegions,1/5f);
+        //ANIMATION TEST END
+
 
         //map = new TmxMapLoader().load("ground-food-map.tmx");
         //renderer = new OrthogonalTiledMapRenderer(map);
@@ -105,7 +112,7 @@ public class PlayView implements Screen,IViewObservable{
         //this.model.constructWorld(map);
 
         textures = new HashMap<String, Texture>();
-        textures.put("front" , new Texture(Gdx.files.internal("characterSprite.png")));
+        textures.put("front" , new Texture(Gdx.files.internal("motherCharacter/idleLeft.png")));
         textures.put("follow", new Texture(Gdx.files.internal("followerSprite.png")));
         textures.put("food"  , new Texture(Gdx.files.internal("shaitpizza.png")));
         textures.put("bullet", new Texture(Gdx.files.internal("bullet.png")));
@@ -137,11 +144,21 @@ public class PlayView implements Screen,IViewObservable{
 
 
 
+        animation.update(delta);        //ANIMATION TEST
+
+
         batch.begin();
 
         for (ICharacter character : model.getCharacters()){
-            batch.draw(textures.get(character.getName()), character.getX(), character.getY());
+
+            if(character.getName().equals("front")){       //Animation TEST
+                batch.draw(animation.getFrame(),character.getX(), character.getY());       //Animation TEST
+            }else {
+                batch.draw(textures.get(character.getName()), character.getX(), character.getY());
+            }
         }
+
+
 
         for (IFood food : model.getFoods()){
             batch.draw(textures.get("food"), food.getX(), food.getY());
