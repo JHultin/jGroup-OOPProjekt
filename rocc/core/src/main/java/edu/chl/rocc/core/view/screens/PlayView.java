@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
@@ -50,8 +51,9 @@ public class PlayView implements Screen,IViewObservable{
 
     //HUD test
     private BitmapFont scoreFont = new BitmapFont();
-    private Label.LabelStyle scoreStyle;
+    private Label.LabelStyle labelStyle;
     private Label scoreLabel;
+    private Label timeLabel;
 
     private Stage stage;
     private Table table;
@@ -72,13 +74,24 @@ public class PlayView implements Screen,IViewObservable{
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //Initializes the text
-        scoreStyle = new Label.LabelStyle(scoreFont,Color.BLACK);
-        scoreLabel = new Label("Score: 1337", scoreStyle);
-        scoreLabel.setFontScale(2);
+        labelStyle = new Label.LabelStyle(scoreFont,Color.BLACK);
+        scoreLabel = new Label("Score:\n1337", labelStyle);
+        scoreLabel.setFontScale(1);
+        timeLabel = new Label("Time:\n00:00", labelStyle);
+        timeLabel.setFontScale(1);
+
 
         //adds to table
+        table.add(timeLabel);
         table.add(scoreLabel);
         table.setPosition(200,220);
+
+        //Adds spacing to bottom
+        for(Cell cell : table.getCells()){
+            table.getCell(cell.getActor()).pad(15);
+        }
+
+
         //Add table to stage
         stage.addActor(table);
 
