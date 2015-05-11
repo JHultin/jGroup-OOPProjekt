@@ -27,12 +27,12 @@ public class CollisionListener implements ContactListener {
             Fixture fb = contact.getFixtureB();
 
             //Kolla om kroppen har en fotsensor, om JA så se vilken kropp den tillhör
-           /*if (fa.isSensor()) {
+           if (fa.isSensor()) {
                 ((ICharacter)fa.getBody().getUserData()).hitGround();
             }
             if (fb.isSensor()) {
                     ((ICharacter)fb.getBody().getUserData()).hitGround();
-            }*/
+            }
 
             if (fa.getUserData() != null && fa.getUserData() instanceof IFood) {
                 ((ILevel) (fa.getBody().getUserData())).removeFood((IFood) fa.getUserData());
@@ -50,12 +50,12 @@ public class CollisionListener implements ContactListener {
             Fixture fa = contact.getFixtureA();
             Fixture fb = contact.getFixtureB();
 
-            /*if (fa.isSensor()) {
+            if (fa.isSensor()) {
                 ((ICharacter) fa.getBody().getUserData()).leftGround();
                 if (fb.isSensor()) {
                     ((ICharacter) fb.getBody().getUserData()).leftGround();
                 }
-            }*/
+            }
     }
 
     @Override
