@@ -31,15 +31,9 @@ public class Player implements IPlayer {
         activeCharacterIndex = 0;
 
         //Creates the front/main character.
-<<<<<<< HEAD
         addCharacter(factory.createCharacter("front", 160, 800));
         //Creates a follower.
         addCharacter(factory.createCharacter("follow", 100, 800));
-=======
-        addCharacter(factory.createCharacter("", 160, 800));
-        //Creates a follower.
-        addCharacter(factory.createCharacter("", 100, 800));
->>>>>>> jump fixed and enemy created
     }
 
     public Player(List<ICharacter> characters){

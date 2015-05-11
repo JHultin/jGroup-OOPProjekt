@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * graphical data required for playing a level.
  * Created by Jacob on 2015-04-28.
  */
-public class PlayView extends GameView{
+public class PlayView{
 
     private Texture characterTexture;
     private Texture followerTexture;
@@ -31,17 +31,16 @@ public class PlayView extends GameView{
     private List<Texture> textures;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+    private ArrayList<IViewObserver> observerArrayList;
 
     //private Texture enemyTexture;
 
     private IRoCCModel model;
 
 
-    public PlayView(IModel model){
+    public PlayView(){
 
-        this.model = (IRoCCModel)model;
-
-        observerArrayList = new ArrayList<IViewObserver>();
+       observerArrayList = new ArrayList<IViewObserver>();
 
         map = new TmxMapLoader().load("ground-food-map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
@@ -55,12 +54,7 @@ public class PlayView extends GameView{
         //b2dr = new Box2DDebugRenderer();
     }
 
-    @Override
-    public void update() {
 
-    }
-
-    @Override
     public void render(SpriteBatch batch, OrthographicCamera cam, OrthographicCamera hudCam) {
         //b2dr.render(model.getLevel().getWorld(),camera.combined);
 
@@ -82,28 +76,28 @@ public class PlayView extends GameView{
         batch.end();
     }
 
-    @Override
+
     public void dispose() {
 
     }
 
-    @Override
+
     public void register(IViewObserver observer) {
         observerArrayList.add(observer);
     }
 
-    @Override
+
     public void unregister(IViewObserver observer) {
         observerArrayList.remove(observer);
     }
 
-    @Override
+    
     public void notifyObserver() {
         /**
          * Figure out what parameters the viewUpdated will take.
          */
         for(IViewObserver observer : observerArrayList){
-            observer.viewUpdated();
+            observer.viewUpdated("");
         }
     }
 }

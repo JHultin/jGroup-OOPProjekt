@@ -53,9 +53,9 @@ public class Character implements ICharacter {
     public void move(Direction dir){}
 
     @Override
-<<<<<<< HEAD
     public void jump(){}
-=======
+
+    @Override
     public void hitGround() {
 
     }
@@ -64,9 +64,6 @@ public class Character implements ICharacter {
     public void leftGround() {
 
     }
-
-    public void moveFollower(Direction dir){
->>>>>>> jump fixed and enemy created
 
     @Override
     public void moveFollower(Direction dir){}
