@@ -17,10 +17,7 @@ import jdk.nashorn.internal.ir.Flags;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -188,6 +185,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addFood(IFood food) {
         model.addFood(food);
+    }
+
+    @Override
+    public void removeBodies(List<Body> bodiesToRemove) {
+
     }
 
     @Override

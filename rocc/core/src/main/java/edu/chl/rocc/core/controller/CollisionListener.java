@@ -10,6 +10,7 @@ import edu.chl.rocc.core.physics.PhyRoCCModel;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 
@@ -21,10 +22,10 @@ import java.util.List;
  */
 public class CollisionListener implements ContactListener, ICollisionListener {
 
-    public ArrayList<IFood> foodToRemove;
+    public ArrayList<Body> bodiesToRemove;
 
     public CollisionListener(){
-        foodToRemove = new ArrayList<IFood>();
+        bodiesToRemove = new ArrayList<Body>();
     }
 
     //called when contact between two fixtures begins
@@ -44,14 +45,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             ((ICharacter)fb.getBody().getUserData()).hitGround();
         }
         if (fa.getUserData() != null && fa.getUserData() instanceof IFood) {
-            IFood takenFood = (IFood) fa.getUserData();
-            ((ILevel) (fa.getBody().getUserData())).removeFood(takenFood);
-            foodToRemove.add(takenFood);
+            ((ILevel) (fa.getBody().getUserData())).removeFood((IFood) fa.getUserData());
+            bodiesToRemove.add(fa.getBody());
         }
         if (fb.getUserData() != null && fb.getUserData() instanceof IFood) {
-            IFood takenFood = (IFood) fb.getUserData();
-            ((ILevel) (fb.getBody().getUserData())).removeFood(takenFood);
-            foodToRemove.add(takenFood);
+            ((ILevel) (fb.getBody().getUserData())).removeFood((IFood) fb.getUserData());
+            bodiesToRemove.add(fb.getBody());
         }
     }
 
@@ -72,12 +71,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     }
 
     @Override
-    public List<IFood> getItemsToRemove() {
-        List<IFood> listToReturn = new ArrayList<IFood>(foodToRemove.size());
-        for (IFood food : foodToRemove){
-            listToReturn.add(food);
+    public List<Body> getBodiesToRemove() {
+        List<Body> listToReturn = new ArrayList<Body>(bodiesToRemove.size());
+        for (Body body : bodiesToRemove){
+            listToReturn.add(body);
         }
-        foodToRemove.clear();
+        bodiesToRemove.clear();
         return listToReturn;
     }
 

@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.contacts.Contact;
 
 import java.util.List;
@@ -13,6 +14,6 @@ public interface ICollisionListener {
 
     public void endContact(Contact contact);
 
-    public List<IFood> getItemsToRemove();
+    public List<Body> getBodiesToRemove();
 
 }
