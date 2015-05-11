@@ -69,11 +69,12 @@ public class PhyRoCCModel implements IRoCCModel {
 
         ChainShape cs = new ChainShape();
         Vec2[] v = new Vec2[5];
-        v[0] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[1] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[2] = new Vec2(PhyConstants.BLOCK_SIZE / 2 / PPM, PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[3] = new Vec2(PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[4] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
+        float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
+        v[0] = new Vec2(-offset, -offset);
+        v[1] = new Vec2(-offset,  offset);
+        v[2] = new Vec2( offset,  offset);
+        v[3] = new Vec2( offset, -offset);
+        v[4] = new Vec2(-offset, -offset);
         cs.createChain(v, 5);
 
         bDef.type = BodyType.STATIC;
