@@ -69,21 +69,20 @@ public class PlayView implements Screen,IViewObservable{
         cam = new OrthographicCamera();
 
         //HUDTEST
-    /*    hudBatch = new SpriteBatch();
-        hudCam = new OrthographicCamera();
-        scoreFont.setColor(Color.BLACK);
-*/
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         table = new Table();
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-
+        //Initializes the text
         scoreStyle = new Label.LabelStyle(scoreFont,Color.BLACK);
         scoreLabel = new Label("Score: 1337", scoreStyle);
         scoreLabel.setFontScale(2);
 
+        //adds to table
         table.add(scoreLabel);
+        table.setPosition(200,220);
+        //Add table to stage
         stage.addActor(table);
 
         //HUDTEST END
@@ -146,7 +145,6 @@ public class PlayView implements Screen,IViewObservable{
         //HUD TEST
         stage.act();
         stage.draw();
-
         //HUD TEST END
     }
 
