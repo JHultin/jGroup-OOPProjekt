@@ -23,56 +23,24 @@ import java.util.ArrayList;
  * for the main menu screen,
  * Created by Jacob on 2015-04-28.
  */
-public class MenuView implements Screen, IViewObservable {
-
-    private IRoCCModel model;
+public class MenuView extends AbstractMenuView {
 
     private String title = "Ruins of Corrosa City";
 
-    private ArrayList<IViewObserver> observerArrayList;
 
-
-    private Stage stage;
-    private TextureAtlas textureAtlas;
-    private Skin skin;
-    private Table table;
     private TextButton newGameButton, loadGameButton, optionsButton,highscoreButton,exitButton;
-    private TextButton.TextButtonStyle textButtonStyle;
     private Label.LabelStyle titleStyle;
-    private BitmapFont font = new BitmapFont();
-
     private Label titleLabel;
-
-    //Background
-    private Image backgroundImage;
-    private Texture backgroundTexture;
 
 
     public MenuView(IRoCCModel model){
-        this.model = model;
-        observerArrayList = new ArrayList<IViewObserver>();
+        super(model);
     }
 
 
     @Override
     public void show() {
-        //Instead of SpriteBatch a Stage is used.
-        stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
-
-        //Initilizes background
-        backgroundTexture =  new Texture(Gdx.files.internal("background.jpg"));
-        backgroundImage = new Image(backgroundTexture);
-        backgroundImage.setWidth(Gdx.graphics.getWidth());
-        backgroundImage.setHeight(Gdx.graphics.getHeight());
-
-        //The texture of the button
-        textureAtlas = new TextureAtlas("button/button.pack");
-        skin = new Skin(textureAtlas);
-
-        //Instead of putting coordinates for every button we have a table which does it for us.
-        table = new Table(skin);
-        table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        super.show();
 
         //Create all of the buttons
         createButtons();
@@ -109,32 +77,11 @@ public class MenuView implements Screen, IViewObservable {
             table.getCell(cell.getActor()).spaceBottom(10);
         }
 
-
-        //Just to show where the cells are located.
-       // table.debug();//Remove
-
         //Then add the table to the stage
-        stage.addActor(backgroundImage);
         stage.addActor(table);
 
     }
 
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 1, 1);
-        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-
-
-        stage.act();
-        stage.draw();
-
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        //Lets the view scale
-        stage.getViewport().update(width,height,true);
-    }
 
     @Override
     public void pause() {
@@ -160,17 +107,6 @@ public class MenuView implements Screen, IViewObservable {
      * Creating buttons
      */
     public void createButtons(){
-        //Sets the button style
-        textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.getDrawable("buttonUp");
-        textButtonStyle.down = skin.getDrawable("buttonDown");
-        //Moves the buttontext one pixel when pressed.
-        textButtonStyle.pressedOffsetX = 1;
-        textButtonStyle.font = font;
-        textButtonStyle.fontColor = Color.BLACK;
-
-
-
         newGameButton = new TextButton("New Game",textButtonStyle);
         loadGameButton = new TextButton("Load Game",textButtonStyle);
         optionsButton = new TextButton("Options", textButtonStyle);
@@ -227,27 +163,4 @@ public class MenuView implements Screen, IViewObservable {
 
     }//Create buttons end
 
-
-    /**
-     * Implemented Observable methods.
-     */
-    @Override
-    public void register(IViewObserver observer) {
-        observerArrayList.add(observer);
-    }
-
-    @Override
-    public void unregister(IViewObserver observer) {
-        observerArrayList.remove(observer);
-    }
-
-    @Override
-    public void notifyObserver(String screen) {
-        /**
-         * Figure out what parameters the viewUpdated will take.
-         */
-        for(IViewObserver observer : observerArrayList){
-            observer.viewUpdated(screen);
-        }
-    }
 }

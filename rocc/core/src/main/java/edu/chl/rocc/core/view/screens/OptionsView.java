@@ -20,57 +20,24 @@ import java.util.ArrayList;
 /**
  * Created by Jacob on 2015-05-11.
  */
-public class OptionsView implements Screen, IViewObservable{
-
-    private IRoCCModel model;
-
-    private ArrayList<IViewObserver> observerArrayList;
-
-
-    private Stage stage;
-    private TextureAtlas textureAtlas;
-    private Skin skin;
-    private Table table;
-
-
-    //Background
-    private Image backgroundImage;
-    private Texture backgroundTexture;
+public class OptionsView extends AbstractMenuView{
 
     //Options title
     private Label.LabelStyle titleStyle;
-    private BitmapFont font = new BitmapFont();
     private Label titleLabel;
 
     private TextButton backButton;
-    private TextButton.TextButtonStyle textButtonStyle;
 
 
 
 
     public OptionsView(IRoCCModel model){
-        this.model = model;
-        observerArrayList = new ArrayList<IViewObserver>();
+        super(model);
     }
 
     @Override
     public void show() {
-        stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
-
-        //Initilizes background
-        backgroundTexture =  new Texture(Gdx.files.internal("background.jpg"));
-        backgroundImage = new Image(backgroundTexture);
-        backgroundImage.setWidth(Gdx.graphics.getWidth());
-        backgroundImage.setHeight(Gdx.graphics.getHeight());
-
-        //The texture of the buttons
-        textureAtlas = new TextureAtlas("button/button.pack");
-        skin = new Skin(textureAtlas);
-
-        //Instead of putting coordinates for every button we have a table which does it for us.
-        table = new Table(skin);
-        table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        super.show();
 
         /**
          * Creating Options title
@@ -96,26 +63,17 @@ public class OptionsView implements Screen, IViewObservable{
         float buttonWidth = 200;
         table.add(backButton).width(buttonWidth);
 
-
-        stage.addActor(backgroundImage);
         stage.addActor(table);
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 1, 1);
-        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-
-
-        stage.act();
-        stage.draw();
-
+        super.render(delta);
     }
 
     @Override
     public void resize(int width, int height) {
-        //Lets the view scale
-        stage.getViewport().update(width,height,true);
+        super.resize(width,height);
     }
 
     @Override
@@ -139,15 +97,6 @@ public class OptionsView implements Screen, IViewObservable{
     }
 
     public void createButtons(){
-        //Sets the button style
-        textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.getDrawable("buttonUp");
-        textButtonStyle.down = skin.getDrawable("buttonDown");
-        //Moves the buttontext one pixel when pressed.
-        textButtonStyle.pressedOffsetX = 1;
-        textButtonStyle.font = font;
-        textButtonStyle.fontColor = Color.BLACK;
-
         backButton = new TextButton("Back", textButtonStyle);
 
         //Padding to button
@@ -164,26 +113,5 @@ public class OptionsView implements Screen, IViewObservable{
             }
         });
 
-    }
-
-
-    /**
-     * Implemented Observable methods.
-     */
-    @Override
-    public void register(IViewObserver observer) {
-        observerArrayList.add(observer);
-    }
-
-    @Override
-    public void unregister(IViewObserver observer) {
-        observerArrayList.remove(observer);
-    }
-
-    @Override
-    public void notifyObserver(String screen) {
-        for(IViewObserver observer : observerArrayList){
-            observer.viewUpdated(screen);
-        }
     }
 }
