@@ -56,7 +56,6 @@ public class PhyBullet implements IBullet {
     @Override
     public void fire(){
         body.setLinearVelocity(this.getDirection());
-        System.out.println("PEW! x: " + this.getX() + " , y: " + this.getY());
     }
 
     @Override
