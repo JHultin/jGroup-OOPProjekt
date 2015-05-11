@@ -58,7 +58,6 @@ public class PhyRoCCModel implements IRoCCModel {
     public void constructWorld(TiledMap tMap) {
 
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
-        this.world.setContactListener(new CollisionListener());
         this.factory = new PhyRoCCFactory(world);
         model = new RoCCModel(factory);
 
@@ -70,11 +69,12 @@ public class PhyRoCCModel implements IRoCCModel {
 
         ChainShape cs = new ChainShape();
         Vec2[] v = new Vec2[5];
-        v[0] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[1] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[2] = new Vec2(PhyConstants.BLOCK_SIZE / 2 / PPM, PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[3] = new Vec2(PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
-        v[4] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
+        float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
+        v[0] = new Vec2(-offset, -offset);
+        v[1] = new Vec2(-offset,  offset);
+        v[2] = new Vec2( offset,  offset);
+        v[3] = new Vec2( offset, -offset);
+        v[4] = new Vec2(-offset, -offset);
         cs.createChain(v, 5);
 
         bDef.type = BodyType.STATIC;
@@ -213,6 +213,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addEnemy (IEnemy enemy){
         model.addEnemy(enemy);
+    }
+
+    @Override
+    public void setCollisionListener(CollisionListener collisionListener) {
+        this.world.setContactListener(collisionListener);
     }
 }
 

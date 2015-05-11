@@ -18,20 +18,13 @@ public class PhyBullet implements IBullet {
     private final World world;
     private final IBullet bullet;
 
-    //private final float width, height;
-    private final float x, y;
-
     private final Body body;
     private final Vec2 direction;
 
     public PhyBullet(World world, float x, float y, Vec2 vec, String name){
         this.world = world;
         this.direction = vec;
-        //this.width = 5 / PPM;
-        //this.height = 5 / PPM;
-        this.x = x / PPM;
-        this.y = y / PPM;
-        this.bullet = new Bullet(x, y, name);
+        this.bullet = new Bullet(x / PPM, y / PPM, name);
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -60,12 +53,12 @@ public class PhyBullet implements IBullet {
 
     @Override
     public float getX(){
-        return this.x * PPM + 16;
+        return body.getPosition().x * PPM + 16;
     }
 
     @Override
     public float getY(){
-        return this.y * PPM + 16;
+        return body.getPosition().y * PPM + 16;
     }
 
     @Override

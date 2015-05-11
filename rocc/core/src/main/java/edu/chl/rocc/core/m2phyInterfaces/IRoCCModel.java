@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.Level;
 
@@ -77,4 +78,6 @@ public interface IRoCCModel{
     public List<IEnemy> getEnemies();
 
     public void addEnemy(IEnemy enemy);
+
+    public void setCollisionListener(CollisionListener collisionListener);
 }
