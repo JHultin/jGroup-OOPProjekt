@@ -97,6 +97,7 @@ public class RoCCController implements Runnable{
                 model.moveSideways(dir);
                 lastDir = dir;
             }
+            model.moveFollowers(dir);
             model.updateWorld(updateSpeed);
         }
 
@@ -125,6 +126,7 @@ public class RoCCController implements Runnable{
 
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            model.shoot();
             return false;
         }
 
