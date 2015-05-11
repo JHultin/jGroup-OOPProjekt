@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by Jacob on 2015-05-11.
  */
-public class AbstractMenuView implements Screen, IViewObservable {
+public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     protected ArrayList<IViewObserver> observerArrayList;
     protected IRoCCModel model;
