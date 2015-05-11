@@ -21,6 +21,7 @@ public class PhyCharacter implements ICharacter {
     private int leftV;
     private int rightV;
     private int characterOnGround;
+    private Direction direction;
 
 
     public PhyCharacter(World world, int x, int y, String name){
@@ -46,7 +47,7 @@ public class PhyCharacter implements ICharacter {
         body.createFixture(fDef).setUserData("body");
 
         //create foot sensor
-        shape.setAsBox(width, height/4, new Vec2(0, -30 / PPM) ,0);
+        shape.setAsBox(width/2, height/4, new Vec2(0, -30 / PPM) ,0);
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
@@ -76,25 +77,28 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void move(Direction dir) {
+        if (dir != direction && (characterOnGround > 0)) {
+           // if (characterOnGround > 0) {
+                if (dir.equals(Direction.LEFT)) {
+                    body.setLinearVelocity(new Vec2(-200 / PPM, 0));
+                    leftV = leftV + 1;
+                } else if (dir.equals(Direction.RIGHT)) {
+                    body.setLinearVelocity(new Vec2(200 / PPM, 0));
+                    rightV = rightV + 1;
+                } else if (dir.equals(Direction.UP)) {
 
-        if(dir.equals(Direction.LEFT)){
-           body.setLinearVelocity(new Vec2(-200 / PPM, 0));
-            leftV  = leftV + 1;
-        } else if(dir.equals(Direction.RIGHT)){
-            body.setLinearVelocity(new Vec2(200 / PPM, 0));
-            rightV = rightV + 1;
-        } else if(dir.equals(Direction.UP)){
+                } else if (dir.equals(Direction.DOWN)) {
 
-        } else if(dir.equals(Direction.DOWN)){
-
-        } else if (dir.equals(Direction.NONE)){
-            if(leftV > 0){
-                body.setLinearVelocity(new Vec2(0, 0));
-                leftV = leftV - 1;
-            }else if(rightV > 0){
-                body.setLinearVelocity(new Vec2(0, 0));
-                rightV = rightV - 1;
-            }
+                } else if (dir.equals(Direction.NONE)) {
+                    if (leftV > 0) {
+                        body.setLinearVelocity(new Vec2(0, 0));
+                        leftV = leftV - 1;
+                    } else if (rightV > 0) {
+                        body.setLinearVelocity(new Vec2(0, 0));
+                        rightV = rightV - 1;
+                    }
+                }
+           // }
         }
     }
 
@@ -112,6 +116,9 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void hitGround(){
+        if(characterOnGround == 0) {
+            body.setLinearVelocity(new Vec2(0,0));
+        }
         characterOnGround++;
     }
 
