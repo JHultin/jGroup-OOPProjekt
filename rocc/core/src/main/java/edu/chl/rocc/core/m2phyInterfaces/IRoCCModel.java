@@ -16,16 +16,41 @@ public interface IRoCCModel extends IModel {
 
     public void constructWorld(TiledMap tMap);
 
+    /*
+    * Move the character in a given direction.
+    */
     public void moveSideways(Direction dir);
 
+    /*
+    * Move the followers in a given direction.
+    */
+    public void moveFollowers(Direction dir);
+
+    /*
+    * Make the character jump by changing its y-coordinate.
+    */
     public void jump();
 
+    public void shoot();
+
+    /*
+    * Returns the x-coordinate of the given character.
+    */
     public float getCharacterXPos(int i);
 
+    /*
+    * Returns the y-coordinate of the given character.
+    */
     public float getCharacterYPos(int i);
 
+    /*
+    * Returns the level.
+    */
     public ILevel getLevel();
 
+    /*
+    * Returns the player.
+    */
     public IPlayer getPlayer();
 
     public void updateWorld(float dt);

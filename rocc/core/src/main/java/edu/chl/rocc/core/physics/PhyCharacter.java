@@ -101,11 +101,7 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void moveFollower(Direction dir){
-
         this.move(dir);
-
-        //body.applyForceToCenter(new Vec2(50 * i, 0));
-        //body.setLinearVelocity(new Vec2(50 / PPM * i, 0));
     }
 
     @Override

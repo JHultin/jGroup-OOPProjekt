@@ -20,7 +20,6 @@ public class RoCCModel implements IRoCCModel {
     private IPlayer player;
 
 
-
     public RoCCModel(IRoCCFactory factory){
 
         level = factory.createLevel("");
@@ -36,35 +35,32 @@ public class RoCCModel implements IRoCCModel {
 
     }
 
-    /*
-    * Move the character in a given direction.
-    */
+    @Override
     public void moveSideways(Direction dir){
         player.move(dir);
     }
 
-    /*
-    * Make the character jump by changing its y-coordinate.
-    */
+    @Override
+    public void moveFollowers(Direction dir){
+        player.moveFollowers(dir);
+    }
+
+    @Override
     public void jump() {
         player.jump();
     }
 
+    @Override
     public void shoot(){
         level.createBullet();
     }
 
-    /*
-    * Returns the x-coordinate of the given character.
-    */
+    @Override
     public float getCharacterXPos(int i){
         return player.getCharacterXPos(i);
     }
 
-
-    /*
-    * Returns the y-coordinate of the given character.
-    */
+    @Override
     public float getCharacterYPos(int i){
         return player.getCharacterYPos(i);
     }
@@ -76,20 +72,17 @@ public class RoCCModel implements IRoCCModel {
         this.player.addCharacter(c);
     }
 
-    /*
-    * Returns the level.
-    */
+    @Override
     public ILevel getLevel(){
         return level;
     }
 
-    /*
-    * Returns the player.
-    */
+    @Override
     public IPlayer getPlayer(){
         return this.player;
     }
 
+    @Override
     public void updateWorld(float dt){level.updateWorld(dt); }
 
     @Override
