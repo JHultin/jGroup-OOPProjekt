@@ -146,12 +146,12 @@ public class PlayView implements Screen,IViewObservable{
     }
 
     @Override
-    public void notifyObserver() {
+    public void notifyObserver(String screen) {
         /**
          * Figure out what parameters the viewUpdated will take.
          */
         for(IViewObserver observer : observerArrayList){
-            observer.viewUpdated();
+            observer.viewUpdated(screen);
         }
     }
 

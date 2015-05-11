@@ -90,7 +90,9 @@ public class RoCCModel implements IRoCCModel {
         return this.player;
     }
 
-    public void updateWorld(float dt){level.updateWorld(dt); }
+    public void updateWorld(float dt){
+        level.updateWorld(dt);
+    }
 
     @Override
     public List<IFood> getFoods() {

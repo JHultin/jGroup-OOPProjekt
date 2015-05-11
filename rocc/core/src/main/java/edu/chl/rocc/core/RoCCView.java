@@ -5,7 +5,6 @@ import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
-import edu.chl.rocc.core.view.ViewFactory;
 
 
 public class RoCCView extends Game {
@@ -17,13 +16,18 @@ public class RoCCView extends Game {
     @Override
 	public void create () {
 
+
+
         model = new PhyRoCCModel();
-        controller = new RoCCController(model,this);
 
         gameViewManager = new GameViewManager(model);
 
-        gameViewManager.setActiveView("PLAY");
-        //gameViewManager.setActiveView("MENU");
+        controller = new RoCCController(model,this,gameViewManager.getViewObserver());
+
+
+
+        //gameViewManager.setActiveView("PLAY");
+        gameViewManager.setActiveView("MENU");
         //Sets the current Screen
         setScreen(gameViewManager.getActiveView());
     }
@@ -58,5 +62,6 @@ public class RoCCView extends Game {
         gameViewManager.setActiveView(screen);
         setScreen(gameViewManager.getActiveView());
     }
+
 
 }

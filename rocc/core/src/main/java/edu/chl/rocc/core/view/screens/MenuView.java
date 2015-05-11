@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.IModel;
+import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -37,7 +38,7 @@ public class MenuView implements Screen, IViewObservable {
     private TextButton newGame, exit;
 
 
-    private String title = "Ruins of Corosa City";
+    private String title = "Ruins of Corrosa City";
 
 
     private ArrayList<IViewObserver> observerArrayList;
@@ -201,6 +202,7 @@ public class MenuView implements Screen, IViewObservable {
             @Override
             public void clicked(InputEvent event,float x, float y){
                 System.out.println("New Game");
+                notifyObserver("PLAY");
             }
         });
 
@@ -249,12 +251,12 @@ public class MenuView implements Screen, IViewObservable {
     }
 
     @Override
-    public void notifyObserver() {
+    public void notifyObserver(String screen) {
         /**
          * Figure out what parameters the viewUpdated will take.
          */
         for(IViewObserver observer : observerArrayList){
-            observer.viewUpdated();
+            observer.viewUpdated(screen);
         }
     }
 }

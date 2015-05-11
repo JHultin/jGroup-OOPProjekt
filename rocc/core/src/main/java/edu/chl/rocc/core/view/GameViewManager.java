@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.view.observers.IViewObservable;
+
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -26,8 +28,8 @@ public class GameViewManager {
          *  Adds views to a HashMap so that they don't need
          *  to be creating new everytime.
          */
-        viewHashMap.put("MENU", ViewFactory.createView("MENU", model));
         viewHashMap.put("PLAY",ViewFactory.createView("PLAY", model));
+        viewHashMap.put("MENU", ViewFactory.createView("MENU", model));
 
         activeView = viewHashMap.get("MENU");
      }
@@ -41,4 +43,7 @@ public class GameViewManager {
         return activeView;
     }
 
+    public IViewObservable getViewObserver(){
+        return (IViewObservable)activeView;
+    }
 }

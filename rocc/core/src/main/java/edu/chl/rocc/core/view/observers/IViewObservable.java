@@ -9,5 +9,5 @@ public interface IViewObservable {
 
     public void register(IViewObserver o);
     public void unregister(IViewObserver o);
-    public void notifyObserver();
+    public void notifyObserver(String screen);
 }
