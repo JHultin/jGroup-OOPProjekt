@@ -99,10 +99,10 @@ public class PlayView implements Screen,IViewObservable{
 
         observerArrayList = new ArrayList<IViewObserver>();
 
-        map = new TmxMapLoader().load("ground-food-map.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
+        //map = new TmxMapLoader().load("ground-food-map.tmx");
+        //renderer = new OrthogonalTiledMapRenderer(map);
 
-        this.model.constructWorld(map);
+        //this.model.constructWorld(map);
 
         textures = new HashMap<String, Texture>();
         textures.put("front" , new Texture(Gdx.files.internal("characterSprite.png")));
@@ -164,7 +164,7 @@ public class PlayView implements Screen,IViewObservable{
         cam.viewportHeight = height;
         cam.update();
 
-        stage.getViewport().update(width,height,false);
+        stage.getViewport().update(width, height, false);
     }
 
     @Override
@@ -209,6 +209,11 @@ public class PlayView implements Screen,IViewObservable{
         for(IViewObserver observer : observerArrayList){
             observer.viewUpdated(screen);
         }
+    }
+
+    public void setMap(TiledMap tMap){
+        this.map = tMap;
+        this.renderer = new OrthogonalTiledMapRenderer(map);
     }
 
 }

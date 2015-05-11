@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.RoCCView;
@@ -12,6 +14,7 @@ import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
+import edu.chl.rocc.core.view.screens.PlayView;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,7 @@ public class RoCCController implements Runnable{
     private MenuProcessor menuProcessor;
     private final RoCCView main;
     private final GameViewManager gvm;
+    private boolean inGame;
 
 
     public RoCCController(RoCCView main){
@@ -41,7 +45,8 @@ public class RoCCController implements Runnable{
 
         this.gvm.setActiveView("menu");
         this.main.setScreen(this.gvm.getActiveView());
-        System.out.println("main setScreen called");
+
+        this.inGame = false;
 
         this.thread = new Thread(this);
         this.thread.start();
@@ -52,12 +57,16 @@ public class RoCCController implements Runnable{
         gvm.setActiveView(str);
         main.setScreen(gvm.getActiveView());
         if (str.equals("game")) {
+            TiledMap tiledMap = new TmxMapLoader().load("ground-food-map.tmx");
+            ((PlayView) gvm.getActiveView()).setMap(tiledMap);
+            model.constructWorld(tiledMap);
             isRunning = false;
             thread.interrupt();
             Gdx.input.setInputProcessor(gameProcessor);
             thread = new Thread(this);
             thread.start();
             isRunning = true;
+            inGame = true;
         } else if ("menu".equals(str)){
             isRunning = false;
             thread.interrupt();
@@ -72,7 +81,9 @@ public class RoCCController implements Runnable{
     public void run() {
         while (this.isRunning){
             try {
-                gameProcessor.sendUpdate();
+                if (inGame) {
+                    gameProcessor.sendUpdate();
+                }
                 Thread.sleep((long)(updateSpeed * 1000));
             } catch (InterruptedException e) {
                 this.isRunning = false;
@@ -116,8 +127,6 @@ public class RoCCController implements Runnable{
                 model.jump();
             else if (!keys.contains(keycode))
                 keys.add(keycode);
-                //TEST
-                System.out.println("Typed");
             return false;
         }
 

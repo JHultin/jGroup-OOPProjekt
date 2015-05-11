@@ -38,10 +38,6 @@ public class PhyRoCCModel implements IRoCCModel {
     private World world;
 
     public PhyRoCCModel() {
-        this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
-        this.world.setContactListener(new CollisionListener());
-        this.factory = new PhyRoCCFactory(world);
-        model = new RoCCModel(factory);
 
         //Change cursor/crosshair
         Pixmap pm = new Pixmap(Gdx.files.internal("crosshair.png"));
@@ -60,6 +56,12 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public void constructWorld(TiledMap tMap) {
+
+        this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
+        this.world.setContactListener(new CollisionListener());
+        this.factory = new PhyRoCCFactory(world);
+        model = new RoCCModel(factory);
+
         // Get the layer with information about the solid ground
         TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get("ground");
 
