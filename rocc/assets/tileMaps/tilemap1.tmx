@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" nextobjectid="12">
+ <tileset firstgid="1" name="tilemap" tilewidth="32" tileheight="32">
+  <image source="tilemap.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="10" name="shaitpizza" tilewidth="36" tileheight="18">
+  <image source="../shaitpizza.png" width="36" height="18"/>
+ </tileset>
+ <layer name="ground" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1AELwiAQhmFrLtv//8NtsECuqaenW9H7wEdBdnrnmHMAAAAAAAAAAADA/5pEfp3sR+YmklpXw+8521E/rdHa+gzRZ+5sco6WGZd6vRd+1957a47qWvbsda/vzGsehnlpkqqZ26vnOeJazzXLCb3Vzr0mfsAdjbp7OfeaPeJ3yqhzfUu8yNXnsTwXufVxj8F99q1J6/9G1e+xvlTD0nOPeWlrhMT3F+3ABKE=
+  </data>
+ </layer>
+ <objectgroup name="food">
+  <object id="1" x="193.333" y="901.333" width="34" height="28">
+   <ellipse/>
+  </object>
+  <object id="2" x="383.333" y="840" width="35.3333" height="25.3333">
+   <ellipse/>
+  </object>
+  <object id="3" x="416.667" y="970.667" width="34.6667" height="23.3333">
+   <ellipse/>
+  </object>
+  <object id="4" x="542" y="970" width="38" height="24">
+   <ellipse/>
+  </object>
+  <object id="5" x="702" y="874" width="39.3333" height="21.3333">
+   <ellipse/>
+  </object>
+  <object id="6" x="832" y="972" width="34.6667" height="21.3333">
+   <ellipse/>
+  </object>
+  <object id="7" x="896.667" y="969.333" width="34.6667" height="24">
+   <ellipse/>
+  </object>
+  <object id="8" x="1152.67" y="940.667" width="34.6667" height="19.3333">
+   <ellipse/>
+  </object>
+  <object id="9" x="1313.33" y="971.333" width="33.3333" height="20.6667">
+   <ellipse/>
+  </object>
+  <object id="10" x="1408" y="972.667" width="34.6667" height="20.6667">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
