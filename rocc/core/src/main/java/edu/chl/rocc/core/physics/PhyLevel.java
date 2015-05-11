@@ -8,8 +8,8 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
-
 import java.util.List;
+import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
  * Created by Joel on 2015-05-03.
@@ -55,9 +55,10 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public void createBullet(){
-        //IBullet bullet = new PhyBullet(this.getWorld(), ...);
-        //this.addBullet();
+    public void createBullet(float x, float y){
+        IBullet bullet = new PhyBullet(this.getWorld(), x, y, new Vec2(100 / PPM, 0), "");
+        this.addBullet(bullet);
+        bullet.fire();
     }
 
     @Override

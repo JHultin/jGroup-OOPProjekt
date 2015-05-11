@@ -143,8 +143,8 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void shoot(){
-        this.model.shoot();
+    public void shoot(float x, float y){
+        this.model.shoot(x, y);
     }
 
     @Override
@@ -191,10 +191,10 @@ public class PhyRoCCModel implements IRoCCModel {
         return this.model.getBullets();
     }
 
-    @Override
+    /*@Override
     public void createBullet(){
         this.model.createBullet();
-    }
+    }*/
 
     @Override
     public List<ICharacter> getCharacters() {

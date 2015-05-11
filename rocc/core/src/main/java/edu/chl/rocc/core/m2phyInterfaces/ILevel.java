@@ -23,22 +23,22 @@ public interface ILevel {
 
     public void removeFood(IFood food);
 
-    /*
+    /**
     * Create a bullet/projectile.
     */
-    public void createBullet();
+    public void createBullet(float x, float y);
 
-    /*
+    /**
     * Returns a list of all current existing projectiles in the level.
     */
     public List<IBullet> getBullets();
 
-    /*
+    /**
     * Adds a bullet/projectile to the list of existing projectiles.
     */
     public void addBullet(IBullet bullet);
 
-    /*
+    /**
     * Removes a bullet/projectile to the list of existing projectiles.
     */
     public void removeBullet(IBullet bullet);

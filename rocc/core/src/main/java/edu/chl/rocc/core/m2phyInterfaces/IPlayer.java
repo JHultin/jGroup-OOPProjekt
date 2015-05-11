@@ -11,30 +11,33 @@ public interface IPlayer {
 
     public void jump();
 
-    /*
+    /**
     * Move the front character in a given direction.
     */
     public void move(Direction dir);
 
-    /*
+    /**
     * Move the follower characters towards the front character.
     */
     public void moveFollowers(Direction dir);
 
-    /*
-    * Returns the x-coordinate of the character.
+    /**
+    * @return x-coordinate of the character.
     */
     public float getCharacterXPos(int i);
 
-    /*
-    * Returns the y-coordinate of the character.
+    /**
+    * @return y-coordinate of the character.
     */
     public float getCharacterYPos(int i);
 
-    /*
+    /**
     * Adds a character to the character list.
     */
     public void addCharacter(ICharacter c);
 
+    /**
+     * @return list of all characters.
+     */
     public List<ICharacter> getCharacters();
 }

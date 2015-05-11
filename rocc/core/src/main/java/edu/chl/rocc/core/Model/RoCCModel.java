@@ -51,8 +51,8 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void shoot(){
-        level.createBullet();
+    public void shoot(float x, float y){
+        level.createBullet(this.getCharacterXPos(0), this.getCharacterYPos(0));
     }
 
     @Override
@@ -100,11 +100,6 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public List<IBullet> getBullets(){
         return level.getBullets();
-    }
-
-    @Override
-    public void createBullet(){
-        level.createBullet();
     }
 
     @Override

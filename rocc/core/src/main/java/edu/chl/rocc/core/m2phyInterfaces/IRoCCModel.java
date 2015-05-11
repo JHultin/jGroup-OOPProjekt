@@ -15,40 +15,40 @@ public interface IRoCCModel{
 
     public void constructWorld(TiledMap tMap);
 
-    /*
+    /**
     * Move the character in a given direction.
     */
     public void moveSideways(Direction dir);
 
-    /*
+    /**
     * Move the followers in a given direction.
     */
     public void moveFollowers(Direction dir);
 
-    /*
+    /**
     * Make the character jump by changing its y-coordinate.
     */
     public void jump();
 
-    public void shoot();
+    public void shoot(float x, float y);
 
-    /*
-    * Returns the x-coordinate of the given character.
+    /**
+    * @return x-coordinate of the given character.
     */
     public float getCharacterXPos(int i);
 
-    /*
-    * Returns the y-coordinate of the given character.
+    /**
+    * @return y-coordinate of the given character.
     */
     public float getCharacterYPos(int i);
 
-    /*
-    * Returns the level.
+    /**
+    * @return the level.
     */
     public ILevel getLevel();
 
-    /*
-    * Returns the player.
+    /**
+    * @return the player.
     */
     public IPlayer getPlayer();
 
@@ -58,19 +58,19 @@ public interface IRoCCModel{
 
     public void addFood (IFood food);
 
-    /*
-    * Returns a list of all current existing projectiles in the level.
+    /**
+    * @return list of all current existing projectiles in the level.
     */
     public List<IBullet> getBullets();
 
-    /*
+    /**
     * Creates a bullet/projectile.
     * Add it to list of current existing projectiles.
     */
-    public void createBullet();
+    //public void createBullet();
 
-    /*
-    * Returns a list of all the playable characters.
+    /**
+    * @return list of all the playable characters.
     */
     public List<ICharacter> getCharacters();
 

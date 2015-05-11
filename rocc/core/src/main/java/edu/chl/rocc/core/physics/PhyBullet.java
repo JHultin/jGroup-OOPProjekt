@@ -24,14 +24,14 @@ public class PhyBullet implements IBullet {
     private final Body body;
     private final Vec2 direction;
 
-    public PhyBullet(World world, float x, float y, Vec2 vec){
+    public PhyBullet(World world, float x, float y, Vec2 vec, String name){
         this.world = world;
         this.direction = vec;
         //this.width = 5 / PPM;
         //this.height = 5 / PPM;
-        this.x = x;
-        this.y = y;
-        this.bullet = new Bullet(x, y);
+        this.x = x / PPM;
+        this.y = y / PPM;
+        this.bullet = new Bullet(x, y, name);
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -46,25 +46,35 @@ public class PhyBullet implements IBullet {
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
-        body.createFixture(fDef).setUserData("body");
+        body.createFixture(fDef).setUserData("bullet");
 
-        this.fire(direction);
+        //Fire the bullet.
+        //this.fire(direction);
+        //this.fire(vec);
     }
 
-    /*
-    * Fire the projectile in a given direction.
-    */
-    public void fire(Vec2 vec){
-        body.setLinearVelocity(vec);
+    @Override
+    public void fire(){
+        body.setLinearVelocity(this.getDirection());
+        System.out.println("PEW! x: " + this.getX() + " , y: " + this.getY());
     }
 
     @Override
     public float getX(){
-        return this.x * PPM - 16;
+        return this.x * PPM + 16;
     }
 
     @Override
     public float getY(){
-        return this.y * PPM - 16;
+        return this.y * PPM + 16;
+    }
+
+    @Override
+    public String getName(){
+        return this.bullet.getName();
+    }
+
+    public Vec2 getDirection(){
+        return this.direction;
     }
 }

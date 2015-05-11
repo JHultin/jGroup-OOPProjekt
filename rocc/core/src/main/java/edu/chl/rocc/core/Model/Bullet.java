@@ -12,19 +12,29 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
 public class Bullet implements IBullet {
 
     private final float x, y;
+    private final String name;
 
-    public Bullet(float x, float y){
-        this.x = x;
-        this.y = y;
+    public Bullet(float x, float y, String name){
+        this.x = x / PPM;
+        this.y = y / PPM;
+        this.name = name;
     }
 
     @Override
+    public void fire(){ }
+
+    @Override
     public float getX(){
-        return this.x * PPM - 16;
+        return this.x * PPM + 16;
     }
 
     @Override
     public float getY(){
-        return this.y * PPM - 16;
+        return this.y * PPM + 16;
+    }
+
+    @Override
+    public String getName(){
+        return this.name;
     }
 }
