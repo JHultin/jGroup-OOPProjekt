@@ -37,7 +37,7 @@ public class PhyBullet implements IBullet {
         shape.setRadius(5);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
-        fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
+        fDef.filter.categoryBits = BitMask.BIT_BULLET;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         body.createFixture(fDef).setUserData("bullet");
 
