@@ -42,7 +42,6 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
 
 
-
     protected AbstractMenuView(IRoCCModel model){
         this.model = model;
         observerArrayList = new ArrayList<IViewObserver>();

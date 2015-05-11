@@ -80,7 +80,13 @@ public class RoCCController implements Runnable{
             thread = new Thread(this);
             thread.start();
             isRunning = true;
-        } else if("options".equals(str)){
+        } else if("loadGame".equals(str)){
+            isRunning = false;
+            thread.interrupt();
+            thread = new Thread(this);
+            thread.start();
+            isRunning = true;
+        }else if("options".equals(str)){
             isRunning = false;
             thread.interrupt();
             thread = new Thread(this);

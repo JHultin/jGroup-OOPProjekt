@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by Jacob on 2015-05-11.
  */
-public class OptionsView extends AbstractMenuView{
+public class OptionsMenuView extends AbstractMenuView{
 
     //Options title
     private Label.LabelStyle titleStyle;
@@ -28,10 +28,7 @@ public class OptionsView extends AbstractMenuView{
 
     private TextButton backButton;
 
-
-
-
-    public OptionsView(IRoCCModel model){
+    public OptionsMenuView(IRoCCModel model){
         super(model);
     }
 
@@ -66,35 +63,6 @@ public class OptionsView extends AbstractMenuView{
         stage.addActor(table);
     }
 
-    @Override
-    public void render(float delta) {
-        super.render(delta);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        super.resize(width,height);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
 
     public void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);

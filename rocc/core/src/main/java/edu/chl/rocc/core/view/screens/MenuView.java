@@ -82,27 +82,6 @@ public class MenuView extends AbstractMenuView {
 
     }
 
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
-
     /**
      * Creating buttons
      */
@@ -127,7 +106,6 @@ public class MenuView extends AbstractMenuView {
         newGameButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                System.out.println("New Game");
                 notifyObserver("game");
             }
         });
@@ -135,14 +113,13 @@ public class MenuView extends AbstractMenuView {
         loadGameButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                System.out.println("Load Game");
+                notifyObserver("loadGame");
             }
         });
 
         optionsButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                System.out.println("Options");
                 notifyObserver("options");
             }
         });
