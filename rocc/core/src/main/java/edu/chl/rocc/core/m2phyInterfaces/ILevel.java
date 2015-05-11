@@ -23,7 +23,6 @@ public interface ILevel {
 
     public void removeFood(IFood food);
 
-<<<<<<< HEAD
     /*
     * Create a bullet/projectile.
     */
@@ -43,11 +42,10 @@ public interface ILevel {
     * Removes a bullet/projectile to the list of existing projectiles.
     */
     public void removeBullet(IBullet bullet);
-=======
+
     public List<IEnemy> getEnemies();
 
     public void addEnemy(IEnemy enemy);
 
     public void removeEnemy(IEnemy enemy);
->>>>>>> jump fixed and enemy created
 }
