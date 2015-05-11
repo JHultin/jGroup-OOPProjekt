@@ -41,8 +41,7 @@ public class RoCCController implements Runnable{
 
         this.gvm.setActiveView("menu");
         this.main.setScreen(this.gvm.getActiveView());
-
-        Gdx.input.setInputProcessor(menuProcessor);
+        System.out.println("main setScreen called");
 
         this.thread = new Thread(this);
         this.thread.start();
