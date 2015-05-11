@@ -15,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.view.IModel;
 import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
