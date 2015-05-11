@@ -36,6 +36,7 @@ public class PhyCharacter implements ICharacter {
         def.position.set(x / PPM, y / PPM);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
+        body.setUserData(this);
 
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
@@ -52,7 +53,7 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData(name);
+        body.createFixture(fDef).setUserData("footSensor");
     }
 
     @Override
