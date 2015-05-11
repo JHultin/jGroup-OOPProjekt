@@ -1,21 +1,17 @@
 package edu.chl.rocc.core.view.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -97,15 +93,16 @@ public class MenuView implements Screen, IViewObservable {
         table.add(titleLabel);
         table.row();
         //adds the button to the table
-        table.add(newGameButton);
+        float buttonWidth = 200;
+        table.add(newGameButton).width(buttonWidth);
         table.row();
-        table.add(loadGameButton);
+        table.add(loadGameButton).width(buttonWidth);
         table.row();
-        table.add(optionsButton);
+        table.add(optionsButton).width(buttonWidth);
         table.row();
-        table.add(highscoreButton);
+        table.add(highscoreButton).width(buttonWidth);
         table.row();
-        table.add(exitButton);
+        table.add(exitButton).width(buttonWidth);
 
         //Adds spacing to bottom
         for(Cell cell : table.getCells()){
@@ -185,6 +182,8 @@ public class MenuView implements Screen, IViewObservable {
         optionsButton.pad(20);
         highscoreButton.pad(20);
         exitButton.pad(20);
+
+
 
         /**
          * add listener to buttons

@@ -49,9 +49,6 @@ public class PlayView implements Screen,IViewObservable{
     private ArrayList<IViewObserver> observerArrayList;
 
     //HUD test
-  /*  private SpriteBatch hudBatch;
-    private OrthographicCamera hudCam;
-*/
     private BitmapFont scoreFont = new BitmapFont();
     private Label.LabelStyle scoreStyle;
     private Label scoreLabel;
@@ -153,6 +150,8 @@ public class PlayView implements Screen,IViewObservable{
         cam.viewportWidth = width;
         cam.viewportHeight = height;
         cam.update();
+
+        stage.getViewport().update(width,height,false);
     }
 
     @Override
