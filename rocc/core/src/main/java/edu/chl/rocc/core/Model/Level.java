@@ -99,4 +99,6 @@ public class Level implements ILevel {
         enemies.remove(enemy);
     }
 
+    @Override
+    public void setAim(float x, float y){ }
 }

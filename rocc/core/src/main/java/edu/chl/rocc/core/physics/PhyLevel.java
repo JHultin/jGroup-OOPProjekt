@@ -22,6 +22,8 @@ public class PhyLevel implements ILevel {
     private final World world;
     public static boolean isUpdating;
 
+    private Vec2 aim;
+
     public PhyLevel(World world) {
         this.world = world;
         this.level = new Level();
@@ -59,7 +61,7 @@ public class PhyLevel implements ILevel {
 
     @Override
     public void createBullet(float x, float y){
-        IBullet bullet = new PhyBullet(this.getWorld(), x, y, new Vec2(100 / PPM, 0), "");
+        IBullet bullet = new PhyBullet(this.getWorld(), x, y, this.getAim(), "");
         this.addBullet(bullet);
         bullet.fire();
     }
@@ -113,5 +115,14 @@ public class PhyLevel implements ILevel {
         hash += world.hashCode();
         // hash += level.hashCode(); // For when level gets a hashCode
         return hash;
+    }
+
+    @Override
+    public void setAim(float x, float y){
+        this.aim = new Vec2(x / PPM, y / PPM);
+    }
+
+    public Vec2 getAim(){
+        return this.aim;
     }
 }

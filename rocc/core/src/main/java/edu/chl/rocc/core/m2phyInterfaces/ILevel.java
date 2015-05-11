@@ -48,4 +48,6 @@ public interface ILevel {
     public void addEnemy(IEnemy enemy);
 
     public void removeEnemy(IEnemy enemy);
+
+    public void setAim(float x, float y);
 }

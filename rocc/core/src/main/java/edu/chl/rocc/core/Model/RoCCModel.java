@@ -54,6 +54,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void shoot(float x, float y){
+        level.setAim(x, y);
         level.createBullet(this.getCharacterXPos(0), this.getCharacterYPos(0));
     }
 
