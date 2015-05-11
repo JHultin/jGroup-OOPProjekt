@@ -1,9 +1,7 @@
 package edu.chl.rocc.core.view.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -12,7 +10,7 @@ import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 /**
  * Created by Jacob on 2015-05-11.
  */
-public class LoadMenuView extends AbstractMenuView {
+public class HighscoreMenuView extends AbstractMenuView {
 
     //Options title
     private Label.LabelStyle titleStyle;
@@ -20,7 +18,7 @@ public class LoadMenuView extends AbstractMenuView {
 
     private TextButton backButton;
 
-    public LoadMenuView(IRoCCModel model){
+    public HighscoreMenuView(IRoCCModel model){
         super(model);
     }
 
@@ -33,7 +31,7 @@ public class LoadMenuView extends AbstractMenuView {
          */
         //initialize the titleStyle and titleLabel
         titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("Load Game", titleStyle);
+        titleLabel = new Label("Highscore", titleStyle);
         titleLabel.setFontScale(2);
 
 
@@ -73,6 +71,5 @@ public class LoadMenuView extends AbstractMenuView {
             }
         });
 
-    }}
-
-
+    }
+}
