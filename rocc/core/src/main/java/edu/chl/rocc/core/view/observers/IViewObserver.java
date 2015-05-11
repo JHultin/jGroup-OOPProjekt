@@ -1,6 +1,5 @@
 package edu.chl.rocc.core.view.observers;
 
-import edu.chl.rocc.core.view.GameView;
 
 /**
  * The observers update method is called
@@ -11,6 +10,6 @@ public interface IViewObserver {
 
     //Have to figure out which parameters to send through
     //TODO
-    public void viewUpdated();
+    public void viewUpdated(String screen);
 
 }

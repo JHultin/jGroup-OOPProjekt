@@ -83,7 +83,9 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void updateWorld(float dt){level.updateWorld(dt); }
+    public void updateWorld(float dt){
+        level.updateWorld(dt);
+    }
 
     @Override
     public List<IFood> getFoods() {

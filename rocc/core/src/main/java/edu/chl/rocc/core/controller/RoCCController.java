@@ -1,11 +1,15 @@
 package edu.chl.rocc.core.controller;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.RoCCView;
+import edu.chl.rocc.core.view.ViewFactory;
+import edu.chl.rocc.core.view.observers.IViewObservable;
+import edu.chl.rocc.core.view.observers.IViewObserver;
 
 import java.util.ArrayList;
 
@@ -23,14 +27,14 @@ public class RoCCController implements Runnable{
     private RoCCView main;
 
 
-    public RoCCController(IRoCCModel model, RoCCView main){
+    public RoCCController(IRoCCModel model, RoCCView main, IViewObservable observable){
         this.model = model;
         this.main = main;
         gameProcessor = new GameProcessor();
-        menuProcessor = new MenuProcessor();
+        menuProcessor = new MenuProcessor(observable);
 
-         Gdx.input.setInputProcessor(gameProcessor);
-       //Gdx.input.setInputProcessor(menuProcessor);
+       // Gdx.input.setInputProcessor(gameProcessor);
+        Gdx.input.setInputProcessor(menuProcessor);
 
         thread = new Thread(this);
         thread.start();
@@ -44,12 +48,14 @@ public class RoCCController implements Runnable{
             Gdx.input.setInputProcessor(gameProcessor);
             thread = new Thread(this);
             thread.start();
+            isRunning = true;
         } else if ("menu".equals(str)){
             isRunning = false;
             thread.interrupt();
             Gdx.input.setInputProcessor(menuProcessor);
             thread = new Thread(this);
             thread.start();
+            isRunning = true;
         }
     }
 
@@ -100,6 +106,8 @@ public class RoCCController implements Runnable{
                 model.jump();
             else if (!keys.contains(keycode))
                 keys.add(keycode);
+                //TEST
+                System.out.println("Typed");
             return false;
         }
 
@@ -145,10 +153,11 @@ public class RoCCController implements Runnable{
     /**
      * An inner class to handle the menu input.
      */
-    private class MenuProcessor implements InputProcessor{
+    private class MenuProcessor implements InputProcessor, IViewObserver{
 
-        private MenuProcessor (){
 
+        private MenuProcessor (IViewObservable observable){
+            observable.register(this);
         }
 
         @Override
@@ -189,6 +198,15 @@ public class RoCCController implements Runnable{
         @Override
         public boolean scrolled(int amount) {
             return false;
+        }
+
+
+        @Override
+        public void viewUpdated(String screen) {
+            if(screen.equals("PLAY")) {
+                main.setScreen(screen);
+                setState("game");
+            }
         }
     }
 }
