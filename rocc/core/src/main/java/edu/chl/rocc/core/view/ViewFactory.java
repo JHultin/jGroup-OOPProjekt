@@ -3,6 +3,7 @@ package edu.chl.rocc.core.view;
 import com.badlogic.gdx.Screen;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.screens.MenuView;
+import edu.chl.rocc.core.view.screens.OptionsView;
 import edu.chl.rocc.core.view.screens.PlayView;
 
 /**
@@ -16,6 +17,9 @@ public class ViewFactory {
         }
         if(view.equals("menu")){
             return new MenuView(model);
+        }
+        if(view.equals("options")){
+            return new OptionsView(model);
         }
         return null;
     }

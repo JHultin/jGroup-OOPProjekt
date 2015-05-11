@@ -76,6 +76,12 @@ public class RoCCController implements Runnable{
             thread = new Thread(this);
             thread.start();
             isRunning = true;
+        } else if("options".equals(str)){
+            isRunning = false;
+            thread.interrupt();
+            thread = new Thread(this);
+            thread.start();
+            isRunning = true;
         }
     }
 
@@ -186,6 +192,10 @@ public class RoCCController implements Runnable{
         public void viewUpdated(String screen) {
             if (screen.equals("game"))
                 setState("game");
+            else if (screen.equals("options"))
+                setState("options");
+            else if (screen.equals("menu"))
+                setState("menu");
         }
     }
 
