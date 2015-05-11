@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.Level;
+import org.jbox2d.dynamics.Body;
 
 import java.util.List;
 
@@ -58,6 +59,8 @@ public interface IRoCCModel{
     public List<IFood> getFoods();
 
     public void addFood (IFood food);
+
+    public void removeBodies(List<Body> bodiesToRemove);
 
     /**
     * @return list of all current existing projectiles in the level.

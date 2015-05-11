@@ -15,6 +15,7 @@ import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 import edu.chl.rocc.core.view.screens.PlayView;
+import org.jbox2d.dynamics.Body;
 
 import javax.swing.text.View;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class RoCCController implements Runnable{
     private final RoCCView main;
     private final GameViewManager gvm;
     private boolean inGame;
+    private CollisionListener collisionListener;
 
     private ViewChooser viewChooser;
 
@@ -63,7 +65,8 @@ public class RoCCController implements Runnable{
             TiledMap tiledMap = new TmxMapLoader().load("ground-food-map.tmx");
             ((PlayView) gvm.getActiveView()).setMap(tiledMap);
             model.constructWorld(tiledMap);
-            model.setCollisionListener(new CollisionListener());
+            this.collisionListener = new CollisionListener();
+            model.setCollisionListener(this.collisionListener);
             isRunning = false;
             thread.interrupt();
             Gdx.input.setInputProcessor(gameProcessor);
@@ -128,6 +131,7 @@ public class RoCCController implements Runnable{
             }
             model.moveFollowers(dir);
             model.updateWorld(updateSpeed);
+            model.removeBodies(collisionListener.getBodiesToRemove());
         }
 
         @Override

@@ -6,6 +6,7 @@ import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.physics.PhyBullet;
+import org.jbox2d.dynamics.Body;
 
 import java.util.List;
 
@@ -96,6 +97,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void addFood(IFood food) {
         level.addFood(food);
+    }
+
+    @Override
+    public void removeBodies(List<Body> bodiesToRemove) {
+
     }
 
     @Override
