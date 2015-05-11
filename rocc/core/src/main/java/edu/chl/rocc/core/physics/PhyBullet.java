@@ -54,12 +54,12 @@ public class PhyBullet implements IBullet {
 
     @Override
     public float getX(){
-        return body.getPosition().x * PPM + 16;
+        return body.getPosition().x * PPM - 16;
     }
 
     @Override
     public float getY(){
-        return body.getPosition().y * PPM + 16;
+        return body.getPosition().y * PPM - 16;
     }
 
     @Override
