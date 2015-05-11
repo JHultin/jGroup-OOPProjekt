@@ -31,19 +31,11 @@ public class MenuView implements Screen, IViewObservable {
 
     private IRoCCModel model;
 
-    private BitmapFont titleFont = new BitmapFont();
-   // private BitmapFont font = new BitmapFont();
-
-    private TextButton newGame, exit;
-
-
     private String title = "Ruins of Corrosa City";
-
 
     private ArrayList<IViewObserver> observerArrayList;
 
 
-    //Test
     private Stage stage;
     private TextureAtlas textureAtlas;
     private Skin skin;

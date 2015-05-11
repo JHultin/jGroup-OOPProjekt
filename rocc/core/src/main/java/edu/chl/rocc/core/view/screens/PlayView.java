@@ -2,9 +2,11 @@ package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -14,6 +16,9 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
 import java.util.List;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
@@ -43,12 +48,45 @@ public class PlayView implements Screen,IViewObservable{
 
     private ArrayList<IViewObserver> observerArrayList;
 
+    //HUD test
+  /*  private SpriteBatch hudBatch;
+    private OrthographicCamera hudCam;
+*/
+    private BitmapFont scoreFont = new BitmapFont();
+    private Label.LabelStyle scoreStyle;
+    private Label scoreLabel;
+
+    private Stage stage;
+    private Table table;
+    //HUD TEST END
+
+
     public PlayView(IRoCCModel model){
         this.model = model;
 
 
         batch = new SpriteBatch();
         cam = new OrthographicCamera();
+
+        //HUDTEST
+    /*    hudBatch = new SpriteBatch();
+        hudCam = new OrthographicCamera();
+        scoreFont.setColor(Color.BLACK);
+*/
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+        table = new Table();
+        table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+
+        scoreStyle = new Label.LabelStyle(scoreFont,Color.BLACK);
+        scoreLabel = new Label("Score: 1337", scoreStyle);
+        scoreLabel.setFontScale(2);
+
+        table.add(scoreLabel);
+        stage.addActor(table);
+
+        //HUDTEST END
 
         observerArrayList = new ArrayList<IViewObserver>();
 
@@ -87,6 +125,8 @@ public class PlayView implements Screen,IViewObservable{
         renderer.setView(cam);
         renderer.render();
 
+
+
         batch.begin();
 
         for (ICharacter character : model.getCharacters()){
@@ -101,6 +141,13 @@ public class PlayView implements Screen,IViewObservable{
             batch.draw(textures.get("bullet"), bullet.getX(), bullet.getY());
         }
         batch.end();
+
+
+        //HUD TEST
+        stage.act();
+        stage.draw();
+
+        //HUD TEST END
     }
 
     @Override
