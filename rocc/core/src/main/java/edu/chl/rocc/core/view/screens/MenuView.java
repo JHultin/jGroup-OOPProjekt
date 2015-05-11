@@ -192,7 +192,7 @@ public class MenuView implements Screen, IViewObservable {
             @Override
             public void clicked(InputEvent event,float x, float y){
                 System.out.println("New Game");
-                notifyObserver("PLAY");
+                notifyObserver("game");
             }
         });
 

@@ -28,10 +28,10 @@ public class GameViewManager {
          *  Adds views to a HashMap so that they don't need
          *  to be creating new everytime.
          */
-        viewHashMap.put("PLAY",ViewFactory.createView("PLAY", model));
-        viewHashMap.put("MENU", ViewFactory.createView("MENU", model));
+        viewHashMap.put("game", ViewFactory.createView("game", model));
+        viewHashMap.put("menu", ViewFactory.createView("menu", model));
 
-        activeView = viewHashMap.get("MENU");
+        activeView = viewHashMap.get("menu");
      }
 
 

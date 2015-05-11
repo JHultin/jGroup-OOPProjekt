@@ -7,6 +7,8 @@ import com.badlogic.gdx.InputProcessor;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.RoCCView;
+import edu.chl.rocc.core.physics.PhyRoCCModel;
+import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -24,24 +26,32 @@ public class RoCCController implements Runnable{
     private float updateSpeed = 1 / 60f;
     private GameProcessor gameProcessor;
     private MenuProcessor menuProcessor;
-    private RoCCView main;
+    private final RoCCView main;
+    private final GameViewManager gvm;
 
 
-    public RoCCController(IRoCCModel model, RoCCView main, IViewObservable observable){
-        this.model = model;
+    public RoCCController(RoCCView main){
+        this.model = new PhyRoCCModel();
         this.main = main;
-        gameProcessor = new GameProcessor();
-        menuProcessor = new MenuProcessor(observable);
 
-       // Gdx.input.setInputProcessor(gameProcessor);
+        this.gvm = new GameViewManager(model);
+
+        this.gameProcessor = new GameProcessor();
+        this.menuProcessor = new MenuProcessor(this.gvm.getViewObserver());
+
+        this.gvm.setActiveView("menu");
+        this.main.setScreen(this.gvm.getActiveView());
+
         Gdx.input.setInputProcessor(menuProcessor);
 
-        thread = new Thread(this);
-        thread.start();
+        this.thread = new Thread(this);
+        this.thread.start();
 
     }
 
     public void setState(String str){
+        gvm.setActiveView(str);
+        main.setScreen(gvm.getActiveView());
         if (str.equals("game")) {
             isRunning = false;
             thread.interrupt();
@@ -205,10 +215,8 @@ public class RoCCController implements Runnable{
 
         @Override
         public void viewUpdated(String screen) {
-            if(screen.equals("PLAY")) {
-                main.setScreen(screen);
+            if (screen.equals("game"))
                 setState("game");
-            }
         }
     }
 }
