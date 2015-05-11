@@ -58,7 +58,6 @@ public class PhyRoCCModel implements IRoCCModel {
     public void constructWorld(TiledMap tMap) {
 
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
-        this.world.setContactListener(new CollisionListener());
         this.factory = new PhyRoCCFactory(world);
         model = new RoCCModel(factory);
 
@@ -213,6 +212,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addEnemy (IEnemy enemy){
         model.addEnemy(enemy);
+    }
+
+    @Override
+    public void setCollisionListener(CollisionListener collisionListener) {
+        this.world.setContactListener(collisionListener);
     }
 }
 
