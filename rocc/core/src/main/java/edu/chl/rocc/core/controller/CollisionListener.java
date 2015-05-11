@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.controller;
 
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.m2phyInterfaces.ICollisionListener;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import edu.chl.rocc.core.model.Player;
@@ -15,7 +16,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 /**
  * Created by Yen on 2015-05-02.
  */
-public class CollisionListener implements ContactListener {
+public class CollisionListener implements ContactListener, ICollisionListener {
 
     //called when contact between two fixtures begins
     @Override
