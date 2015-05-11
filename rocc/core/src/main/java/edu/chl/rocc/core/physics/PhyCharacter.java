@@ -78,7 +78,6 @@ public class PhyCharacter implements ICharacter {
     @Override
     public void move(Direction dir) {
         if (dir != direction && (characterOnGround > 0)) {
-           // if (characterOnGround > 0) {
                 if (dir.equals(Direction.LEFT)) {
                     body.setLinearVelocity(new Vec2(-200 / PPM, 0));
                     leftV = leftV + 1;
@@ -98,7 +97,7 @@ public class PhyCharacter implements ICharacter {
                         rightV = rightV - 1;
                     }
                 }
-           // }
+            direction = dir;
         }
     }
 
@@ -116,9 +115,6 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void hitGround(){
-        if(characterOnGround == 0) {
-            body.setLinearVelocity(new Vec2(0,0));
-        }
         characterOnGround++;
     }
 

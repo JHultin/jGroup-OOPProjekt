@@ -131,10 +131,8 @@ public class RoCCController implements Runnable{
                 dir = Direction.LEFT;
             else
                 dir = Direction.NONE;
-            if (dir != lastDir){
-                model.moveSideways(dir);
-                lastDir = dir;
-            }
+
+            model.moveSideways(dir);
             model.moveFollowers(dir);
             model.updateWorld(updateSpeed);
             model.removeBodies(collisionListener.getBodiesToRemove());
