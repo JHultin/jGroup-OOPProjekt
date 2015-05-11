@@ -47,12 +47,12 @@ public class RoCCController implements Runnable{
         this.gvm.setActiveView("menu");
         this.main.setScreen(this.gvm.getActiveView());
 
-        viewChooser = new ViewChooser(gvm.getViewObserver());
 
         this.inGame = false;
 
         this.thread = new Thread(this);
         this.thread.start();
+        viewChooser = new ViewChooser(gvm.getViewObserver());
 
     }
 
@@ -185,19 +185,22 @@ public class RoCCController implements Runnable{
      */
     public class ViewChooser implements  IViewObserver{
 
+        private IViewObservable observable;
+
         public ViewChooser(IViewObservable observerable){
-            observerable.register(this);
+            this.observable = observerable;
+            this.observable.register(this);
         }
 
         @Override
         public void viewUpdated(String screen) {
-            if (screen.equals("game"))
-                setState("game");
-            if (screen.equals("options"))
-                setState("options");
-            if (screen.equals("menu"))
-                setState("menu");
+            setState(screen);
+            observable = gvm.getViewObserver();
+            observable.register(this);
         }
+
+
+
     }
 
 

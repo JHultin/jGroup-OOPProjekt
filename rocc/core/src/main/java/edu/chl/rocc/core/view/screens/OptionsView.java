@@ -184,7 +184,6 @@ public class OptionsView implements Screen, IViewObservable{
     public void notifyObserver(String screen) {
         for(IViewObserver observer : observerArrayList){
             observer.viewUpdated(screen);
-            System.out.println("menu");
         }
     }
 }
