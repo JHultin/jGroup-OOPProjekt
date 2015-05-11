@@ -18,14 +18,17 @@ public class PhyBullet implements IBullet {
 
     private final World world;
     private final IBullet bullet;
+    private float velocity;
 
     private final Body body;
-    private final Vector2 direction;
+    //private final Vector2 direction;
 
-    public PhyBullet(World world, float x, float y, Vector2 vec, String name){
+    public PhyBullet(World world, float x, float y, float xDir, float yDir, String name){
         this.world = world;
-        this.direction = vec;
+        //this.direction = vec;
         this.bullet = new Bullet(x / PPM, y / PPM, name);
+
+        this.velocity = 500 / PPM;
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -41,11 +44,12 @@ public class PhyBullet implements IBullet {
         fDef.filter.categoryBits = BitMask.BIT_BULLET;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         body.createFixture(fDef).setUserData("bullet");
+        body.setLinearVelocity(new Vec2(xDir * velocity, yDir * velocity));
     }
 
     @Override
     public void fire(){
-        body.setLinearVelocity(this.getVelocity());
+        //body.setLinearVelocity(this.getVelocity());
     }
 
     @Override
@@ -63,11 +67,18 @@ public class PhyBullet implements IBullet {
         return this.bullet.getName();
     }
 
+    /*
     public Vector2 getDirection(){
         return this.direction;
     }
 
+    public void setVelocity(Vec2 vec){
+        this.velocity = vec;
+    }
+
+
     public Vec2 getVelocity(){
         return new Vec2(500 / PPM, 0);
     }
+    */
 }

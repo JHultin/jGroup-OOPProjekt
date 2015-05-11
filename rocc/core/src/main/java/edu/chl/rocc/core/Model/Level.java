@@ -65,7 +65,7 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void createBullet(float x, float y){
+    public void createBullet(float x, float y, float xDir, float yDir){
 
     }
 

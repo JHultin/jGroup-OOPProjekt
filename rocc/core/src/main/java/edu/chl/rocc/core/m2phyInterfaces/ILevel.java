@@ -26,7 +26,7 @@ public interface ILevel {
     /**
     * Create a bullet/projectile.
     */
-    public void createBullet(float x, float y);
+    public void createBullet(float x, float y, float xDir, float yDir);
 
     /**
     * Returns a list of all current existing projectiles in the level.

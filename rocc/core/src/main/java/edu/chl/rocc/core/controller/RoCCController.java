@@ -154,7 +154,15 @@ public class RoCCController implements Runnable{
 
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-            model.shoot(screenX, Gdx.graphics.getHeight() - screenY);
+
+            double xd = screenX - Gdx.graphics.getWidth() / 2;
+            double yd = Gdx.graphics.getHeight() / 2 - screenY;
+
+            double k = 1.0 / Math.sqrt(Math.pow(xd, 2) + Math.pow(yd, 2));
+            float x = (float)(xd * k);
+            float y = (float)(yd * k);
+
+            model.shoot(x, y);
             return false;
         }
 

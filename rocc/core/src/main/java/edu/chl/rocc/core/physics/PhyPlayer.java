@@ -41,8 +41,8 @@ public class PhyPlayer implements IPlayer {
         this.player.moveFollowers(dir);
     }
 
-    public void shoot(float x, float y, Vector2 vec){
-        createBullet(x, y, vec, "");
+    public void shoot(float x, float y, float xDir, float yDir){
+        createBullet(x, y, xDir, yDir, "");
     }
 
     @Override
@@ -73,7 +73,7 @@ public class PhyPlayer implements IPlayer {
     * Creates and fires a bullet.
     * Temporarily placed in PhyPlayer, will later be moved to a Weapon class.
     */
-    public void createBullet(float x, float y, Vector2 vec, String name){
-        IBullet bullet = new PhyBullet(this.world, x, y, vec, name);
+    public void createBullet(float x, float y, float xDir, float yDir, String name){
+        IBullet bullet = new PhyBullet(this.world, x, y, xDir, yDir, name);
     }
 }
