@@ -42,9 +42,13 @@ public interface ICharacter {
     */
     public void jump();
 
+    public void hitGround();
+
+    public void leftGround();
+
     /**
-    * @return x-coordinate of the character.
-    */
+     * @return x-coordinate of the character.
+     */
     public float getX();
 
     /**

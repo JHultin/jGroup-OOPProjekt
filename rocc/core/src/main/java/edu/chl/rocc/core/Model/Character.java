@@ -56,6 +56,16 @@ public class Character implements ICharacter {
     public void jump(){}
 
     @Override
+    public void hitGround() {
+
+    }
+
+    @Override
+    public void leftGround() {
+
+    }
+
+    @Override
     public void moveFollower(Direction dir){}
 
     @Override

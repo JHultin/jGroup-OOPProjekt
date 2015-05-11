@@ -8,13 +8,14 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.RoCCModel;
+import jdk.nashorn.internal.ir.Flags;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.collision.shapes.PolygonShape;
-import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -36,10 +37,7 @@ public class PhyRoCCModel implements IRoCCModel {
     private IRoCCModel model;
     private World world;
 
-    public PhyRoCCModel(){
-        this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
-        this.factory = new PhyRoCCFactory(world);
-        model = new RoCCModel(factory);
+    public PhyRoCCModel() {
 
         //Change cursor/crosshair
         Pixmap pm = new Pixmap(Gdx.files.internal("crosshair.png"));
@@ -52,25 +50,31 @@ public class PhyRoCCModel implements IRoCCModel {
         this.model.aim(x, y);
     }
 
-    public Vec2 getAim(){
+    public Vec2 getAim() {
         return null;
     }
 
     @Override
     public void constructWorld(TiledMap tMap) {
+
+        this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
+        this.world.setContactListener(new CollisionListener());
+        this.factory = new PhyRoCCFactory(world);
+        model = new RoCCModel(factory);
+
         // Get the layer with information about the solid ground
-        TiledMapTileLayer tileLayer = (TiledMapTileLayer)tMap.getLayers().get("ground");
+        TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get("ground");
 
         BodyDef bDef = new BodyDef();
         FixtureDef fDef = new FixtureDef();
 
         ChainShape cs = new ChainShape();
         Vec2[] v = new Vec2[5];
-        v[0] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
-        v[1] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
-        v[2] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM,  PhyConstants.BLOCK_SIZE/2/PPM);
-        v[3] = new Vec2(  PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
-        v[4] = new Vec2( -PhyConstants.BLOCK_SIZE/2/PPM, -PhyConstants.BLOCK_SIZE/2/PPM);
+        v[0] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
+        v[1] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, PhyConstants.BLOCK_SIZE / 2 / PPM);
+        v[2] = new Vec2(PhyConstants.BLOCK_SIZE / 2 / PPM, PhyConstants.BLOCK_SIZE / 2 / PPM);
+        v[3] = new Vec2(PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
+        v[4] = new Vec2(-PhyConstants.BLOCK_SIZE / 2 / PPM, -PhyConstants.BLOCK_SIZE / 2 / PPM);
         cs.createChain(v, 5);
 
         bDef.type = BodyType.STATIC;
@@ -79,21 +83,21 @@ public class PhyRoCCModel implements IRoCCModel {
         fDef.friction = 0;
         fDef.shape = cs;
         fDef.filter.categoryBits = BitMask.BIT_GROUND;
-        fDef.filter.maskBits = BitMask.BIT_BODY;
+        fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY;
 
         // Create a tile for each block on the map
-        for (int row = 0; row < tileLayer.getHeight(); row++){
-            for (int col = 0; col < tileLayer.getWidth(); col++){
+        for (int row = 0; row < tileLayer.getHeight(); row++) {
+            for (int col = 0; col < tileLayer.getWidth(); col++) {
                 TiledMapTileLayer.Cell cell = tileLayer.getCell(col, row);
 
                 // If there is a tile at the position
-                if (cell != null && cell.getTile() != null){
+                if (cell != null && cell.getTile() != null) {
 
                     // Create a body definition
 
 
-                    bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) /PPM,
-                            PhyConstants.BLOCK_SIZE * (row + 0.5f) /PPM);
+                    bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
+                            PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
 
                     // And a fixture definition
 
@@ -114,9 +118,9 @@ public class PhyRoCCModel implements IRoCCModel {
         fDef.filter.maskBits = BitMask.BIT_BODY;
         fDef.isSensor = true;
 
-        for(MapObject mapObject : foodLayer.getObjects()){
+        for (MapObject mapObject : foodLayer.getObjects()) {
             float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
-            float y = ((Float) mapObject.getProperties().get("y") + 8)  / PPM;
+            float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
             bDef.position.set(x, y);
 
             IFood food = new PhyFood(x, y);
@@ -133,7 +137,7 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void moveFollowers(Direction dir){
+    public void moveFollowers(Direction dir) {
         this.model.moveFollowers(dir);
     }
 
@@ -163,11 +167,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public IPlayer getPlayer(){
+    public IPlayer getPlayer() {
         return this.model.getPlayer();
     }
 
-    public IRoCCModel getModel(){
+    public IRoCCModel getModel() {
         return model;
     }
 
@@ -187,7 +191,7 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public List<IBullet> getBullets(){
+    public List<IBullet> getBullets() {
         return this.model.getBullets();
     }
 
@@ -200,4 +204,15 @@ public class PhyRoCCModel implements IRoCCModel {
     public List<ICharacter> getCharacters() {
         return model.getCharacters();
     }
+
+    @Override
+    public List<IEnemy> getEnemies () {
+          return model.getEnemies();
+    }
+
+    @Override
+    public void addEnemy (IEnemy enemy){
+        model.addEnemy(enemy);
+    }
 }
+

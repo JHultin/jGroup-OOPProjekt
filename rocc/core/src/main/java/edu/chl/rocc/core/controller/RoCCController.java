@@ -4,12 +4,17 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.RoCCView;
+import edu.chl.rocc.core.physics.PhyRoCCModel;
+import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
+import edu.chl.rocc.core.view.screens.PlayView;
 
 import java.util.ArrayList;
 
@@ -24,31 +29,44 @@ public class RoCCController implements Runnable{
     private float updateSpeed = 1 / 60f;
     private GameProcessor gameProcessor;
     private MenuProcessor menuProcessor;
-    private RoCCView main;
+    private final RoCCView main;
+    private final GameViewManager gvm;
+    private boolean inGame;
 
 
-    public RoCCController(IRoCCModel model, RoCCView main, IViewObservable observable){
-        this.model = model;
+    public RoCCController(RoCCView main){
+        this.model = new PhyRoCCModel();
         this.main = main;
-        gameProcessor = new GameProcessor();
-        menuProcessor = new MenuProcessor(observable);
 
-       // Gdx.input.setInputProcessor(gameProcessor);
-        Gdx.input.setInputProcessor(menuProcessor);
+        this.gvm = new GameViewManager(model);
 
-        thread = new Thread(this);
-        thread.start();
+        this.gameProcessor = new GameProcessor();
+        this.menuProcessor = new MenuProcessor(this.gvm.getViewObserver());
+
+        this.gvm.setActiveView("menu");
+        this.main.setScreen(this.gvm.getActiveView());
+
+        this.inGame = false;
+
+        this.thread = new Thread(this);
+        this.thread.start();
 
     }
 
     public void setState(String str){
+        gvm.setActiveView(str);
+        main.setScreen(gvm.getActiveView());
         if (str.equals("game")) {
+            TiledMap tiledMap = new TmxMapLoader().load("ground-food-map.tmx");
+            ((PlayView) gvm.getActiveView()).setMap(tiledMap);
+            model.constructWorld(tiledMap);
             isRunning = false;
             thread.interrupt();
             Gdx.input.setInputProcessor(gameProcessor);
             thread = new Thread(this);
             thread.start();
             isRunning = true;
+            inGame = true;
         } else if ("menu".equals(str)){
             isRunning = false;
             thread.interrupt();
@@ -63,7 +81,9 @@ public class RoCCController implements Runnable{
     public void run() {
         while (this.isRunning){
             try {
-                gameProcessor.sendUpdate();
+                if (inGame) {
+                    gameProcessor.sendUpdate();
+                }
                 Thread.sleep((long)(updateSpeed * 1000));
             } catch (InterruptedException e) {
                 this.isRunning = false;
@@ -107,8 +127,6 @@ public class RoCCController implements Runnable{
                 model.jump();
             else if (!keys.contains(keycode))
                 keys.add(keycode);
-                //TEST
-                System.out.println("Typed");
             return false;
         }
 
@@ -205,10 +223,8 @@ public class RoCCController implements Runnable{
 
         @Override
         public void viewUpdated(String screen) {
-            if(screen.equals("PLAY")) {
-                main.setScreen(screen);
+            if (screen.equals("game"))
                 setState("game");
-            }
         }
     }
 }

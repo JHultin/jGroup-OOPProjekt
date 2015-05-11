@@ -2,9 +2,11 @@ package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -14,6 +16,10 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
 import java.util.List;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
@@ -43,6 +49,17 @@ public class PlayView implements Screen,IViewObservable{
 
     private ArrayList<IViewObserver> observerArrayList;
 
+    //HUD test
+    private BitmapFont scoreFont = new BitmapFont();
+    private Label.LabelStyle labelStyle;
+    private Label scoreLabel;
+    private Label timeLabel;
+
+    private Stage stage;
+    private Table table;
+    //HUD TEST END
+
+
     public PlayView(IRoCCModel model){
         this.model = model;
 
@@ -50,12 +67,42 @@ public class PlayView implements Screen,IViewObservable{
         batch = new SpriteBatch();
         cam = new OrthographicCamera();
 
+        //HUDTEST
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+        table = new Table();
+        table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        //Initializes the text
+        labelStyle = new Label.LabelStyle(scoreFont,Color.BLACK);
+        scoreLabel = new Label("Score:\n1337", labelStyle);
+        scoreLabel.setFontScale(1);
+        timeLabel = new Label("Time:\n00:00", labelStyle);
+        timeLabel.setFontScale(1);
+
+
+        //adds to table
+        table.add(timeLabel);
+        table.add(scoreLabel);
+        table.setPosition(200,220);
+
+        //Adds spacing to bottom
+        for(Cell cell : table.getCells()){
+            table.getCell(cell.getActor()).pad(15);
+        }
+
+
+        //Add table to stage
+        stage.addActor(table);
+
+        //HUDTEST END
+
         observerArrayList = new ArrayList<IViewObserver>();
 
-        map = new TmxMapLoader().load("ground-food-map.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
+        //map = new TmxMapLoader().load("ground-food-map.tmx");
+        //renderer = new OrthogonalTiledMapRenderer(map);
 
-        this.model.constructWorld(map);
+        //this.model.constructWorld(map);
 
         textures = new HashMap<String, Texture>();
         textures.put("front" , new Texture(Gdx.files.internal("characterSprite.png")));
@@ -87,6 +134,8 @@ public class PlayView implements Screen,IViewObservable{
         renderer.setView(cam);
         renderer.render();
 
+
+
         batch.begin();
 
         for (ICharacter character : model.getCharacters()){
@@ -101,6 +150,12 @@ public class PlayView implements Screen,IViewObservable{
             batch.draw(textures.get("bullet"), bullet.getX(), bullet.getY());
         }
         batch.end();
+
+
+        //HUD TEST
+        stage.act();
+        stage.draw();
+        //HUD TEST END
     }
 
     @Override
@@ -108,6 +163,8 @@ public class PlayView implements Screen,IViewObservable{
         cam.viewportWidth = width;
         cam.viewportHeight = height;
         cam.update();
+
+        stage.getViewport().update(width, height, false);
     }
 
     @Override
@@ -152,6 +209,11 @@ public class PlayView implements Screen,IViewObservable{
         for(IViewObserver observer : observerArrayList){
             observer.viewUpdated(screen);
         }
+    }
+
+    public void setMap(TiledMap tMap){
+        this.map = tMap;
+        this.renderer = new OrthogonalTiledMapRenderer(map);
     }
 
 }

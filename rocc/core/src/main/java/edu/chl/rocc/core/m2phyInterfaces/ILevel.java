@@ -42,4 +42,10 @@ public interface ILevel {
     * Removes a bullet/projectile to the list of existing projectiles.
     */
     public void removeBullet(IBullet bullet);
+
+    public List<IEnemy> getEnemies();
+
+    public void addEnemy(IEnemy enemy);
+
+    public void removeEnemy(IEnemy enemy);
 }

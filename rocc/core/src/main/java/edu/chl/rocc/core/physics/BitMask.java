@@ -10,6 +10,7 @@ public enum BitMask {
     public static final short BIT_BODY = 4;
     public static final short BIT_GROUND = 2;
     public static final short BIT_PICKUPABLE = 8;
+    public static final short BIT_ENEMY = 16;
 };
 
 

@@ -107,4 +107,14 @@ public class RoCCModel implements IRoCCModel {
         return player.getCharacters();
     }
 
+    @Override
+    public List<IEnemy> getEnemies() {
+        return level.getEnemies();
+    }
+
+    @Override
+    public void addEnemy(IEnemy enemy) {
+        level.addEnemy(enemy);
+    }
+
 }

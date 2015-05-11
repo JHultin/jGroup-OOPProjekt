@@ -11,10 +11,10 @@ import edu.chl.rocc.core.view.screens.PlayView;
 public class ViewFactory {
 
     public static Screen createView(String view, IRoCCModel model){
-        if(view.equals("PLAY")){
+        if(view.equals("game")){
              return new PlayView(model);
         }
-        if(view.equals("MENU")){
+        if(view.equals("menu")){
             return new MenuView(model);
         }
         return null;

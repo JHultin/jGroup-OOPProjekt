@@ -74,4 +74,7 @@ public interface IRoCCModel{
     */
     public List<ICharacter> getCharacters();
 
+    public List<IEnemy> getEnemies();
+
+    public void addEnemy(IEnemy enemy);
 }
