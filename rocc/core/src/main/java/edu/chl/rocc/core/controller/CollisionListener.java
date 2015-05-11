@@ -27,10 +27,10 @@ public class CollisionListener implements ContactListener {
             Fixture fb = contact.getFixtureB();
 
             //Kolla om kroppen har en fotsensor, om JA så se vilken kropp den tillhör
-           if (fa.isSensor()) {
+           if ("footSensor".equals(fa.getUserData())) {
                 ((ICharacter)fa.getBody().getUserData()).hitGround();
             }
-            if (fb.isSensor()) {
+            if ("footSensor".equals(fb.getUserData())) {
                     ((ICharacter)fb.getBody().getUserData()).hitGround();
             }
 
@@ -45,18 +45,19 @@ public class CollisionListener implements ContactListener {
     //Called when contact between two fixtures ends
     @Override
     public void endContact(Contact contact){
-            //update world måste vara klar innan detta görs
+        //update world måste vara klar innan detta görs
 
-            Fixture fa = contact.getFixtureA();
-            Fixture fb = contact.getFixtureB();
+        Fixture fa = contact.getFixtureA();
+        Fixture fb = contact.getFixtureB();
 
-            if (fa.isSensor()) {
-                ((ICharacter) fa.getBody().getUserData()).leftGround();
-                if (fb.isSensor()) {
-                    ((ICharacter) fb.getBody().getUserData()).leftGround();
-                }
-            }
+        if ("footSensor".equals(fa.getUserData())) {
+            ((ICharacter) fa.getBody().getUserData()).leftGround();
+        }
+        if ("footSensor".equals(fb.getUserData())) {
+            ((ICharacter) fb.getBody().getUserData()).leftGround();
+        }
     }
+
 
     @Override
     public void preSolve(Contact contact, Manifold manifold) {

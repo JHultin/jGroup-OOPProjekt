@@ -23,11 +23,11 @@ public class PhyCharacter implements ICharacter {
     private int characterOnGround;
 
 
-    public PhyCharacter(World world, int x, int y){
+    public PhyCharacter(World world, int x, int y, String name){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
-        this.character = new Character("");
+        this.character = new Character(name);
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -51,7 +51,7 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.categoryBits = BitMask.BIT_BODY;
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData(this);
+        body.createFixture(fDef).setUserData("footSensor");
     }
 
     @Override
