@@ -135,4 +135,9 @@ public class RoCCModel implements IRoCCModel {
         this.player.addCharacter(name);
     }
 
+    @Override
+    public void dispose(){
+
+    }
+
 }

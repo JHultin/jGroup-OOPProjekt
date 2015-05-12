@@ -228,5 +228,10 @@ public class PhyRoCCModel implements IRoCCModel {
     public void addCharacter(String name) {
         this.model.addCharacter(name);
     }
+
+    @Override
+    public void dispose() {
+        model.dispose();
+    }
 }
 

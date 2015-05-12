@@ -90,6 +90,10 @@ public class RoCCController implements Runnable{
         main.setScreen(gvm.getActiveView());
     }
 
+    public void dispose(){
+        this.gvm.dispose();
+    }
+
     @Override
     public void run() {
         while (this.isRunning){

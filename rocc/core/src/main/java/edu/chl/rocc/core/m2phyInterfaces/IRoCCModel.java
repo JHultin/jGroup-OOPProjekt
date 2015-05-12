@@ -87,4 +87,6 @@ public interface IRoCCModel{
     //public void addCharacter(ICharacter character);
 
     public void addCharacter(String name);
+
+    public void dispose();
 }
