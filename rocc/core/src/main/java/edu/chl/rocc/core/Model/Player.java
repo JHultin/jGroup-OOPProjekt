@@ -59,9 +59,9 @@ public class Player implements IPlayer {
             */
                 float distance = characters.get(0).getX() - characters.get(i).getX();
 
-                if (distance > 80) {
+                if (distance > 20 + i * 60) {
                     characters.get(i).moveFollower(Direction.RIGHT);
-                } else if (distance < -80) {
+                } else if (distance < -(20 + i * 60)) {
                     characters.get(i).moveFollower(Direction.LEFT);
                 } else {
                     characters.get(i).moveFollower(Direction.NONE);

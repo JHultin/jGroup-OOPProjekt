@@ -63,13 +63,14 @@ public class RoCCController implements Runnable{
 
         if (str.equals("game")) {
             TiledMap tiledMap = new TmxMapLoader().load("tileMaps/tilemap1.tmx");
-           // TiledMap tiledMap = new TmxMapLoader().load("ground-food-map.tmx");
             ((PlayView) gvm.getActiveView()).setMap(tiledMap);
             model.constructWorld(tiledMap);
             this.collisionListener = new CollisionListener();
             model.setCollisionListener(this.collisionListener);
-            model.addCharacter("front");
+            model.addCharacter("mother");
             model.addCharacter("follow");
+            model.addCharacter("bigDude");
+            model.addCharacter("enemy");
             isRunning = false;
             thread.interrupt();
             Gdx.input.setInputProcessor(gameProcessor);

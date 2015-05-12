@@ -112,11 +112,12 @@ public class PlayView implements Screen,IViewObservable{
         //this.model.constructWorld(map);
 
         textures = new HashMap<String, Texture>();
-        textures.put("front" , new Texture(Gdx.files.internal("motherCharacter/idleLeft.png")));
-        textures.put("follow", new Texture(Gdx.files.internal("followerSprite.png")));
-        textures.put("food"  , new Texture(Gdx.files.internal("shaitpizza.png")));
-        textures.put("bullet", new Texture(Gdx.files.internal("bullet.png")));
-        textures.put("enemy", new Texture(Gdx.files.internal("enemy.png")));
+        textures.put("mother" , new Texture(Gdx.files.internal("motherCharacter/idleLeft.png")));
+        textures.put("bigDude", new Texture(Gdx.files.internal("characterSprite.png")));
+        textures.put("follow" , new Texture(Gdx.files.internal("followerSprite.png")));
+        textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
+        textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
+        textures.put("enemy"  , new Texture(Gdx.files.internal("enemy.png")));
         //b2dr = new Box2DDebugRenderer();
     }
 
