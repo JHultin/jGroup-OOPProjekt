@@ -39,6 +39,7 @@ public class RoCCView extends Game {
 	@Override
 	public void dispose () {
         super.dispose();
+        this.controller.dispose();
 	}
 
 

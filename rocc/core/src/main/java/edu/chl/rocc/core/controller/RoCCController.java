@@ -92,6 +92,7 @@ public class RoCCController implements Runnable{
 
     public void dispose(){
         this.gvm.dispose();
+        this.model.dispose();
     }
 
     @Override
