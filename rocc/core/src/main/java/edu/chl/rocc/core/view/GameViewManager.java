@@ -49,4 +49,10 @@ public class GameViewManager {
     public IViewObservable getViewObserver(){
         return (IViewObservable)activeView;
     }
+
+    public void dispose(){
+        for (Screen screen : viewHashMap.values()){
+            screen.dispose();
+        }
+    }
 }
