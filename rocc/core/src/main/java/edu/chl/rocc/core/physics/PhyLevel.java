@@ -1,12 +1,9 @@
 package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.math.Vector2;
-import edu.chl.rocc.core.m2phyInterfaces.IBullet;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Level;
 import org.jbox2d.common.Vec2;
-import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
 import jdk.nashorn.internal.ir.Flags;
 import org.jbox2d.dynamics.*;
 
@@ -55,8 +52,8 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public List<IFood> getFoods() {
-        return level.getFoods();
+    public List<IPickupable> getPickupables() {
+        return level.getPickupables();
     }
 
     @Override

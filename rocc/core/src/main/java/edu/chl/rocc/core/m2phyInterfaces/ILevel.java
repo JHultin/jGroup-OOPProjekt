@@ -19,7 +19,7 @@ public interface ILevel {
 
     public void addFood(IFood food);
 
-    public List<IFood> getFoods();
+    public List<IPickupable> getPickupables();
 
     public void removeFood(IFood food);
 

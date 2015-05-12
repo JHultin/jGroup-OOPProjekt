@@ -178,8 +178,8 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public List<IFood> getFoods() {
-        return model.getFoods();
+    public List<IPickupable> getPickupables() {
+        return model.getPickupables();
     }
 
     @Override
