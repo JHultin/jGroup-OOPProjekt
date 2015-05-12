@@ -107,5 +107,8 @@ public class Level implements ILevel {
         for (IBullet bullet : bullets){
             bullet.dispose();
         }
+        for (IEnemy enemy : enemies){
+            enemy.dispose();
+        }
     }
 }

@@ -82,4 +82,10 @@ public class PhyEnemy implements IEnemy {
     public ArrayList movePattern() {
         return null;
     }
+
+    @Override
+    public void dispose() {
+        this.enemy.dispose();
+        world.destroyBody(body);
+    }
 }

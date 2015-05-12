@@ -50,4 +50,9 @@ public class Enemy implements IEnemy{
     public ArrayList movePattern() {
         return null;
     }
+
+    @Override
+    public void dispose() {
+
+    }
 }
