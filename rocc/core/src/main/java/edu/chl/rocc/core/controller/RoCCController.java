@@ -91,6 +91,10 @@ public class RoCCController implements Runnable{
 
         // If a game is started
         if (str.equals("game")) {
+            // Stop the thread
+            this.isRunning = false;
+            this.thread.interrupt();
+
             // Set up the game
             // First construct the world, the level and all pickupables.
             TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-ch.tmx");
@@ -108,8 +112,7 @@ public class RoCCController implements Runnable{
             this.model.addCharacter("bigDude");
 
             // Restart the thread and apply correct inputprocessor
-            this.isRunning = false;
-            this.thread.interrupt();
+
             Gdx.input.setInputProcessor(gameProcessor);
             this.thread = new Thread(this);
             this.thread.start();

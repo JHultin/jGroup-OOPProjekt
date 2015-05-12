@@ -73,7 +73,7 @@ public class PlayView implements Screen,IViewObservable{
         cam = new OrthographicCamera();
 
         stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
+        //Gdx.input.setInputProcessor(stage);
         table = new Table();
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
