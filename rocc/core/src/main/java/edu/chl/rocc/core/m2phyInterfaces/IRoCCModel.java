@@ -15,6 +15,12 @@ public interface IRoCCModel{
 
     public void aim(int x, int y);
 
+    /**
+     * Creates the world, all pickupable items and teh blocks making the level.
+     * The map must contain a tiledLayer named "ground" and objectlayers named "food" and "charcters"
+     * defining the level.
+     * @param tMap map to build of
+     */
     public void constructWorld(TiledMap tMap);
 
     /**
@@ -54,10 +60,24 @@ public interface IRoCCModel{
     */
     public IPlayer getPlayer();
 
+    /**
+     * Updates the physical world, eg. all collisions and movement.
+     * Do not call any methods from any physics object while this is handled
+     * @param dt time since last update
+     */
     public void updateWorld(float dt);
 
+    /**
+     * Returns all pickupable items on the map, used for drawing them
+     * @return a list of all pickupable items
+     */
     public List<IPickupable> getPickupables();
 
+    /**
+     * Removes all items in given list from the world and the level.
+     * Do not call while the world updates
+     * @param itemsToRemove list of items that wil be removed
+     */
     public void removeItems(List<IPickupable> itemsToRemove);
 
     /**
@@ -80,9 +100,20 @@ public interface IRoCCModel{
 
     public void addEnemy(IEnemy enemy);
 
+    /**
+     * Sets a collitionlistener to the world, this will then handle all collistions
+     * @param collisionListener listener to set to the world
+     */
     public void setCollisionListener(CollisionListener collisionListener);
 
+    /**
+     * Creates a new character, adds it to the player and the world
+     * @param name description or id for the character
+     */
     public void addCharacter(String name);
 
+    /**
+     * Called to lower memory leak
+     */
     public void dispose();
 }

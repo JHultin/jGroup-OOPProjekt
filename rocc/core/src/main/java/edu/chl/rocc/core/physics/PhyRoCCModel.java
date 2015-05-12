@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * A class handling all physic related logic for the RoCC game.
+ * A physic-wrapper for the RoCCModel-class
+ *
  * Created by Joel on 2015-05-03.
  */
 public class PhyRoCCModel implements IRoCCModel {
@@ -31,9 +34,15 @@ public class PhyRoCCModel implements IRoCCModel {
 
     private List<IBullet> bullets;
 
+    // The model that does all non physics related logic
     private IRoCCModel model;
+
+    // The physics world in which all physics items exist
     private World world;
 
+    /**
+     * Constructor for the model
+     */
     public PhyRoCCModel() {
 
         //Change cursor/crosshair
@@ -51,19 +60,29 @@ public class PhyRoCCModel implements IRoCCModel {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void constructWorld(TiledMap tMap) {
 
+        // Start with cearing the world, using a gravity defined in a constantsclass
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
+
+        // Create the factory defining what type of objects all other non-physics objects shall create
         this.factory = new PhyRoCCFactory(world);
+
+        // Create the model handling non-physics logic
         model = new RoCCModel(factory);
 
         // Get the layer with information about the solid ground
         TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get("ground");
 
+        // Create definitions for body and fixture
         BodyDef bDef = new BodyDef();
         FixtureDef fDef = new FixtureDef();
 
+        // Create a shape for each groundblock
         ChainShape cs = new ChainShape();
         Vec2[] v = new Vec2[5];
         float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
@@ -74,6 +93,7 @@ public class PhyRoCCModel implements IRoCCModel {
         v[4] = new Vec2(-offset, -offset);
         cs.createChain(v, 5);
 
+        // Define the body and fixture specifications which all block share
         bDef.type = BodyType.STATIC;
         bDef.userData = "ground";
 
@@ -90,13 +110,9 @@ public class PhyRoCCModel implements IRoCCModel {
                 // If there is a tile at the position
                 if (cell != null && cell.getTile() != null) {
 
-                    // Create a body definition
-
-
+                    // Set the position for the block
                     bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
                             PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
-
-                    // And a fixture definition
 
                     // Then let the level create the block in the world
                     model.getLevel().addBlock(bDef, fDef);
@@ -104,8 +120,10 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
 
+        // Continue with the layer specifying the food
         MapLayer foodLayer = tMap.getLayers().get("food");
 
+        // Create one food item for each on the map
         for (MapObject mapObject : foodLayer.getObjects()) {
             float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
             float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
@@ -114,6 +132,7 @@ public class PhyRoCCModel implements IRoCCModel {
             model.getLevel().addPickupable(food);
         }
 
+        // Do the same with the pickupable characters
         MapLayer ipcLayer = tMap.getLayers().get("characters");
 
         for (MapObject mapObject : ipcLayer.getObjects()) {
@@ -180,6 +199,11 @@ public class PhyRoCCModel implements IRoCCModel {
         return model.getPickupables();
     }
 
+    /**
+     * Removes items from the world by using their destroy method and
+     * If a character is removed, add it to the list of playable characters.
+     * @param itemsToRemove list of items that wil be removed
+     */
     @Override
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
