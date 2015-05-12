@@ -41,7 +41,7 @@ public class Player implements IPlayer {
     @Override
     public void move(Direction dir){
         characters.get(this.activeCharacterIndex).move(dir);
-        moveFollowers(dir);
+        //moveFollowers(dir);
     }
 
     @Override

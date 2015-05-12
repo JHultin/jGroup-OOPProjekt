@@ -22,6 +22,7 @@ public class PhyCharacter implements ICharacter {
     private int rightV;
     private int characterOnGround;
     private Direction direction;
+    private Direction airDir;
 
 
     public PhyCharacter(World world, float x, float y, String name){
@@ -29,6 +30,8 @@ public class PhyCharacter implements ICharacter {
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.character = new Character(name);
+
+        airDir = Direction.NONE;
 
         //Defining & creating body
         BodyDef def = new BodyDef();
@@ -98,6 +101,24 @@ public class PhyCharacter implements ICharacter {
                     }
                 }
             direction = dir;
+        } else if (dir != airDir && characterOnGround == 0){
+            float force = 100;
+            if (dir.equals(Direction.LEFT)) {
+                body.applyForceToCenter(new Vec2(-force, 0));
+            } else if (dir.equals(Direction.RIGHT)) {
+                body.applyForceToCenter(new Vec2( force, 0));
+            } else if (dir.equals(Direction.UP)) {
+
+            } else if (dir.equals(Direction.DOWN)) {
+
+            } else if (dir.equals(Direction.NONE)) {
+                if (airDir == Direction.LEFT) {
+                    body.applyForceToCenter(new Vec2( force, 0));
+                } else if (airDir == Direction.RIGHT) {
+                    body.applyForceToCenter(new Vec2(-force, 0));
+                }
+            }
+            airDir = dir;
         }
     }
 
@@ -109,18 +130,41 @@ public class PhyCharacter implements ICharacter {
     @Override
     public void jump() {
        if(characterOnGround > 0) {
+           this.body.setLinearVelocity(new Vec2(0, 0));
            this.body.applyForceToCenter(new Vec2(0, 250));
+           airDir = Direction.UP;
        }
     }
 
     @Override
     public void hitGround(){
+        if (characterOnGround == 0){
+                if (airDir.equals(Direction.LEFT)) {
+                    body.setLinearVelocity(new Vec2(-200 / PPM, 0));
+                    leftV = leftV + 1;
+                } else if (airDir.equals(Direction.RIGHT)) {
+                    body.setLinearVelocity(new Vec2(200 / PPM, 0));
+                    rightV = rightV + 1;
+                } else if (airDir.equals(Direction.UP)) {
+
+                } else if (airDir.equals(Direction.DOWN)) {
+
+                } else if (airDir.equals(Direction.NONE)) {
+                    body.setLinearVelocity(new Vec2(0, 0));
+                }
+                direction = airDir;
+        }
         characterOnGround++;
     }
 
     @Override
     public void leftGround(){
         characterOnGround--;
+        if (characterOnGround == 0){
+            if(airDir != Direction.UP)
+                this.body.setLinearVelocity(new Vec2(0, 0));
+            airDir = Direction.NONE;
+        }
     }
 
     @Override
