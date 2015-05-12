@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.RoCCView;
+import edu.chl.rocc.core.options.KeyOptions;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.ViewFactory;
@@ -34,12 +35,14 @@ public class RoCCController implements Runnable{
     private final GameViewManager gvm;
     private boolean inGame;
     private CollisionListener collisionListener;
+    private KeyOptions keyOptions;
 
     private ViewChooser viewChooser;
 
     public RoCCController(RoCCView main){
         this.model = new PhyRoCCModel();
         this.main = main;
+        this.keyOptions = KeyOptions.getInstance();
 
         this.gvm = new GameViewManager(model);
 
@@ -122,12 +125,12 @@ public class RoCCController implements Runnable{
 
         private void sendUpdate(){
             Direction dir;
-            if (keys.contains(Input.Keys.RIGHT))
-                if (keys.contains(Input.Keys.LEFT))
+            if (keys.contains(keyOptions.getRightKey()))
+                if (keys.contains(keyOptions.getLeftKey()))
                     dir = Direction.NONE;
                 else
                     dir = Direction.RIGHT;
-            else if (keys.contains((Input.Keys.LEFT)))
+            else if (keys.contains((keyOptions.getLeftKey())))
                 dir = Direction.LEFT;
             else
                 dir = Direction.NONE;
