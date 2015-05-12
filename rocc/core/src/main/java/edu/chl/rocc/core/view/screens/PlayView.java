@@ -101,7 +101,7 @@ public class PlayView implements Screen,IViewObservable{
 
         //ANIMATION TEST
         Texture motherTexture = new Texture(Gdx.files.internal("motherCharacter/motherMoveRight.png"));
-        TextureRegion[] textureRegions = TextureRegion.split(motherTexture, 42, 50)[0];
+        TextureRegion[] textureRegions = TextureRegion.split(motherTexture, 34, 51)[0];
         animation = new AnimationHandler(textureRegions,1/5f);
         //ANIMATION TEST END
 
@@ -152,7 +152,7 @@ public class PlayView implements Screen,IViewObservable{
 
         for (ICharacter character : model.getCharacters()){
 
-            if(character.getName().equals("front")){       //Animation TEST
+            if(character.getName().equals("mother")){       //Animation TEST
                 batch.draw(animation.getFrame(),character.getX(), character.getY());       //Animation TEST
             }else {
                 batch.draw(textures.get(character.getName()), character.getX(), character.getY());
