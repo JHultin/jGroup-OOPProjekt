@@ -19,9 +19,13 @@ public interface ILevel {
 
     public void addFood(IFood food);
 
-    public List<IPickupable> getPickupables();
-
     public void removeFood(IFood food);
+
+    public void addPickupableCharacter(IPickupableCharacter ipc);
+
+    public void removePickupableCharacter(IPickupableCharacter ipc);
+
+    public List<IPickupable> getPickupables();
 
     /**
     * Create a bullet/projectile.

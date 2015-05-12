@@ -62,6 +62,16 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
+    public void addPickupableCharacter(IPickupableCharacter ipc) {
+        level.addPickupableCharacter(ipc);
+    }
+
+    @Override
+    public void removePickupableCharacter(IPickupableCharacter ipc) {
+        level.addPickupableCharacter(ipc);
+    }
+
+    @Override
     public void createBullet(float x, float y, float xDir, float yDir){
         IBullet bullet = new PhyBullet(this.getWorld(), x, y, xDir, yDir, "");
         this.addBullet(bullet);

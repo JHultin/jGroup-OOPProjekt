@@ -16,20 +16,20 @@ public class PhyPickupableCharacter implements IPickupableCharacter {
     private final Body body;
     private final World world;
 
-    public PhyPickupableCharacter(String name, World world, int x, int y){
+    public PhyPickupableCharacter(String name, World world, float x, float y){
         this.pCharacter = new PickupableCharacter(name);
         this.world = world;
 
         //Defining & creating body
         BodyDef def = new BodyDef();
-        def.position.set(x / PPM, y / PPM);
+        def.position.set(x, y);
         def.type = BodyType.STATIC;
         body = this.world.createBody(def);
         body.setUserData(this);
 
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(32, 32);
+        shape.setAsBox(8, 8);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
@@ -40,12 +40,12 @@ public class PhyPickupableCharacter implements IPickupableCharacter {
 
     @Override
     public float getX() {
-        return body.getPosition().x;
+        return body.getPosition().x * PPM;
     }
 
     @Override
     public float getY() {
-        return body.getPosition().y;
+        return body.getPosition().y * PPM;
     }
 
     @Override

@@ -126,6 +126,17 @@ public class PhyRoCCModel implements IRoCCModel {
             model.getLevel().addBlock(bDef, fDef);
             model.addFood(food);
         }
+
+        MapLayer ipcLayer = tMap.getLayers().get("characters");
+
+        for (MapObject mapObject : ipcLayer.getObjects()) {
+            float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+            float y = ((Float) mapObject.getProperties().get("y")) / PPM;
+
+            IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
+
+            model.getLevel().addPickupableCharacter(ipc);
+        }
     }
 
     @Override

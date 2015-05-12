@@ -3,6 +3,8 @@ package edu.chl.rocc.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.chl.rocc.core.factories.IRoCCFactory;
+import edu.chl.rocc.core.factories.RoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import org.jbox2d.common.Vec2;
@@ -59,6 +61,16 @@ public class Level implements ILevel {
     @Override
     public void removeFood(IFood food) {
         pickupables.remove(food);
+    }
+
+    @Override
+    public void addPickupableCharacter(IPickupableCharacter ipc) {
+        pickupables.add(ipc);
+    }
+
+    @Override
+    public void removePickupableCharacter(IPickupableCharacter ipc) {
+        pickupables.remove(ipc);
     }
 
     @Override
