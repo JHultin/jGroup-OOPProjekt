@@ -24,4 +24,9 @@ public class Food implements IFood {
     public float getY() {
         return y * PPM - 8;
     }
+
+    @Override
+    public String getName() {
+        return "food";
+    }
 }

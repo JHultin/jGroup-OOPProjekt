@@ -23,4 +23,9 @@ public class PhyFood implements IFood {
     public float getY() {
         return food.getY();
     }
+
+    @Override
+    public String getName() {
+        return food.getName();
+    }
 }

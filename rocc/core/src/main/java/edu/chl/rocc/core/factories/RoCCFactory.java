@@ -1,9 +1,6 @@
 package edu.chl.rocc.core.factories;
 
-import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
-import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.model.Character;
 
@@ -34,5 +31,10 @@ public class RoCCFactory implements IRoCCFactory {
     @Override
     public IFood createFood(String name, int x, int y) {
         return new Food(x, y);
+    }
+
+    @Override
+    public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
+        return null;
     }
 }
