@@ -125,12 +125,12 @@ public class RoCCController implements Runnable{
 
         private void sendUpdate(){
             Direction dir;
-            if (keys.contains(keyOptions.getRightKey()))
-                if (keys.contains(keyOptions.getLeftKey()))
+            if (keys.contains(keyOptions.getKey("right")))
+                if (keys.contains(keyOptions.getKey("left")))
                     dir = Direction.NONE;
                 else
                     dir = Direction.RIGHT;
-            else if (keys.contains((keyOptions.getLeftKey())))
+            else if (keys.contains((keyOptions.getKey("left"))))
                 dir = Direction.LEFT;
             else
                 dir = Direction.NONE;
@@ -143,7 +143,7 @@ public class RoCCController implements Runnable{
 
         @Override
         public boolean keyDown(int keycode) {
-            if (keycode == keyOptions.getJumpKey())
+            if (keycode == keyOptions.getKey("jump"))
                 model.jump();
             else if (!keys.contains(keycode))
                 keys.add(keycode);
