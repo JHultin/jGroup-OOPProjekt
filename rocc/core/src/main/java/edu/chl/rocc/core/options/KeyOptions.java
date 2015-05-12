@@ -3,9 +3,9 @@ package edu.chl.rocc.core.options;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by Joel on 2015-05-12.
@@ -23,16 +23,13 @@ public class KeyOptions {
     }
 
     private KeyOptions(){
-        left_key  = Input.Keys.LEFT;
-        right_key = Input.Keys.RIGHT;
-        jump_key  = Input.Keys.SPACE;
-        try {
+        if (Gdx.files.internal("options/keys.txt").exists()){
             FileHandle handle = Gdx.files.internal("options/keys.txt");
-            BufferedReader br = handle.reader(2);
 
             String str;
             String key;
-            while ((str = br.readLine()) != null && (key = br.readLine()) != null){
+            while ((str = handle.readString()) != null &&
+                    (key = handle.readString()) != null){
                 try {
                     if (str.equals("left")) {
                         left_key = Integer.parseInt(key);
@@ -40,6 +37,8 @@ public class KeyOptions {
                         right_key = Integer.parseInt(key);
                     } else if (str.equals("jump")) {
                         jump_key = Integer.parseInt(key);
+                    } else {
+                        return;
                     }
                 } catch (NumberFormatException nfe){
                     if (str.equals("left")) {
@@ -51,9 +50,31 @@ public class KeyOptions {
                     }
                 }
             }
-        } catch (IOException e){
-
+        } else {
+            left_key  = Input.Keys.LEFT;
+            right_key = Input.Keys.RIGHT;
+            jump_key  = Input.Keys.SPACE;
         }
+    }
+
+    public boolean saveKeys(){
+
+        if (!Gdx.files.internal("options/keys.txt").exists()){
+            try {
+                FileWriter fw = new FileWriter(Gdx.files.internal("options/keys.txt").toString());
+                PrintWriter pw = new PrintWriter(fw);
+
+                pw.println("text!");
+                pw.println("mer text");
+                pw.println("ännu mer text");
+
+                pw.close();
+            } catch ( IOException ioex){
+
+            }
+        }
+        
+        return false;
     }
 
     public int getLeftKey() {

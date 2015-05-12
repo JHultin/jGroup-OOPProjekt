@@ -231,7 +231,8 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public void dispose() {
-        model.dispose();
+        if (model != null)
+            model.dispose();
     }
 }
 
