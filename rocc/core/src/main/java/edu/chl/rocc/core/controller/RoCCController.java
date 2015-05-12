@@ -16,6 +16,7 @@ import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 import edu.chl.rocc.core.view.screens.PlayView;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 import javax.swing.text.View;
@@ -162,8 +163,12 @@ public class RoCCController implements Runnable{
         // Holds information on which keys that are currently pressed
         private ArrayList<Integer> keys;
 
+        // List of all shots to make everytime the game updates
+        private ArrayList<Vec2> shots;
+
         private GameProcessor (){
             keys = new ArrayList<Integer>();
+            shots = new ArrayList<Vec2>();
         }
 
         // Tells the model when and how to update
@@ -185,6 +190,12 @@ public class RoCCController implements Runnable{
 
             // Then all other characters
             model.moveFollowers(dir);
+
+            // Do all shots cerated since last update
+            for(Vec2 v : shots){
+                model.shoot(v.x, v.y);
+            }
+            shots.clear();
 
             // Then update the world
             model.updateWorld(updateSpeed);
@@ -217,7 +228,7 @@ public class RoCCController implements Runnable{
             return false;
         }
 
-        // Calculates the aim and tells the model to fire a shot
+        // Calculates the aim and adds a shot to the shootinglist
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
@@ -230,7 +241,8 @@ public class RoCCController implements Runnable{
             float x = (float)(xd * k);
             float y = (float)(yd * k);
 
-            model.shoot(x, y);
+            // Add the shot to the list, to make sure it isn't fired during the worlds update
+            shots.add(new Vec2(x, y));
             return false;
         }
 
