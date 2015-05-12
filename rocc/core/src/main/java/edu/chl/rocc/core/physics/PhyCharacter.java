@@ -24,7 +24,7 @@ public class PhyCharacter implements ICharacter {
     private Direction direction;
 
 
-    public PhyCharacter(World world, int x, int y, String name){
+    public PhyCharacter(World world, float x, float y, String name){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;

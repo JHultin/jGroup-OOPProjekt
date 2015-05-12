@@ -25,7 +25,7 @@ public class PhyRoCCFactory implements IRoCCFactory {
     }
 
     @Override
-    public ICharacter createCharacter(String name, int x, int y) {
+    public ICharacter createCharacter(String name, float x, float y) {
         return new PhyCharacter(world, x, y, name);
     }
 

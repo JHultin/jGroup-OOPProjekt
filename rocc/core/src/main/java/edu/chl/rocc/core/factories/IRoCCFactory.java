@@ -11,7 +11,7 @@ public interface IRoCCFactory {
 
     public ILevel createLevel (String name);
 
-    public ICharacter createCharacter(String name, int x, int y);
+    public ICharacter createCharacter(String name, float x, float y);
 
     public IFood createFood(String name, int x, int y);
 
