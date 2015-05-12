@@ -124,7 +124,7 @@ public class OptionsMenuView extends AbstractMenuView{
         //musicVolume Slider
         musicSlider = new Slider(0,100,10,false,sliderStyle);
 
-        musicVolumeLabel = new Label("Sound Volume:", sliderLabelStyle);
+        musicVolumeLabel = new Label("Music Volume:", sliderLabelStyle);
         musicVolumeLabel.setFontScale(1);
 
 
