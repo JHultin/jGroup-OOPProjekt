@@ -49,29 +49,21 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void addFood(IFood food) {
-        pickupables.add(food);
+    public void addPickupable(IPickupable pickup) {
+        pickupables.add(pickup);
     }
+
+    @Override
+    public void removePickupable(IPickupable pickup) {
+        pickupables.remove(pickup);
+    }
+
 
     @Override
     public List<IPickupable> getPickupables() {
         return pickupables;
     }
 
-    @Override
-    public void removeFood(IFood food) {
-        pickupables.remove(food);
-    }
-
-    @Override
-    public void addPickupableCharacter(IPickupableCharacter ipc) {
-        pickupables.add(ipc);
-    }
-
-    @Override
-    public void removePickupableCharacter(IPickupableCharacter ipc) {
-        pickupables.remove(ipc);
-    }
 
     @Override
     public void createBullet(float x, float y, float xDir, float yDir){

@@ -17,13 +17,9 @@ public interface ILevel {
 
     public World getWorld();
 
-    public void addFood(IFood food);
+    public void addPickupable(IPickupable pickup);
 
-    public void removeFood(IFood food);
-
-    public void addPickupableCharacter(IPickupableCharacter ipc);
-
-    public void removePickupableCharacter(IPickupableCharacter ipc);
+    public void removePickupable(IPickupable pickup);
 
     public List<IPickupable> getPickupables();
 

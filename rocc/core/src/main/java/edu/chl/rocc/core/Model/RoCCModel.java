@@ -97,11 +97,11 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void addFood(IFood food) {
-        level.addFood(food);
+        //level.addFood(food);
     }
 
     @Override
-    public void removeBodies(List<Body> bodiesToRemove) {
+    public void removeItems(List<IPickupable> itemsToRemove) {
 
     }
 

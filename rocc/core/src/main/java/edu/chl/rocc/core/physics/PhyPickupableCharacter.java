@@ -53,4 +53,9 @@ public class PhyPickupableCharacter implements IPickupableCharacter {
     public String getName() {
         return pCharacter.getName();
     }
+
+    @Override
+    public void destroy() {
+        this.world.destroyBody(body);
+    }
 }

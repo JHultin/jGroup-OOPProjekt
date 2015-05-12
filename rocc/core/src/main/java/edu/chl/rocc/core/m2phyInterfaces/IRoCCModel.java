@@ -60,7 +60,7 @@ public interface IRoCCModel{
 
     public void addFood (IFood food);
 
-    public void removeBodies(List<Body> bodiesToRemove);
+    public void removeItems(List<IPickupable> bodiesToRemove);
 
     /**
     * @return list of all current existing projectiles in the level.

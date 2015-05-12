@@ -106,25 +106,12 @@ public class PhyRoCCModel implements IRoCCModel {
 
         MapLayer foodLayer = tMap.getLayers().get("food");
 
-        bDef.userData = model.getLevel();
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16, 8);
-
-        fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
-        fDef.filter.maskBits = BitMask.BIT_BODY;
-        fDef.isSensor = true;
-
         for (MapObject mapObject : foodLayer.getObjects()) {
             float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
             float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
-            bDef.position.set(x, y);
 
-            IFood food = new PhyFood(x, y);
-            fDef.userData = food;
-
-            model.getLevel().addBlock(bDef, fDef);
-            model.addFood(food);
+            IFood food = new PhyFood(world, x, y);
+            model.getLevel().addPickupable(food);
         }
 
         MapLayer ipcLayer = tMap.getLayers().get("characters");
@@ -135,7 +122,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
             IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
 
-            model.getLevel().addPickupableCharacter(ipc);
+            model.getLevel().addPickupable(ipc);
         }
     }
 
@@ -199,9 +186,9 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void removeBodies(List<Body> bodiesToRemove) {
-        for (Body body : bodiesToRemove){
-            world.destroyBody(body);
+    public void removeItems(List<IPickupable> itemsToRemove) {
+        for (IPickupable pickup : itemsToRemove){
+            pickup.destroy();
         }
     }
 

@@ -47,8 +47,13 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public void addFood(IFood food) {
-        level.addFood(food);
+    public void addPickupable(IPickupable pickup) {
+        level.addPickupable(pickup);
+    }
+
+    @Override
+    public void removePickupable(IPickupable pickup) {
+        level.removePickupable(pickup);
     }
 
     @Override
@@ -56,20 +61,6 @@ public class PhyLevel implements ILevel {
         return level.getPickupables();
     }
 
-    @Override
-    public void removeFood(IFood food) {
-        level.removeFood(food);
-    }
-
-    @Override
-    public void addPickupableCharacter(IPickupableCharacter ipc) {
-        level.addPickupableCharacter(ipc);
-    }
-
-    @Override
-    public void removePickupableCharacter(IPickupableCharacter ipc) {
-        level.addPickupableCharacter(ipc);
-    }
 
     @Override
     public void createBullet(float x, float y, float xDir, float yDir){

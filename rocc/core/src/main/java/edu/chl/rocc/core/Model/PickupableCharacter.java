@@ -26,4 +26,9 @@ public class PickupableCharacter implements IPickupableCharacter {
     public String getName() {
         return name;
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

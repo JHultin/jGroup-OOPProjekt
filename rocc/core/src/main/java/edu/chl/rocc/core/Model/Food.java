@@ -29,4 +29,9 @@ public class Food implements IFood {
     public String getName() {
         return "food";
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

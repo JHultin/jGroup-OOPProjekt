@@ -137,7 +137,7 @@ public class RoCCController implements Runnable{
             model.moveSideways(dir);
             model.moveFollowers(dir);
             model.updateWorld(updateSpeed);
-            model.removeBodies(collisionListener.getBodiesToRemove());
+            model.removeItems(collisionListener.getItemsToRemove());
         }
 
         @Override

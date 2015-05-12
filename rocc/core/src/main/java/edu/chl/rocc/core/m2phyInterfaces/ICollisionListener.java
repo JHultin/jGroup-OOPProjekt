@@ -14,6 +14,6 @@ public interface ICollisionListener {
 
     public void endContact(Contact contact);
 
-    public List<Body> getBodiesToRemove();
+    public List<IPickupable> getItemsToRemove();
 
 }

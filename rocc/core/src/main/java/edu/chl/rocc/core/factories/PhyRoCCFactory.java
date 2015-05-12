@@ -31,7 +31,7 @@ public class PhyRoCCFactory implements IRoCCFactory {
 
     @Override
     public IFood createFood(String name, int x, int y) {
-        return new PhyFood(x, y);
+        return new PhyFood(world, x, y);
     }
 
     @Override

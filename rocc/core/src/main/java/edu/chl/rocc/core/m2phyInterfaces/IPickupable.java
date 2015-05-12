@@ -10,4 +10,6 @@ public interface IPickupable {
     public float getY();
 
     public String getName();
+
+    public void destroy();
 }
