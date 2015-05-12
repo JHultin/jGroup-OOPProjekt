@@ -22,38 +22,41 @@ public class KeyOptions {
         return instance;
     }
 
-    private KeyOptions(){
-        if (Gdx.files.internal("options/keys.txt").exists()){
+    private KeyOptions() {
+        left_key  = Input.Keys.LEFT;
+        right_key = Input.Keys.RIGHT;
+        jump_key  = Input.Keys.SPACE;
+        try {
             FileHandle handle = Gdx.files.internal("options/keys.txt");
+            BufferedReader br = handle.reader(2);
 
             String str;
             String key;
-            while ((str = handle.readString()) != null &&
-                    (key = handle.readString()) != null){
+            while ((str = br.readLine()) != null && (key = br.readLine()) != null) {
                 try {
-                    if (str.equals("left")) {
+                    if ("left".equals(str)) {
                         left_key = Integer.parseInt(key);
-                    } else if (str.equals("right")) {
+                    } else if ("right".equals(str)) {
                         right_key = Integer.parseInt(key);
-                    } else if (str.equals("jump")) {
+                    } else if ("jump".equals(str)) {
                         jump_key = Integer.parseInt(key);
                     } else {
                         return;
                     }
-                } catch (NumberFormatException nfe){
+                } catch (NumberFormatException nfe) {
                     if (str.equals("left")) {
-                        left_key  = Input.Keys.LEFT;
+                        left_key = Input.Keys.LEFT;
                     } else if (str.equals("right")) {
                         right_key = Input.Keys.RIGHT;
                     } else if (str.equals("jump")) {
-                        jump_key  = Input.Keys.SPACE;
+                        jump_key = Input.Keys.SPACE;
                     }
                 }
             }
-        } else {
-            left_key  = Input.Keys.LEFT;
-            right_key = Input.Keys.RIGHT;
-            jump_key  = Input.Keys.SPACE;
+        } catch (IOException IOEx){
+            saveKeys();
+        } catch (GdxRuntimeException gdxEx){
+            saveKeys();
         }
     }
 
@@ -64,16 +67,21 @@ public class KeyOptions {
                 FileWriter fw = new FileWriter(Gdx.files.internal("options/keys.txt").toString());
                 PrintWriter pw = new PrintWriter(fw);
 
-                pw.println("text!");
-                pw.println("mer text");
-                pw.println("ännu mer text");
+                pw.println("left");
+                pw.println(left_key);
+                pw.println("right");
+                pw.println(right_key);
+                pw.println("jump");
+                pw.println(jump_key);
+
+                pw.print(".");
 
                 pw.close();
             } catch ( IOException ioex){
-
+                System.out.println("exception");
             }
         }
-        
+
         return false;
     }
 
