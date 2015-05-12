@@ -56,11 +56,9 @@ public interface IRoCCModel{
 
     public void updateWorld(float dt);
 
-    public List<IFood> getFoods();
+    public List<IPickupable> getPickupables();
 
-    public void addFood (IFood food);
-
-    public void removeBodies(List<Body> bodiesToRemove);
+    public void removeItems(List<IPickupable> itemsToRemove);
 
     /**
     * @return list of all current existing projectiles in the level.
@@ -83,8 +81,6 @@ public interface IRoCCModel{
     public void addEnemy(IEnemy enemy);
 
     public void setCollisionListener(CollisionListener collisionListener);
-
-    //public void addCharacter(ICharacter character);
 
     public void addCharacter(String name);
 

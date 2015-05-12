@@ -1,13 +1,7 @@
 package edu.chl.rocc.core.factories;
 
-import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
-import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
-import edu.chl.rocc.core.physics.PhyCharacter;
-import edu.chl.rocc.core.physics.PhyFood;
-import edu.chl.rocc.core.physics.PhyLevel;
-import edu.chl.rocc.core.physics.PhyPlayer;
+import edu.chl.rocc.core.m2phyInterfaces.*;
+import edu.chl.rocc.core.physics.*;
 import org.jbox2d.dynamics.World;
 
 /**
@@ -31,12 +25,17 @@ public class PhyRoCCFactory implements IRoCCFactory {
     }
 
     @Override
-    public ICharacter createCharacter(String name, int x, int y) {
+    public ICharacter createCharacter(String name, float x, float y) {
         return new PhyCharacter(world, x, y, name);
     }
 
     @Override
     public IFood createFood(String name, int x, int y) {
-        return new PhyFood(x, y);
+        return new PhyFood(world, x, y);
+    }
+
+    @Override
+    public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
+        return new PhyPickupableCharacter(name, world, x, y);
     }
 }

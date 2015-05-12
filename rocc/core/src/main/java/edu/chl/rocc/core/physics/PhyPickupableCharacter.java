@@ -1,7 +1,6 @@
 package edu.chl.rocc.core.physics;
 
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.model.Food;
+import edu.chl.rocc.core.m2phyInterfaces.IPickupableCharacter;
 import edu.chl.rocc.core.model.PickupableCharacter;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
@@ -9,16 +8,16 @@ import org.jbox2d.dynamics.*;
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
- * Created by Joel on 2015-05-08.
+ * Created by Joel on 2015-05-12.
  */
-public class PhyFood implements IFood {
+public class PhyPickupableCharacter implements IPickupableCharacter {
 
-    private final IFood food;
-    private final World world;
+    private final IPickupableCharacter pCharacter;
     private final Body body;
+    private final World world;
 
-    public PhyFood(World world, float x, float y) {
-        food = new Food(x, y);
+    public PhyPickupableCharacter(String name, World world, float x, float y){
+        this.pCharacter = new PickupableCharacter(name);
         this.world = world;
 
         //Defining & creating body
@@ -30,28 +29,29 @@ public class PhyFood implements IFood {
 
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16 / PPM, 8 / PPM);
+        shape.setAsBox(8 / PPM, 8 / PPM);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
         fDef.filter.maskBits = BitMask.BIT_BODY;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData("food");
+        body.createFixture(fDef).setUserData("pickupCharacter");
+
     }
 
     @Override
     public float getX() {
-        return food.getX();
+        return body.getPosition().x * PPM;
     }
 
     @Override
     public float getY() {
-        return food.getY();
+        return body.getPosition().y * PPM;
     }
 
     @Override
     public String getName() {
-        return food.getName();
+        return pCharacter.getName();
     }
 
     @Override

@@ -17,11 +17,12 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
-import edu.chl.rocc.core.m2phyInterfaces.IBullet;
-import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import edu.chl.rocc.core.m2phyInterfaces.*;
+
 import edu.chl.rocc.core.view.AnimationHandler;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -158,8 +159,8 @@ public class PlayView implements Screen,IViewObservable{
 
 
 
-        for (IFood food : model.getFoods()){
-            batch.draw(textures.get("food"), food.getX(), food.getY());
+        for (IPickupable pickupable : model.getPickupables()){
+            batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
         }
 
         for(IBullet bullet : model.getBullets()){

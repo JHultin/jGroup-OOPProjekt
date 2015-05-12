@@ -91,18 +91,15 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public List<IFood> getFoods() {
-        return level.getFoods();
+    public List<IPickupable> getPickupables() {
+        return level.getPickupables();
     }
 
     @Override
-    public void addFood(IFood food) {
-        level.addFood(food);
-    }
-
-    @Override
-    public void removeBodies(List<Body> bodiesToRemove) {
-
+    public void removeItems(List<IPickupable> itemsToRemove) {
+        for (IPickupable pickup : itemsToRemove){
+            level.removePickupable(pickup);
+        }
     }
 
     @Override

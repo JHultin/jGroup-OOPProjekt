@@ -57,10 +57,6 @@ public class PhyPlayer implements IPlayer {
         return this.player.getCharacterYPos(i);
     }
 
-    public void addCharacter(ICharacter c){
-        player.addCharacter(c);
-    }
-
     @Override
     public void addCharacter(String name) {
         this.player.addCharacter(name);

@@ -1,12 +1,9 @@
 package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.math.Vector2;
-import edu.chl.rocc.core.m2phyInterfaces.IBullet;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Level;
 import org.jbox2d.common.Vec2;
-import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
 import jdk.nashorn.internal.ir.Flags;
 import org.jbox2d.dynamics.*;
 
@@ -50,19 +47,20 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public void addFood(IFood food) {
-        level.addFood(food);
+    public void addPickupable(IPickupable pickup) {
+        level.addPickupable(pickup);
     }
 
     @Override
-    public List<IFood> getFoods() {
-        return level.getFoods();
+    public void removePickupable(IPickupable pickup) {
+        level.removePickupable(pickup);
     }
 
     @Override
-    public void removeFood(IFood food) {
-        level.removeFood(food);
+    public List<IPickupable> getPickupables() {
+        return level.getPickupables();
     }
+
 
     @Override
     public void createBullet(float x, float y, float xDir, float yDir){

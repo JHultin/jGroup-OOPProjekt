@@ -29,7 +29,7 @@ public class Player implements IPlayer {
     public Player(IRoCCFactory factory){
 
         this.characters = new ArrayList<ICharacter>();
-        activeCharacterIndex = 0;
+        this.activeCharacterIndex = 0;
         this.factory = factory;
     }
 
@@ -40,7 +40,7 @@ public class Player implements IPlayer {
 
     @Override
     public void move(Direction dir){
-        characters.get(0).move(dir);
+        characters.get(this.activeCharacterIndex).move(dir);
         moveFollowers(dir);
     }
 
@@ -57,7 +57,7 @@ public class Player implements IPlayer {
                 characters.get(i).moveFollower(Direction.NONE);
             }
             */
-                float distance = characters.get(0).getX() - characters.get(i).getX();
+                float distance = characters.get(this.activeCharacterIndex).getX() - characters.get(i).getX();
 
                 if (distance > 20 + i * 60) {
                     characters.get(i).moveFollower(Direction.RIGHT);
@@ -81,7 +81,7 @@ public class Player implements IPlayer {
             characters.get(i).jump();
         }
         */
-        characters.get(0).jump();
+        characters.get(this.activeCharacterIndex).jump();
     }
 
     @Override
@@ -95,16 +95,13 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void addCharacter(ICharacter c){
-        // skicka in string istället
-        characters.add(c);
-    }
-
-    @Override
     public void addCharacter(String name) {
-        characters.add(this.factory.createCharacter(name,
-                characters.size() == 0 ? 160 : 120 - (characters.size() * 20),
-                400));
+        if (characters.isEmpty()){
+            characters.add(this.factory.createCharacter(name, 160, 400));
+        } else {
+            characters.add(this.factory.createCharacter(name, characters.get(this.activeCharacterIndex).getX(),
+                    characters.get(this.activeCharacterIndex).getY()));
+        }
     }
 
     @Override

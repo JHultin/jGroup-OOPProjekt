@@ -3,11 +3,10 @@ package edu.chl.rocc.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.chl.rocc.core.m2phyInterfaces.IBullet;
+import edu.chl.rocc.core.factories.IRoCCFactory;
+import edu.chl.rocc.core.factories.RoCCFactory;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 
-import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
@@ -21,14 +20,14 @@ public class Level implements ILevel {
 
     private int time;
     private int score;
-    private ArrayList<IFood> foods;
+    private ArrayList<IPickupable> pickupables;
     private ArrayList<IBullet> bullets;
     private ArrayList<IEnemy> enemies;
 
     private ArrayList <String> highscore;
 
     public Level(){
-        foods = new ArrayList<IFood>();
+        pickupables = new ArrayList<IPickupable>();
         bullets = new ArrayList<IBullet>();
         enemies = new ArrayList<IEnemy>();
     }
@@ -50,19 +49,21 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void addFood(IFood food) {
-        foods.add(food);
+    public void addPickupable(IPickupable pickup) {
+        pickupables.add(pickup);
     }
 
     @Override
-    public List<IFood> getFoods() {
-        return foods;
+    public void removePickupable(IPickupable pickup) {
+        pickupables.remove(pickup);
     }
 
+
     @Override
-    public void removeFood(IFood food) {
-        foods.remove(food);
+    public List<IPickupable> getPickupables() {
+        return pickupables;
     }
+
 
     @Override
     public void createBullet(float x, float y, float xDir, float yDir){

@@ -17,11 +17,11 @@ public interface ILevel {
 
     public World getWorld();
 
-    public void addFood(IFood food);
+    public void addPickupable(IPickupable pickup);
 
-    public List<IFood> getFoods();
+    public void removePickupable(IPickupable pickup);
 
-    public void removeFood(IFood food);
+    public List<IPickupable> getPickupables();
 
     /**
     * Create a bullet/projectile.

@@ -1,9 +1,6 @@
 package edu.chl.rocc.core.controller;
 
-import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
-import edu.chl.rocc.core.m2phyInterfaces.ICollisionListener;
-import edu.chl.rocc.core.m2phyInterfaces.IFood;
-import edu.chl.rocc.core.m2phyInterfaces.ILevel;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Player;
 import edu.chl.rocc.core.physics.PhyCharacter;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
@@ -22,10 +19,10 @@ import java.util.List;
  */
 public class CollisionListener implements ContactListener, ICollisionListener {
 
-    public ArrayList<Body> bodiesToRemove;
+    public ArrayList<IPickupable> itemsToRemove;
 
     public CollisionListener(){
-        bodiesToRemove = new ArrayList<Body>();
+        itemsToRemove = new ArrayList<IPickupable>();
     }
 
     //called when contact between two fixtures begins
@@ -44,13 +41,17 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if ("footSensor".equals(fb.getUserData())) {
             ((ICharacter)fb.getBody().getUserData()).hitGround();
         }
-        if (fa.getUserData() != null && fa.getUserData() instanceof IFood) {
-            ((ILevel) (fa.getBody().getUserData())).removeFood((IFood) fa.getUserData());
-            bodiesToRemove.add(fa.getBody());
+        if ("food".equals(fa.getUserData()) && fa.getBody().getUserData() instanceof IFood) {
+            itemsToRemove.add((IFood)(fa.getBody().getUserData()));
         }
-        if (fb.getUserData() != null && fb.getUserData() instanceof IFood) {
-            ((ILevel) (fb.getBody().getUserData())).removeFood((IFood) fb.getUserData());
-            bodiesToRemove.add(fb.getBody());
+        if ("food".equals(fb.getUserData()) && fb.getBody().getUserData() instanceof IFood) {
+            itemsToRemove.add((IFood)(fb.getBody().getUserData()));
+        }
+        if ("pickupCharacter".equals(fa.getUserData()) && fa.getBody().getUserData() instanceof IPickupableCharacter) {
+            itemsToRemove.add((IPickupableCharacter)(fa.getBody().getUserData()));
+        }
+        if ("pickupCharacter".equals(fb.getUserData()) && fb.getBody().getUserData() instanceof IPickupableCharacter) {
+            itemsToRemove.add((IPickupableCharacter)(fb.getBody().getUserData()));
         }
     }
 
@@ -71,12 +72,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     }
 
     @Override
-    public List<Body> getBodiesToRemove() {
-        List<Body> listToReturn = new ArrayList<Body>(bodiesToRemove.size());
-        for (Body body : bodiesToRemove){
-            listToReturn.add(body);
+    public List<IPickupable> getItemsToRemove() {
+        List<IPickupable> listToReturn = new ArrayList<IPickupable>(itemsToRemove.size());
+        for (IPickupable pickup : itemsToRemove){
+            listToReturn.add(pickup);
         }
-        bodiesToRemove.clear();
+        itemsToRemove.clear();
         return listToReturn;
     }
 
