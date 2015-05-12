@@ -22,85 +22,130 @@ import javax.swing.text.View;
 import java.util.ArrayList;
 
 /**
+ * Controllerclass for the RoCC project
+ * Creates all object exept for main view and handles all input
+ * and updates.
+ *
  * Created by Joel on 2015-04-22.
  */
 public class RoCCController implements Runnable{
 
+    // The different moduels in the project
     private final IRoCCModel model;
-    private Thread thread;
-    private boolean isRunning = true;
-    private float updateSpeed = 1 / 60f;
-    private GameProcessor gameProcessor;
     private final RoCCView main;
     private final GameViewManager gvm;
-    private boolean inGame;
     private CollisionListener collisionListener;
+
+    // Inputprocessor for while ingame
+    private GameProcessor gameProcessor;
+
+    // Treads and boolean to show when the tread should operate
+    private Thread thread;
+    private boolean isRunning = true;
+    private boolean inGame;
+
+    // Tells how far in between the world shall update, in seconds
+    private float updateSpeed = 1 / 60f;
+
+    // The current key configurations
     private KeyOptions keyOptions;
 
     private ViewChooser viewChooser;
 
+    /**
+     * Constructor for the controller.
+     * Everything that need to exist when the game starts here.
+     *
+     * @param main the main view to update throughout
+     */
     public RoCCController(RoCCView main){
         this.model = new PhyRoCCModel();
         this.main = main;
-        this.keyOptions = KeyOptions.getInstance();
-
         this.gvm = new GameViewManager(model);
 
         this.gameProcessor = new GameProcessor();
+        this.keyOptions = KeyOptions.getInstance();
 
-
+        // Start up the game with the menuscreen
         this.gvm.setActiveView("menu");
         this.main.setScreen(this.gvm.getActiveView());
-
-
         this.inGame = false;
 
+        // Start the thread
         this.thread = new Thread(this);
         this.thread.start();
         viewChooser = new ViewChooser(gvm.getViewObserver());
 
     }
 
+    /**
+     * Update the input to the correct for the current part of the game.
+     * Constructs the level if selected
+     *
+     * @param str
+     */
     public void setState(String str){
+        // Tell the GameViewManager to choose the correct screen
         gvm.setActiveView(str);
 
+        // If a game is started
         if (str.equals("game")) {
+            // Set up the game
+            // First construct the world, the level and all pickupables.
             TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-ch.tmx");
-            ((PlayView) gvm.getActiveView()).setMap(tiledMap);
-            model.constructWorld(tiledMap);
+            ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
+            this.model.constructWorld(tiledMap);
+
+            // Add correct listener to handle the collisions in the world
             this.collisionListener = new CollisionListener();
-            model.setCollisionListener(this.collisionListener);
-            model.addCharacter("mother");
-            model.addCharacter("follow");
-            model.addCharacter("bigDude");
-            isRunning = false;
-            thread.interrupt();
+            this.model.setCollisionListener(this.collisionListener);
+
+            // Then create the characters
+            // This should be done with the help of a profile
+            this.model.addCharacter("mother");
+            this.model.addCharacter("follow");
+            this.model.addCharacter("bigDude");
+
+            // Restart the thread and apply correct inputprocessor
+            this.isRunning = false;
+            this.thread.interrupt();
             Gdx.input.setInputProcessor(gameProcessor);
-            thread = new Thread(this);
-            thread.start();
-            isRunning = true;
-            inGame = true;
+            this.thread = new Thread(this);
+            this.thread.start();
+            this.isRunning = true;
+            this.inGame = true;
+
+        // If we went to a menu instead
         } else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))){
             isRunning = false;
+            this.inGame = false;
             thread.interrupt();
             thread = new Thread(this);
             thread.start();
             isRunning = true;
         }
 
+        // Tell main to update to correct screen
         main.setScreen(gvm.getActiveView());
     }
 
+    /**
+     *Used to lowe memory leaking
+     */
     public void dispose(){
         this.gvm.dispose();
         this.model.dispose();
     }
 
+    /**
+     *Is called as long as the thread runs, tells correct processor to update
+     */
     @Override
     public void run() {
         while (this.isRunning){
             try {
+                // If we're ingame use the input from the gameprocessor
                 if (inGame) {
                     gameProcessor.sendUpdate();
                 }
@@ -111,18 +156,19 @@ public class RoCCController implements Runnable{
         }
     }
 
+    // Handles input when ingame
     private class GameProcessor implements InputProcessor{
 
+        // Holds information on which keys that are currently pressed
         private ArrayList<Integer> keys;
-        private Direction lastDir;
 
         private GameProcessor (){
-
-            this.lastDir = Direction.NONE;
             keys = new ArrayList<Integer>();
         }
 
+        // Tells the model when and how to update
         private void sendUpdate(){
+            // Find correct direction for the active character to move in
             Direction dir;
             if (keys.contains(keyOptions.getKey("right")))
                 if (keys.contains(keyOptions.getKey("left")))
@@ -134,12 +180,21 @@ public class RoCCController implements Runnable{
             else
                 dir = Direction.NONE;
 
+            // Move the main character
             model.moveSideways(dir);
+
+            // Then all other characters
             model.moveFollowers(dir);
+
+            // Then update the world
             model.updateWorld(updateSpeed);
+
+            // Lastly do all operations that triggered from the update
+            // but can't be reacted to during the update
             model.removeItems(collisionListener.getItemsToRemove());
         }
 
+        // Add key to keylist or jump
         @Override
         public boolean keyDown(int keycode) {
             if (keycode == keyOptions.getKey("jump"))
@@ -149,6 +204,7 @@ public class RoCCController implements Runnable{
             return false;
         }
 
+        // Remove key from keylist
         @Override
         public boolean keyUp(int keycode) {
             if (keys.contains(keycode))
@@ -161,12 +217,15 @@ public class RoCCController implements Runnable{
             return false;
         }
 
+        // Calculates the aim and tells the model to fire a shot
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
+            // Get the mouse-coordinates compared to the character
             double xd = screenX - Gdx.graphics.getWidth() / 2;
             double yd = Gdx.graphics.getHeight() / 2 - screenY;
 
+            // Make ON-base, pythagoras
             double k = 1.0 / Math.sqrt(Math.pow(xd, 2) + Math.pow(yd, 2));
             float x = (float)(xd * k);
             float y = (float)(yd * k);
@@ -185,6 +244,8 @@ public class RoCCController implements Runnable{
             return false;
         }
 
+        // Updates the aim
+        // Outdated, should probably be removed
         @Override
         public boolean mouseMoved(int screenX, int screenY) {
             model.aim(screenX, Gdx.graphics.getHeight() - screenY);

@@ -5,6 +5,8 @@ import edu.chl.rocc.core.physics.*;
 import org.jbox2d.dynamics.World;
 
 /**
+ * Iterface for factory creating all objects handling the physics in our game
+ *
  * Created by Joel on 2015-05-08.
  */
 public class PhyRoCCFactory implements IRoCCFactory {

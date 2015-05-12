@@ -5,6 +5,8 @@ import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.model.Character;
 
 /**
+ * Iterface for factory creating all objects handling all non-physics related logic in our game
+ *
  * Created by Joel on 2015-05-08.
  */
 public class RoCCFactory implements IRoCCFactory {
