@@ -29,11 +29,12 @@ public class PhyPickupableCharacter implements IPickupableCharacter {
 
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(8, 8);
+        shape.setAsBox(8 / PPM, 8 / PPM);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_PICKUPABLE;
         fDef.filter.maskBits = BitMask.BIT_BODY;
+        fDef.isSensor = true;
         body.createFixture(fDef).setUserData("pickupCharacter");
 
     }
