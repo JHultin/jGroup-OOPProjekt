@@ -137,7 +137,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void dispose(){
-
+        level.dispose();
     }
 
 }

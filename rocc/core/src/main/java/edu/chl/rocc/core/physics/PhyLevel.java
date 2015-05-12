@@ -8,9 +8,9 @@ import edu.chl.rocc.core.model.Level;
 import org.jbox2d.common.Vec2;
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
 import jdk.nashorn.internal.ir.Flags;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
@@ -22,17 +22,21 @@ public class PhyLevel implements ILevel {
     private final ILevel level;
     private final World world;
     public static boolean isUpdating;
+    private List<Body> bodiesNeedingToDispose;
 
     private float aimX, aimY;
 
     public PhyLevel(World world) {
         this.world = world;
         this.level = new Level();
+        this.bodiesNeedingToDispose = new ArrayList<Body>();
     }
 
     @Override
     public void addBlock(BodyDef bDef, FixtureDef fDef) {
-        world.createBody(bDef).createFixture(fDef);
+        Body body = world.createBody(bDef);
+        bodiesNeedingToDispose.add(body);
+        body.createFixture(fDef);
     }
 
     @Override
@@ -121,6 +125,14 @@ public class PhyLevel implements ILevel {
     public void setAim(float x, float y){
         this.aimX = x;
         this.aimY = y;
+    }
+
+    @Override
+    public void dispose() {
+        level.dispose();
+        for (Body body : bodiesNeedingToDispose){
+            world.destroyBody(body);
+        }
     }
 
     public Vector2 getAim(){
