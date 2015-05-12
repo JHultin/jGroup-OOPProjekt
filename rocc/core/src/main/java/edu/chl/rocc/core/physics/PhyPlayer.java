@@ -74,7 +74,7 @@ public class PhyPlayer implements IPlayer {
     public void dispose() {
         player.dispose();
         for (IBullet bullet : bullets){
-
+            bullet.dispose();
         }
     }
 

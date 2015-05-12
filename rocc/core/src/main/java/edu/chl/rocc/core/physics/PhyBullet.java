@@ -67,6 +67,11 @@ public class PhyBullet implements IBullet {
         return this.bullet.getName();
     }
 
+    @Override
+    public void dispose() {
+        body.getWorld().destroyBody(body);
+    }
+
     /*
     public Vector2 getDirection(){
         return this.direction;

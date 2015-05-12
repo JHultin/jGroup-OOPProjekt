@@ -104,6 +104,8 @@ public class Level implements ILevel {
 
     @Override
     public void dispose() {
-
+        for (IBullet bullet : bullets){
+            bullet.dispose();
+        }
     }
 }
