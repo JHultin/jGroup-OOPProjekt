@@ -86,7 +86,7 @@ public class PlayView implements Screen,IViewObservable{
         //adds to table
         table.add(timeLabel);
         table.add(scoreLabel);
-        table.setPosition(200,220);
+        table.setPosition(200, 220);
 
         //Adds spacing to bottom
         for(Cell cell : table.getCells()){
@@ -203,7 +203,11 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void dispose() {
-
+        for (Texture texture : textures.values()){
+            texture.dispose();
+        }
+        batch.dispose();
+        stage.dispose();
     }
 
 
