@@ -1,7 +1,7 @@
 left
-21
+29
 right
-22
+32
 jump
 62
 .
