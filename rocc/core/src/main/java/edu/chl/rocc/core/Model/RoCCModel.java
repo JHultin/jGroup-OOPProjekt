@@ -96,13 +96,10 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void addFood(IFood food) {
-        //level.addFood(food);
-    }
-
-    @Override
     public void removeItems(List<IPickupable> itemsToRemove) {
-
+        for (IPickupable pickup : itemsToRemove){
+            level.removePickupable(pickup);
+        }
     }
 
     @Override

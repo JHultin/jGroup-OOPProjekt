@@ -181,15 +181,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void addFood(IFood food) {
-        model.addFood(food);
-    }
-
-    @Override
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
             pickup.destroy();
         }
+        model.removeItems(itemsToRemove);
     }
 
     @Override

@@ -58,9 +58,7 @@ public interface IRoCCModel{
 
     public List<IPickupable> getPickupables();
 
-    public void addFood (IFood food);
-
-    public void removeItems(List<IPickupable> bodiesToRemove);
+    public void removeItems(List<IPickupable> itemsToRemove);
 
     /**
     * @return list of all current existing projectiles in the level.
