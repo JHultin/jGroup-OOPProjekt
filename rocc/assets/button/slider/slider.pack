@@ -1,0 +1,26 @@
+
+slider.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+sliderBackground
+  rotate: false
+  xy: 0, 15
+  size: 15, 8
+  orig: 15, 8
+  offset: 0, 0
+  index: -1
+sliderDown
+  rotate: false
+  xy: 0, 0
+  size: 8, 15
+  orig: 8, 15
+  offset: 0, 0
+  index: -1
+sliderUp
+  rotate: false
+  xy: 8, 0
+  size: 8, 15
+  orig: 8, 15
+  offset: 0, 0
+  index: -1

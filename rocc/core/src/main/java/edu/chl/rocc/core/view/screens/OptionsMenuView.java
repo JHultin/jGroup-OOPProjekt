@@ -27,6 +27,12 @@ public class OptionsMenuView extends AbstractMenuView{
     private Label titleLabel;
 
     private TextButton backButton;
+    private CheckBox fullscreenCheckBox;
+    private Slider soundSlider;
+    private Label soundVolumeLabel;
+    private Label musicVolumeLabel;
+    private Slider musicSlider;
+    private ScrollPane controlConfigPane;
 
     public OptionsMenuView(IRoCCModel model){
         super(model);
@@ -54,21 +60,74 @@ public class OptionsMenuView extends AbstractMenuView{
          * adds to table
          */
         //adds title
-        table.add(titleLabel);
+        table.add(titleLabel).spaceBottom(20);;
+        table.row();
+        table.add(fullscreenCheckBox).left().spaceBottom(20);
         table.row();
 
+        Table sliderTable = new Table();
+        sliderTable.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        sliderTable.add(soundVolumeLabel).padRight(10).top();
+        sliderTable.add(soundSlider).width(250);
+        sliderTable.row();
+        sliderTable.add(musicVolumeLabel).padRight(10);;
+        sliderTable.add(musicSlider).width(250);
+        table.add(sliderTable).spaceBottom(80);
+        table.row();
         float buttonWidth = 200;
         table.add(backButton).width(buttonWidth);
+
+
+        //table.debug();
+
 
         stage.addActor(table);
     }
 
 
     public void createButtons(){
-        backButton = new TextButton("Back", textButtonStyle);
 
-        //Padding to button
+        //Regular button
+        backButton = new TextButton("Back", textButtonStyle);
         backButton.pad(20);
+
+
+        //Checkbox
+        TextureAtlas checkBoxAtlas = new TextureAtlas("button/checkBox/checkBox.pack");
+        Skin checkBoxSkin = new Skin(checkBoxAtlas);
+
+        CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
+        checkBoxStyle.checkboxOff = checkBoxSkin.getDrawable("checkBoxUnChecked");
+        checkBoxStyle.checkboxOn = checkBoxSkin.getDrawable("checkBoxChecked");
+        checkBoxStyle.font = font;
+        checkBoxStyle.fontColor = Color.BLACK;
+
+        fullscreenCheckBox = new CheckBox(" Fullscreen",checkBoxStyle);
+        fullscreenCheckBox.setChecked(true);
+
+        //Slider
+        TextureAtlas sliderAtlas = new TextureAtlas("button/slider/slider.pack");
+        Skin sliderSkin = new Skin(sliderAtlas);
+        Slider.SliderStyle sliderStyle = new Slider.SliderStyle();
+        sliderStyle.knob = sliderSkin.getDrawable("sliderUp");
+        sliderStyle.background = sliderSkin.getDrawable("sliderBackground");
+
+        Label.LabelStyle sliderLabelStyle = new Label.LabelStyle(font, Color.BLACK);
+
+        //soundVolume slider
+        soundSlider = new Slider(0,100,10,false,sliderStyle);
+
+        soundVolumeLabel = new Label("Sound Volume:", sliderLabelStyle);
+        soundVolumeLabel.setFontScale(1);
+
+        //musicVolume Slider
+        musicSlider = new Slider(0,100,10,false,sliderStyle);
+
+        musicVolumeLabel = new Label("Sound Volume:", sliderLabelStyle);
+        musicVolumeLabel.setFontScale(1);
+
+
 
 
         /**

@@ -1,0 +1,19 @@
+
+checkBox.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+checkBoxChecked
+  rotate: false
+  xy: 0, 15
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+checkBoxUnChecked
+  rotate: false
+  xy: 0, 0
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1

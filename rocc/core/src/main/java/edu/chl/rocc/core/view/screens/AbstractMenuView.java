@@ -78,7 +78,7 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
         backgroundImage.setHeight(Gdx.graphics.getHeight());
 
         //The texture of the buttons
-        textureAtlas = new TextureAtlas("button/button.pack");
+        textureAtlas = new TextureAtlas("button/defaultButton/button.pack");
         skin = new Skin(textureAtlas);
 
         //Sets the button style
