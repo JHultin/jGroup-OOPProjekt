@@ -140,10 +140,15 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     @Override
     public void dispose() {
-        stage.dispose();
-        textureAtlas.dispose();
-        skin.dispose();
-        backgroundTexture.dispose();
-        font.dispose();
+        if (stage != null)
+            stage.dispose();
+        if (textureAtlas != null)
+            textureAtlas.dispose();
+        if (skin != null)
+            skin.dispose();
+        if (backgroundTexture != null)
+            backgroundTexture.dispose();
+        if (font != null)
+            font.dispose();
     }
 }

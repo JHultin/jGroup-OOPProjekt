@@ -10,6 +10,7 @@ import edu.chl.rocc.core.model.Player;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class PhyPlayer implements IPlayer {
 
     public PhyPlayer(World world){
         this.player = new Player(new PhyRoCCFactory(world));
-
+        this.bullets = new ArrayList<IBullet>();
         this.world = world;
     }
 
