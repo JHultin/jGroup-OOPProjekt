@@ -1,0 +1,7 @@
+left
+21
+right
+
+jump
+
+.
