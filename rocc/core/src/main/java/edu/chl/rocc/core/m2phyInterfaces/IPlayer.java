@@ -41,4 +41,6 @@ public interface IPlayer {
      * @return list of all characters.
      */
     public List<ICharacter> getCharacters();
+
+    public void dispose();
 }

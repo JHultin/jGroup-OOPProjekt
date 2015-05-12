@@ -112,6 +112,13 @@ public class Player implements IPlayer {
         return characters;
     }
 
+    @Override
+    public void dispose() {
+        for(ICharacter character : characters){
+            character.dispose();
+        }
+    }
+
     /*
     * Change which character the player is playing as.
     */

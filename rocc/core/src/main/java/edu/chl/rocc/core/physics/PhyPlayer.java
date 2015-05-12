@@ -19,6 +19,7 @@ public class PhyPlayer implements IPlayer {
 
     private IPlayer player;
     private World world;
+    private List<IBullet> bullets;
 
     public PhyPlayer(World world){
         this.player = new Player(new PhyRoCCFactory(world));
@@ -69,11 +70,19 @@ public class PhyPlayer implements IPlayer {
         return player.getCharacters();
     }
 
+    @Override
+    public void dispose() {
+        player.dispose();
+        for (IBullet bullet : bullets){
+
+        }
+    }
+
     /*
     * Creates and fires a bullet.
     * Temporarily placed in PhyPlayer, will later be moved to a Weapon class.
     */
     public void createBullet(float x, float y, float xDir, float yDir, String name){
-        IBullet bullet = new PhyBullet(this.world, x, y, xDir, yDir, name);
+        bullets.add(new PhyBullet(this.world, x, y, xDir, yDir, name));
     }
 }

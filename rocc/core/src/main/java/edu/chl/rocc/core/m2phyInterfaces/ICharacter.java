@@ -57,4 +57,6 @@ public interface ICharacter {
     public float getY();
 
     public String getName();
+
+    public void dispose();
 }

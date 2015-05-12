@@ -139,6 +139,12 @@ public class PhyCharacter implements ICharacter {
     }
 
     @Override
+    public void dispose() {
+        character.dispose();
+        world.destroyBody(body);
+    }
+
+    @Override
     public boolean equals(Object o){
         if (this == o){
             return true;

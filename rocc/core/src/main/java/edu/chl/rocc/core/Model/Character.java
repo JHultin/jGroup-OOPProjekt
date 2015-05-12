@@ -84,6 +84,11 @@ public class Character implements ICharacter {
     }
 
     @Override
+    public void dispose() {
+
+    }
+
+    @Override
     public boolean equals(Object o){
         if (this == o){
             return true;
