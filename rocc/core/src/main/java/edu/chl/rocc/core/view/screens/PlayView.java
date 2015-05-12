@@ -16,9 +16,11 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.view.AnimationHandler;
@@ -76,10 +78,6 @@ public class PlayView implements Screen,IViewObservable{
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 
-
-        createPauseWindow();
-
-
         //Initializes the text
         labelStyle = new Label.LabelStyle(font,Color.BLACK);
         scoreLabel = new Label("Score:\n1337", labelStyle);
@@ -102,7 +100,20 @@ public class PlayView implements Screen,IViewObservable{
 
         //Add table to stage
         stage.addActor(table);
-        stage.addActor(pauseWindow);
+
+
+        /**
+         * Pause window
+         */
+
+        //Initialize the pause window and everything it contains
+        createPauseWindow();
+        //Add window
+        // stage.addActor(pauseWindow); //pauseWindow should be added to stage when user press escape
+       // pauseWindow.remove(); //used to remove pausewindow
+
+        //END
+
 
         observerArrayList = new ArrayList<IViewObserver>();
 
@@ -253,22 +264,83 @@ public class PlayView implements Screen,IViewObservable{
     }
 
 
+
+
     public void createPauseWindow(){
-
-        //The texture of the buttons
-      TextureAtlas textureAtlas = new TextureAtlas("button/defaultButton/button.pack");
-      Skin pauseSkin = new Skin(textureAtlas);
-
-
         Window.WindowStyle pauseWindowStyle = new Window.WindowStyle();
         pauseWindowStyle.titleFont = font;
         pauseWindowStyle.titleFontColor = Color.BLACK;
-        pauseWindowStyle.background = pauseSkin.getDrawable("buttonUp");
+        //pauseWindowStyle.background = pauseSkin.getDrawable("buttonUp");
 
         pauseWindow = new Window("PAUSE", pauseWindowStyle);
 
+        //The texture of the buttons
+        TextureAtlas textureAtlas = new TextureAtlas("button/defaultButton/button.pack");
+        Skin pauseButtonSkin = new Skin(textureAtlas);
+
+        //Sets the button style
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.up = pauseButtonSkin.getDrawable("buttonUp");
+        textButtonStyle.down = pauseButtonSkin.getDrawable("buttonDown");
+        //Moves the buttontext one pixel when pressed.
+        textButtonStyle.pressedOffsetX = 1;
+        textButtonStyle.font = font;
+        textButtonStyle.fontColor = Color.BLACK;
 
 
+
+        TextButton resumeButton = new TextButton("Resume",textButtonStyle);
+        TextButton restartButton = new TextButton("Restart",textButtonStyle);
+        TextButton optionsButton = new TextButton("Options", textButtonStyle);
+        TextButton quitButton = new TextButton("Quit",textButtonStyle);
+
+        /**
+         * add listener to buttons
+         */
+        resumeButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                notifyObserver("resume");
+            }
+        });
+
+        restartButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                notifyObserver("restart");
+            }
+        });
+
+        optionsButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                notifyObserver("options");
+            }
+        });
+
+        quitButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                notifyObserver("quit");
+            }
+        });
+
+        pauseWindow.padTop(64);
+
+        pauseWindow.add(resumeButton).width(100).height(40).row();
+        pauseWindow.add(restartButton).width(100).height(40).row();
+        pauseWindow.add(optionsButton).width(100).height(40).row();
+        pauseWindow.add(quitButton).width(100).height(40).row();
+
+        //Adds spacing to bottom
+        for(Cell cell : pauseWindow.getCells()){
+            pauseWindow.getCell(cell.getActor()).spaceBottom(10);
+        }
+
+
+        pauseWindow.pack();
+
+        pauseWindow.setPosition(stage.getWidth()/2 - pauseWindow.getWidth()/2,stage.getHeight()/2 - pauseWindow.getHeight()/2);
     }
 
 
