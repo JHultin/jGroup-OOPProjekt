@@ -42,8 +42,8 @@ public class KeyOptions {
 
         // If the file specifying the keysettings doesm't exist, set them to default values and write a new file
         if (!Gdx.files.internal(filePath).exists()){
-            keys.put("left",  Input.Keys.LEFT);
-            keys.put("right", Input.Keys.RIGHT);
+            keys.put("left",  Input.Keys.A);
+            keys.put("right", Input.Keys.D);
             keys.put("jump",  Input.Keys.SPACE);
             saveKeys();
 

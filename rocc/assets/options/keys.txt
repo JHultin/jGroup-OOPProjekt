@@ -1,7 +1,0 @@
-left
-21
-right
-22
-jump
-62
-.
