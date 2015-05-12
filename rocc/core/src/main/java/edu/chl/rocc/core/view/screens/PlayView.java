@@ -18,9 +18,7 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.view.AnimationHandler;
@@ -49,7 +47,7 @@ public class PlayView implements Screen,IViewObservable{
 
     private ArrayList<IViewObserver> observerArrayList;
 
-    private BitmapFont scoreFont = new BitmapFont();
+    private BitmapFont font = new BitmapFont();
     private Label.LabelStyle labelStyle;
     private Label scoreLabel;
     private Label timeLabel;
@@ -59,8 +57,12 @@ public class PlayView implements Screen,IViewObservable{
 
     //ANIMATION TEST
     private AnimationHandler animation;
-
     //ANIMATION TEST END
+
+    //Pause windowtest
+    private Window pauseWindow;
+    //pausetest
+
 
 
     public PlayView(IRoCCModel model){
@@ -73,8 +75,13 @@ public class PlayView implements Screen,IViewObservable{
         table = new Table();
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
+
+
+        createPauseWindow();
+
+
         //Initializes the text
-        labelStyle = new Label.LabelStyle(scoreFont,Color.BLACK);
+        labelStyle = new Label.LabelStyle(font,Color.BLACK);
         scoreLabel = new Label("Score:\n1337", labelStyle);
         scoreLabel.setFontScale(1);
         timeLabel = new Label("Time:\n00:00", labelStyle);
@@ -91,8 +98,11 @@ public class PlayView implements Screen,IViewObservable{
             table.getCell(cell.getActor()).pad(15);
         }
 
+
+
         //Add table to stage
         stage.addActor(table);
+        stage.addActor(pauseWindow);
 
         observerArrayList = new ArrayList<IViewObserver>();
 
@@ -117,6 +127,11 @@ public class PlayView implements Screen,IViewObservable{
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
         textures.put("enemy"  , new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieIdleLeft.png")));
         //b2dr = new Box2DDebugRenderer();
+
+
+
+
+
     }
 
 
@@ -235,6 +250,25 @@ public class PlayView implements Screen,IViewObservable{
     public void setMap(TiledMap tMap){
         this.map = tMap;
         this.renderer = new OrthogonalTiledMapRenderer(map);
+    }
+
+
+    public void createPauseWindow(){
+
+        //The texture of the buttons
+      TextureAtlas textureAtlas = new TextureAtlas("button/defaultButton/button.pack");
+      Skin pauseSkin = new Skin(textureAtlas);
+
+
+        Window.WindowStyle pauseWindowStyle = new Window.WindowStyle();
+        pauseWindowStyle.titleFont = font;
+        pauseWindowStyle.titleFontColor = Color.BLACK;
+        pauseWindowStyle.background = pauseSkin.getDrawable("buttonUp");
+
+        pauseWindow = new Window("PAUSE", pauseWindowStyle);
+
+
+
     }
 
 
