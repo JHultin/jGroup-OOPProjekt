@@ -8,4 +8,6 @@ public interface IPickupable {
     public float getX();
 
     public float getY();
+
+    public String getName();
 }
