@@ -1,10 +1,7 @@
 package edu.chl.rocc.core.factories;
 
 import edu.chl.rocc.core.m2phyInterfaces.*;
-import edu.chl.rocc.core.physics.PhyCharacter;
-import edu.chl.rocc.core.physics.PhyFood;
-import edu.chl.rocc.core.physics.PhyLevel;
-import edu.chl.rocc.core.physics.PhyPlayer;
+import edu.chl.rocc.core.physics.*;
 import org.jbox2d.dynamics.World;
 
 /**
@@ -39,6 +36,6 @@ public class PhyRoCCFactory implements IRoCCFactory {
 
     @Override
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
-        return null;
+        return new PhyPickupableCharacter(name, world, x, y);
     }
 }

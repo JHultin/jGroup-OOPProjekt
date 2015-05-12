@@ -35,6 +35,6 @@ public class RoCCFactory implements IRoCCFactory {
 
     @Override
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
-        return null;
+        return new PickupableCharacter(name);
     }
 }
