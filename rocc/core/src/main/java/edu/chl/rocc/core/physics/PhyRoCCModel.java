@@ -183,6 +183,9 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
+            if(pickup instanceof IPickupableCharacter){
+                addCharacter(pickup.getName());
+            }
             pickup.destroy();
         }
         model.removeItems(itemsToRemove);
