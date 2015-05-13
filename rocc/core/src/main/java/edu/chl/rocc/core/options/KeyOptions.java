@@ -78,6 +78,15 @@ public class KeyOptions {
      * @return successfully wrote to file
      */
     public boolean saveKeys(){
+        File dir = new File("options");
+        if (!dir.exists()){
+            try{
+                dir.mkdir();
+            } catch (SecurityException se){
+                return false;
+            }
+        }
+
         // Try to write the current settings to file
         try {
             FileWriter fw = new FileWriter(Gdx.files.internal(filePath).toString());
