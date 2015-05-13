@@ -11,19 +11,27 @@ import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
  */
 public class Character implements ICharacter {
 
-    private int maxHealth = 100;
+    private final int maxHealth = 100;
     private int healthPoints;
     private final String name;
+
     private Direction direction;
     private Direction lastDir;
     private boolean inAir;
 
 
+    private boolean isFollower;
+
+
     public Character(String name){
         this.setHP(maxHealth);
         this.name = name;
+
         this.direction = Direction.NONE;
         this.lastDir = this.direction;
+
+        isFollower = true;
+
     }
 
     @Override
@@ -60,6 +68,11 @@ public class Character implements ICharacter {
 
     @Override
     public void jump(){}
+
+    @Override
+    public void jumpIfFollower(){
+
+    }
 
     @Override
     public void hitGround() {
@@ -139,4 +152,21 @@ public class Character implements ICharacter {
     public boolean inAir(){
         return inAir;
     }
+
+
+    @Override
+    public boolean isFollower(){
+        return this.isFollower;
+    }
+
+    @Override
+    public void setAsFollower(){
+        this.isFollower = true;
+    }
+
+    @Override
+    public void removeAsFollower(){
+        this.isFollower = false;
+    }
+
 }

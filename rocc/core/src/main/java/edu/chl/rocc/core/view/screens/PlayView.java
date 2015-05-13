@@ -157,6 +157,7 @@ public class PlayView implements Screen,IViewObservable{
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
         textures.put("enemy"  , new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieIdleLeft.png")));
+        textures.put("hatGuy" , new Texture(Gdx.files.internal("enemy.png")));
         //b2dr = new Box2DDebugRenderer();
 
 

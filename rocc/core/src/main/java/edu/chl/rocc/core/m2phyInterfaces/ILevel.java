@@ -23,6 +23,8 @@ public interface ILevel {
 
     public List<IPickupable> getPickupables();
 
+    public void addJumpPoint(IJumpPoint jumpPoint);
+
     /**
     * Create a bullet/projectile.
     */

@@ -143,6 +143,18 @@ public class PhyRoCCModel implements IRoCCModel {
 
             model.getLevel().addPickupable(ipc);
         }
+
+        MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
+        for(MapObject point : jumpLayer.getObjects()){
+            Direction dir;
+            dir = ("right".equals((String)(point.getProperties().get("direction"))) ? Direction.RIGHT : Direction.LEFT);
+
+            float x = ((Float) point.getProperties().get("x")) / PPM;
+            float y = ((Float) point.getProperties().get("y")) / PPM;
+
+            IJumpPoint ijp = new PhyJumpPoint(world, dir , x, y);
+            model.getLevel().addJumpPoint(ijp);
+        }
     }
 
     @Override

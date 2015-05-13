@@ -5,6 +5,7 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.model.Character;
+import edu.chl.rocc.core.utility.CharacterLoader;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -23,6 +24,10 @@ public class PhyCharacter implements ICharacter {
     private int characterOnGround;
     private Direction direction;
     private Direction airDir;
+    private final int speed;
+    private final int numberOfJumps;
+    private final int jumpForce;
+    private final int airForce;
 
 
 
@@ -32,6 +37,12 @@ public class PhyCharacter implements ICharacter {
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.character = new Character(name);
+
+        CharacterLoader cl = new CharacterLoader(name);
+        this.speed         = cl.getCharecaristic("Speed");
+        this.numberOfJumps = cl.getCharecaristic("NumberOfJumps");
+        this.jumpForce     = cl.getCharecaristic("JumpForce");
+        this.airForce      = cl.getCharecaristic("AirForce");
 
         airDir = Direction.NONE;
 
@@ -48,7 +59,7 @@ public class PhyCharacter implements ICharacter {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY | BitMask.BIT_JUMPPOINT;
         body.createFixture(fDef).setUserData("body");
 
         //create foot sensor
@@ -84,10 +95,10 @@ public class PhyCharacter implements ICharacter {
     public void move(Direction dir) {
         if (dir != direction && (characterOnGround > 0)) {
                 if (dir.equals(Direction.LEFT)) {
-                    body.setLinearVelocity(new Vec2(-200 / PPM, 0));
+                    body.setLinearVelocity(new Vec2(-speed / PPM, 0));
                     leftV = leftV + 1;
                 } else if (dir.equals(Direction.RIGHT)) {
-                    body.setLinearVelocity(new Vec2(200 / PPM, 0));
+                    body.setLinearVelocity(new Vec2( speed / PPM, 0));
                     rightV = rightV + 1;
                 } else if (dir.equals(Direction.UP)) {
 
@@ -104,20 +115,19 @@ public class PhyCharacter implements ICharacter {
                 }
             direction = dir;
         } else if (dir != airDir && characterOnGround == 0){
-            float force = 100;
             if (dir.equals(Direction.LEFT)) {
-                body.applyForceToCenter(new Vec2(-force, 0));
+                body.applyForceToCenter(new Vec2(-airForce, 0));
             } else if (dir.equals(Direction.RIGHT)) {
-                body.applyForceToCenter(new Vec2( force, 0));
+                body.applyForceToCenter(new Vec2( airForce, 0));
             } else if (dir.equals(Direction.UP)) {
 
             } else if (dir.equals(Direction.DOWN)) {
 
             } else if (dir.equals(Direction.NONE)) {
                 if (airDir == Direction.LEFT) {
-                    body.applyForceToCenter(new Vec2( force, 0));
+                    body.applyForceToCenter(new Vec2( airForce, 0));
                 } else if (airDir == Direction.RIGHT) {
-                    body.applyForceToCenter(new Vec2(-force, 0));
+                    body.applyForceToCenter(new Vec2(-airForce, 0));
                 }
             }
             airDir = dir;
@@ -134,7 +144,7 @@ public class PhyCharacter implements ICharacter {
     public void jump() {
        if(characterOnGround > 0) {
            this.body.setLinearVelocity(new Vec2(0, 0));
-           this.body.applyForceToCenter(new Vec2(0, 250));
+           this.body.applyForceToCenter(new Vec2(0, jumpForce));
            airDir = Direction.UP;
 
            character.leftGround();
@@ -142,13 +152,20 @@ public class PhyCharacter implements ICharacter {
     }
 
     @Override
+    public void jumpIfFollower(){
+        if(this.character.isFollower()){
+            this.jump();
+        }
+    }
+
+    @Override
     public void hitGround(){
         if (characterOnGround == 0){
                 if (airDir.equals(Direction.LEFT)) {
-                    body.setLinearVelocity(new Vec2(-200 / PPM, 0));
+                    body.setLinearVelocity(new Vec2(-speed / PPM, 0));
                     leftV = leftV + 1;
                 } else if (airDir.equals(Direction.RIGHT)) {
-                    body.setLinearVelocity(new Vec2(200 / PPM, 0));
+                    body.setLinearVelocity(new Vec2( speed / PPM, 0));
                     rightV = rightV + 1;
                 } else if (airDir.equals(Direction.UP)) {
 
@@ -238,8 +255,20 @@ public class PhyCharacter implements ICharacter {
     }
 
     @Override
-    public boolean inAir(){
+    public boolean inAir() {
         return character.inAir();
+    }
+    
+    public boolean isFollower(){
+        return this.character.isFollower();
+    }
+
+    public void setAsFollower(){
+        this.character.setAsFollower();
+    }
+
+    public void removeAsFollower(){
+        this.character.removeAsFollower();
     }
 }
 

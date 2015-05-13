@@ -1,0 +1,10 @@
+Speed
+100
+NumberOfJumps
+1
+JumpForce
+250
+AirForce
+100
+MaxHP
+100

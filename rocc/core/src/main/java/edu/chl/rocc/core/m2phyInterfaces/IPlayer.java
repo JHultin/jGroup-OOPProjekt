@@ -42,4 +42,11 @@ public interface IPlayer {
     public List<ICharacter> getCharacters();
 
     public void dispose();
+
+    public void setActiveCharacter(int i);
+
+    /**
+    * Change which character the player is playing as.
+    */
+    public void setActiveCharacter(ICharacter character);
 }

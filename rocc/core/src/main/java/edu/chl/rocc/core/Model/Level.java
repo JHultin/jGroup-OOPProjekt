@@ -21,13 +21,15 @@ public class Level implements ILevel {
     private int time;
     private int score;
     private ArrayList<IPickupable> pickupables;
-    private ArrayList<IBullet> bullets;
+    private List<IJumpPoint> jumpPoints;
+    private List<IBullet> bullets;
     private ArrayList<IEnemy> enemies;
 
     private ArrayList <String> highscore;
 
     public Level(){
         pickupables = new ArrayList<IPickupable>();
+        jumpPoints = new ArrayList<IJumpPoint>();
         bullets = new ArrayList<IBullet>();
         enemies = new ArrayList<IEnemy>();
     }
@@ -64,6 +66,10 @@ public class Level implements ILevel {
         return pickupables;
     }
 
+    @Override
+    public void addJumpPoint(IJumpPoint jumpPoint){
+        jumpPoints.add(jumpPoint);
+    }
 
     @Override
     public void createBullet(float x, float y, float xDir, float yDir){
