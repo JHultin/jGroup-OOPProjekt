@@ -11,7 +11,7 @@ import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
  */
 public class Character implements ICharacter {
 
-    private int maxHealth = 100;
+    private final int maxHealth = 100;
     private int healthPoints;
     private final String name;
 
