@@ -112,6 +112,8 @@ public class RoCCController implements Runnable{
             this.model.addCharacter("bigDude");
             this.model.addCharacter("hatGuy");
 
+            this.model.getPlayer().setActiveCharacter(0);
+
             // Restart the thread and apply correct inputprocessor
 
             Gdx.input.setInputProcessor(gameProcessor);

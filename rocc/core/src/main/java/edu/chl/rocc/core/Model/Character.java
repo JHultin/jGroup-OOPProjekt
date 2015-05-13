@@ -14,10 +14,12 @@ public class Character implements ICharacter {
     private final int maxHealth = 100;
     private int healthPoints;
     private final String name;
+    private boolean isFollower;
 
     public Character(String name){
         this.setHP(maxHealth);
         this.name = name;
+        isFollower = true;
     }
 
     @Override
@@ -54,6 +56,11 @@ public class Character implements ICharacter {
 
     @Override
     public void jump(){}
+
+    @Override
+    public void jumpIfFollower(){
+
+    }
 
     @Override
     public void hitGround() {
@@ -107,6 +114,21 @@ public class Character implements ICharacter {
         hash += maxHealth * 257;
         hash += name.hashCode();
         return hash;
+    }
+
+    @Override
+    public boolean isFollower(){
+        return this.isFollower;
+    }
+
+    @Override
+    public void setAsFollower(){
+        this.isFollower = true;
+    }
+
+    @Override
+    public void removeAsFollower(){
+        this.isFollower = false;
     }
 
 }

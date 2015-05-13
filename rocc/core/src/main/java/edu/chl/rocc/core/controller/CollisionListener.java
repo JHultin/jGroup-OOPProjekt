@@ -53,6 +53,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if ("pickupCharacter".equals(fb.getUserData()) && fb.getBody().getUserData() instanceof IPickupableCharacter) {
             itemsToRemove.add((IPickupableCharacter)(fb.getBody().getUserData()));
         }
+        if("jumpPointSensor".equals(fa.getUserData())){
+            ((ICharacter)fb.getBody().getUserData()).jumpIfFollower();
+        }
+        if("jumpPointSensor".equals(fb.getUserData())){
+            ((ICharacter)fa.getBody().getUserData()).jumpIfFollower();
+        }
     }
 
     //Called when contact between two fixtures ends

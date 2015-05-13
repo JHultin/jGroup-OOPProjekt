@@ -42,6 +42,11 @@ public interface ICharacter {
     */
     public void jump();
 
+    /**
+    * Make the character jump if it is a follower.
+    */
+    public void jumpIfFollower();
+
     public void hitGround();
 
     public void leftGround();
@@ -59,4 +64,10 @@ public interface ICharacter {
     public String getName();
 
     public void dispose();
+
+    public boolean isFollower();
+
+    public void setAsFollower();
+
+    public void removeAsFollower();
 }

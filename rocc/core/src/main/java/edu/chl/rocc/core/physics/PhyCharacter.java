@@ -57,7 +57,7 @@ public class PhyCharacter implements ICharacter {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY | BitMask.BIT_JUMPPOINT;
         body.createFixture(fDef).setUserData("body");
 
         //create foot sensor
@@ -147,6 +147,13 @@ public class PhyCharacter implements ICharacter {
     }
 
     @Override
+    public void jumpIfFollower(){
+        if(this.character.isFollower()){
+            this.jump();
+        }
+    }
+
+    @Override
     public void hitGround(){
         if (characterOnGround == 0){
                 if (airDir.equals(Direction.LEFT)) {
@@ -219,5 +226,17 @@ public class PhyCharacter implements ICharacter {
         hash += width * 733  + height * 547;
         hash += body.hashCode();
         return hash;
+    }
+
+    public boolean isFollower(){
+        return this.character.isFollower();
+    }
+
+    public void setAsFollower(){
+        this.character.setAsFollower();
+    }
+
+    public void removeAsFollower(){
+        this.character.removeAsFollower();
     }
 }

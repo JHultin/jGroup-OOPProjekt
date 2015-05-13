@@ -61,6 +61,10 @@ public class PhyLevel implements ILevel {
         return level.getPickupables();
     }
 
+    @Override
+    public void addJumpPoint(IJumpPoint jumpPoint){
+        level.addJumpPoint(jumpPoint);
+    }
 
     @Override
     public void createBullet(float x, float y, float xDir, float yDir){

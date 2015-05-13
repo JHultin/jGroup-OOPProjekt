@@ -75,6 +75,16 @@ public class PhyPlayer implements IPlayer {
         }
     }
 
+    @Override
+    public void setActiveCharacter(int i){
+        this.player.setActiveCharacter(i);
+    }
+
+    @Override
+    public void setActiveCharacter(ICharacter character){
+        this.player.setActiveCharacter(character);
+    }
+
     /*
     * Creates and fires a bullet.
     * Temporarily placed in PhyPlayer, will later be moved to a Weapon class.
