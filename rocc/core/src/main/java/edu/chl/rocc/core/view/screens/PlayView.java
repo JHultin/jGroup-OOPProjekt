@@ -57,8 +57,8 @@ public class PlayView implements Screen,IViewObservable{
     private Stage stage;
     private Table table;
 
-    //ANIMATION TEST
-    private AnimationHandler animation;
+    //ANIMATION
+    private HashMap<String,AnimationHandler> characterAnimationHashmap;
     //ANIMATION TEST END
 
     //Pause windowtest
@@ -119,10 +119,28 @@ public class PlayView implements Screen,IViewObservable{
 
 
         //ANIMATION TEST
-        Texture motherTexture = new Texture(Gdx.files.internal("motherCharacter/motherMoveRight.png"));
-        TextureRegion[] textureRegions = TextureRegion.split(motherTexture, 34, 51)[0];
-        animation = new AnimationHandler(textureRegions,1/5f);
+        characterAnimationHashmap = new HashMap<String, AnimationHandler>();
+        //Mother animation
+        //Right
+        TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("motherCharacter/motherMoveRight.png")), 34, 51)[0];
+        characterAnimationHashmap.put("motherRight",new AnimationHandler(textureRegions,1/5f));
+        //Left
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("motherCharacter/motherMoveLeft.png")), 34, 51)[0];
+        characterAnimationHashmap.put("motherLeft",new AnimationHandler(textureRegions,1/5f));
+
+        //Zombie
+        //Right
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieMoveRight.png")), 36, 50)[0];
+        characterAnimationHashmap.put("zombieRight",new AnimationHandler(textureRegions,1/4f));
+        //left
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieMoveLeft.png")), 36, 50)[0];
+        characterAnimationHashmap.put("zombieLeft",new AnimationHandler(textureRegions,1/4f));
+
+
         //ANIMATION TEST END
+
+
+
 
 
         //map = new TmxMapLoader().load("ground-food-map.tmx");
@@ -169,16 +187,22 @@ public class PlayView implements Screen,IViewObservable{
 
 
 
-        animation.update(delta);        //ANIMATION TEST
+
+       // animation.update(delta);        //ANIMATION TEST
 
 
         batch.begin();
 
         for (ICharacter character : model.getCharacters()){
 
+
             if(character.getName().equals("mother")){       //Animation TEST
-                batch.draw(animation.getFrame(),character.getX(), character.getY());       //Animation TEST
-            }else {
+                characterAnimationHashmap.get("motherLeft").update(delta);
+                batch.draw(characterAnimationHashmap.get("motherLeft").getFrame(),character.getX(), character.getY());       //Animation TEST
+            }else if(character.getName().equals("enemy")){
+                characterAnimationHashmap.get("zombieLeft").update(delta);
+                batch.draw(characterAnimationHashmap.get("zombieLeft").getFrame(),character.getX(), character.getY());       //Animation TEST
+            }else{
                 batch.draw(textures.get(character.getName()), character.getX(), character.getY());
             }
         }

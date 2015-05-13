@@ -60,7 +60,7 @@ public class OptionsMenuView extends AbstractMenuView{
          * adds to table
          */
         //adds title
-        table.add(titleLabel).spaceBottom(20);;
+        table.add(titleLabel).spaceBottom(20);
         table.row();
         table.add(fullscreenCheckBox).left().spaceBottom(20);
         table.row();
