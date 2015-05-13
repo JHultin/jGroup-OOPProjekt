@@ -104,7 +104,7 @@ public class OptionsMenuView extends AbstractMenuView{
         checkBoxStyle.fontColor = Color.BLACK;
 
         fullscreenCheckBox = new CheckBox(" Fullscreen",checkBoxStyle);
-        fullscreenCheckBox.setChecked(true);
+        fullscreenCheckBox.setChecked(false);
 
         //Slider
         TextureAtlas sliderAtlas = new TextureAtlas("button/slider/slider.pack");
@@ -133,6 +133,30 @@ public class OptionsMenuView extends AbstractMenuView{
         /**
          * add listener to buttons
          */
+        fullscreenCheckBox.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                if(fullscreenCheckBox.isChecked()){
+                    Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+                }else{
+                    Gdx.graphics.setDisplayMode(720, 480, false);
+                }
+
+            }
+        });
+        soundSlider.addListener(new ClickListener(){
+           @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.out.println("Sound Volume: " + soundSlider.getValue());
+           }
+        });
+        musicSlider.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.out.println("Music Volume: " + musicSlider.getValue());
+            }
+        });
+
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
