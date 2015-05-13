@@ -14,13 +14,18 @@ import java.util.Map;
 public class CharacterLoader {
 
     private Map<String, Integer> charecaristics;
+
     public CharacterLoader(String name) {
-        if (!Gdx.files.internal("characterDefinition/" + name).exists()) {
+
+        charecaristics = new HashMap<String, Integer>();
+        String filePath = "characterDefinition/" + name + ".txt";
+
+        if (!Gdx.files.internal(filePath).exists()) {
             setToDeafault();
             // If it exist get the settings from it
         } else {
             try {
-                FileHandle handle = Gdx.files.internal("characterDefinition/" + name);
+                FileHandle handle = Gdx.files.internal(filePath);
                 BufferedReader br = handle.reader(2);
 
                 String key;

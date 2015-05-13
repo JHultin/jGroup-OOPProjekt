@@ -110,6 +110,7 @@ public class RoCCController implements Runnable{
             this.model.addCharacter("mother");
             this.model.addCharacter("follow");
             this.model.addCharacter("bigDude");
+            this.model.addCharacter("hatGuy");
 
             // Restart the thread and apply correct inputprocessor
 
