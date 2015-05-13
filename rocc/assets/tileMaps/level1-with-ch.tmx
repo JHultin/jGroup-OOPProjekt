@@ -50,12 +50,12 @@
  <objectgroup name="jumpPoints">
   <object id="22" x="617.991" y="1016.01">
    <properties>
-    <property name="direction" value="RIGHT"/>
+    <property name="direction" value="right"/>
    </properties>
   </object>
   <object id="23" x="650" y="982">
    <properties>
-    <property name="direction" value="RIGHT"/>
+    <property name="direction" value="right"/>
    </properties>
   </object>
  </objectgroup>
