@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -23,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
+import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.view.AnimationHandler;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -58,7 +56,8 @@ public class PlayView implements Screen,IViewObservable{
     private Table table;
 
     //ANIMATION
-    private HashMap<String,AnimationHandler> characterAnimationHashmap;
+    private HashMap<String,HashMap<String,AnimationHandler>> charactersAnimationHashMap;
+    private TextureRegion textureRegion;
     //ANIMATION TEST END
 
     //Pause windowtest
@@ -119,24 +118,27 @@ public class PlayView implements Screen,IViewObservable{
 
 
         //ANIMATION TEST
-        characterAnimationHashmap = new HashMap<String, AnimationHandler>();
+        charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
         //Mother animation
+        HashMap<String,AnimationHandler> motherHashmap = new HashMap<String, AnimationHandler>();
         //Right
         TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("motherCharacter/motherMoveRight.png")), 34, 51)[0];
-        characterAnimationHashmap.put("motherRight",new AnimationHandler(textureRegions,1/5f));
+        motherHashmap.put("motherRight",new AnimationHandler(textureRegions,1/5f));
         //Left
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("motherCharacter/motherMoveLeft.png")), 34, 51)[0];
-        characterAnimationHashmap.put("motherLeft",new AnimationHandler(textureRegions,1/5f));
+        motherHashmap.put("motherLeft",new AnimationHandler(textureRegions,1/5f));
 
         //Zombie
+        HashMap<String,AnimationHandler> zombieHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieMoveRight.png")), 36, 50)[0];
-        characterAnimationHashmap.put("zombieRight",new AnimationHandler(textureRegions,1/4f));
+        zombieHashmap.put("zombieRight",new AnimationHandler(textureRegions,1/3f));
         //left
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieMoveLeft.png")), 36, 50)[0];
-        characterAnimationHashmap.put("zombieLeft",new AnimationHandler(textureRegions,1/4f));
+        zombieHashmap.put("zombieLeft",new AnimationHandler(textureRegions,1/3f));
 
-
+        charactersAnimationHashMap.put("mother",motherHashmap);
+        charactersAnimationHashMap.put("enemy",zombieHashmap);
         //ANIMATION TEST END
 
 
@@ -193,20 +195,54 @@ public class PlayView implements Screen,IViewObservable{
 
         batch.begin();
 
-        for (ICharacter character : model.getCharacters()){
 
+        for (ICharacter character : model.getCharacters()) {
+            //Paints the character animations
 
-            if(character.getName().equals("mother")){       //Animation TEST
-                characterAnimationHashmap.get("motherLeft").update(delta);
-                batch.draw(characterAnimationHashmap.get("motherLeft").getFrame(),character.getX(), character.getY());       //Animation TEST
-            }else if(character.getName().equals("enemy")){
-                characterAnimationHashmap.get("zombieLeft").update(delta);
-                batch.draw(characterAnimationHashmap.get("zombieLeft").getFrame(),character.getX(), character.getY());       //Animation TEST
-            }else{
+            if (character.getName().equals("mother")) {       //Animation TEST
+                if(character.inAir() == true) {
+                    if (character.getDirection().equals(Direction.LEFT)) {
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpLeft.png")));
+                    } else if (character.getDirection().equals(Direction.RIGHT)) {
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpRight.png")));
+                    } else {
+                        if (character.getLastDirection().equals(Direction.LEFT)) {
+                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpLeft.png")));
+                        } else {
+                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpRight.png")));
+                        }
+                    }
+                }else if (character.getDirection().equals(Direction.RIGHT)) {
+                    charactersAnimationHashMap.get("mother").get("motherRight").update(delta);
+                    textureRegion = charactersAnimationHashMap.get("mother").get("motherRight").getFrame();
+                } else if (character.getDirection().equals(Direction.LEFT)) {
+                    charactersAnimationHashMap.get("mother").get("motherLeft").update(delta);
+                    textureRegion = charactersAnimationHashMap.get("mother").get("motherLeft").getFrame();
+                } else if (character.getDirection().equals(Direction.NONE)) {
+                    if(character.getLastDirection().equals(Direction.LEFT)) {
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/idleLeft.png")));
+                    }else{
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/idleRight.png")));
+                    }
+                }
+
+                batch.draw(textureRegion, character.getX(), character.getY());
+
+            } else if (character.getName().equals("enemy")) {
+                if (character.getDirection().equals(Direction.RIGHT)) {
+                    charactersAnimationHashMap.get("enemy").get("zombieRight").update(delta);
+                    textureRegion = charactersAnimationHashMap.get("enemy").get("zombieRight").getFrame();
+                } else if (character.getDirection().equals(Direction.LEFT)) {
+                    charactersAnimationHashMap.get("enemy").get("zombieLeft").update(delta);
+                    textureRegion = charactersAnimationHashMap.get("enemy").get("zombieLeft").getFrame();
+                } else if (character.getDirection().equals(Direction.NONE)) {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieIdleLeft.png")));
+                }
+                batch.draw(textureRegion, character.getX(), character.getY());
+            } else {
                 batch.draw(textures.get(character.getName()), character.getX(), character.getY());
             }
         }
-
 
 
         for (IPickupable pickupable : model.getPickupables()){
@@ -251,6 +287,15 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void dispose() {
+      /*  for(HashMap<String,AnimationHandler> currentAnimation: charactersAnimationHashMap.values()){
+            for(AnimationHandler animation : currentAnimation.values()){
+               // animation.
+            }
+        }
+        */
+        textureRegion.getTexture().dispose();
+
+
         for (Texture texture : textures.values()){
             texture.dispose();
         }

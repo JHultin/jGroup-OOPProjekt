@@ -14,10 +14,16 @@ public class Character implements ICharacter {
     private int maxHealth = 100;
     private int healthPoints;
     private final String name;
+    private Direction direction;
+    private Direction lastDir;
+    private boolean inAir;
+
 
     public Character(String name){
         this.setHP(maxHealth);
         this.name = name;
+        this.direction = Direction.NONE;
+        this.lastDir = this.direction;
     }
 
     @Override
@@ -57,12 +63,12 @@ public class Character implements ICharacter {
 
     @Override
     public void hitGround() {
-
+        inAir = false;
     }
 
     @Override
     public void leftGround() {
-
+        inAir = true;
     }
 
     @Override
@@ -109,4 +115,28 @@ public class Character implements ICharacter {
         return hash;
     }
 
+    public void setCurrentDirection(Direction dir){
+        if(!dir.equals(Direction.NONE)){
+            lastDir = direction;
+        }
+        direction = dir;
+
+    }
+
+
+    @Override
+    public Direction getDirection(){
+        return direction;
+    }
+
+    @Override
+    public Direction getLastDirection(){
+        return lastDir;
+    }
+
+
+    @Override
+    public boolean inAir(){
+        return inAir;
+    }
 }

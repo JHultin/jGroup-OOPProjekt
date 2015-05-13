@@ -59,4 +59,12 @@ public interface ICharacter {
     public String getName();
 
     public void dispose();
+
+    public void setCurrentDirection(Direction dir);
+
+    public Direction getDirection();
+
+    public Direction getLastDirection();
+
+    public boolean inAir();
 }

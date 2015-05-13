@@ -25,6 +25,8 @@ public class PhyCharacter implements ICharacter {
     private Direction airDir;
 
 
+
+
     public PhyCharacter(World world, float x, float y, String name){
         this.world = world;
         this.width = 18 / PPM;
@@ -120,6 +122,7 @@ public class PhyCharacter implements ICharacter {
             }
             airDir = dir;
         }
+
     }
 
     @Override
@@ -133,6 +136,8 @@ public class PhyCharacter implements ICharacter {
            this.body.setLinearVelocity(new Vec2(0, 0));
            this.body.applyForceToCenter(new Vec2(0, 250));
            airDir = Direction.UP;
+
+           character.leftGround();
        }
     }
 
@@ -153,16 +158,22 @@ public class PhyCharacter implements ICharacter {
                     body.setLinearVelocity(new Vec2(0, 0));
                 }
                 direction = airDir;
+
+            character.hitGround();
         }
         characterOnGround++;
+
+
     }
 
     @Override
     public void leftGround(){
         characterOnGround--;
         if (characterOnGround == 0){
-            if(airDir != Direction.UP)
+            if(airDir != Direction.UP) {
                 this.body.setLinearVelocity(new Vec2(0, 0));
+                character.leftGround();
+            }
             airDir = Direction.NONE;
         }
     }
@@ -210,4 +221,25 @@ public class PhyCharacter implements ICharacter {
         hash += body.hashCode();
         return hash;
     }
+
+    @Override
+    public void setCurrentDirection(Direction dir){
+        character.setCurrentDirection(dir);
+    }
+
+    @Override
+    public Direction getDirection(){
+        return character.getDirection();
+    }
+
+    @Override
+    public Direction getLastDirection(){
+        return character.getLastDirection();
+    }
+
+    @Override
+    public boolean inAir(){
+        return character.inAir();
+    }
 }
+
