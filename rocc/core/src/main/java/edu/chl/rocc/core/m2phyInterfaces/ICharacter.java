@@ -37,6 +37,11 @@ public interface ICharacter {
     */
     public void moveFollower(Direction dir);
 
+    public Direction getFollowerDirection();
+
+    public Direction getLastFollowerDir();
+
+
     /**
     * Make the character jump by changing its y-coordinate.
     */

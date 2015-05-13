@@ -19,6 +19,8 @@ public class Character implements ICharacter {
     private Direction lastDir;
     private boolean inAir;
 
+    private Direction followerDir;
+    private Direction lastFollowerDir;
 
     private boolean isFollower;
 
@@ -29,6 +31,9 @@ public class Character implements ICharacter {
 
         this.direction = Direction.NONE;
         this.lastDir = this.direction;
+        followerDir = Direction.NONE;
+        this.lastFollowerDir = followerDir;
+
 
         isFollower = true;
 
@@ -85,7 +90,23 @@ public class Character implements ICharacter {
     }
 
     @Override
-    public void moveFollower(Direction dir){}
+    public void moveFollower(Direction dir){
+        if(!dir.equals(Direction.NONE)){
+            lastFollowerDir = followerDir;
+        }
+        followerDir = dir;
+    }
+
+    @Override
+    public Direction getFollowerDirection(){
+        return followerDir;
+    }
+
+    @Override
+    public Direction getLastFollowerDir(){
+        return lastFollowerDir;
+    }
+
 
     @Override
     public float getX(){
