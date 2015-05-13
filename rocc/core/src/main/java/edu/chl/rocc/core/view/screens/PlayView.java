@@ -150,13 +150,21 @@ public class PlayView implements Screen,IViewObservable{
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("doctorWhoCharacter/moveLeft.png")), 24, 50)[0];
         doctorHashmap.put("doctorLeft",new AnimationHandler(textureRegions,1/5f));
 
-
+        //Follow
+        HashMap<String,AnimationHandler> soldierHashmap = new HashMap<String, AnimationHandler>();
+        //Right
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("soldierCharacter/moveRight.png")), 25, 50)[0];
+        soldierHashmap.put("soldierRight",new AnimationHandler(textureRegions,1/5f));
+        //left
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("soldierCharacter/moveLeft.png")), 25, 50)[0];
+        soldierHashmap.put("soldierLeft",new AnimationHandler(textureRegions,1/5f));
 
 
 
         charactersAnimationHashMap.put("mother",motherHashmap);
         charactersAnimationHashMap.put("enemy",zombieHashmap);
         charactersAnimationHashMap.put("follow",doctorHashmap);
+        charactersAnimationHashMap.put("bigDude",soldierHashmap);
         //ANIMATION TEST END
 
 
@@ -259,7 +267,7 @@ public class PlayView implements Screen,IViewObservable{
                  * Checks if current character is follower and renders the
                  * right figure.
                  **/
-            }else if(character.getName().equals("follow")){
+            }else if(character.getName().equals("follow")) {
                 if (character.inAir() == true) {
                     if (character.getFollowerDirection().equals(Direction.LEFT)) {
                         textureRegion = new TextureRegion(new Texture(Gdx.files.internal("doctorWhoCharacter/jumpLeft.png")));
@@ -287,6 +295,35 @@ public class PlayView implements Screen,IViewObservable{
                 }
 
                 batch.draw(textureRegion, character.getX(), character.getY());
+
+            }else if(character.getName().equals("bigDude")){
+                    if (character.inAir() == true) {
+                        if (character.getFollowerDirection().equals(Direction.LEFT)) {
+                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpLeft.png")));
+                        } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
+                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpRight.png")));
+                        } else {
+                            if (character.getLastFollowerDir().equals(Direction.LEFT)) {
+                                textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpLeft.png")));
+                            } else {
+                                textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpRight.png")));
+                            }
+                        }
+                    } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
+                        charactersAnimationHashMap.get("bigDude").get("soldierRight").update(delta);
+                        textureRegion = charactersAnimationHashMap.get("bigDude").get("soldierRight").getFrame();
+                    } else if (character.getFollowerDirection().equals(Direction.LEFT)) {
+                        charactersAnimationHashMap.get("bigDude").get("soldierLeft").update(delta);
+                        textureRegion = charactersAnimationHashMap.get("bigDude").get("soldierLeft").getFrame();
+                    } else if (character.getFollowerDirection().equals(Direction.NONE)) {
+                        if (character.getLastFollowerDir().equals(Direction.LEFT)) {
+                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/idleLeft.png")));
+                        } else {
+                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/idleRight.png")));
+                        }
+                    }
+
+                    batch.draw(textureRegion, character.getX(), character.getY());
 
                 /**
                  * Checks if current character is enemy and renders the
