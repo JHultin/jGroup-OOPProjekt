@@ -139,6 +139,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
        /* MapLayer ipcLayer = tMap.getLayers().get("characters");
 
+        MapLayer ipcLayer = tMap.getLayers().get("characters");
 
             for (MapObject mapObject : ipcLayer.getObjects()) {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
@@ -154,8 +155,12 @@ public class PhyRoCCModel implements IRoCCModel {
             model.getLevel().addPickupable(ipc);
         }*/
         }
+        /*
+        IPickupableCharacter ipc = new PhyPickupableCharacter("bigDude", world, x, y);
 
+        model.getLevel().addPickupable(ipc);
 
+*/
 
         if (tMap.getLayers().get("jumpPoints") != null) {
             MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
@@ -189,8 +194,8 @@ public class PhyRoCCModel implements IRoCCModel {
         MapLayer enemyLayer = tMap.getLayers().get("enemy");
 
         for (MapObject mapObject : enemyLayer.getObjects()){
-            float x = ((Float) mapObject.getProperties().get("x") + 16) /PPM;
-            float y = ((Float) mapObject.getProperties().get("y") + 8) /PPM;
+            float x = ((Float) mapObject.getProperties().get("x")) /PPM;
+            float y = ((Float) mapObject.getProperties().get("y")) /PPM;
 
             IEnemy enemy = new PhyEnemy(this.world, x, y, 50);
             model.addEnemy(enemy);
@@ -281,6 +286,16 @@ public class PhyRoCCModel implements IRoCCModel {
         }
         model.removeItems(itemsToRemove);
     }
+
+    @Override
+    public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange){
+        for (IEnemy enemy : enemyDirToChange){
+            if(enemy instanceof IEnemy){
+                enemy.changeMoveDirection();
+            }
+        }
+    }
+
 
     @Override
     public List<IBullet> getBullets() {

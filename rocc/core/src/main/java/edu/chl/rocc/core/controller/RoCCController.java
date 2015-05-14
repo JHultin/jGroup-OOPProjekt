@@ -226,6 +226,9 @@ public class RoCCController implements Runnable{
             if (newState != null) {
                 RoCCController.this.setState(newState);
             }
+            model.changeDirectionOnEnemies(collisionListener.getEnemiesToChangeDirection());
+
+
         }
 
         // Add key to keylist or jump

@@ -48,12 +48,12 @@ public class Enemy implements IEnemy{
     }
 
     @Override
-    public ArrayList movePattern() {
-        return null;
+    public void dispose() {
+
     }
 
     @Override
-    public void dispose() {
+    public void changeMoveDirection() {
 
     }
 }

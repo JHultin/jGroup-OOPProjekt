@@ -21,19 +21,20 @@ public class PhyEnemy implements IEnemy {
     private final Body body;
     private final BodyDef def;
     private final FixtureDef fDef;
+    private Direction dir;
 
     public PhyEnemy(World world, float x, float y, int healthPoints){
 
         // Enemy may also have a weapon
 
         this.world = world;
-        this.width = 18 / PPM;
-        this.height = 35 / PPM;
+        this.width = 13 / PPM;
+        this.height = 25 / PPM;
         this.enemy = new Enemy(healthPoints, "", 0, 0);
 
         //Defining & creating body
         def = new BodyDef();
-        def.position.set(x /PPM , y /PPM );
+        def.position.set(x , y);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
         body.setUserData(this);
@@ -47,23 +48,36 @@ public class PhyEnemy implements IEnemy {
         fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
         body.createFixture(fDef).setUserData("enemyBody");
 
-        //create foot sensor
+        //create upperbody sideSensor
         shape.setAsBox(width, height/4, new Vec2(0, -30 / PPM) ,0);
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_ENEMY;
         fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData("enemyFootSensor");
+        body.createFixture(fDef).setUserData("enemyUpperSensor");
+        body.setLinearVelocity(new Vec2(0, -100));
+        dir = Direction.LEFT;
+    }
+
+    @Override
+    public void changeMoveDirection(){
+        if(dir.equals(Direction.LEFT)) {
+            body.setLinearVelocity(new Vec2(0, 200));
+            dir = Direction.RIGHT;
+        }else if(dir.equals(Direction.RIGHT)){
+            body.setLinearVelocity(new Vec2(0, -200));
+            dir = Direction.LEFT;
+        }
     }
 
     @Override
     public float getX() {
-        return enemy.getX();
+        return (body.getPosition().x - width) * PPM;
     }
 
     @Override
     public float getY() {
-        return enemy.getY();
+        return (body.getPosition().y - height) * PPM;
     }
 
     @Override
@@ -79,11 +93,6 @@ public class PhyEnemy implements IEnemy {
     @Override
     public void decHP(int value) {
         this.enemy.decHP(value);
-    }
-
-    @Override
-    public ArrayList movePattern() {
-        return null;
     }
 
     @Override

@@ -129,10 +129,12 @@ public interface IRoCCModel{
      */
     public void dispose();
 
-
     public int getScore();
 
     public int getTime();
 
     public void handleDeath(IDeathEvent deathEvent);
+
+    public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange);
+
 }

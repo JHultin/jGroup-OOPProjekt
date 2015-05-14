@@ -20,6 +20,7 @@ public class PhyLevel implements ILevel {
     private final World world;
     public static boolean isUpdating;
     private List<Body> bodiesNeedingToDispose;
+    private List<IEnemy> enemies;
 
     private float aimX, aimY;
 
@@ -90,17 +91,17 @@ public class PhyLevel implements ILevel {
     }
     @Override
     public List<IEnemy> getEnemies(){
-        return level.getEnemies();
+        return enemies;
     }
 
     @Override
     public void addEnemy(IEnemy enemy) {
-        level.addEnemy(enemy);
+        enemies.add(enemy);
     }
 
     @Override
     public void removeEnemy(IEnemy enemy) {
-        level.removeEnemy(enemy);
+        enemies.remove(enemy);
     }
 
     @Override

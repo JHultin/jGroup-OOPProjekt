@@ -180,8 +180,12 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public int getTime(){
+    public int getTime() {
         return level.getTime();
+    }
+    public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange) {
+
+
     }
 
     @Override

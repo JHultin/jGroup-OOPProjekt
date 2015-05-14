@@ -10,4 +10,10 @@ public interface IWorld {
 
 
     public void createBody(BodyDef def);
+
+    public void destroyBody();
+
+    //public hashCode();
+
+    public void step();
 }
