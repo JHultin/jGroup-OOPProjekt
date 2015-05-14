@@ -51,10 +51,10 @@ public class PhyEnemy implements IEnemy {
         body.createFixture(fDef).setUserData("enemyBody");
 
         //create upperbody sideSensor
-        shape.setAsBox(width, height/4, new Vec2(0, 0) ,0);
+        shape.setAsBox(width, height/4, new Vec2(0, 0) ,0);    //ingen aning hur stor den är eller vart den är?
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_ENEMY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY | BitMask.BIT_BULLET ;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("enemyUpperSensor");
     }

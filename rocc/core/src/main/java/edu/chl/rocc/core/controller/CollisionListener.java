@@ -70,11 +70,17 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if ("finish".equals(fb.getUserData())) {
             this.newState = "menu";
         }
+
+        /**
+         * When enemy walks into a body or a wall into change direction
+         */
         if ("enemyUpperSensor".equals(fa.getUserData())){
             if("ground".equals(fb.getBody().getUserData())){
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
             }else if("body".equals(fb.getUserData())){
                 System.out.println("Take HP from character");
+                enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
+                //((ICharacter)fa.getBody().getUserData()).decHP(5);
             }
         }
         if ("enemyUpperSensor".equals(fb.getUserData())){
@@ -82,6 +88,24 @@ public class CollisionListener implements ContactListener, ICollisionListener {
                 enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
             }else if("body".equals(fa.getUserData())){
                 System.out.println("Take HP from character");
+                enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
+                //((ICharacter)fa.getBody().getUserData()).decHP(5);
+            }
+        }
+
+        /**
+         * When bullet hits enemy it takes damage
+         */
+        if("bullet".equals(fa.getUserData())){
+            if("enemyUpperSensor".equals(fb.getUserData())){
+                System.out.println("Takes HP from enemy");
+                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData());
+            }
+        }
+        if("bullet".equals(fb.getUserData())){
+            if("enemyUpperSensor".equals(fa.getUserData())){
+                System.out.println("Takes HP from enemy");
+                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData());
             }
         }
     }
