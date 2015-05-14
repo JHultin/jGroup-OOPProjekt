@@ -173,6 +173,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void jumpFollower(){
+        this.model.jumpFollower();
+    }
+
+    @Override
     public void shoot(float x, float y){
         this.model.shoot(x, y);
     }

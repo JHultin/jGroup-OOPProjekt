@@ -38,6 +38,8 @@ public interface IRoCCModel{
     */
     public void jump();
 
+    public void jumpFollower();
+
     public void shoot(float x, float y);
 
     /**

@@ -54,10 +54,10 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             itemsToRemove.add((IPickupableCharacter)(fb.getBody().getUserData()));
         }
         if("jumpPointSensor".equals(fa.getUserData())){
-            ((ICharacter)fb.getBody().getUserData()).jumpIfFollower();
+            ((ICharacter)fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
         if("jumpPointSensor".equals(fb.getUserData())){
-            ((ICharacter)fa.getBody().getUserData()).jumpIfFollower();
+            ((ICharacter)fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
     }
 
@@ -74,6 +74,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         }
         if ("footSensor".equals(fb.getUserData())) {
             ((ICharacter) fb.getBody().getUserData()).leftGround();
+        }
+        if("jumpPointSensor".equals(fa.getUserData())){
+            ((ICharacter)fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
+        }
+        if("jumpPointSensor".equals(fb.getUserData())){
+            ((ICharacter)fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
     }
 

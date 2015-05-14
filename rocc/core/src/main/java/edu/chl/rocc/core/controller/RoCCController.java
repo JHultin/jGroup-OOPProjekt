@@ -197,6 +197,8 @@ public class RoCCController implements Runnable{
             // Then all other characters
             model.moveFollowers(dir);
 
+            model.jumpFollower();
+
             // Do all shots cerated since last update
             for(Vec2 v : shots){
                 model.shoot(v.x, v.y);

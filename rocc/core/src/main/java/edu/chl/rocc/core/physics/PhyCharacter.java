@@ -29,6 +29,7 @@ public class PhyCharacter implements ICharacter {
     private final int jumpForce;
     private final int airForce;
 
+    private boolean followerOnJumpPoint;
 
 
 
@@ -37,6 +38,7 @@ public class PhyCharacter implements ICharacter {
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.character = new Character(name);
+        this.followerOnJumpPoint = false;
 
         CharacterLoader cl = new CharacterLoader(name);
         this.speed         = cl.getCharecaristic("Speed");
@@ -164,9 +166,23 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jumpIfFollower(){
-        if(this.character.isFollower()){
+        if(this.character.isFollower() && this.isOnJumpPoint()){
             this.jump();
         }
+    }
+
+    @Override
+    public void toggleFollowerOnJumpPoint(){
+        if(this.followerOnJumpPoint){
+            this.followerOnJumpPoint = false;
+        } else{
+            this.followerOnJumpPoint = true;
+        }
+    }
+
+    @Override
+    public boolean isOnJumpPoint(){
+        return this.followerOnJumpPoint;
     }
 
     @Override

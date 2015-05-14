@@ -86,6 +86,13 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public void jumpFollower(){
+        for(int i=0; i<characters.size(); i++){
+            characters.get(i).jumpIfFollower();
+        }
+    }
+
+    @Override
     public float getCharacterXPos(int i){
         return characters.get(i).getX();
     }

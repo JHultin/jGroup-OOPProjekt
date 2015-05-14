@@ -52,6 +52,10 @@ public interface ICharacter {
     */
     public void jumpIfFollower();
 
+    public void toggleFollowerOnJumpPoint();
+
+    public boolean isOnJumpPoint();
+
     public void hitGround();
 
     public void leftGround();
