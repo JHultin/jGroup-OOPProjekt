@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -126,7 +127,6 @@ public class PlayView implements Screen,IViewObservable{
         addToAnimationHashMap();
 
 
-
         //map = new TmxMapLoader().load("ground-food-map.tmx");
         //renderer = new OrthogonalTiledMapRenderer(map);
 
@@ -163,16 +163,14 @@ public class PlayView implements Screen,IViewObservable{
 
         batch.begin();
 
-        /**
-         * An advanced for-loop going through all the
-         * characters and adds animation.
-         */
+
+    try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.
         for (ICharacter character : model.getCharacters()) {
             renderCharacter(character, delta);
         }
-
-
-
+    }catch(ConcurrentModificationException e){
+        System.out.println("ConcurrentModificationException");
+    }
         for (IPickupable pickupable : model.getPickupables()){
             batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
         }
@@ -215,14 +213,11 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void dispose() {
-      /*  for(HashMap<String,AnimationHandler> currentAnimation: charactersAnimationHashMap.values()){
+        for(HashMap<String,AnimationHandler> currentAnimation: charactersAnimationHashMap.values()){
             for(AnimationHandler animation : currentAnimation.values()){
-               // animation.
+                animation.getFrame().getTexture().dispose();
             }
         }
-        */
-        textureRegion.getTexture().dispose();
-
 
         for (Texture texture : textures.values()){
             texture.dispose();
@@ -268,7 +263,7 @@ public class PlayView implements Screen,IViewObservable{
      * @param delta
      */
     public void renderCharacter(ICharacter character, float delta){
-        if(!character.isFollower()) {//paints front character animation
+        if(!character.isFollower()) {//paints front character animationd
             if (character.inAir() == true) {
                 if (character.getDirection().equals(Direction.LEFT)) {
                     textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
@@ -294,8 +289,6 @@ public class PlayView implements Screen,IViewObservable{
                     textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
                 }
             }
-
-            batch.draw(textureRegion, character.getX(), character.getY());
 
         }else if(character.isFollower()){//Paints the follower animation
 
@@ -324,13 +317,9 @@ public class PlayView implements Screen,IViewObservable{
                     textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
                 }
             }
-
-            batch.draw(textureRegion, character.getX(), character.getY());
-
-        }else {
-            batch.draw(textures.get(character.getName()), character.getX(), character.getY());
         }
 
+        batch.draw(textureRegion, character.getX(), character.getY());
     }//renderCharacter end
 
     /**
@@ -346,7 +335,7 @@ public class PlayView implements Screen,IViewObservable{
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/motherMoveLeft.png")), 34, 51)[0];
         motherHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/5f));
 
-        //Zombie
+        //zombie
         HashMap<String,AnimationHandler> zombieHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveRight.png")), 36, 50)[0];
@@ -355,7 +344,7 @@ public class PlayView implements Screen,IViewObservable{
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveLeft.png")), 36, 50)[0];
         zombieHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/3f));
 
-        //Follow
+        //doctor
         HashMap<String,AnimationHandler> doctorHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveRight.png")), 24, 50)[0];
@@ -364,7 +353,7 @@ public class PlayView implements Screen,IViewObservable{
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveLeft.png")), 24, 50)[0];
         doctorHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/5f));
 
-        //Follow
+        //soldier
         HashMap<String,AnimationHandler> soldierHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/moveRight.png")), 25, 50)[0];
@@ -381,7 +370,7 @@ public class PlayView implements Screen,IViewObservable{
         charactersAnimationHashMap.put("soldier",soldierHashmap);
         //ANIMATION TEST END
 
-    }
+    }//addToAnimationHashMap end
 
     public void createPauseWindow(){
         Window.WindowStyle pauseWindowStyle = new Window.WindowStyle();

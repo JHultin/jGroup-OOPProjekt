@@ -110,7 +110,6 @@ public class RoCCController implements Runnable{
             this.model.addCharacter("mother");
             this.model.addCharacter("doctor");
             this.model.addCharacter("soldier");
-         //   this.model.addCharacter("hatGuy");
 
             this.model.getPlayer().setActiveCharacter(0);
 
