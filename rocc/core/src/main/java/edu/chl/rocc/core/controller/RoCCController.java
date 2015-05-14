@@ -1,8 +1,6 @@
 package edu.chl.rocc.core.controller;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -12,14 +10,11 @@ import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.options.KeyOptions;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
-import edu.chl.rocc.core.view.ViewFactory;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 import edu.chl.rocc.core.view.screens.PlayView;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 
 /**
@@ -197,7 +192,8 @@ public class RoCCController implements Runnable{
             // Then all other characters
             model.moveFollowers(dir);
 
-            model.jumpFollower();
+            // Make the followers jump if they should.
+            model.jumpFollowerIfPossible();
 
             // Do all shots cerated since last update
             for(Vec2 v : shots){

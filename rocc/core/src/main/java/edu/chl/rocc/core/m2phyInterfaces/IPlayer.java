@@ -23,6 +23,8 @@ public interface IPlayer {
     */
     public void moveFollowers(Direction dir);
 
+    public boolean frontCharacterIsMoving();
+
     /**
     * @return x-coordinate of the character.
     */

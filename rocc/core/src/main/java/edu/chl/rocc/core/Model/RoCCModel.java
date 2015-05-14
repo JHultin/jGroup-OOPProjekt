@@ -55,13 +55,20 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public boolean frontCharacterIsMoving(){
+        return this.player.frontCharacterIsMoving();
+    }
+
+    @Override
     public void jump() {
         player.jump();
     }
 
     @Override
-    public void jumpFollower(){
-        player.jumpFollower();
+    public void jumpFollowerIfPossible(){
+        if(this.frontCharacterIsMoving()){
+            player.jumpFollower();
+        }
     }
 
     @Override

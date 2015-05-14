@@ -13,13 +13,10 @@ import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.RoCCModel;
-import jdk.nashorn.internal.ir.Flags;
 import org.jbox2d.collision.shapes.ChainShape;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -168,13 +165,18 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public boolean frontCharacterIsMoving(){
+        return this.model.frontCharacterIsMoving();
+    }
+
+    @Override
     public void jump() {
         this.model.jump();
     }
 
     @Override
-    public void jumpFollower(){
-        this.model.jumpFollower();
+    public void jumpFollowerIfPossible(){
+        this.model.jumpFollowerIfPossible();
     }
 
     @Override

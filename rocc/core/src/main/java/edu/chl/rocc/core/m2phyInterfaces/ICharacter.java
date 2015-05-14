@@ -37,6 +37,8 @@ public interface ICharacter {
     */
     public void moveFollower(Direction dir);
 
+    public boolean isMoving();
+
     public Direction getFollowerDirection();
 
     public Direction getLastFollowerDir();

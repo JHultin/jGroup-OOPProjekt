@@ -30,15 +30,16 @@ public class PhyCharacter implements ICharacter {
     private final int airForce;
 
     private boolean followerOnJumpPoint;
-
-
+    private boolean isMoving;
 
     public PhyCharacter(World world, float x, float y, String name){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.character = new Character(name);
+
         this.followerOnJumpPoint = false;
+        this.isMoving = false;
 
         CharacterLoader cl = new CharacterLoader(name);
         this.speed         = cl.getCharecaristic("Speed");
@@ -99,9 +100,11 @@ public class PhyCharacter implements ICharacter {
                 if (dir.equals(Direction.LEFT)) {
                     body.setLinearVelocity(new Vec2(-speed / PPM, 0));
                     leftV = leftV + 1;
+                    this.isMoving = true;
                 } else if (dir.equals(Direction.RIGHT)) {
                     body.setLinearVelocity(new Vec2( speed / PPM, 0));
                     rightV = rightV + 1;
+                    this.isMoving = true;
                 } else if (dir.equals(Direction.UP)) {
 
                 } else if (dir.equals(Direction.DOWN)) {
@@ -110,9 +113,11 @@ public class PhyCharacter implements ICharacter {
                     if (leftV > 0) {
                         body.setLinearVelocity(new Vec2(0, 0));
                         leftV = leftV - 1;
+                        this.isMoving = false;
                     } else if (rightV > 0) {
                         body.setLinearVelocity(new Vec2(0, 0));
                         rightV = rightV - 1;
+                        this.isMoving = false;
                     }
                 }
             direction = dir;
@@ -141,6 +146,11 @@ public class PhyCharacter implements ICharacter {
     public void moveFollower(Direction dir){
         this.move(dir);
         character.moveFollower(dir);
+    }
+
+    @Override
+    public boolean isMoving(){
+        return this.isMoving;
     }
 
     @Override

@@ -48,6 +48,11 @@ public class PhyPlayer implements IPlayer {
         this.player.moveFollowers(dir);
     }
 
+    @Override
+    public boolean frontCharacterIsMoving(){
+        return this.player.frontCharacterIsMoving();
+    }
+
     public void shoot(float x, float y, float xDir, float yDir){
         createBullet(x, y, xDir, yDir, "");
     }
