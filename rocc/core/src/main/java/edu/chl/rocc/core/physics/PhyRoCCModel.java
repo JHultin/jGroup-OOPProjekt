@@ -137,15 +137,24 @@ public class PhyRoCCModel implements IRoCCModel {
         if (tMap.getLayers().get("characters") != null) {
             MapLayer ipcLayer = tMap.getLayers().get("characters");
 
+       /* MapLayer ipcLayer = tMap.getLayers().get("characters");
+
+
             for (MapObject mapObject : ipcLayer.getObjects()) {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
                 IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
 
+
                 model.getLevel().addPickupable(ipc);
             }
         }
+
+            model.getLevel().addPickupable(ipc);
+        }*/
+        }
+
 
 
         if (tMap.getLayers().get("jumpPoints") != null) {
