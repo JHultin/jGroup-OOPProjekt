@@ -41,7 +41,7 @@ public class GeneralOptions {
             options.put("soundVolume",  100);
             options.put("musicVolume",  100);
             options.put("isFullscreen", 0);
-            saveOptiions();
+            saveOptions();
 
             // If it exist get the settings from it
         } else {
@@ -62,9 +62,9 @@ public class GeneralOptions {
                     }
                 }
             } catch (IOException IOEx) {
-                saveOptiions();
+                saveOptions();
             } catch (GdxRuntimeException gdxEx) {
-                saveOptiions();
+                saveOptions();
             }
         }
     }
@@ -73,7 +73,7 @@ public class GeneralOptions {
      * Call to write the current setting to file
      * @return successfully wrote to file
      */
-    public boolean saveOptiions(){
+    public boolean saveOptions(){
         File dir = new File("options");
         if (!dir.exists()){
             try{

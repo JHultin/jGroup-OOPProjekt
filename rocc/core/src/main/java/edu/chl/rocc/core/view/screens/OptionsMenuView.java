@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.options.GeneralOptions;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -27,6 +28,7 @@ public class OptionsMenuView extends AbstractMenuView{
     private Label titleLabel;
 
     private TextButton backButton;
+    private TextButton controlsButton;
     private CheckBox fullscreenCheckBox;
     private Slider soundSlider;
     private Label soundVolumeLabel;
@@ -60,9 +62,15 @@ public class OptionsMenuView extends AbstractMenuView{
          * adds to table
          */
         //adds title
-        table.add(titleLabel).spaceBottom(20);
+        table.add(titleLabel).spaceBottom(70);
         table.row();
-        table.add(fullscreenCheckBox).left().spaceBottom(20);
+
+        Table screenControlTable = new Table();
+        screenControlTable.add(fullscreenCheckBox).padRight(50);
+        screenControlTable.add(controlsButton).padLeft(50);
+
+
+        table.add(screenControlTable).padBottom(50);
         table.row();
 
         Table sliderTable = new Table();
@@ -92,6 +100,8 @@ public class OptionsMenuView extends AbstractMenuView{
         backButton = new TextButton("Back", textButtonStyle);
         backButton.pad(20);
 
+        controlsButton = new TextButton("Configure Controls", textButtonStyle);
+        controlsButton.pad(20);
 
         //Checkbox
         TextureAtlas checkBoxAtlas = new TextureAtlas("button/checkBox/checkBox.pack");
@@ -127,7 +137,17 @@ public class OptionsMenuView extends AbstractMenuView{
         musicVolumeLabel = new Label("Music Volume:", sliderLabelStyle);
         musicVolumeLabel.setFontScale(1);
 
+        /**
+         * Check GeneralOptions for presets
+         */
+        if( GeneralOptions.getInstance().getOption("isFullscreen") == 1) {
+            fullscreenCheckBox.setChecked(true);
+        }else{
+            fullscreenCheckBox.setChecked(false);
+        }
 
+        soundSlider.setValue(GeneralOptions.getInstance().getOption("soundVolume"));
+        musicSlider.setValue(GeneralOptions.getInstance().getOption("musicVolume"));
 
 
         /**
@@ -138,8 +158,10 @@ public class OptionsMenuView extends AbstractMenuView{
             public void clicked(InputEvent event,float x, float y){
                 if(fullscreenCheckBox.isChecked()){
                     Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+                    GeneralOptions.getInstance().setOption("isFullscreen", 1);
                 }else{
                     Gdx.graphics.setDisplayMode(720, 480, false);
+                    GeneralOptions.getInstance().setOption("isFullscreen",0);
                 }
 
             }
@@ -147,19 +169,28 @@ public class OptionsMenuView extends AbstractMenuView{
         soundSlider.addListener(new ClickListener(){
            @Override
             public void clicked(InputEvent event, float x, float y){
-                System.out.println("Sound Volume: " + soundSlider.getValue());
+                GeneralOptions.getInstance().setOption("soundVolume", (int)soundSlider.getValue());
            }
         });
         musicSlider.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                System.out.println("Music Volume: " + musicSlider.getValue());
+                GeneralOptions.getInstance().setOption("musicVolume", (int)musicSlider.getValue());
             }
+        });
+
+        controlsButton.addListener(new ClickListener(){
+           @Override
+            public void clicked(InputEvent event, float x, float y){
+               GeneralOptions.getInstance().saveOptions();
+               notifyObserver("configureControls");
+           }
         });
 
         backButton.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event,float x, float y){
+            public void clicked(InputEvent event, float x, float y){
+                GeneralOptions.getInstance().saveOptions();
                 notifyObserver("menu");
             }
         });

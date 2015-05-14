@@ -25,6 +25,9 @@ public class ViewFactory {
         if(view.equals("highscore")){
             return new HighscoreMenuView(model);
         }
+        if(view.equals("configureControls")){
+            return  new ControlConfigureView(model);
+        }
 
         return null;
     }
