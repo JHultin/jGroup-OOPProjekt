@@ -123,7 +123,7 @@ public class PlayView implements Screen,IViewObservable{
          */
         //ANIMATION TEST
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
-        addToAnimationHashMap(charactersAnimationHashMap);
+        addToAnimationHashMap();
 
 
 
@@ -294,7 +294,10 @@ public class PlayView implements Screen,IViewObservable{
                     textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
                 }
             }
-        }else{//Paints the follower animation
+
+            batch.draw(textureRegion, character.getX(), character.getY());
+
+        }else if(character.isFollower()){//Paints the follower animation
 
             if (character.inAir() == true) {
                 if (character.getFollowerDirection().equals(Direction.LEFT)) {
@@ -322,15 +325,18 @@ public class PlayView implements Screen,IViewObservable{
                 }
             }
 
+            batch.draw(textureRegion, character.getX(), character.getY());
+
+        }else {
+            batch.draw(textures.get(character.getName()), character.getX(), character.getY());
         }
-        batch.draw(textureRegion, character.getX(), character.getY());
+
     }//renderCharacter end
 
     /**
      * A method which places all the animation texture in a hashMap
-     * @param animationHashMap
      */
-    public void addToAnimationHashMap(HashMap<String,HashMap<String,AnimationHandler>> animationHashMap){
+    public void addToAnimationHashMap(){
         //Mother animation
         HashMap<String,AnimationHandler> motherHashmap = new HashMap<String, AnimationHandler>();
         //Right
