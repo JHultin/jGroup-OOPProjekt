@@ -108,9 +108,9 @@ public class RoCCController implements Runnable{
             // Then create the characters
             // This should be done with the help of a profile
             this.model.addCharacter("mother");
-            this.model.addCharacter("follow");
-            this.model.addCharacter("bigDude");
-            this.model.addCharacter("hatGuy");
+            this.model.addCharacter("doctor");
+            this.model.addCharacter("soldier");
+         //   this.model.addCharacter("hatGuy");
 
             this.model.getPlayer().setActiveCharacter(0);
 

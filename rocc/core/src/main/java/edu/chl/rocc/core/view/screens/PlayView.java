@@ -123,51 +123,7 @@ public class PlayView implements Screen,IViewObservable{
          */
         //ANIMATION TEST
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
-        //Mother animation
-        HashMap<String,AnimationHandler> motherHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("motherCharacter/motherMoveRight.png")), 34, 51)[0];
-        motherHashmap.put("motherRight",new AnimationHandler(textureRegions,1/5f));
-        //Left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("motherCharacter/motherMoveLeft.png")), 34, 51)[0];
-        motherHashmap.put("motherLeft",new AnimationHandler(textureRegions,1/5f));
-
-        //Zombie
-        HashMap<String,AnimationHandler> zombieHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieMoveRight.png")), 36, 50)[0];
-        zombieHashmap.put("zombieRight",new AnimationHandler(textureRegions,1/3f));
-        //left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieMoveLeft.png")), 36, 50)[0];
-        zombieHashmap.put("zombieLeft",new AnimationHandler(textureRegions,1/3f));
-
-        //Follow
-        HashMap<String,AnimationHandler> doctorHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("doctorWhoCharacter/moveRight.png")), 24, 50)[0];
-        doctorHashmap.put("doctorRight",new AnimationHandler(textureRegions,1/5f));
-        //left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("doctorWhoCharacter/moveLeft.png")), 24, 50)[0];
-        doctorHashmap.put("doctorLeft",new AnimationHandler(textureRegions,1/5f));
-
-        //Follow
-        HashMap<String,AnimationHandler> soldierHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("soldierCharacter/moveRight.png")), 25, 50)[0];
-        soldierHashmap.put("soldierRight",new AnimationHandler(textureRegions,1/5f));
-        //left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("soldierCharacter/moveLeft.png")), 25, 50)[0];
-        soldierHashmap.put("soldierLeft",new AnimationHandler(textureRegions,1/5f));
-
-
-
-        charactersAnimationHashMap.put("mother",motherHashmap);
-        charactersAnimationHashMap.put("enemy",zombieHashmap);
-        charactersAnimationHashMap.put("follow",doctorHashmap);
-        charactersAnimationHashMap.put("bigDude",soldierHashmap);
-        //ANIMATION TEST END
-
-
+        addToAnimationHashMap(charactersAnimationHashMap);
 
 
 
@@ -177,19 +133,10 @@ public class PlayView implements Screen,IViewObservable{
         //this.model.constructWorld(map);
 
         textures = new HashMap<String, Texture>();
-        textures.put("mother" , new Texture(Gdx.files.internal("motherCharacter/idleLeft.png")));
-        textures.put("bigDude", new Texture(Gdx.files.internal("characterSprite.png")));
-        textures.put("follow" , new Texture(Gdx.files.internal("doctorWhoCharacter/idleRight.png")));
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
-        textures.put("enemy"  , new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieIdleLeft.png")));
-        textures.put("hatGuy" , new Texture(Gdx.files.internal("enemy.png")));
+        textures.put("enemy" , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
         //b2dr = new Box2DDebugRenderer();
-
-
-
-
-
     }
 
 
@@ -214,141 +161,15 @@ public class PlayView implements Screen,IViewObservable{
         renderer.setView(cam);
         renderer.render();
 
-
-
-
-       // animation.update(delta);        //ANIMATION TEST
-
-
         batch.begin();
 
         /**
          * An advanced for-loop going through all the
-         * characters.
+         * characters and adds animation.
          */
         for (ICharacter character : model.getCharacters()) {
-            //Paints the character animations
-
-
-            /**
-             * Checks if current character is mother and renders the
-             * right figure.
-             */
-            if (character.getName().equals("mother")) {       //Animation TEST
-                if (character.inAir() == true) {
-                    if (character.getDirection().equals(Direction.LEFT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpLeft.png")));
-                    } else if (character.getDirection().equals(Direction.RIGHT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpRight.png")));
-                    } else {
-                        if (character.getLastDirection().equals(Direction.LEFT)) {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpLeft.png")));
-                        } else {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/jumpRight.png")));
-                        }
-                    }
-                } else if (character.getDirection().equals(Direction.RIGHT)) {
-                    charactersAnimationHashMap.get("mother").get("motherRight").update(delta);
-                    textureRegion = charactersAnimationHashMap.get("mother").get("motherRight").getFrame();
-                } else if (character.getDirection().equals(Direction.LEFT)) {
-                    charactersAnimationHashMap.get("mother").get("motherLeft").update(delta);
-                    textureRegion = charactersAnimationHashMap.get("mother").get("motherLeft").getFrame();
-                } else if (character.getDirection().equals(Direction.NONE)) {
-                    if (character.getLastDirection().equals(Direction.LEFT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/idleLeft.png")));
-                    } else {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("motherCharacter/idleRight.png")));
-                    }
-                }
-
-                batch.draw(textureRegion, character.getX(), character.getY());
-
-                /**
-                 * Checks if current character is follower and renders the
-                 * right figure.
-                 **/
-            }else if(character.getName().equals("follow")) {
-                if (character.inAir() == true) {
-                    if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("doctorWhoCharacter/jumpLeft.png")));
-                    } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("doctorWhoCharacter/jumpRight.png")));
-                    } else {
-                        if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("doctorWhoCharacter/jumpLeft.png")));
-                        } else {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("doctorWhoCharacter/jumpRight.png")));
-                        }
-                    }
-                } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                    charactersAnimationHashMap.get("follow").get("doctorRight").update(delta);
-                    textureRegion = charactersAnimationHashMap.get("follow").get("doctorRight").getFrame();
-                } else if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                    charactersAnimationHashMap.get("follow").get("doctorLeft").update(delta);
-                    textureRegion = charactersAnimationHashMap.get("follow").get("doctorLeft").getFrame();
-                } else if (character.getFollowerDirection().equals(Direction.NONE)) {
-                    if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("doctorWhoCharacter/idleLeft.png")));
-                    } else {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("doctorWhoCharacter/idleRight.png")));
-                    }
-                }
-
-                batch.draw(textureRegion, character.getX(), character.getY());
-
-            }else if(character.getName().equals("bigDude")){
-                    if (character.inAir() == true) {
-                        if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpLeft.png")));
-                        } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpRight.png")));
-                        } else {
-                            if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                                textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpLeft.png")));
-                            } else {
-                                textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/jumpRight.png")));
-                            }
-                        }
-                    } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                        charactersAnimationHashMap.get("bigDude").get("soldierRight").update(delta);
-                        textureRegion = charactersAnimationHashMap.get("bigDude").get("soldierRight").getFrame();
-                    } else if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                        charactersAnimationHashMap.get("bigDude").get("soldierLeft").update(delta);
-                        textureRegion = charactersAnimationHashMap.get("bigDude").get("soldierLeft").getFrame();
-                    } else if (character.getFollowerDirection().equals(Direction.NONE)) {
-                        if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/idleLeft.png")));
-                        } else {
-                            textureRegion = new TextureRegion(new Texture(Gdx.files.internal("soldierCharacter/idleRight.png")));
-                        }
-                    }
-
-                    batch.draw(textureRegion, character.getX(), character.getY());
-
-                /**
-                 * Checks if current character is enemy and renders the
-                 * right figure.
-                 **/
-            }else if (character.getName().equals("enemy")) {
-                if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                    charactersAnimationHashMap.get("enemy").get("zombieRight").update(delta);
-                    textureRegion = charactersAnimationHashMap.get("enemy").get("zombieRight").getFrame();
-                } else if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                    charactersAnimationHashMap.get("enemy").get("zombieLeft").update(delta);
-                    textureRegion = charactersAnimationHashMap.get("enemy").get("zombieLeft").getFrame();
-                } else if (character.getFollowerDirection().equals(Direction.NONE)) {
-                    if(character.getLastFollowerDir().equals(Direction.RIGHT)){
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieIdleRight.png")));
-                    }else{
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("radioactiveZombieCharacter/zombieIdleLeft.png")));
-                    }
-                }
-                batch.draw(textureRegion, character.getX(), character.getY());
-            } else {
-               batch.draw(textures.get(character.getName()), character.getX(), character.getY());
-            }
+            renderCharacter(character, delta);
         }
-
 
 
 
@@ -440,7 +261,121 @@ public class PlayView implements Screen,IViewObservable{
     }
 
 
+    /**
+     * A method which finds out which animation a character
+     * will perform.
+     * @param character
+     * @param delta
+     */
+    public void renderCharacter(ICharacter character, float delta){
+        if(!character.isFollower()) {//paints front character animation
+            if (character.inAir() == true) {
+                if (character.getDirection().equals(Direction.LEFT)) {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
+                } else if (character.getDirection().equals(Direction.RIGHT)) {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
+                } else {
+                    if (character.getLastDirection().equals(Direction.LEFT)) {
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
+                    } else {
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
+                    }
+                }
+            } else if (character.getDirection().equals(Direction.RIGHT)) {
+                charactersAnimationHashMap.get(character.getName()).get("moveRight").update(delta);
+                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveRight").getFrame();
+            } else if (character.getDirection().equals(Direction.LEFT)) {
+                charactersAnimationHashMap.get(character.getName()).get("moveLeft").update(delta);
+                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveLeft").getFrame();
+            } else if (character.getDirection().equals(Direction.NONE)) {
+                if (character.getLastDirection().equals(Direction.LEFT)) {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleLeft.png")));
+                } else {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
+                }
+            }
+        }else{//Paints the follower animation
 
+            if (character.inAir() == true) {
+                if (character.getFollowerDirection().equals(Direction.LEFT)) {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
+                } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
+                } else {
+                    if (character.getLastFollowerDir().equals(Direction.LEFT)) {
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
+                    } else {
+                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
+                    }
+                }
+            } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
+                charactersAnimationHashMap.get(character.getName()).get("moveRight").update(delta);
+                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveRight").getFrame();
+            } else if (character.getFollowerDirection().equals(Direction.LEFT)) {
+                charactersAnimationHashMap.get(character.getName()).get("moveLeft").update(delta);
+                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveLeft").getFrame();
+            } else if (character.getFollowerDirection().equals(Direction.NONE)) {
+                if (character.getLastFollowerDir().equals(Direction.LEFT)) {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleLeft.png")));
+                } else {
+                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
+                }
+            }
+
+        }
+        batch.draw(textureRegion, character.getX(), character.getY());
+    }//renderCharacter end
+
+    /**
+     * A method which places all the animation texture in a hashMap
+     * @param animationHashMap
+     */
+    public void addToAnimationHashMap(HashMap<String,HashMap<String,AnimationHandler>> animationHashMap){
+        //Mother animation
+        HashMap<String,AnimationHandler> motherHashmap = new HashMap<String, AnimationHandler>();
+        //Right
+        TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/motherMoveRight.png")), 34, 51)[0];
+        motherHashmap.put("moveRight",new AnimationHandler(textureRegions,1/5f));
+        //Left
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/motherMoveLeft.png")), 34, 51)[0];
+        motherHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/5f));
+
+        //Zombie
+        HashMap<String,AnimationHandler> zombieHashmap = new HashMap<String, AnimationHandler>();
+        //Right
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveRight.png")), 36, 50)[0];
+        zombieHashmap.put("moveRight",new AnimationHandler(textureRegions,1/3f));
+        //left
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveLeft.png")), 36, 50)[0];
+        zombieHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/3f));
+
+        //Follow
+        HashMap<String,AnimationHandler> doctorHashmap = new HashMap<String, AnimationHandler>();
+        //Right
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveRight.png")), 24, 50)[0];
+        doctorHashmap.put("moveRight",new AnimationHandler(textureRegions,1/5f));
+        //left
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveLeft.png")), 24, 50)[0];
+        doctorHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/5f));
+
+        //Follow
+        HashMap<String,AnimationHandler> soldierHashmap = new HashMap<String, AnimationHandler>();
+        //Right
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/moveRight.png")), 25, 50)[0];
+        soldierHashmap.put("moveRight",new AnimationHandler(textureRegions,1/5f));
+        //left
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/moveLeft.png")), 25, 50)[0];
+        soldierHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/5f));
+
+
+
+        charactersAnimationHashMap.put("mother",motherHashmap);
+        charactersAnimationHashMap.put("enemy",zombieHashmap);
+        charactersAnimationHashMap.put("doctor",doctorHashmap);
+        charactersAnimationHashMap.put("soldier",soldierHashmap);
+        //ANIMATION TEST END
+
+    }
 
     public void createPauseWindow(){
         Window.WindowStyle pauseWindowStyle = new Window.WindowStyle();
