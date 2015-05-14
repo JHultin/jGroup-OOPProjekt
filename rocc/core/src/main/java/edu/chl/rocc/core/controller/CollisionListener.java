@@ -27,6 +27,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
 
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();
+        enemyToChangeDirection = new ArrayList<IEnemy>();
     }
 
     //called when contact between two fixtures begins
@@ -57,8 +58,6 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if ("pickupCharacter".equals(fb.getUserData()) && fb.getBody().getUserData() instanceof IPickupableCharacter) {
             itemsToRemove.add((IPickupableCharacter) (fb.getBody().getUserData()));
         }
-
-
         if ("jumpPointSensor".equals(fa.getUserData())) {
             ((ICharacter) fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
@@ -70,16 +69,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         }
         if ("finish".equals(fb.getUserData())) {
             this.newState = "menu";
-
-            if ("jumpPointSensor".equals(fb.getUserData())) {
-                ((ICharacter) fa.getBody().getUserData()).jumpIfFollower();
-            }
-            if ("enemyUpperSensor".equals(fa.getUserData())) {
-                enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
-            }
-            if ("enemyUpperSensor".equals(fb.getUserData())) {
-                enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
-            }
+        }
+        if ("enemyUpperSensor".equals(fa.getUserData())) {
+            enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
+        }
+        if ("enemyUpperSensor".equals(fb.getUserData())) {
+            enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
         }
     }
 

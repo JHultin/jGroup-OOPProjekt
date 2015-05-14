@@ -28,6 +28,7 @@ public class PhyLevel implements ILevel {
         this.world = world;
         this.level = new Level();
         this.bodiesNeedingToDispose = new ArrayList<Body>();
+        this.enemies = new ArrayList<IEnemy>();
     }
 
     @Override

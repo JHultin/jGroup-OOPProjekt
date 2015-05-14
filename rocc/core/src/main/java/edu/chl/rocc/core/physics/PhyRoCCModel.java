@@ -198,7 +198,7 @@ public class PhyRoCCModel implements IRoCCModel {
             float y = ((Float) mapObject.getProperties().get("y")) /PPM;
 
             IEnemy enemy = new PhyEnemy(this.world, x, y, 50);
-            model.addEnemy(enemy);
+            model.getLevel().addEnemy(enemy);
         }
     }
 
