@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.options.GeneralOptions;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -44,6 +45,17 @@ public class MenuView extends AbstractMenuView {
 
         //Create all of the buttons
         createButtons();
+
+        /**
+         * Check GeneralOptions if fullscreen has previously been selected.
+         */
+        if( GeneralOptions.getInstance().getOption("isFullscreen") == 1) {
+            Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+        }else{
+            Gdx.graphics.setDisplayMode(720, 480, false);
+        }
+
+
 
 
         /**

@@ -67,7 +67,7 @@ public class ControlConfigureView extends AbstractMenuView {
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                notifyObserver("menu");
+                notifyObserver("options");
             }
         });
 

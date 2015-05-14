@@ -114,7 +114,6 @@ public class OptionsMenuView extends AbstractMenuView{
         checkBoxStyle.fontColor = Color.BLACK;
 
         fullscreenCheckBox = new CheckBox(" Fullscreen",checkBoxStyle);
-        fullscreenCheckBox.setChecked(false);
 
         //Slider
         TextureAtlas sliderAtlas = new TextureAtlas("button/slider/slider.pack");
