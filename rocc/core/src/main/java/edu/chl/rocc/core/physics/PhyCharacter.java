@@ -29,14 +29,17 @@ public class PhyCharacter implements ICharacter {
     private final int jumpForce;
     private final int airForce;
 
-
-
+    private boolean followerOnJumpPoint;
+    private boolean isMoving;
 
     public PhyCharacter(World world, float x, float y, String name){
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.character = new Character(name);
+
+        this.followerOnJumpPoint = false;
+        this.isMoving = false;
 
         CharacterLoader cl = new CharacterLoader(name);
         this.speed         = cl.getCharecaristic("Speed");
@@ -97,9 +100,11 @@ public class PhyCharacter implements ICharacter {
                 if (dir.equals(Direction.LEFT)) {
                     body.setLinearVelocity(new Vec2(-speed / PPM, 0));
                     leftV = leftV + 1;
+                    this.isMoving = true;
                 } else if (dir.equals(Direction.RIGHT)) {
                     body.setLinearVelocity(new Vec2( speed / PPM, 0));
                     rightV = rightV + 1;
+                    this.isMoving = true;
                 } else if (dir.equals(Direction.UP)) {
 
                 } else if (dir.equals(Direction.DOWN)) {
@@ -108,9 +113,11 @@ public class PhyCharacter implements ICharacter {
                     if (leftV > 0) {
                         body.setLinearVelocity(new Vec2(0, 0));
                         leftV = leftV - 1;
+                        this.isMoving = false;
                     } else if (rightV > 0) {
                         body.setLinearVelocity(new Vec2(0, 0));
                         rightV = rightV - 1;
+                        this.isMoving = false;
                     }
                 }
             direction = dir;
@@ -142,6 +149,11 @@ public class PhyCharacter implements ICharacter {
     }
 
     @Override
+    public boolean isMoving(){
+        return this.isMoving;
+    }
+
+    @Override
     public Direction getFollowerDirection(){
         return character.getFollowerDirection();
     }
@@ -164,9 +176,23 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jumpIfFollower(){
-        if(this.character.isFollower()){
+        if(this.character.isFollower() && this.isOnJumpPoint()){
             this.jump();
         }
+    }
+
+    @Override
+    public void toggleFollowerOnJumpPoint(){
+        if(this.followerOnJumpPoint){
+            this.followerOnJumpPoint = false;
+        } else{
+            this.followerOnJumpPoint = true;
+        }
+    }
+
+    @Override
+    public boolean isOnJumpPoint(){
+        return this.followerOnJumpPoint;
     }
 
     @Override

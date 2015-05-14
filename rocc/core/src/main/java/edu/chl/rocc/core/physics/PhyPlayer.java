@@ -34,6 +34,11 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
+    public void jumpFollower(){
+        this.player.jumpFollower();
+    }
+
+    @Override
     public void move(Direction dir) {
         this.player.move(dir);
     }
@@ -41,6 +46,11 @@ public class PhyPlayer implements IPlayer {
     @Override
     public void moveFollowers(Direction dir){
         this.player.moveFollowers(dir);
+    }
+
+    @Override
+    public boolean frontCharacterIsMoving(){
+        return this.player.frontCharacterIsMoving();
     }
 
     public void shoot(float x, float y, float xDir, float yDir){

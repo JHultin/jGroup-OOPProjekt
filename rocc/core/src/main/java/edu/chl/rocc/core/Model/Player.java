@@ -76,6 +76,11 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public boolean frontCharacterIsMoving(){
+        return characters.get(activeCharacterIndex).isMoving();
+    }
+
+    @Override
     public void jump() {
         /*
         for(int i=0; i < characters.size(); i++){
@@ -83,6 +88,13 @@ public class Player implements IPlayer {
         }
         */
         characters.get(this.activeCharacterIndex).jump();
+    }
+
+    @Override
+    public void jumpFollower(){
+        for(int i=0; i<characters.size(); i++){
+            characters.get(i).jumpIfFollower();
+        }
     }
 
     @Override

@@ -33,10 +33,14 @@ public interface IRoCCModel{
     */
     public void moveFollowers(Direction dir);
 
+    public boolean frontCharacterIsMoving();
+
     /**
     * Make the character jump by changing its y-coordinate.
     */
     public void jump();
+
+    public void jumpFollowerIfPossible();
 
     public void shoot(float x, float y);
 

@@ -11,6 +11,8 @@ public interface IPlayer {
 
     public void jump();
 
+    public void jumpFollower();
+
     /**
     * Move the front character in a given direction.
     */
@@ -20,6 +22,8 @@ public interface IPlayer {
     * Move the follower characters towards the front character.
     */
     public void moveFollowers(Direction dir);
+
+    public boolean frontCharacterIsMoving();
 
     /**
     * @return x-coordinate of the character.

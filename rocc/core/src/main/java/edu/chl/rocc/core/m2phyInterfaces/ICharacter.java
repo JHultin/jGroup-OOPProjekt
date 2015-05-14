@@ -37,6 +37,8 @@ public interface ICharacter {
     */
     public void moveFollower(Direction dir);
 
+    public boolean isMoving();
+
     public Direction getFollowerDirection();
 
     public Direction getLastFollowerDir();
@@ -51,6 +53,10 @@ public interface ICharacter {
     * Make the character jump if it is a follower.
     */
     public void jumpIfFollower();
+
+    public void toggleFollowerOnJumpPoint();
+
+    public boolean isOnJumpPoint();
 
     public void hitGround();
 

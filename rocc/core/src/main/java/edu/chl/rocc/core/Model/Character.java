@@ -72,11 +72,30 @@ public class Character implements ICharacter {
     public void move(Direction dir){}
 
     @Override
+    public void moveFollower(Direction dir){
+        if(!dir.equals(Direction.NONE)){
+            lastFollowerDir = followerDir;
+        }
+        followerDir = dir;
+    }
+
+    @Override
+    public boolean isMoving(){
+        return false;
+    }
+
+    @Override
     public void jump(){}
 
     @Override
-    public void jumpIfFollower(){
+    public void jumpIfFollower(){ }
 
+    @Override
+    public void toggleFollowerOnJumpPoint(){ }
+
+    @Override
+    public boolean isOnJumpPoint(){
+        return false;
     }
 
     @Override
@@ -87,14 +106,6 @@ public class Character implements ICharacter {
     @Override
     public void leftGround() {
         inAir = true;
-    }
-
-    @Override
-    public void moveFollower(Direction dir){
-        if(!dir.equals(Direction.NONE)){
-            lastFollowerDir = followerDir;
-        }
-        followerDir = dir;
     }
 
     @Override

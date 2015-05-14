@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" nextobjectid="24">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" nextobjectid="35">
  <tileset firstgid="1" name="tilemap" tilewidth="32" tileheight="32">
   <image source="tilemap.png" width="96" height="96"/>
  </tileset>
@@ -47,16 +47,27 @@
   <object id="15" x="1212" y="953" width="33" height="30"/>
   <object id="16" x="1670" y="896" width="27" height="27"/>
  </objectgroup>
- <objectgroup name="jumpPoints">
-  <object id="22" x="617.991" y="1016.01">
+ <objectgroup color="#00aaff" name="jumpPoints">
+  <object id="22" x="628.991" y="1017.01">
    <properties>
     <property name="direction" value="right"/>
    </properties>
   </object>
-  <object id="23" x="650" y="982">
+  <object id="23" x="662" y="984">
    <properties>
     <property name="direction" value="right"/>
    </properties>
   </object>
+  <object id="24" x="347" y="1016"/>
+  <object id="25" x="149" y="943"/>
+  <object id="26" x="745" y="985"/>
+  <object id="27" x="776" y="1017"/>
+  <object id="28" x="950" y="1017"/>
+  <object id="29" x="1033" y="1017"/>
+  <object id="30" x="1110" y="1019"/>
+  <object id="31" x="1255" y="1019"/>
+  <object id="32" x="1591" y="1017"/>
+  <object id="33" x="1622" y="985"/>
+  <object id="34" x="1655" y="953"/>
  </objectgroup>
 </map>
