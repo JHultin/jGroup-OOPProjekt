@@ -47,14 +47,14 @@ public class PhyEnemy implements IEnemy {
         fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_ENEMY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
+        fDef.filter.maskBits = BitMask.BIT_GROUND;
         body.createFixture(fDef).setUserData("enemyBody");
 
         //create upperbody sideSensor
         shape.setAsBox(width, height/4, new Vec2(0, 0) ,0);
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_ENEMY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("enemyUpperSensor");
     }

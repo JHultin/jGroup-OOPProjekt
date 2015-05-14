@@ -70,11 +70,19 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if ("finish".equals(fb.getUserData())) {
             this.newState = "menu";
         }
-        if ("enemyUpperSensor".equals(fa.getUserData())) {
-            enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
+        if ("enemyUpperSensor".equals(fa.getUserData())){
+            if("ground".equals(fb.getBody().getUserData())){
+                enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
+            }else if("body".equals(fb.getUserData())){
+                System.out.println("Take HP from character");
+            }
         }
-        if ("enemyUpperSensor".equals(fb.getUserData())) {
-            enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
+        if ("enemyUpperSensor".equals(fb.getUserData())){
+            if("ground".equals(fa.getBody().getUserData())) {
+                enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
+            }else if("body".equals(fa.getUserData())){
+                System.out.println("Take HP from character");
+            }
         }
     }
 
