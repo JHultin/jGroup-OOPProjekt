@@ -48,26 +48,26 @@
   <object id="16" x="1670" y="896" width="27" height="27"/>
  </objectgroup>
  <objectgroup color="#00aaff" name="jumpPoints">
-  <object id="22" x="622.991" y="1007.01">
+  <object id="22" x="628.991" y="1017.01">
    <properties>
     <property name="direction" value="right"/>
    </properties>
   </object>
-  <object id="23" x="655" y="976">
+  <object id="23" x="662" y="984">
    <properties>
     <property name="direction" value="right"/>
    </properties>
   </object>
-  <object id="24" x="344" y="1005"/>
+  <object id="24" x="347" y="1016"/>
   <object id="25" x="149" y="943"/>
-  <object id="26" x="752" y="974"/>
-  <object id="27" x="784" y="1007"/>
-  <object id="28" x="942" y="1007"/>
-  <object id="29" x="1039" y="1006"/>
-  <object id="30" x="1103" y="1007"/>
-  <object id="31" x="1264" y="1007"/>
-  <object id="32" x="1583" y="1008"/>
-  <object id="33" x="1615" y="974"/>
-  <object id="34" x="1646" y="941"/>
+  <object id="26" x="745" y="985"/>
+  <object id="27" x="776" y="1017"/>
+  <object id="28" x="950" y="1017"/>
+  <object id="29" x="1033" y="1017"/>
+  <object id="30" x="1110" y="1019"/>
+  <object id="31" x="1255" y="1019"/>
+  <object id="32" x="1591" y="1017"/>
+  <object id="33" x="1622" y="985"/>
+  <object id="34" x="1655" y="953"/>
  </objectgroup>
 </map>
