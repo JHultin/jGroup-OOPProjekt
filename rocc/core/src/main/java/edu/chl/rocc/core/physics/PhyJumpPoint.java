@@ -31,7 +31,7 @@ public class PhyJumpPoint implements IJumpPoint {
 
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(32 / PPM, 32 / PPM);
+        shape.setAsBox(25 / PPM, 35 / PPM);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_JUMPPOINT;
