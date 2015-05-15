@@ -157,6 +157,14 @@ public class PhyRoCCModel implements IRoCCModel {
             IJumpPoint ijp = new PhyJumpPoint(world, dir , x, y);
             model.getLevel().addJumpPoint(ijp);
         }
+
+        if (tMap.getLayers().get("finish") != null){
+            MapLayer finLayer = tMap.getLayers().get("finish");
+            for(MapObject finish : finLayer.getObjects()){
+
+            }
+        }
+
     }
 
     @Override
