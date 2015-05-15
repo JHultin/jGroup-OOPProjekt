@@ -20,6 +20,7 @@ import java.util.List;
 public class CollisionListener implements ContactListener, ICollisionListener {
 
     public ArrayList<IPickupable> itemsToRemove;
+    public String newState;
 
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();
@@ -59,6 +60,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if("jumpPointSensor".equals(fb.getUserData())){
             ((ICharacter)fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
+        if("finish".equals(fa.getUserData())){
+            this.newState = "menu";
+        }
+        if("finish".equals(fb.getUserData())){
+            this.newState = "menu";
+        }
     }
 
     //Called when contact between two fixtures ends
@@ -93,6 +100,14 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         return listToReturn;
     }
 
+    public String getNewState(){
+        String ret = null;
+        if (newState != null){
+            ret = newState;
+            newState = null;
+        }
+        return ret;
+    }
 
     @Override
     public void preSolve(Contact contact, Manifold manifold) {

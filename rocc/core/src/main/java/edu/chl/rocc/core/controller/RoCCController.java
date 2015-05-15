@@ -85,7 +85,7 @@ public class RoCCController implements Runnable{
         gvm.setActiveView(str);
 
         // If a game is started
-        if (str.equals("game")) {
+        if ("game".equals(str)) {
             // Stop the thread
             this.isRunning = false;
             this.thread.interrupt();
@@ -119,9 +119,10 @@ public class RoCCController implements Runnable{
         // If we went to a menu instead
         } else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))){
-            isRunning = false;
             this.inGame = false;
+            isRunning = false;
             thread.interrupt();
+            model.dispose();
             thread = new Thread(this);
             thread.start();
             isRunning = true;
@@ -206,6 +207,10 @@ public class RoCCController implements Runnable{
             // Lastly do all operations that triggered from the update
             // but can't be reacted to during the update
             model.removeItems(collisionListener.getItemsToRemove());
+            String newState = collisionListener.getNewState();
+            if (newState != null) {
+                RoCCController.this.setState(newState);
+            }
         }
 
         // Add key to keylist or jump
