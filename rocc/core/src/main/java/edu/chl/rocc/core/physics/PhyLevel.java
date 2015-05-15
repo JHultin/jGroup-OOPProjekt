@@ -130,6 +130,11 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
+    public void addFinish(IFinishPoint finishPoint) {
+        level.addFinish(finishPoint);
+    }
+
+    @Override
     public void dispose() {
         level.dispose();
         for (Body body : bodiesNeedingToDispose){

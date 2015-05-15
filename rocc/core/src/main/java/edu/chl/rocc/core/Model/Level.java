@@ -20,18 +20,20 @@ public class Level implements ILevel {
 
     private int time;
     private int score;
-    private ArrayList<IPickupable> pickupables;
+    private List<IPickupable> pickupables;
     private List<IJumpPoint> jumpPoints;
     private List<IBullet> bullets;
     private ArrayList<IEnemy> enemies;
+    private List<IFinishPoint> finishPoints;
 
     private ArrayList <String> highscore;
 
     public Level(){
-        pickupables = new ArrayList<IPickupable>();
-        jumpPoints = new ArrayList<IJumpPoint>();
-        bullets = new ArrayList<IBullet>();
-        enemies = new ArrayList<IEnemy>();
+        pickupables  = new ArrayList<IPickupable>();
+        jumpPoints   = new ArrayList<IJumpPoint>();
+        bullets      = new ArrayList<IBullet>();
+        enemies      = new ArrayList<IEnemy>();
+        finishPoints = new ArrayList<IFinishPoint>();
     }
 
     // Adds a block for the map to the world
@@ -108,6 +110,11 @@ public class Level implements ILevel {
 
     @Override
     public void setAim(float x, float y){ }
+
+    @Override
+    public void addFinish(IFinishPoint finishPoint) {
+        finishPoints.add(finishPoint);
+    }
 
     @Override
     public void dispose() {

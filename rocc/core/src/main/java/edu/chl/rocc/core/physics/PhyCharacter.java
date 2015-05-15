@@ -62,7 +62,8 @@ public class PhyCharacter implements ICharacter {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BODY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY | BitMask.BIT_JUMPPOINT;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY | BitMask.BIT_JUMPPOINT
+                | BitMask.BIT_FINISH;
         body.createFixture(fDef).setUserData("body");
 
         //create foot sensor

@@ -53,5 +53,7 @@ public interface ILevel {
 
     public void setAim(float x, float y);
 
+    public void addFinish(IFinishPoint finishPoint);
+
     public void dispose();
 }

@@ -161,7 +161,14 @@ public class PhyRoCCModel implements IRoCCModel {
         if (tMap.getLayers().get("finish") != null){
             MapLayer finLayer = tMap.getLayers().get("finish");
             for(MapObject finish : finLayer.getObjects()){
+                float x = ((Float) finish.getProperties().get("x")) / PPM;
+                float y = ((Float) finish.getProperties().get("y")) / PPM;
 
+                float width = ((Float) finish.getProperties().get("width")) / PPM;
+                float height = ((Float) finish.getProperties().get("height")) / PPM;
+
+                IFinishPoint finPoint = new PhyFinishPoint(world, x, y, width, height);
+                model.getLevel().addFinish(finPoint);
             }
         }
 
