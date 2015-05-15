@@ -87,8 +87,8 @@ public class RoCCController implements Runnable{
         // If a game is started
         if ("game".equals(str)) {
             // Stop the thread
-            this.isRunning = false;
-            this.thread.interrupt();
+            /*this.isRunning = false;
+            this.thread.interrupt();*/
 
             // Set up the game
             // First construct the world, the level and all pickupables.
@@ -111,21 +111,21 @@ public class RoCCController implements Runnable{
             // Restart the thread and apply correct inputprocessor
 
             Gdx.input.setInputProcessor(gameProcessor);
-            this.thread = new Thread(this);
+            /*this.thread = new Thread(this);
             this.thread.start();
-            this.isRunning = true;
+            this.isRunning = true;*/
             this.inGame = true;
 
         // If we went to a menu instead
         } else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))){
             this.inGame = false;
-            isRunning = false;
-            thread.interrupt();
+            /*isRunning = false;
+            thread.interrupt();*/
             model.dispose();
-            thread = new Thread(this);
+            /*thread = new Thread(this);
             thread.start();
-            isRunning = true;
+            isRunning = true;*/
         }
 
         // Tell main to update to correct screen

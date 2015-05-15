@@ -22,11 +22,6 @@ public class LoadMenuView extends AbstractMenuView {
 
     public LoadMenuView(IRoCCModel model){
         super(model);
-    }
-
-    @Override
-    public void show() {
-        super.show();
 
         /**
          * Creating Options title
@@ -53,6 +48,11 @@ public class LoadMenuView extends AbstractMenuView {
         table.add(backButton).width(buttonWidth);
 
         stage.addActor(table);
+    }
+
+    @Override
+    public void show() {
+        super.show();
     }
 
 

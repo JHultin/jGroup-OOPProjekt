@@ -47,7 +47,6 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
         observerArrayList = new ArrayList<IViewObserver>();
 
         stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
 
         //Initilizes background
         backgroundTexture =  new Texture(Gdx.files.internal("background.jpg"));
@@ -101,42 +100,7 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     @Override
     public void show() {
-        stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
-        //Initilizes background
-        backgroundTexture =  new Texture(Gdx.files.internal("background.jpg"));
-        backgroundImage = new Image(backgroundTexture);
-        backgroundImage.setWidth(Gdx.graphics.getWidth());
-        backgroundImage.setHeight(Gdx.graphics.getHeight());
-
-        //The texture of the buttons
-        textureAtlas = new TextureAtlas("button/defaultButton/button.pack");
-        skin = new Skin(textureAtlas);
-
-        //Sets the button style
-        textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.getDrawable("buttonUp");
-        textButtonStyle.down = skin.getDrawable("buttonDown");
-        //Moves the buttontext one pixel when pressed.
-        textButtonStyle.pressedOffsetX = 1;
-        textButtonStyle.font = font;
-        textButtonStyle.fontColor = Color.BLACK;
-
-
-
-
-
-        //Instead of putting coordinates for every button we have a table which does it for us.
-        table = new Table(skin);
-        table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-
-        //Just to show where the cells are located.
-        // table.debug();//Remove
-
-
-        stage.addActor(backgroundImage);
     }
 
     @Override

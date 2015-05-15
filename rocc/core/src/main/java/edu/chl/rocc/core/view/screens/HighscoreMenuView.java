@@ -20,11 +20,6 @@ public class HighscoreMenuView extends AbstractMenuView {
 
     public HighscoreMenuView(IRoCCModel model){
         super(model);
-    }
-
-    @Override
-    public void show() {
-        super.show();
 
         /**
          * Creating Options title
@@ -51,6 +46,11 @@ public class HighscoreMenuView extends AbstractMenuView {
         table.add(backButton).width(buttonWidth);
 
         stage.addActor(table);
+    }
+
+    @Override
+    public void show() {
+        super.show();
     }
 
 

@@ -43,11 +43,6 @@ public class ControlConfigureView extends AbstractMenuView {
 
     public ControlConfigureView(IRoCCModel model){
         super(model);
-    }
-
-    @Override
-    public void show() {
-        super.show();
 
         /**
          * Creating Options title
@@ -110,6 +105,11 @@ public class ControlConfigureView extends AbstractMenuView {
         table.debug();
 
         stage.addActor(table);
+    }
+
+    @Override
+    public void show() {
+        super.show();
     }
 
 

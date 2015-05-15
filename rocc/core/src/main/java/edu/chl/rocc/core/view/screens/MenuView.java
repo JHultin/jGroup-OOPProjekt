@@ -36,12 +36,7 @@ public class MenuView extends AbstractMenuView {
 
     public MenuView(IRoCCModel model){
         super(model);
-    }
 
-
-    @Override
-    public void show() {
-        super.show();
 
         //Create all of the buttons
         createButtons();
@@ -91,6 +86,12 @@ public class MenuView extends AbstractMenuView {
 
         //Then add the table to the stage
         stage.addActor(table);
+    }
+
+
+    @Override
+    public void show() {
+        super.show();
 
     }
 

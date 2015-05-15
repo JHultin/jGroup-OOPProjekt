@@ -38,11 +38,7 @@ public class OptionsMenuView extends AbstractMenuView{
 
     public OptionsMenuView(IRoCCModel model){
         super(model);
-    }
 
-    @Override
-    public void show() {
-        super.show();
 
         /**
          * Creating Options title
@@ -91,6 +87,11 @@ public class OptionsMenuView extends AbstractMenuView{
 
 
         stage.addActor(table);
+    }
+
+    @Override
+    public void show() {
+        super.show();
     }
 
 
