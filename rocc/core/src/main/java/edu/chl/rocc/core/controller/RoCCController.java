@@ -31,6 +31,7 @@ public class RoCCController implements Runnable{
     private final RoCCView main;
     private final GameViewManager gvm;
     private CollisionListener collisionListener;
+    private String currentView;
 
     // Inputprocessor for while ingame
     private GameProcessor gameProcessor;
@@ -85,7 +86,7 @@ public class RoCCController implements Runnable{
         gvm.setActiveView(str);
 
         // If a game is started
-        if ("game".equals(str)) {
+        if ("game".equals(str) && !"game".equals(currentView)) {
             // Stop the thread
             /*this.isRunning = false;
             this.thread.interrupt();*/
@@ -127,7 +128,7 @@ public class RoCCController implements Runnable{
             thread.start();
             isRunning = true;*/
         }
-
+        currentView = str;
         // Tell main to update to correct screen
         main.setScreen(gvm.getActiveView());
     }

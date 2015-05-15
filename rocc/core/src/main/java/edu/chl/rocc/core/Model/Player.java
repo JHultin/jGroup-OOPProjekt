@@ -40,7 +40,7 @@ public class Player implements IPlayer {
 
     @Override
     public void move(Direction dir) {
-        if (this.activeCharacterIndex <= characters.size()){
+        if (this.activeCharacterIndex < characters.size()){
             characters.get(this.activeCharacterIndex).move(dir);
             characters.get(this.activeCharacterIndex).setCurrentDirection(dir);
         }
@@ -133,6 +133,7 @@ public class Player implements IPlayer {
 
     @Override
     public void setActiveCharacter(int i){
+        this.activeCharacterIndex = i;
         this.setActiveCharacter(characters.get(i));
     }
 
