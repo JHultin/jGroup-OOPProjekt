@@ -73,72 +73,77 @@ public class PhyRoCCModel implements IRoCCModel {
         model = new RoCCModel(factory);
 
         // Get the layer with information about the solid ground
-        TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get("ground");
+        if (tMap.getLayers().get("ground") != null) {
+            TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get("ground");
 
-        // Create definitions for body and fixture
-        BodyDef bDef = new BodyDef();
-        FixtureDef fDef = new FixtureDef();
+            // Create definitions for body and fixture
+            BodyDef bDef = new BodyDef();
+            FixtureDef fDef = new FixtureDef();
 
-        // Create a shape for each groundblock
-        ChainShape cs = new ChainShape();
-        Vec2[] v = new Vec2[5];
-        float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
-        v[0] = new Vec2(-offset, -offset);
-        v[1] = new Vec2(-offset,  offset);
-        v[2] = new Vec2( offset,  offset);
-        v[3] = new Vec2( offset, -offset);
-        v[4] = new Vec2(-offset, -offset);
-        cs.createChain(v, 5);
+            // Create a shape for each groundblock
+            ChainShape cs = new ChainShape();
+            Vec2[] v = new Vec2[5];
+            float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
+            v[0] = new Vec2(-offset, -offset);
+            v[1] = new Vec2(-offset, offset);
+            v[2] = new Vec2(offset, offset);
+            v[3] = new Vec2(offset, -offset);
+            v[4] = new Vec2(-offset, -offset);
+            cs.createChain(v, 5);
 
-        // Define the body and fixture specifications which all block share
-        bDef.type = BodyType.STATIC;
-        bDef.userData = "ground";
+            // Define the body and fixture specifications which all block share
+            bDef.type = BodyType.STATIC;
+            bDef.userData = "ground";
 
-        fDef.friction = 0;
-        fDef.shape = cs;
-        fDef.filter.categoryBits = BitMask.BIT_GROUND;
-        fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_BULLET;
+            fDef.friction = 0;
+            fDef.shape = cs;
+            fDef.filter.categoryBits = BitMask.BIT_GROUND;
+            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_BULLET;
 
-        // Create a tile for each block on the map
-        for (int row = 0; row < tileLayer.getHeight(); row++) {
-            for (int col = 0; col < tileLayer.getWidth(); col++) {
-                TiledMapTileLayer.Cell cell = tileLayer.getCell(col, row);
+            // Create a tile for each block on the map
+            for (int row = 0; row < tileLayer.getHeight(); row++) {
+                for (int col = 0; col < tileLayer.getWidth(); col++) {
+                    TiledMapTileLayer.Cell cell = tileLayer.getCell(col, row);
 
-                // If there is a tile at the position
-                if (cell != null && cell.getTile() != null) {
+                    // If there is a tile at the position
+                    if (cell != null && cell.getTile() != null) {
 
-                    // Set the position for the block
-                    bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
-                            PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
+                        // Set the position for the block
+                        bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
+                                PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
 
-                    // Then let the level create the block in the world
-                    model.getLevel().addBlock(bDef, fDef);
+                        // Then let the level create the block in the world
+                        model.getLevel().addBlock(bDef, fDef);
+                    }
                 }
             }
         }
 
         // Continue with the layer specifying the food
-        MapLayer foodLayer = tMap.getLayers().get("food");
+        if (tMap.getLayers().get("food") != null) {
+            MapLayer foodLayer = tMap.getLayers().get("food");
 
-        // Create one food item for each on the map
-        for (MapObject mapObject : foodLayer.getObjects()) {
-            float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
-            float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
+            // Create one food item for each on the map
+            for (MapObject mapObject : foodLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
 
-            IFood food = new PhyFood(world, x, y);
-            model.getLevel().addPickupable(food);
+                IFood food = new PhyFood(world, x, y);
+                model.getLevel().addPickupable(food);
+            }
         }
-
         // Do the same with the pickupable characters
-        MapLayer ipcLayer = tMap.getLayers().get("characters");
+        if (tMap.getLayers().get("characters") != null) {
+            MapLayer ipcLayer = tMap.getLayers().get("characters");
 
-        for (MapObject mapObject : ipcLayer.getObjects()) {
-            float x = ((Float) mapObject.getProperties().get("x")) / PPM;
-            float y = ((Float) mapObject.getProperties().get("y")) / PPM;
+            for (MapObject mapObject : ipcLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
-            IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
+                IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
 
-            model.getLevel().addPickupable(ipc);
+                model.getLevel().addPickupable(ipc);
+            }
         }
 
         MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
