@@ -5,4 +5,5 @@ package edu.chl.rocc.core.m2phyInterfaces;
  */
 public interface IFinishPoint {
 
+    public void dispose();
 }
