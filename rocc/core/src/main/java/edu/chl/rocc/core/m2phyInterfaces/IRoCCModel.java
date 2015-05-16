@@ -35,6 +35,8 @@ public interface IRoCCModel{
 
     public boolean frontCharacterIsMoving();
 
+    public boolean characterIsMoving(ICharacter character);
+
     /**
     * Make the character jump by changing its y-coordinate.
     */

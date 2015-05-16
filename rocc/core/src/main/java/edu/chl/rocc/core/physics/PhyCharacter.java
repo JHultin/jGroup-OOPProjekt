@@ -211,6 +211,7 @@ public class PhyCharacter implements ICharacter {
 
                 } else if (airDir.equals(Direction.NONE)) {
                     body.setLinearVelocity(new Vec2(0, 0));
+                    this.isMoving = false;
                 }
                 direction = airDir;
 

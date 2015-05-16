@@ -190,6 +190,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public boolean characterIsMoving(ICharacter character){
+        return false;
+    }
+
+    @Override
     public void jump() {
         this.model.jump();
     }
