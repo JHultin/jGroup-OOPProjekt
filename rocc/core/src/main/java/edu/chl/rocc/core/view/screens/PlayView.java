@@ -65,7 +65,9 @@ public class PlayView implements Screen,IViewObservable{
     private Window pauseWindow;
     //pausetest
 
-
+    //Profile Image hashmap
+    private HashMap<String,Image> profileImageHashMap;
+    Table characterProfileTable;
 
     public PlayView(IRoCCModel model){
         this.model = model;
@@ -77,6 +79,9 @@ public class PlayView implements Screen,IViewObservable{
         table = new Table();
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
+        characterProfileTable = new Table();
+
+        Table scoreTimeTable = new Table();
 
         //Initializes the text
         labelStyle = new Label.LabelStyle(font,Color.BLACK);
@@ -85,20 +90,21 @@ public class PlayView implements Screen,IViewObservable{
         timeLabel = new Label("Time:\n00:00", labelStyle);
         timeLabel.setFontScale(1);
 
+        scoreTimeTable.add(scoreLabel).pad(15);
+        scoreTimeTable.add(timeLabel).pad(15);
+
+
 
         //adds to table
-        table.add(timeLabel);
-        table.add(scoreLabel);
-        table.setPosition(200, 220);
-
-        //Adds spacing to bottom
-        for(Cell cell : table.getCells()){
-            table.getCell(cell.getActor()).pad(15);
-        }
+        table.add(characterProfileTable).left().top();
+        table.add(scoreTimeTable).right().expand().top();
 
 
+
+        profileImageHashMap = new HashMap<String, Image>();
 
         //Add table to stage
+        //table.debug();
         stage.addActor(table);
 
 
@@ -162,6 +168,18 @@ public class PlayView implements Screen,IViewObservable{
         renderer.render();
 
         batch.begin();
+
+
+        for (ICharacter character : model.getCharacters()) {
+            if(!profileImageHashMap.containsKey(character.getName())) {
+                profileImageHashMap.put(character.getName(), new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
+
+                characterProfileTable.add(profileImageHashMap.get(character.getName()));
+                characterProfileTable.row();
+            }
+            //Image image = new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png")));
+            //table.add(image);
+        }
 
 
     try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.

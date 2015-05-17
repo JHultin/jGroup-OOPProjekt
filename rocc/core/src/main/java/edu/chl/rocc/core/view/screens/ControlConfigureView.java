@@ -102,7 +102,7 @@ public class ControlConfigureView extends AbstractMenuView {
 
         table.add(bottomTable);
 
-        table.debug();
+       // table.debug();
 
         stage.addActor(table);
     }
