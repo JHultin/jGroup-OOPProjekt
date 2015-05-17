@@ -2,10 +2,7 @@ package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL30;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -19,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.model.Direction;
@@ -67,7 +65,9 @@ public class PlayView implements Screen,IViewObservable{
 
     //Profile Image hashmap
     private HashMap<String,Image> profileImageHashMap;
-    Table characterProfileTable;
+    private Table characterProfileTable;
+    private HashMap<String,ProgressBar> healthBarHashMap;
+
 
     public PlayView(IRoCCModel model){
         this.model = model;
@@ -79,8 +79,8 @@ public class PlayView implements Screen,IViewObservable{
         table = new Table();
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        characterProfileTable = new Table();
 
+        characterProfileTable = new Table();
         Table scoreTimeTable = new Table();
 
         //Initializes the text
@@ -100,18 +100,19 @@ public class PlayView implements Screen,IViewObservable{
         table.add(scoreTimeTable).right().expand().top();
 
 
-
+        //Initialize healthBar and profilePics
         profileImageHashMap = new HashMap<String, Image>();
+        healthBarHashMap = new HashMap<String, ProgressBar>();
+
 
         //Add table to stage
-        //table.debug();
+       // table.debug();
         stage.addActor(table);
 
 
         /**
          * Pause window
          */
-
         //Initialize the pause window and everything it contains
         createPauseWindow();
         //Add window
@@ -174,8 +175,13 @@ public class PlayView implements Screen,IViewObservable{
             if(!profileImageHashMap.containsKey(character.getName())) {
                 profileImageHashMap.put(character.getName(), new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
 
-                characterProfileTable.add(profileImageHashMap.get(character.getName()));
+                createHealthBar(character);
+
+                characterProfileTable.add(profileImageHashMap.get(character.getName())).left().pad(2);
                 characterProfileTable.row();
+                characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
+                characterProfileTable.row();
+
             }
             //Image image = new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png")));
             //table.add(image);
@@ -467,5 +473,31 @@ public class PlayView implements Screen,IViewObservable{
         pauseWindow.setPosition(stage.getWidth()/2 - pauseWindow.getWidth()/2,stage.getHeight()/2 - pauseWindow.getHeight()/2);
     }
 
+
+    /**
+     * Creates a healthBar and places it in a
+     * HealthBarHashMap.
+     * @param character
+     */
+
+    public void createHealthBar(ICharacter character){
+        Skin skin = new Skin();
+        Pixmap pixmap = new Pixmap(10, 10, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        skin.add("white", new Texture(pixmap));
+
+        TextureRegionDrawable textureBar = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("button/healthBar/healthBarSkin.png"))));
+        ProgressBar.ProgressBarStyle barStyle = new ProgressBar.ProgressBarStyle(skin.newDrawable("white", Color.DARK_GRAY), textureBar);
+        barStyle.knobBefore = barStyle.knob;
+
+        ProgressBar bar = new ProgressBar(0, 10, 0.5f, false, barStyle);
+        bar.setPosition(10, 10);
+        bar.setAnimateDuration(1);
+
+        bar.setValue(10);
+
+        healthBarHashMap.put(character.getName(),bar);
+    }
 
 }
