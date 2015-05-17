@@ -69,6 +69,9 @@ public class PlayView implements Screen,IViewObservable{
     private HashMap<String,ProgressBar> healthBarHashMap;
 
 
+    private int time;
+    private int timeCheck;
+
     public PlayView(IRoCCModel model){
         this.model = model;
         batch = new SpriteBatch();
@@ -160,6 +163,10 @@ public class PlayView implements Screen,IViewObservable{
         batch.setProjectionMatrix(cam.combined);
 
         //b2dr.render(model.getLevel().getWorld(),camera.combined);
+
+        //Updates score and time
+        scoreLabel.setText("Score:\n"+model.getScore());
+        timeLabel.setText("Time:\n"+model.getTime());
 
         //Set camera to follow player
         cam.position.set(new Vector2(model.getCharacterXPos(0), model.getCharacterYPos(0)), 0);

@@ -56,4 +56,11 @@ public interface ILevel {
     public void addFinish(IFinishPoint finishPoint);
 
     public void dispose();
+
+    public int getScore();
+
+    public int getTime();
+
+    public void updateTime();
+
 }

@@ -168,4 +168,14 @@ public class RoCCModel implements IRoCCModel {
         player.dispose();
     }
 
+    @Override
+    public int getScore(){
+        return level.getScore();
+    }
+
+    @Override
+    public int getTime(){
+        return level.getTime();
+    }
+
 }

@@ -299,5 +299,15 @@ public class PhyRoCCModel implements IRoCCModel {
         if (model != null)
             model.dispose();
     }
+
+    @Override
+    public int getScore(){
+        return model.getScore();
+    }
+
+    @Override
+    public int getTime(){
+        return model.getTime();
+    }
 }
 

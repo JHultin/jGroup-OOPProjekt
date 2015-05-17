@@ -19,6 +19,8 @@ import org.jbox2d.dynamics.World;
 public class Level implements ILevel {
 
     private int time;
+    private int timeCheck;
+
     private int score;
     private List<IPickupable> pickupables;
     private List<IJumpPoint> jumpPoints;
@@ -34,6 +36,7 @@ public class Level implements ILevel {
         bullets      = new ArrayList<IBullet>();
         enemies      = new ArrayList<IEnemy>();
         finishPoints = new ArrayList<IFinishPoint>();
+        score = 0;
     }
 
     // Adds a block for the map to the world
@@ -44,7 +47,7 @@ public class Level implements ILevel {
 
     @Override
     public void updateWorld(float dt){
-
+     //   updateTime();
     }
 
     @Override
@@ -123,6 +126,26 @@ public class Level implements ILevel {
         }
         for (IEnemy enemy : enemies){
             enemy.dispose();
+        }
+    }
+
+    @Override
+    public int getScore(){
+        return score;
+    }
+
+    @Override
+    public int getTime(){
+        return time;
+    }
+
+    @Override
+    public void updateTime() {
+        if (timeCheck < 60) {
+            timeCheck++;
+        } else if (timeCheck >= 60) {
+            timeCheck = 0;
+            time++;
         }
     }
 }

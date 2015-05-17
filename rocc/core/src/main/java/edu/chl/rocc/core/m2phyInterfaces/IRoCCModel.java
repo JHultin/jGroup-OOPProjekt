@@ -122,4 +122,9 @@ public interface IRoCCModel{
      * Called to lower memory leak
      */
     public void dispose();
+
+
+    public int getScore();
+
+    public int getTime();
 }
