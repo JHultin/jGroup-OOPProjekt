@@ -171,8 +171,13 @@ public class PlayView implements Screen,IViewObservable{
         batch.begin();
 
 
-        for (ICharacter character : model.getCharacters()) {
-            if(!profileImageHashMap.containsKey(character.getName())) {
+        /**
+         * Adds an image and healthbar for all the characters.
+         * Updates the value of the HealthBar.
+         */
+        try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.
+            for (ICharacter character : model.getCharacters()) {
+              if(!profileImageHashMap.containsKey(character.getName())) {
                 profileImageHashMap.put(character.getName(), new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
 
                 createHealthBar(character);
@@ -181,12 +186,12 @@ public class PlayView implements Screen,IViewObservable{
                 characterProfileTable.row();
                 characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
                 characterProfileTable.row();
-
             }
-            //Image image = new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png")));
-            //table.add(image);
+            healthBarHashMap.get(character.getName()).setValue(character.getHP());
         }
-
+    }catch(ConcurrentModificationException e){
+        System.out.println("ConcurrentModificationException");
+    }
 
     try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.
         for (ICharacter character : model.getCharacters()) {
