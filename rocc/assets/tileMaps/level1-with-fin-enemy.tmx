@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" nextobjectid="38">
+ <tileset firstgid="1" name="tilemap" tilewidth="32" tileheight="32">
+  <image source="tilemap.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="10" name="shaitpizza" tilewidth="36" tileheight="18">
+  <image source="../shaitpizza.png" width="36" height="18"/>
+ </tileset>
+ <layer name="ground" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1AELwiAQhmFrLtv//8NtsECuqaenW9H7wEdBdnrnmHMAAAAAAAAAAADA/5pEfp3sR+YmklpXw+8521E/rdHa+gzRZ+5sco6WGZd6vRd+1957a47qWvbsda/vzGsehnlpkqqZ26vnOeJazzXLCb3Vzr0mfsAdjbp7OfeaPeJ3yqhzfUu8yNXnsTwXufVxj8F99q1J6/9G1e+xvlTD0nOPeWlrhMT3F+3ABKE=
+  </data>
+ </layer>
+ <objectgroup name="food">
+  <object id="1" x="193.333" y="901.333" width="34" height="28">
+   <ellipse/>
+  </object>
+  <object id="2" x="383.333" y="840" width="35.3333" height="25.3333">
+   <ellipse/>
+  </object>
+  <object id="3" x="416.667" y="970.667" width="34.6667" height="23.3333">
+   <ellipse/>
+  </object>
+  <object id="4" x="542" y="970" width="38" height="24">
+   <ellipse/>
+  </object>
+  <object id="5" x="702" y="874" width="39.3333" height="21.3333">
+   <ellipse/>
+  </object>
+  <object id="6" x="832" y="972" width="34.6667" height="21.3333">
+   <ellipse/>
+  </object>
+  <object id="7" x="896.667" y="969.333" width="34.6667" height="24">
+   <ellipse/>
+  </object>
+  <object id="8" x="1152.67" y="940.667" width="34.6667" height="19.3333">
+   <ellipse/>
+  </object>
+  <object id="9" x="1313.33" y="971.333" width="33.3333" height="20.6667">
+   <ellipse/>
+  </object>
+  <object id="10" x="1408" y="972.667" width="34.6667" height="20.6667">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="characters">
+  <object id="15" x="1212" y="953" width="33" height="30"/>
+  <object id="16" x="1670" y="896" width="27" height="27"/>
+ </objectgroup>
+ <objectgroup color="#00aaff" name="jumpPoints">
+  <object id="22" x="628.991" y="1017.01">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+  </object>
+  <object id="23" x="662" y="984">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+  </object>
+  <object id="24" x="347" y="1016"/>
+  <object id="25" x="149" y="943"/>
+  <object id="26" x="745" y="985"/>
+  <object id="27" x="776" y="1017"/>
+  <object id="28" x="950" y="1017"/>
+  <object id="29" x="1033" y="1017"/>
+  <object id="30" x="1110" y="1019"/>
+  <object id="31" x="1255" y="1019"/>
+  <object id="32" x="1591" y="1017"/>
+  <object id="33" x="1622" y="985"/>
+  <object id="34" x="1655" y="953"/>
+ </objectgroup>
+ <objectgroup name="finish">
+  <object id="36" x="1824" y="832" width="95" height="95"/>
+ </objectgroup>
+ <objectgroup name="enemy">
+  <object id="37" x="1491" y="979" width="44" height="37"/>
+ </objectgroup>
+</map>

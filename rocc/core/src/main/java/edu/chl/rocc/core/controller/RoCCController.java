@@ -100,7 +100,7 @@ public class RoCCController implements Runnable{
 
             // Set up the game
             // First construct the world, the level and all pickupables.
-            TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin.tmx");
+            TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
 
             ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
             this.model.constructWorld(tiledMap);
