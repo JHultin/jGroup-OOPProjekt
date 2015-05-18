@@ -103,7 +103,7 @@ public class Level implements ILevel {
 
     @Override
     public List<IEnemy> getEnemies() {
-        return enemies;
+        return this.enemies;
     }
 
     @Override

@@ -21,6 +21,7 @@ import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.view.AnimationHandler;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -210,6 +211,10 @@ public class PlayView implements Screen,IViewObservable{
             for (IBullet bullet : model.getBullets()) {
                 batch.draw(textures.get("bullet"), bullet.getX(), bullet.getY());
             }
+        }
+
+        for(IEnemy enemy : model.getEnemies()){
+            batch.draw(textures.get("enemy"), enemy.getX(), enemy.getY());
         }
         batch.end();
 

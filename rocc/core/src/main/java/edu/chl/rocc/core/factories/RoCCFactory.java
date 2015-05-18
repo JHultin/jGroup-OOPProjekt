@@ -39,4 +39,8 @@ public class RoCCFactory implements IRoCCFactory {
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
         return new PickupableCharacter(name);
     }
+
+    public IEnemy createEnemy(String name, int x, int y, int hp){
+        return new Enemy(hp, name, x, y);
+    }
 }

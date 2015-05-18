@@ -147,6 +147,7 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
 
+
         if (tMap.getLayers().get("jumpPoints") != null) {
             MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
             for(MapObject point : jumpLayer.getObjects()){
@@ -161,9 +162,9 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
 
-        if (tMap.getLayers().get("finish") != null){
+        if (tMap.getLayers().get("finish") != null) {
             MapLayer finLayer = tMap.getLayers().get("finish");
-            for(MapObject finish : finLayer.getObjects()){
+            for (MapObject finish : finLayer.getObjects()) {
                 float x = ((Float) finish.getProperties().get("x")) / PPM;
                 float y = ((Float) finish.getProperties().get("y")) / PPM;
 
@@ -173,6 +174,17 @@ public class PhyRoCCModel implements IRoCCModel {
                 IFinishPoint finPoint = new PhyFinishPoint(world, x, y, width, height);
                 model.getLevel().addFinish(finPoint);
             }
+        }
+
+        //Add enemy in the world
+        MapLayer enemyLayer = tMap.getLayers().get("enemy");
+
+        for (MapObject mapObject : enemyLayer.getObjects()){
+            float x = ((Float) mapObject.getProperties().get("x") + 16) /PPM;
+            float y = ((Float) mapObject.getProperties().get("y") + 8) /PPM;
+
+            IEnemy enemy = new PhyEnemy(this.world, x, y, 50);
+            model.addEnemy(enemy);
         }
     }
 
@@ -273,17 +285,17 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public List<ICharacter> getCharacters() {
-        return model.getCharacters();
+        return this.model.getCharacters();
     }
 
     @Override
     public List<IEnemy> getEnemies () {
-          return model.getEnemies();
+          return this.model.getEnemies();
     }
 
     @Override
     public void addEnemy (IEnemy enemy){
-        model.addEnemy(enemy);
+        this.model.addEnemy(enemy);
     }
 
     @Override

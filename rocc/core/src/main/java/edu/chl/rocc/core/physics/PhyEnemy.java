@@ -19,25 +19,29 @@ public class PhyEnemy implements IEnemy {
     private final IEnemy enemy;
     private final float width, height;
     private final Body body;
+    private final BodyDef def;
+    private final FixtureDef fDef;
 
-    public PhyEnemy(World world, int x, int y, int healthPoints){
+    public PhyEnemy(World world, float x, float y, int healthPoints){
 
         // Enemy may also have a weapon
+
         this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.enemy = new Enemy(healthPoints, "", 0, 0);
 
         //Defining & creating body
-        BodyDef def = new BodyDef();
-        def.position.set(x / PPM, y / PPM);
+        def = new BodyDef();
+        def.position.set(x /PPM , y /PPM );
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
+        body.setUserData(this);
 
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width,height);
-        FixtureDef fDef = new FixtureDef();
+        fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_ENEMY;
         fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
@@ -46,12 +50,11 @@ public class PhyEnemy implements IEnemy {
         //create foot sensor
         shape.setAsBox(width, height/4, new Vec2(0, -30 / PPM) ,0);
         fDef.shape = shape;
-        fDef.filter.categoryBits = BitMask.BIT_BODY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND;
+        fDef.filter.categoryBits = BitMask.BIT_ENEMY;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData(this);
+        body.createFixture(fDef).setUserData("enemyFootSensor");
     }
-
 
     @Override
     public float getX() {

@@ -29,19 +29,19 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     //called when contact between two fixtures begins
     @Override
     public void beginContact(Contact contact) {
-        //update world måste vara klar innan detta görs
 
         //Fetches the two fixtures
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
-        //Kolla om kroppen har en fotsensor, om JA så se vilken kropp den tillhör
+        //Handles if on ground or not
         if ("footSensor".equals(fa.getUserData())) {
             ((ICharacter)fa.getBody().getUserData()).hitGround();
         }
         if ("footSensor".equals(fb.getUserData())) {
             ((ICharacter)fb.getBody().getUserData()).hitGround();
         }
+
         if ("food".equals(fa.getUserData()) && fa.getBody().getUserData() instanceof IFood) {
             itemsToRemove.add((IFood)(fa.getBody().getUserData()));
         }
@@ -54,6 +54,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if ("pickupCharacter".equals(fb.getUserData()) && fb.getBody().getUserData() instanceof IPickupableCharacter) {
             itemsToRemove.add((IPickupableCharacter)(fb.getBody().getUserData()));
         }
+
         if("jumpPointSensor".equals(fa.getUserData())){
             ((ICharacter)fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }

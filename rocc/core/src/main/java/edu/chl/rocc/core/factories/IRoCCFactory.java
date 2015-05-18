@@ -19,4 +19,6 @@ public interface IRoCCFactory {
 
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y);
 
+    public IEnemy createEnemy(String name, int x, int y, int hp);
+
 }
