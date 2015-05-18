@@ -146,16 +146,18 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
 
-        MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
-        for(MapObject point : jumpLayer.getObjects()){
-            Direction dir;
-            dir = ("right".equals((String)(point.getProperties().get("direction"))) ? Direction.RIGHT : Direction.LEFT);
+        if (tMap.getLayers().get("jumpPoints") != null) {
+            MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
+            for(MapObject point : jumpLayer.getObjects()){
+                Direction dir;
+                dir = ("right".equals((String)(point.getProperties().get("direction"))) ? Direction.RIGHT : Direction.LEFT);
 
-            float x = ((Float) point.getProperties().get("x")) / PPM;
-            float y = ((Float) point.getProperties().get("y")) / PPM;
+                float x = ((Float) point.getProperties().get("x")) / PPM;
+                float y = ((Float) point.getProperties().get("y")) / PPM;
 
-            IJumpPoint ijp = new PhyJumpPoint(world, dir , x, y);
-            model.getLevel().addJumpPoint(ijp);
+                IJumpPoint ijp = new PhyJumpPoint(world, dir , x, y);
+                model.getLevel().addJumpPoint(ijp);
+            }
         }
 
         if (tMap.getLayers().get("finish") != null){
@@ -194,7 +196,7 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void jump() {
+        public void jump() {
         this.model.jump();
     }
 
