@@ -35,6 +35,8 @@ public class RoCCController implements Runnable{
 
     // Inputprocessor for while ingame
     private GameProcessor gameProcessor;
+    //Inputprocessor for ConfigureControlView
+    private ConfigureControlsProcessor configureControlsProcessor;
 
     // Treads and boolean to show when the tread should operate
     private Thread thread;
@@ -61,6 +63,7 @@ public class RoCCController implements Runnable{
         this.gvm = new GameViewManager(model);
 
         this.gameProcessor = new GameProcessor();
+        this.configureControlsProcessor = new ConfigureControlsProcessor();
         this.keyOptions = KeyOptions.getInstance();
 
         // Start up the game with the menuscreen
@@ -127,6 +130,11 @@ public class RoCCController implements Runnable{
             /*thread = new Thread(this);
             thread.start();
             isRunning = true;*/
+        } else if("configureControls".equals(str)){
+            this.inGame = false;
+            model.dispose();
+            Gdx.input.setInputProcessor(configureControlsProcessor);
+
         }
         currentView = str;
         // Tell main to update to correct screen
@@ -278,6 +286,50 @@ public class RoCCController implements Runnable{
             return false;
         }
     }
+
+
+    private class ConfigureControlsProcessor implements InputProcessor {
+        @Override
+        public boolean keyDown(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyUp(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyTyped(char character) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            return false;
+        }
+
+        @Override
+        public boolean mouseMoved(int screenX, int screenY) {
+            return false;
+        }
+
+        @Override
+        public boolean scrolled(int amount) {
+            return false;
+        }
+    }
+
 
 
     /**

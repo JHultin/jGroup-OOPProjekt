@@ -171,7 +171,6 @@ public class PhyRoCCModel implements IRoCCModel {
                 model.getLevel().addFinish(finPoint);
             }
         }
-
     }
 
     @Override

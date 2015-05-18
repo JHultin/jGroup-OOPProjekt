@@ -21,8 +21,11 @@ public class ControlConfigureView extends AbstractMenuView {
 
 
 
-
+    //A hashMap to contain all the button and one to contain all the button names.
     private HashMap<String,TextButton> keysBindingHashMap;
+    private HashMap<String, String> keyTitleHashMap;
+
+
 
     TextButton moveLeftButton;
     TextButton moveRightButton;
@@ -65,32 +68,21 @@ public class ControlConfigureView extends AbstractMenuView {
         table.add(titleLabel).padBottom(20);
         table.row();
 
-        float buttonWidth = 200;
 
 
         Table buttonConfigureTable = new Table();
 
-        float padRight = 15;
-        float padBottom = 10;
 
-        buttonConfigureTable.add(new Label("Move Left", titleStyle)).right().padRight(padRight).padBottom(padBottom);
-        buttonConfigureTable.add(moveLeftButton).width(buttonWidth).padBottom(padBottom);
-        buttonConfigureTable.row();
-        buttonConfigureTable.add(new Label("Move Right", titleStyle)).right().padRight(padRight).padBottom(padBottom);
-        buttonConfigureTable.add(moveRightButton).width(buttonWidth).padBottom(padBottom);
-        buttonConfigureTable.row();
-        buttonConfigureTable.add(new Label("Jump", titleStyle)).right().padRight(padRight).padBottom(padBottom);
-        buttonConfigureTable.add(jumpButton).width(buttonWidth).padBottom(padBottom);
-        buttonConfigureTable.row();
-        buttonConfigureTable.add(new Label("Shoot", titleStyle)).right().padRight(padRight).padBottom(padBottom);
-        buttonConfigureTable.add(shootButton).width(buttonWidth).padBottom(padBottom);
-        buttonConfigureTable.row();
-        buttonConfigureTable.add(new Label("Next Weapon", titleStyle)).right().padRight(padRight).padBottom(padBottom);
-        buttonConfigureTable.add(nextWeaponButton).width(buttonWidth).padBottom(padBottom);
-        buttonConfigureTable.row();
-        buttonConfigureTable.add(new Label("Interact", titleStyle)).right().padRight(padRight).padBottom(padBottom);
-        buttonConfigureTable.add(interactButton).width(buttonWidth).padBottom(padBottom);
-
+        float buttonWidth = 200;
+        /**
+         * Gets the title name of the button and uses them
+         * as a key to retrive the right button
+         */
+        for(String buttonName : keyTitleHashMap.values()){
+            buttonConfigureTable.add(new Label(buttonName, titleStyle)).right().padRight(15).padBottom(10);
+            buttonConfigureTable.add(keysBindingHashMap.get(buttonName)).width(buttonWidth).padBottom(15);
+            buttonConfigureTable.row();
+        }
 
         table.add(buttonConfigureTable);
         table.row();
@@ -124,6 +116,7 @@ public class ControlConfigureView extends AbstractMenuView {
 
 
         keysBindingHashMap = new HashMap<String, TextButton>();
+        keyTitleHashMap = new HashMap<String, String>();
 
 
         moveLeftButton = new TextButton("A", textButtonStyle);
@@ -193,6 +186,20 @@ public class ControlConfigureView extends AbstractMenuView {
         });
 
 
+        keyTitleHashMap.put("Move Left","Move Left");
+        keyTitleHashMap.put("Move Right", "Move Right");
+        keyTitleHashMap.put("Jump", "Jump");
+        keyTitleHashMap.put("Shoot", "Shoot");
+        keyTitleHashMap.put("Next Weapon", "Next Weapon");
+        keyTitleHashMap.put("Interact", "Interact");
+
+
+        keysBindingHashMap.put("Move Left", moveLeftButton);
+        keysBindingHashMap.put("Move Right", moveRightButton);
+        keysBindingHashMap.put("Jump", jumpButton);
+        keysBindingHashMap.put("Shoot", shootButton);
+        keysBindingHashMap.put("Next Weapon", nextWeaponButton);
+        keysBindingHashMap.put("Interact", interactButton);
 
 
         backButton.addListener(new ClickListener(){

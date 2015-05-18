@@ -6,6 +6,7 @@
  <tileset firstgid="10" name="shaitpizza" tilewidth="36" tileheight="18">
   <image source="../shaitpizza.png" width="36" height="18"/>
  </tileset>
+ <imagelayer name="Background" x="339" y="-132"/>
  <layer name="ground" width="60" height="40">
   <data encoding="base64" compression="zlib">
    eJzt1AELwiAQhmFrLtv//8NtsECuqaenW9H7wEdBdnrnmHMAAAAAAAAAAADA/5pEfp3sR+YmklpXw+8521E/rdHa+gzRZ+5sco6WGZd6vRd+1957a47qWvbsda/vzGsehnlpkqqZ26vnOeJazzXLCb3Vzr0mfsAdjbp7OfeaPeJ3yqhzfUu8yNXnsTwXufVxj8F99q1J6/9G1e+xvlTD0nOPeWlrhMT3F+3ABKE=

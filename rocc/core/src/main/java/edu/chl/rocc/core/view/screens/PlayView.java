@@ -362,13 +362,29 @@ public class PlayView implements Screen,IViewObservable{
      * A method which places all the animation texture in a hashMap
      */
     public void addToAnimationHashMap(){
+
+
+     /*
+        for(ICharacter character : model.getCharacters()){
+            HashMap<String,AnimationHandler> hashMap = new HashMap<String, AnimationHandler>();
+            TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/"+ character.getName() + "/moveRight.png")), 34, 51)[0];
+            //Right
+            hashMap.put("moveRight",new AnimationHandler(textureRegions,1/4f));
+            //Left
+            textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/"+ character.getName() + "/moveLeft.png")), 34, 51)[0];
+            hashMap.put("moveLeft",new AnimationHandler(textureRegions,1/4f));
+
+            charactersAnimationHashMap.put(character.getName(),hashMap);
+        }
+*/
+
         //Mother animation
         HashMap<String,AnimationHandler> motherHashmap = new HashMap<String, AnimationHandler>();
         //Right
-        TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/motherMoveRight.png")), 34, 51)[0];
+        TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/moveRight.png")), 34, 51)[0];
         motherHashmap.put("moveRight",new AnimationHandler(textureRegions,1/5f));
         //Left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/motherMoveLeft.png")), 34, 51)[0];
+        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/moveLeft.png")), 34, 51)[0];
         motherHashmap.put("moveLeft",new AnimationHandler(textureRegions,1/5f));
 
         //zombie
