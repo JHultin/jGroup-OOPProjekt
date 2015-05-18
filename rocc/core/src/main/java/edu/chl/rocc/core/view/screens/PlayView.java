@@ -364,7 +364,7 @@ public class PlayView implements Screen,IViewObservable{
     public void addToAnimationHashMap(){
 
 
-     /*
+/*
         for(ICharacter character : model.getCharacters()){
             HashMap<String,AnimationHandler> hashMap = new HashMap<String, AnimationHandler>();
             TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/"+ character.getName() + "/moveRight.png")), 34, 51)[0];

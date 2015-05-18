@@ -185,12 +185,12 @@ public class RoCCController implements Runnable{
         private void sendUpdate(){
             // Find correct direction for the active character to move in
             Direction dir;
-            if (keys.contains(keyOptions.getKey("right")))
-                if (keys.contains(keyOptions.getKey("left")))
+            if (keys.contains(keyOptions.getKey("Move Right")))
+                if (keys.contains(keyOptions.getKey("Move Left")))
                     dir = Direction.NONE;
                 else
                     dir = Direction.RIGHT;
-            else if (keys.contains((keyOptions.getKey("left"))))
+            else if (keys.contains((keyOptions.getKey("Move Left"))))
                 dir = Direction.LEFT;
             else
                 dir = Direction.NONE;
@@ -225,7 +225,7 @@ public class RoCCController implements Runnable{
         // Add key to keylist or jump
         @Override
         public boolean keyDown(int keycode) {
-            if (keycode == keyOptions.getKey("jump"))
+            if (keycode == keyOptions.getKey("Jump"))
                 model.jump();
             else if (!keys.contains(keycode))
                 keys.add(keycode);
@@ -286,6 +286,7 @@ public class RoCCController implements Runnable{
             return false;
         }
     }
+
 
 
     private class ConfigureControlsProcessor implements InputProcessor {
@@ -351,10 +352,6 @@ public class RoCCController implements Runnable{
             observable.register(this);
         }
 
-
-
     }
-
-
 
 }
