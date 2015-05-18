@@ -1,6 +1,13 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.m2phyInterfaces.IMortal;
+import edu.chl.rocc.core.utility.DeathEvent;
+import edu.chl.rocc.core.utility.IDeathEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -9,7 +16,7 @@ import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
  *
  * @author Jenny Orell
  */
-public class Character implements ICharacter {
+public class Character implements ICharacter, IMortal {
 
     private final int maxHealth = 100;
     private int healthPoints;
@@ -24,6 +31,8 @@ public class Character implements ICharacter {
 
     private boolean isFollower;
 
+    private final List<IDeathListener> deathListeners;
+
 
     public Character(String name){
         this.setHP(maxHealth);
@@ -37,6 +46,7 @@ public class Character implements ICharacter {
 
         isFollower = true;
 
+        this.deathListeners = new ArrayList<IDeathListener>();
     }
 
     @Override
@@ -201,4 +211,21 @@ public class Character implements ICharacter {
         this.isFollower = false;
     }
 
+    @Override
+    public void addDeathListener(IDeathListener listener) {
+        this.deathListeners.add(listener);
+    }
+
+    @Override
+    public void removeDeathListener(IDeathListener listener) {
+        this.deathListeners.remove(listener);
+    }
+
+    @Override
+    public void death(String message) {
+        IDeathEvent deathEvent = new DeathEvent(this, message);
+        for(IDeathListener deathListener : deathListeners){
+            deathListener.deathTriggered(deathEvent);
+        }
+    }
 }

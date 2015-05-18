@@ -19,10 +19,11 @@ public interface IMortal {
      * Stop telling the listener when the object dies.
      * @param listener
      */
-    public void remveDeathListener(IDeathListener listener);
+    public void removeDeathListener(IDeathListener listener);
 
     /**
      * Called when the object dies.
+     * @param message a message explaining to the player how the puny mortal died
      */
-    public void death();
+    public void death(String message);
 }
