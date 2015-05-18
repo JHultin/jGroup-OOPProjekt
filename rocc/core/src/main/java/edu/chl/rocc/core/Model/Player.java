@@ -50,24 +50,19 @@ public class Player implements IPlayer {
     @Override
     public void moveFollowers(Direction dir){
         if(dir != Direction.NONE) {
+            int count = 0;
+            for (int i=0; i < characters.size(); i++) {
+                if (i != activeCharacterIndex) {
+                    count ++;
+                    float distance = characters.get(this.activeCharacterIndex).getX() - characters.get(i).getX();
 
-            for (int i=1; i < characters.size(); i++) {
-
-            /*
-            if(getDistance(i) > 200){
-                characters.get(i).moveFollower(dir);
-            } else{
-                characters.get(i).moveFollower(Direction.NONE);
-            }
-            */
-                float distance = characters.get(this.activeCharacterIndex).getX() - characters.get(i).getX();
-
-                if (distance > 20 + i * 60) {
-                    characters.get(i).moveFollower(Direction.RIGHT);
-                } else if (distance < -(20 + i * 60)) {
-                    characters.get(i).moveFollower(Direction.LEFT);
-                } else {
-                    characters.get(i).moveFollower(Direction.NONE);
+                    if (distance > 20 + count * 60) {
+                        characters.get(i).moveFollower(Direction.RIGHT);
+                    } else if (distance < -(20 + count * 60)) {
+                        characters.get(i).moveFollower(Direction.LEFT);
+                    } else {
+                        characters.get(i).moveFollower(Direction.NONE);
+                    }
                 }
             }
         } else{
