@@ -65,7 +65,7 @@ public class Player implements IPlayer {
                 }
             }
         } else{
-            for (int k=1; k < characters.size(); k++) {
+            for (int k=0; k < characters.size(); k++) {
                 characters.get(k).moveFollower(Direction.NONE);
             }
         }
