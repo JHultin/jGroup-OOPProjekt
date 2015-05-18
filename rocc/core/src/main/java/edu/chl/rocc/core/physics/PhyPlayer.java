@@ -58,13 +58,13 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
-    public float getCharacterXPos(int i) {
-        return this.player.getCharacterXPos(i);
+    public float getCharacterXPos() {
+        return this.player.getCharacterXPos();
     }
 
     @Override
-    public float getCharacterYPos(int i) {
-        return this.player.getCharacterYPos(i);
+    public float getCharacterYPos() {
+        return this.player.getCharacterYPos();
     }
 
     @Override

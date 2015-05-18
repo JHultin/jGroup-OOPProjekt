@@ -48,14 +48,14 @@ public interface IRoCCModel{
     public void shoot(float x, float y);
 
     /**
-    * @return x-coordinate of the given character.
+    * @return x-coordinate of the lead character.
     */
-    public float getCharacterXPos(int i);
+    public float getCharacterXPos();
 
     /**
-    * @return y-coordinate of the given character.
+    * @return y-coordinate of the lead character.
     */
-    public float getCharacterYPos(int i);
+    public float getCharacterYPos();
 
     /**
     * @return the level.

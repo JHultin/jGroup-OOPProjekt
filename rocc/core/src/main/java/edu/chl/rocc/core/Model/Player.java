@@ -17,7 +17,6 @@ public class Player implements IPlayer {
     private final List<ICharacter> characters;
     private IRoCCFactory factory;
 
-    private int activePlayerIndex;
     //Index of the active character in list 'characters'
     private int activeCharacterIndex;
 
@@ -95,13 +94,13 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public float getCharacterXPos(int i){
-        return characters.get(i).getX();
+    public float getCharacterXPos(){
+        return characters.get(activeCharacterIndex).getX();
     }
 
     @Override
-    public float getCharacterYPos(int i){
-        return characters.get(i).getY();
+    public float getCharacterYPos(){
+        return characters.get(activeCharacterIndex).getY();
     }
 
     @Override

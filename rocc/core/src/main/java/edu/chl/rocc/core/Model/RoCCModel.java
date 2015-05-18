@@ -82,17 +82,17 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void shoot(float x, float y){
         //level.setAim(x, y);
-        level.createBullet(this.getCharacterXPos(0), this.getCharacterYPos(0), x, y);
+        level.createBullet(this.getCharacterXPos(), this.getCharacterYPos(), x, y);
     }
 
     @Override
-    public float getCharacterXPos(int i){
-        return player.getCharacterXPos(i);
+    public float getCharacterXPos(){
+        return player.getCharacterXPos();
     }
 
     @Override
-    public float getCharacterYPos(int i){
-        return player.getCharacterYPos(i);
+    public float getCharacterYPos(){
+        return player.getCharacterYPos();
     }
 
     /*

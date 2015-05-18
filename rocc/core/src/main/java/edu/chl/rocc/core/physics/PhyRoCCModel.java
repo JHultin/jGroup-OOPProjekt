@@ -212,13 +212,13 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public float getCharacterXPos(int i) {
-        return this.model.getCharacterXPos(i);
+    public float getCharacterXPos() {
+        return this.model.getCharacterXPos();
     }
 
     @Override
-    public float getCharacterYPos(int i) {
-        return this.model.getCharacterYPos(i);
+    public float getCharacterYPos() {
+        return this.model.getCharacterYPos();
     }
 
     @Override
