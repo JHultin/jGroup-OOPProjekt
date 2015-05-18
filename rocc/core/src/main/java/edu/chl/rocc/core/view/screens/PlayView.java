@@ -169,7 +169,7 @@ public class PlayView implements Screen,IViewObservable{
         timeLabel.setText("Time:\n"+model.getTime());
 
         //Set camera to follow player
-        cam.position.set(new Vector2(model.getCharacterXPos(0), model.getCharacterYPos(0)), 0);
+        cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
         cam.update();
 
         renderer.setView(cam);
