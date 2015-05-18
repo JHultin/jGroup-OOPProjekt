@@ -99,13 +99,13 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if("bullet".equals(fa.getUserData())){
             if("enemyUpperSensor".equals(fb.getUserData())){
                 System.out.println("Takes HP from enemy");
-                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData());
+                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage();
             }
         }
         if("bullet".equals(fb.getUserData())){
             if("enemyUpperSensor".equals(fa.getUserData())){
                 System.out.println("Takes HP from enemy");
-                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData());
+                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage();
             }
         }
     }
