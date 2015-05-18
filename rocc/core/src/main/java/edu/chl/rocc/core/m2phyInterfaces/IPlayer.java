@@ -47,10 +47,10 @@ public interface IPlayer {
 
     public void dispose();
 
+    /**
+     * Change which character the player is playing as.
+     */
     public void setActiveCharacter(int i);
 
-    /**
-    * Change which character the player is playing as.
-    */
-    public void setActiveCharacter(ICharacter character);
+
 }
