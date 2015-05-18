@@ -15,7 +15,7 @@ public class DeathEvent implements IDeathEvent{
         this.message = message;
     }
 
-    public final String getMessage() {
+    public String getMessage() {
         return message;
     }
 
