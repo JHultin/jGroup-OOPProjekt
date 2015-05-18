@@ -297,6 +297,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void changeLead() {
+        this.model.changeLead();
+    }
+
+    @Override
     public void dispose() {
         if (model != null)
             model.dispose();

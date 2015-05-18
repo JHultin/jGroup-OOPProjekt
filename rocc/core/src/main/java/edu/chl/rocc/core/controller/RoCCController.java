@@ -232,7 +232,7 @@ public class RoCCController implements Runnable{
             if (keycode == keyOptions.getKey("Jump"))
                 model.jump();
             else if (keycode == Input.Keys.TAB){
-                //model.
+                model.changeLead();
             }
             else if (!keys.contains(keycode))
                 keys.add(keycode);
