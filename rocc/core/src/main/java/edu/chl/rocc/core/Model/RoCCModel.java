@@ -6,6 +6,7 @@ import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.physics.PhyBullet;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.dynamics.Body;
 
 import java.util.List;
@@ -176,6 +177,12 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public int getTime(){
         return level.getTime();
+    }
+
+    @Override
+    public void handleDeath(IDeathEvent deathEvent) {
+        // Temp code
+        System.out.println(deathEvent.getMessage());
     }
 
 }

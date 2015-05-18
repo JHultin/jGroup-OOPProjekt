@@ -31,6 +31,7 @@ public class RoCCController implements Runnable{
     private final RoCCView main;
     private final GameViewManager gvm;
     private CollisionListener collisionListener;
+    private final IDeathListener deathListener;
     private String currentView;
 
     // Inputprocessor for while ingame
@@ -44,10 +45,10 @@ public class RoCCController implements Runnable{
     private boolean inGame;
 
     // Tells how far in between the world shall update, in seconds
-    private float updateSpeed = 1 / 60f;
+    private final float updateSpeed = 1 / 60f;
 
     // The current key configurations
-    private KeyOptions keyOptions;
+    private final KeyOptions keyOptions;
 
     private ViewChooser viewChooser;
 
@@ -74,8 +75,10 @@ public class RoCCController implements Runnable{
         // Start the thread
         this.thread = new Thread(this);
         this.thread.start();
-        viewChooser = new ViewChooser(gvm.getViewObserver());
 
+        this.viewChooser = new ViewChooser(gvm.getViewObserver());
+
+        this.deathListener = new DeathListener(model);
     }
 
     /**

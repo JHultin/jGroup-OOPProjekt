@@ -11,7 +11,6 @@ public class DeathListener implements IDeathListener {
     private final IRoCCModel model;
 
     public DeathListener(IRoCCModel model){
-
         this.model = model;
     }
 

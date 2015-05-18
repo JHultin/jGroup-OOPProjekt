@@ -13,6 +13,7 @@ import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.RoCCModel;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -85,9 +86,9 @@ public class PhyRoCCModel implements IRoCCModel {
             Vec2[] v = new Vec2[5];
             float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
             v[0] = new Vec2(-offset, -offset);
-            v[1] = new Vec2(-offset, offset);
-            v[2] = new Vec2(offset, offset);
-            v[3] = new Vec2(offset, -offset);
+            v[1] = new Vec2(-offset,  offset);
+            v[2] = new Vec2( offset,  offset);
+            v[3] = new Vec2( offset, -offset);
             v[4] = new Vec2(-offset, -offset);
             cs.createChain(v, 5);
 
@@ -110,7 +111,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
                         // Set the position for the block
                         bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
-                                PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
+                                          PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
 
                         // Then let the level create the block in the world
                         model.getLevel().addBlock(bDef, fDef);
@@ -126,7 +127,7 @@ public class PhyRoCCModel implements IRoCCModel {
             // Create one food item for each on the map
             for (MapObject mapObject : foodLayer.getObjects()) {
                 float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y") + 8)  / PPM;
 
                 IFood food = new PhyFood(world, x, y);
                 model.getLevel().addPickupable(food);
@@ -309,6 +310,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public int getTime(){
         return model.getTime();
+    }
+
+    @Override
+    public void handleDeath(IDeathEvent deathEvent) {
+        this.model.handleDeath(deathEvent);
     }
 }
 
