@@ -44,7 +44,7 @@ public class KeyOptions {
         if (!Gdx.files.internal(filePath).exists()){
             keys.put("Move Left",  Input.Keys.A);
             keys.put("Move Right", Input.Keys.D);
-            keys.put("Jump",  Input.Keys.SPACE);
+            keys.put("Jump",       Input.Keys.SPACE);
             saveKeys();
 
         // If it exist get the settings from it

@@ -120,6 +120,11 @@ public interface IRoCCModel{
     public void addCharacter(String name);
 
     /**
+     * Randomly sets which character is in the front
+     */
+    public void changeLead();
+
+    /**
      * Called to lower memory leak
      */
     public void dispose();

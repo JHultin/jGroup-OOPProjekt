@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -230,6 +231,9 @@ public class RoCCController implements Runnable{
         public boolean keyDown(int keycode) {
             if (keycode == keyOptions.getKey("Jump"))
                 model.jump();
+            else if (keycode == Input.Keys.TAB){
+                //model.
+            }
             else if (!keys.contains(keycode))
                 keys.add(keycode);
             return false;
