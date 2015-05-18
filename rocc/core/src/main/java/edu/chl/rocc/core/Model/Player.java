@@ -133,8 +133,9 @@ public class Player implements IPlayer {
 
     @Override
     public void setActiveCharacter(int i){
-        this.characters.get(activeCharacterIndex).removeAsFollower();
+        this.characters.get(activeCharacterIndex).setAsFollower();
         this.activeCharacterIndex = i;
+        this.characters.get(i).setAsLead();
     }
 
     /*

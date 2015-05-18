@@ -88,6 +88,6 @@ public interface ICharacter extends IMortal{
 
     public void setAsFollower();
 
-    public void removeAsFollower();
+    public void setAsLead();
 
 }

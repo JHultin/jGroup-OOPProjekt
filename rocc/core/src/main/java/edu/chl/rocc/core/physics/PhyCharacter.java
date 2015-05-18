@@ -309,8 +309,8 @@ public class PhyCharacter implements ICharacter {
         this.character.setAsFollower();
     }
 
-    public void removeAsFollower(){
-        this.character.removeAsFollower();
+    public void setAsLead(){
+        this.character.setAsLead();
     }
 
     @Override

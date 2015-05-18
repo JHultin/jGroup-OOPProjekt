@@ -206,7 +206,7 @@ public class Character implements ICharacter {
     }
 
     @Override
-    public void removeAsFollower(){
+    public void setAsLead(){
         this.isFollower = false;
     }
 
