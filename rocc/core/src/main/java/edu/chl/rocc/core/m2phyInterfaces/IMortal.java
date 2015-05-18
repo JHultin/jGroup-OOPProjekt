@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
 import edu.chl.rocc.core.controller.IDeathListener;
+import edu.chl.rocc.core.utility.IDeathEvent;
 
 /**
  * Interface for mortal objects, things in the game that have a death-trigger that should be listened to
@@ -26,4 +27,10 @@ public interface IMortal {
      * @param message a message explaining to the player how the puny mortal died
      */
     public void death(String message);
+
+    /**
+     * Called when the object dies.
+     * @param deathEvent a event describing what and how that object died
+     */
+    public void death(IDeathEvent deathEvent);
 }

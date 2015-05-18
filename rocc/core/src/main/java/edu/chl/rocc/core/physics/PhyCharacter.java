@@ -2,10 +2,13 @@ package edu.chl.rocc.core.physics;
 
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.m2phyInterfaces.IMortal;
 import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.model.Character;
 import edu.chl.rocc.core.utility.CharacterLoader;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -308,6 +311,26 @@ public class PhyCharacter implements ICharacter {
 
     public void removeAsFollower(){
         this.character.removeAsFollower();
+    }
+
+    @Override
+    public void addDeathListener(IDeathListener listener) {
+
+    }
+
+    @Override
+    public void removeDeathListener(IDeathListener listener) {
+
+    }
+
+    @Override
+    public void death(String message) {
+        this.character.death(message);
+    }
+
+    @Override
+    public void death(IDeathEvent deathEvent) {
+        this.character.death(deathEvent);
     }
 }
 

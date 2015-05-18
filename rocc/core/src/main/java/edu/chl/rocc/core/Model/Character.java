@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Jenny Orell
  */
-public class Character implements ICharacter, IMortal {
+public class Character implements ICharacter {
 
     private final int maxHealth = 100;
     private int healthPoints;
@@ -224,6 +224,11 @@ public class Character implements ICharacter, IMortal {
     @Override
     public void death(String message) {
         IDeathEvent deathEvent = new DeathEvent(this, message);
+        death(deathEvent);
+    }
+
+    @Override
+    public void death(IDeathEvent deathEvent) {
         for(IDeathListener deathListener : deathListeners){
             deathListener.deathTriggered(deathEvent);
         }
