@@ -105,11 +105,13 @@ public class Player implements IPlayer {
 
     @Override
     public void addCharacter(String name) {
-        if (characters.isEmpty()){
-            characters.add(this.factory.createCharacter(name, 160, 400));
-        } else {
-            characters.add(this.factory.createCharacter(name, characters.get(this.activeCharacterIndex).getX(),
-                    characters.get(this.activeCharacterIndex).getY()));
+        synchronized (characters) {
+            if (characters.isEmpty()) {
+                characters.add(this.factory.createCharacter(name, 160, 400));
+            } else {
+                characters.add(this.factory.createCharacter(name, characters.get(this.activeCharacterIndex).getX(),
+                        characters.get(this.activeCharacterIndex).getY()));
+            }
         }
     }
 

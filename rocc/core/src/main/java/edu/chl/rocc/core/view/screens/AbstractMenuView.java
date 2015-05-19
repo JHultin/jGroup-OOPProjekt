@@ -39,7 +39,7 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
     //TextButtonStyle
     protected BitmapFont font = new BitmapFont();
     protected TextButton.TextButtonStyle textButtonStyle;
-
+    private boolean resize;
 
 
     protected AbstractMenuView(IRoCCModel model){
@@ -108,6 +108,10 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
+        if(resize) {
+            stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+            resize = false;
+        }
 
         stage.act();
         stage.draw();
@@ -115,8 +119,9 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     @Override
     public void resize(int width, int height) {
+        resize = true;
         //Lets the view scale
-        stage.getViewport().update(width,height,true);
+        //stage.getViewport().update(width,height,true);
 
     }
 

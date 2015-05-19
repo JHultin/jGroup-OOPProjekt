@@ -8,8 +8,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.ConcurrentModificationException;
-import java.util.HashMap;
+import java.util.*;
+import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,9 +23,6 @@ import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.view.AnimationHandler;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * This class is supposed to contain the
@@ -182,33 +179,31 @@ public class PlayView implements Screen,IViewObservable{
          * Adds an image and healthbar for all the characters.
          * Updates the value of the HealthBar.
          */
-        try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.
+        synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
-              if(!profileImageHashMap.containsKey(character.getName())) {
-                profileImageHashMap.put(character.getName(), new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
+                if (!profileImageHashMap.containsKey(character.getName())) {
+                    profileImageHashMap.put(character.getName(), new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
 
-                createHealthBar(character);
+                    createHealthBar(character);
 
-                characterProfileTable.add(profileImageHashMap.get(character.getName())).left().pad(2);
-                characterProfileTable.row();
-                characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
-                characterProfileTable.row();
+                    characterProfileTable.add(profileImageHashMap.get(character.getName())).left().pad(2);
+                    characterProfileTable.row();
+                    characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
+                    characterProfileTable.row();
+                }
+                healthBarHashMap.get(character.getName()).setValue(character.getHP());
             }
-            healthBarHashMap.get(character.getName()).setValue(character.getHP());
         }
-    }catch(ConcurrentModificationException e){
-        System.out.println("ConcurrentModificationException");
-    }
-
-    try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.
-        for (ICharacter character : model.getCharacters()) {
-            renderCharacter(character, delta);
+        
+        synchronized (model.getCharacters()) {
+            for (ICharacter character : model.getCharacters()) {
+                renderCharacter(character, delta);
+            }
         }
-    }catch(ConcurrentModificationException e){
-        System.out.println("ConcurrentModificationException");
-    }
-        for (IPickupable pickupable : model.getPickupables()){
-            batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
+        synchronized (model.getPickupables()) {
+            for (IPickupable pickupable : model.getPickupables()) {
+                batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
+            }
         }
 
         synchronized (model.getBullets()) {
