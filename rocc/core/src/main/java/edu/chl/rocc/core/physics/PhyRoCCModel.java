@@ -128,8 +128,8 @@ public class PhyRoCCModel implements IRoCCModel {
 
             // Create one food item for each on the map
             for (MapObject mapObject : foodLayer.getObjects()) {
-                float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y") + 8)  / PPM;
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
                 IFood food = new PhyFood(world, x, y);
                 model.getLevel().addPickupable(food);
