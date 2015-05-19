@@ -76,7 +76,12 @@ public class Character implements ICharacter {
     }
 
     @Override
-    public void move(Direction dir){}
+    public void move(Direction dir){
+        if(!dir.equals(Direction.NONE)){
+            lastDir = direction;
+        }
+        direction = dir;
+    }
 
     @Override
     public void moveFollower(Direction dir){
@@ -156,15 +161,6 @@ public class Character implements ICharacter {
         return hash;
     }
 
-    public void setCurrentDirection(Direction dir){
-        if(!dir.equals(Direction.NONE)){
-            lastDir = direction;
-        }
-        direction = dir;
-
-    }
-
-
     @Override
     public Direction getDirection(){
         return direction;
@@ -222,38 +218,9 @@ public class Character implements ICharacter {
 
     @Override
     public String getMoveState(){
-/*
-        if (inAir() == true) {
-            if (getDirection().equals(Direction.LEFT)) {
-                this.moveState = "jumpLeft";
-            } else if (getDirection().equals(Direction.RIGHT)) {
-                this.moveState = "jumpRight";
-            } else {
-                if (getLastDirection().equals(Direction.LEFT)) {
-                    this.moveState = "jumpLeft";
-                } else {
-                    this.moveState = "jumpRight";
-                }
-            }
-        } else if (getDirection().equals(Direction.RIGHT)) {
-            this.moveState = "moveRight";
-        } else if (getDirection().equals(Direction.LEFT)) {
-            this.moveState = "moveLeft";
-        } else if (getDirection().equals(Direction.NONE)) {
-            if (getLastDirection().equals(Direction.LEFT)) {
-                this.moveState = "idleLeft";
-            } else {
-                this.moveState = "idleRight";
-            }
-        }
-*/
         if(getDirection() == Direction.NONE) {
-            System.out.println("" + inAir + getDirection().toString()+ getLastDirection().toString());
-            System.out.println(getName());
             return "" + inAir + getDirection().toString() + getLastDirection().toString();
         }else {
-            System.out.println("" + inAir() + getDirection().toString());
-            System.out.println(getName());
             return "" + inAir + getDirection().toString();
         }
     }

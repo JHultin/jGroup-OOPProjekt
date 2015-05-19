@@ -71,8 +71,6 @@ public interface ICharacter extends IMortal{
 
     public void dispose();
 
-    public void setCurrentDirection(Direction dir);
-
     public Direction getDirection();
 
     public Direction getLastDirection();

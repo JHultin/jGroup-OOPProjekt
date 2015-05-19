@@ -337,7 +337,7 @@ public class PlayView implements Screen,IViewObservable{
         motherHashmap.put("trueRIGHT",new AnimationHandler(textureRegions,1/1f));
         //JumpLeft
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/jumpLeft.png")), 36, 49)[0];
-        motherHashmap.put("falseLEFT", new AnimationHandler(textureRegions, 1 / 1f));
+        motherHashmap.put("trueLEFT", new AnimationHandler(textureRegions, 1 / 1f));
         //JumpIdleRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/jumpRight.png")), 36, 49)[0];
         motherHashmap.put("trueNONERIGHT",new AnimationHandler(textureRegions,1/1f));
@@ -381,28 +381,28 @@ public class PlayView implements Screen,IViewObservable{
         HashMap<String,AnimationHandler> doctorHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveRight.png")), 24, 50)[0];
-        doctorHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/4f));
+        doctorHashmap.put("falseRIGHT",new AnimationHandler(textureRegions, 1/4f));
         //left
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveLeft.png")), 24, 50)[0];
-        doctorHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/4f));
+        doctorHashmap.put("falseLEFT",new AnimationHandler(textureRegions, 1/4f));
         //IdleRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/idleRight.png")), 24, 50)[0];
-        doctorHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions,1/1f));
+        doctorHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions, 1/1f));
         //IdleLeft
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")), 24, 50)[0];
-        doctorHashmap.put("falseNONELEFT",new AnimationHandler(textureRegions,1/1f));
+        doctorHashmap.put("falseNONELEFT",new AnimationHandler(textureRegions, 1/1f));
         //JumpRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpRight.png")), 30, 49)[0];
-        doctorHashmap.put("trueRIGHT",new AnimationHandler(textureRegions,1/1f));
+        doctorHashmap.put("trueRIGHT",new AnimationHandler(textureRegions, 1/1f));
         //JumpLeft
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpLeft.png")), 30, 49)[0];
-        doctorHashmap.put("trueLEFT",new AnimationHandler(textureRegions,1/1f));
+        doctorHashmap.put("trueLEFT",new AnimationHandler(textureRegions, 1/1f));
         //JumpIdleRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpRight.png")), 30, 49)[0];
-        doctorHashmap.put("trueNONERIGHT",new AnimationHandler(textureRegions,1/1f));
+        doctorHashmap.put("trueNONERIGHT",new AnimationHandler(textureRegions, 1/1f));
         //JumpIdleLeft
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpLeft.png")), 30, 49)[0];
-        doctorHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
+        doctorHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1/1f));
 
 
 

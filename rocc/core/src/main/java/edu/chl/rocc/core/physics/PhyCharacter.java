@@ -261,12 +261,6 @@ public class PhyCharacter implements ICharacter {
         return hash;
     }
 
-    // Ta bort
-    @Override
-    public void setCurrentDirection(Direction dir){
-        character.setCurrentDirection(dir);
-    }
-
     @Override
     public Direction getDirection(){
         return character.getDirection();
