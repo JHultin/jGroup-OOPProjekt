@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
@@ -331,6 +332,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addCharacter(String name) {
         this.model.addCharacter(name);
+    }
+
+    @Override
+    public void addCharacter(String name, IDeathListener listener) {
+        this.model.addCharacter(name, listener);
     }
 
     @Override

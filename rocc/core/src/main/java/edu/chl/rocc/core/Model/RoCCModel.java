@@ -3,6 +3,7 @@ package edu.chl.rocc.core.model;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.physics.PhyBullet;
@@ -166,6 +167,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void addCharacter(String name) {
         this.player.addCharacter(name);
+    }
+
+    @Override
+    public void addCharacter(String name, IDeathListener listener) {
+        this.player.addCharacter(name, listener);
     }
 
     @Override

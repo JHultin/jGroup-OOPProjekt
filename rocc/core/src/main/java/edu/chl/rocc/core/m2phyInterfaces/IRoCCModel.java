@@ -2,6 +2,7 @@ package edu.chl.rocc.core.m2phyInterfaces;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.Level;
 import edu.chl.rocc.core.utility.IDeathEvent;
@@ -120,6 +121,8 @@ public interface IRoCCModel{
      * @param name description or id for the character
      */
     public void addCharacter(String name);
+
+    public void addCharacter(String name, IDeathListener listener);
 
     /**
      * Randomly sets which character is in the front

@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.model.Direction;
 
 import java.util.List;
@@ -39,6 +40,8 @@ public interface IPlayer {
     * Adds a character to the character list.
     */
     public void addCharacter(String name);
+
+    public void addCharacter(String name, IDeathListener listener);
 
     /**
      * @return list of all characters.
