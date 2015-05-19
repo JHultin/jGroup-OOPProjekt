@@ -85,10 +85,7 @@ public class Character implements ICharacter {
 
     @Override
     public void moveFollower(Direction dir){
-        if(!dir.equals(Direction.NONE)){
-            lastDir = direction;
-        }
-        direction = dir;
+        move(dir);
     }
 
     @Override
@@ -218,7 +215,7 @@ public class Character implements ICharacter {
 
     @Override
     public String getMoveState(){
-        if(getDirection() == Direction.NONE) {
+        if(this.getDirection() == Direction.NONE) {
             return "" + inAir + getDirection().toString() + getLastDirection().toString();
         }else {
             return "" + inAir + getDirection().toString();
