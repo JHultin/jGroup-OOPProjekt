@@ -294,12 +294,12 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void addDeathListener(IDeathListener listener) {
-
+        this.character.addDeathListener(listener);
     }
 
     @Override
     public void removeDeathListener(IDeathListener listener) {
-
+        this.character.removeDeathListener(listener);
     }
 
     @Override
