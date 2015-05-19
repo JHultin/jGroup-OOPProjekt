@@ -289,7 +289,6 @@ public class PlayView implements Screen,IViewObservable{
      * @param delta
      */
     public void renderCharacter(ICharacter character, float delta){
-        if(!character.isFollower()) {//paints front character animationd
             if (character.inAir() == true) {
                 if (character.getDirection().equals(Direction.LEFT)) {
                     textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
@@ -315,35 +314,6 @@ public class PlayView implements Screen,IViewObservable{
                     textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
                 }
             }
-
-        }else if(character.isFollower()){//Paints the follower animation
-
-            if (character.inAir() == true) {
-                if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
-                } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
-                } else {
-                    if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
-                    } else {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
-                    }
-                }
-            } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                charactersAnimationHashMap.get(character.getName()).get("moveRight").update(delta);
-                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveRight").getFrame();
-            } else if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                charactersAnimationHashMap.get(character.getName()).get("moveLeft").update(delta);
-                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveLeft").getFrame();
-            } else if (character.getFollowerDirection().equals(Direction.NONE)) {
-                if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleLeft.png")));
-                } else {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
-                }
-            }
-        }
 
         batch.draw(textureRegion, character.getX(), character.getY());
     }//renderCharacter end

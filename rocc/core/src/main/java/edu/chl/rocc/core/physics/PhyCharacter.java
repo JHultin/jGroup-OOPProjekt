@@ -147,16 +147,6 @@ public class PhyCharacter implements ICharacter {
     }
 
     @Override
-    public Direction getFollowerDirection(){
-        return character.getFollowerDirection();
-    }
-
-    @Override
-    public Direction getLastFollowerDir(){
-        return character.getLastFollowerDir();
-    }
-
-    @Override
     public void jump() {
        if(characterOnGround > 0) {
            this.body.setLinearVelocity(new Vec2(0, 0));

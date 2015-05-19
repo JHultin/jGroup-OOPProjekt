@@ -39,11 +39,6 @@ public interface ICharacter extends IMortal{
 
     public boolean isMoving();
 
-    public Direction getFollowerDirection();
-
-    public Direction getLastFollowerDir();
-
-
     /**
     * Make the character jump by changing its y-coordinate.
     */
