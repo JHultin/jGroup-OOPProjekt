@@ -11,13 +11,17 @@ public class PhyWorld implements IWorld{
 
     private World world;
 
+    public PhyWorld(World world){
+        this.world = world;
+    }
+
     @Override
-    public void createBody(BodyDef def) {
-        world.createBody(def);
+    public void createBody(BodyDef def) { //public Body createBody(BodyDef def){return world.createBody(def);}
+        this.world.createBody(def);
     }
 
     @Override
     public void destroyBody(Body body){
-        world.destroyBody(body);
+        this.world.destroyBody(body);
     }
 }

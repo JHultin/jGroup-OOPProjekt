@@ -1,5 +1,5 @@
 Speed
-200
+2
 NumberOfJumps
 1
 JumpForce

@@ -17,10 +17,10 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
  */
 public class PhyEnemy implements IEnemy {
 
-    private final World world;
+    private final World world;   //private final IWorld world;
     private final IEnemy enemy;
     private final float width, height;
-    private final Body body;
+    private final Body body;     //private final IBody body;
     private final BodyDef def;
     private final FixtureDef fDef;
     private int dir;
@@ -28,7 +28,7 @@ public class PhyEnemy implements IEnemy {
     private final int airForce;
     private final int health;
 
-    public PhyEnemy(World world, float x, float y, String name){
+    public PhyEnemy(World world/*remove*/, float x, float y, String name){
 
         CharacterLoader cl = new CharacterLoader(name, true);
         //this.speed         = cl.getCharecaristic("Speed");
@@ -39,13 +39,11 @@ public class PhyEnemy implements IEnemy {
         this.health          = cl.getCharecaristic("Health");
 
         // Enemy may also have a weapon
-        this.world = world;
+        this.world = world;         //this.world = new PhyWorld(); ???
         this.width = 16 / PPM;
         this.height = 25 / PPM;
         this.enemy = new Enemy(health, "", 0, 0);
         this.dir = 2;
-        //this.damageHP = damageHP;
-
 
 
 
@@ -70,7 +68,7 @@ public class PhyEnemy implements IEnemy {
         shape.setAsBox(width, height/2 , new Vec2(0, 0) ,0);    //ingen aning hur stor den är eller vart den är?
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_ENEMY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY | BitMask.BIT_BULLET ;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY | BitMask.BIT_BULLET;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("enemyUpperSensor");
 
