@@ -5,6 +5,8 @@ NumberOfJumps
 JumpForce
 250
 AirForce
-100
+2
 MaxHP
 100
+DamageDeal
+10

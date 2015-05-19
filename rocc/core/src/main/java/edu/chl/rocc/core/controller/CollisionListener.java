@@ -24,10 +24,12 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     public String newState;
 
     public ArrayList<IEnemy> enemyToChangeDirection;
+    public ArrayList<IBullet> bulletsToRemove;
 
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();
         enemyToChangeDirection = new ArrayList<IEnemy>();
+        bulletsToRemove = new ArrayList<IBullet>();
     }
 
     //called when contact between two fixtures begins
@@ -38,7 +40,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
-        //Handles if on ground or not
+        //Handles if character on ground
         if ("footSensor".equals(fa.getUserData())) {
             ((ICharacter) fa.getBody().getUserData()).hitGround();
         }
@@ -80,7 +82,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             }else if("body".equals(fb.getUserData())){
                 System.out.println("Take HP from character");
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
-                //((ICharacter)fa.getBody().getUserData()).decHP(5);
+                //((ICharacter)fa.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
             }
         }
         if ("enemyUpperSensor".equals(fb.getUserData())){
@@ -89,7 +91,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             }else if("body".equals(fa.getUserData())){
                 System.out.println("Take HP from character");
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
-                //((ICharacter)fa.getBody().getUserData()).decHP(5);
+                //((ICharacter)fa.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
             }
         }
 
@@ -99,14 +101,18 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if("bullet".equals(fa.getUserData())){
             if("enemyUpperSensor".equals(fb.getUserData())){
                 System.out.println("Takes HP from enemy");
-                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage();
+                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage());
             }
+            bulletsToRemove.add((IBullet) (fa.getBody().getUserData()));
+            //delete bullet
         }
         if("bullet".equals(fb.getUserData())){
             if("enemyUpperSensor".equals(fa.getUserData())){
                 System.out.println("Takes HP from enemy");
-                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage();
+                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage());
             }
+            bulletsToRemove.add((IBullet) (fb.getBody().getUserData()));
+            //delete bullet
         }
     }
 
@@ -162,6 +168,15 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         return listToReturn;
     }
 
+    @Override
+    public List<IBullet> getBulletsToRemove(){
+        List<IBullet> listToReturn = new ArrayList<IBullet>(bulletsToRemove.size());
+        for (IBullet clash : bulletsToRemove) {
+            listToReturn.add(clash);
+        }
+        bulletsToRemove.clear();
+        return listToReturn;
+    }
 
     @Override
     public void preSolve(Contact contact, Manifold manifold) {

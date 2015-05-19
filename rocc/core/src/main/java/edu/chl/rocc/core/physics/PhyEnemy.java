@@ -1,7 +1,9 @@
 package edu.chl.rocc.core.physics;
 
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
+import edu.chl.rocc.core.m2phyInterfaces.IWorld;
 import edu.chl.rocc.core.model.*;
+import edu.chl.rocc.core.utility.CharacterLoader;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -22,8 +24,10 @@ public class PhyEnemy implements IEnemy {
     private final BodyDef def;
     private final FixtureDef fDef;
     private int dir;
+    private final int damageHP;
+    private final int airForce;
 
-    public PhyEnemy(World world, float x, float y, int healthPoints){
+    public PhyEnemy(World world, float x, float y, int healthPoints, String name){
 
         // Enemy may also have a weapon
 
@@ -32,6 +36,17 @@ public class PhyEnemy implements IEnemy {
         this.height = 25 / PPM;
         this.enemy = new Enemy(healthPoints, "", 0, 0);
         this.dir = 2;
+        //this.damageHP = damageHP;
+
+        CharacterLoader cl = new CharacterLoader(name, true);
+        //this.speed         = cl.getCharecaristic("Speed");
+        //this.numberOfJumps = cl.getCharecaristic("NumberOfJumps");
+        //this.jumpForce     = cl.getCharecaristic("JumpForce");
+        this.airForce        = cl.getCharecaristic("AirForce");
+        this.damageHP        = cl.getCharecaristic("DamageDeal");
+
+
+
 
         //Defining & creating body
         def = new BodyDef();
@@ -63,17 +78,22 @@ public class PhyEnemy implements IEnemy {
     public void changeMoveDirection(){
         if(dir == 0 || dir == 2) {
             if(dir == 2) {
-                body.setLinearVelocity(new Vec2(2, 0));
+                body.setLinearVelocity(new Vec2(airForce, 0));
             }
             dir = dir - 2;
         }else if(dir == -2 || dir == 1){
             if (dir == -2){
-                body.setLinearVelocity(new Vec2(-2,0));
+                body.setLinearVelocity(new Vec2(-airForce,0));
                 dir = dir + 3;
             }else if(dir == 1){
                 dir++;
             }
         }
+    }
+
+    @Override
+    public int getDamageDeal() {
+        return damageHP;
     }
 
     @Override

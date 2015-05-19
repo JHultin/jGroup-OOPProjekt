@@ -228,6 +228,8 @@ public class RoCCController implements Runnable{
             }
             model.changeDirectionOnEnemies(collisionListener.getEnemiesToChangeDirection());
 
+            model.removeBullets(collisionListener.getBulletsToRemove());
+
 
         }
 

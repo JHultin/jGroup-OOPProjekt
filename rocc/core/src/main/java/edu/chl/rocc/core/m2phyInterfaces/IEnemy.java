@@ -20,4 +20,6 @@ public interface IEnemy {
     public void dispose();
 
     public void changeMoveDirection();
+
+    public int getDamageDeal();
 }

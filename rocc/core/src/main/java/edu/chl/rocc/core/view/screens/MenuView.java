@@ -56,18 +56,18 @@ public class MenuView extends AbstractMenuView {
         /**
          * Creating title
          */
-        //initialize the titleStyle and titleLabel
+        //Initialize the titleStyle and titleLabel
         titleStyle = new Label.LabelStyle(font,Color.BLACK);
         titleLabel = new Label(title, titleStyle);
         titleLabel.setFontScale(2);
 
         /**
-         * adds to table
+         * Adds to table
          */
-        //adds title
+        //Adds title
         table.add(titleLabel);
         table.row();
-        //adds the button to the table
+        //Adds the button to the table
         float buttonWidth = 200;
         table.add(newGameButton).width(buttonWidth);
         table.row();
@@ -114,7 +114,7 @@ public class MenuView extends AbstractMenuView {
 
 
         /**
-         * add listener to buttons
+         * Add listener to buttons
          */
         newGameButton.addListener(new ClickListener(){
             @Override

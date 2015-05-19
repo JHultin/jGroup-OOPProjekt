@@ -56,4 +56,9 @@ public class Enemy implements IEnemy{
     public void changeMoveDirection() {
 
     }
+
+    @Override
+    public int getDamageDeal() {
+        return 0;
+    }
 }

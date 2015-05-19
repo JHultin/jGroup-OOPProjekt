@@ -31,7 +31,6 @@ public class PhyBody implements IBody{
         return body.getPosition().y;
     }
 
-
     @Override
     public void setUserData(String userData) {
         body.setUserData(userData);

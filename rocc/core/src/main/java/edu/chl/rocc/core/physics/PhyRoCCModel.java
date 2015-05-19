@@ -181,7 +181,7 @@ public class PhyRoCCModel implements IRoCCModel {
             float x = ((Float) mapObject.getProperties().get("x")) /PPM;
             float y = ((Float) mapObject.getProperties().get("y")) /PPM;
 
-            IEnemy enemy = new PhyEnemy(this.world, x, y, 50);
+            IEnemy enemy = new PhyEnemy(this.world, x, y, 50,"zombie");
             model.getLevel().addEnemy(enemy);
         }
     }
@@ -247,6 +247,8 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public void updateWorld(float dt) {
+        System.out.println("updateworld proccmodel");
+
         this.model.updateWorld(dt);
     }
 
@@ -280,6 +282,16 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    @Override
+    public void removeBullets(List<IBullet> bulletsToRemove){
+        for (IBullet bullet : bulletsToRemove){
+            if(bullet instanceof IBullet){
+                bullet.dispose(); //have to take away the drawing in the level
+            }
+        }
+        model.removeBullets(bulletsToRemove);
+    }
+
 
     @Override
     public List<IBullet> getBullets() {
@@ -290,6 +302,10 @@ public class PhyRoCCModel implements IRoCCModel {
     public void createBullet(){
         this.model.createBullet();
     }*/
+
+    public void addBullet(IBullet bullet){
+        this.model.addBullet(bullet);
+    }
 
     @Override
     public List<ICharacter> getCharacters() {
