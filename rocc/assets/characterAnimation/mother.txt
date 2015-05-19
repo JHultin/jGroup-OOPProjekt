@@ -1,0 +1,17 @@
+falseRIGHT
+characters/mother/moveRight.png
+falseLEFT
+characters/mother/moveLeft.png
+falseNONERIGHT
+characters/mother/idleRight.png
+falseNONELEFT
+characters/mother/idleLeft.png
+trueRIGHT
+characters/mother/jumpRight.png
+trueLEFT
+characters/mother/jumpLeft.png
+trueNONERIGHT
+characters/mother/jumpRight.png
+trueNONELEFT
+characters/mother/jumpLeft.png
+.

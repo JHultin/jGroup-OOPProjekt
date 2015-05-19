@@ -1,0 +1,17 @@
+falseRIGHT
+characters/soldier/moveRight.png
+falseLEFT
+characters/soldier/moveLeft.png
+falseNONERIGHT
+characters/soldier/idleRight.png
+falseNONELEFT
+characters/soldier/idleLeft.png
+trueRIGHT
+characters/soldier/jumpRight.png
+trueLEFT
+characters/soldier/jumpLeft.png
+trueNONERIGHT
+characters/soldier/jumpRight.png
+trueNONELEFT
+characters/soldier/jumpLeft.png
+.

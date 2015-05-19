@@ -1,0 +1,17 @@
+falseRIGHT
+characters/enemy/moveRight.png
+falseLEFT
+characters/enemy/moveLeft.png
+falseNONERIGHT
+characters/enemy/idleRight.png
+falseNONELEFT
+characters/enemy/idleLeft.png
+trueRIGHT
+characters/enemy/jumpRight.png
+trueLEFT
+characters/enemy/jumpLeft.png
+trueNONERIGHT
+characters/enemy/jumpRight.png
+trueNONELEFT
+characters/enemy/jumpLeft.png
+.

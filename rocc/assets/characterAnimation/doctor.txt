@@ -1,0 +1,17 @@
+falseRIGHT
+characters/doctor/moveRight.png
+falseLEFT
+characters/doctor/moveLeft.png
+falseNONERIGHT
+characters/doctor/idleRight.png
+falseNONELEFT
+characters/doctor/idleLeft.png
+trueRIGHT
+characters/doctor/jumpRight.png
+trueLEFT
+characters/doctor/jumpLeft.png
+trueNONERIGHT
+characters/doctor/jumpRight.png
+trueNONELEFT
+characters/doctor/jumpLeft.png
+.

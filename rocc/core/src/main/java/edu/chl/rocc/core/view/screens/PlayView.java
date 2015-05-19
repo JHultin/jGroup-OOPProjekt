@@ -9,7 +9,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.*;
-import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,9 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
-import edu.chl.rocc.core.model.Direction;
+import edu.chl.rocc.core.utility.CharacterTextureLoader;
 import edu.chl.rocc.core.view.AnimationHandler;
-import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -128,7 +126,9 @@ public class PlayView implements Screen,IViewObservable{
          * are then placed in the main hashmap.
          */
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
-        addToAnimationHashMap();
+
+
+
 
         textures = new HashMap<String, Texture>();
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
@@ -141,7 +141,11 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void show() {
-
+        //Gets the characters and initiates their textures,
+        //this has to be in show because otherwise the model.getCharacters aren't initiated.
+        for(ICharacter character : model.getCharacters()) {
+            addToAnimationHashMap(character);
+        }
     }
 
     @Override
@@ -188,7 +192,7 @@ public class PlayView implements Screen,IViewObservable{
 
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
-                renderCharacter(character, delta);
+                renderCharacter(character);
             }
         }
         synchronized (model.getPickupables()) {
@@ -288,9 +292,8 @@ public class PlayView implements Screen,IViewObservable{
      * A method which finds out which animation a character
      * will perform.
      * @param character
-     * @param delta
      */
-    public void renderCharacter(ICharacter character, float delta){
+    public void renderCharacter(ICharacter character){
         charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).update();
         textureRegion = new TextureRegion(
                 charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).getFrame());
@@ -299,147 +302,54 @@ public class PlayView implements Screen,IViewObservable{
     }//renderCharacter end
 
     /**
-     * A method which places all the animation texture in a hashMap
+     * A method which places all the animation textures in a hashMap.
      */
-    public void addToAnimationHashMap(){
+    //this method isn't nearly done, it has be less repeated code.
+    public void addToAnimationHashMap(ICharacter character){
+            CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character.getName());
+            HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
 
+            //Move Right
+            Texture texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseRIGHT")));
+            TextureRegion[] textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
+            animationHashmap.put("falseRIGHT", new AnimationHandler(textureRegions, 1 / 12f));
 
-/*
-        for(ICharacter character : model.getCharacters()){
-            HashMap<String,AnimationHandler> hashMap = new HashMap<String, AnimationHandler>();
-            TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/"+ character.getName() + "/moveRight.png")), 34, 51)[0];
-            //Right
-            hashMap.put("moveRight",new AnimationHandler(textureRegions,1/4f));
-            //Left
-            textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/"+ character.getName() + "/moveLeft.png")), 34, 51)[0];
-            hashMap.put("moveLeft",new AnimationHandler(textureRegions,1/4f));
+            //Move Left
+            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseLEFT")));
+            textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
+            animationHashmap.put("falseLEFT", new AnimationHandler(textureRegions, 1 / 12f));
 
-            charactersAnimationHashMap.put(character.getName(),hashMap);
-        }
-*/
+            //IdleRight
+            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseNONERIGHT")));
+            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
+            animationHashmap.put("falseNONERIGHT", new AnimationHandler(textureRegions, 1 / 1f));
 
-        //Mother animation
-        HashMap<String,AnimationHandler> motherHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/moveRight.png")), 34, 51)[0];
-        motherHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/12f));
-        //Left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/moveLeft.png")), 34, 51)[0];
-        motherHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/12f));
-        //IdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/idleRight.png")), 34, 49)[0];
-        motherHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions,1/1f));
-        //IdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/idleLeft.png")), 34, 49)[0];
-        motherHashmap.put("falseNONELEFT",new AnimationHandler(textureRegions,1/1f));
-        //JumpRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/jumpRight.png")), 36, 49)[0];
-        motherHashmap.put("trueRIGHT",new AnimationHandler(textureRegions,1/1f));
-        //JumpLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/jumpLeft.png")), 36, 49)[0];
-        motherHashmap.put("trueLEFT", new AnimationHandler(textureRegions, 1 / 1f));
-        //JumpIdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/jumpRight.png")), 36, 49)[0];
-        motherHashmap.put("trueNONERIGHT",new AnimationHandler(textureRegions,1/1f));
-        //JumpIdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/jumpLeft.png")), 36, 49)[0];
-        motherHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
+            //IdleRight
+            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseNONELEFT")));
+            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
+            animationHashmap.put("falseNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
 
+            //JumpRight
+            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueRIGHT")));
+            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
+            animationHashmap.put("trueRIGHT", new AnimationHandler(textureRegions, 1 / 1f));
 
+            //JumpLeft
+            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueLEFT")));
+            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
+            animationHashmap.put("trueLEFT", new AnimationHandler(textureRegions, 1 / 1f));
 
-        //zombie
-        HashMap<String,AnimationHandler> zombieHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveRight.png")), 36, 50)[0];
-        zombieHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/12f));
-        //left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveLeft.png")), 36, 50)[0];
-        zombieHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/12f));
-        //IdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/idleRight.png")), 23, 50)[0];
-        zombieHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions,1/1f));
-        //IdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")), 23, 50)[0];
-        zombieHashmap.put("falseNONELEFT",new AnimationHandler(textureRegions,1/1f));
-        //JumpRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/jumpRight.png")), 35, 48)[0];
-        zombieHashmap.put("trueRIGHT",new AnimationHandler(textureRegions,1/1f));
-        //JumpLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/jumpLeft.png")), 35, 48)[0];
-        zombieHashmap.put("trueLEFT",new AnimationHandler(textureRegions,1/1f));
-        //JumpIdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/jumpRight.png")), 35, 48)[0];
-        zombieHashmap.put("trueNONERIGHT",new AnimationHandler(textureRegions,1/1f));
-        //JumpIdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/jumpLeft.png")), 35, 48)[0];
-        zombieHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
+            //JumpIdleRight
+            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueNONERIGHT")));
+            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
+            animationHashmap.put("trueNONERIGHT", new AnimationHandler(textureRegions, 1 / 1f));
 
+            //JumpIdleLeft
+            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueNONELEFT")));
+            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
+            animationHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
 
-
-
-        //doctor
-        HashMap<String,AnimationHandler> doctorHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveRight.png")), 24, 50)[0];
-        doctorHashmap.put("falseRIGHT",new AnimationHandler(textureRegions, 1/12f));
-        //left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveLeft.png")), 24, 50)[0];
-        doctorHashmap.put("falseLEFT",new AnimationHandler(textureRegions, 1/12f));
-        //IdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/idleRight.png")), 24, 50)[0];
-        doctorHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions, 1/1f));
-        //IdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")), 24, 50)[0];
-        doctorHashmap.put("falseNONELEFT",new AnimationHandler(textureRegions, 1/1f));
-        //JumpRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpRight.png")), 30, 49)[0];
-        doctorHashmap.put("trueRIGHT",new AnimationHandler(textureRegions, 1/1f));
-        //JumpLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpLeft.png")), 30, 49)[0];
-        doctorHashmap.put("trueLEFT",new AnimationHandler(textureRegions, 1/1f));
-        //JumpIdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpRight.png")), 30, 49)[0];
-        doctorHashmap.put("trueNONERIGHT",new AnimationHandler(textureRegions, 1/1f));
-        //JumpIdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/jumpLeft.png")), 30, 49)[0];
-        doctorHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1/1f));
-
-
-
-        //soldier
-        HashMap<String,AnimationHandler> soldierHashmap = new HashMap<String, AnimationHandler>();
-        //Right
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/moveRight.png")), 25, 50)[0];
-        soldierHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/12f));
-        //left
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/moveLeft.png")), 25, 50)[0];
-        soldierHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/12f));
-        //IdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/idleRight.png")), 24, 50)[0];
-        soldierHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions,1/1f));
-        //IdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/idleLeft.png")), 24, 50)[0];
-        soldierHashmap.put("falseNONELEFT",new AnimationHandler(textureRegions,1/1f));
-        //JumpRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/jumpRight.png")), 28, 49)[0];
-        soldierHashmap.put("trueRIGHT",new AnimationHandler(textureRegions,1/1f));
-        //JumpLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/jumpLeft.png")), 28, 49)[0];
-        soldierHashmap.put("trueLEFT",new AnimationHandler(textureRegions,1/1f));
-        //JumpIdleRight
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/jumpRight.png")), 28, 49)[0];
-        soldierHashmap.put("trueNONERIGHT",new AnimationHandler(textureRegions,1/1f));
-        //JumpIdleLeft
-        textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/jumpLeft.png")), 28, 49)[0];
-        soldierHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
-
-
-        charactersAnimationHashMap.put("mother",motherHashmap);
-        charactersAnimationHashMap.put("enemy",zombieHashmap);
-        charactersAnimationHashMap.put("doctor",doctorHashmap);
-        charactersAnimationHashMap.put("soldier",soldierHashmap);
-        //ANIMATION TEST END
-
+            charactersAnimationHashMap.put(character.getName(), animationHashmap);
     }//addToAnimationHashMap end
 
     public void createPauseWindow(){
