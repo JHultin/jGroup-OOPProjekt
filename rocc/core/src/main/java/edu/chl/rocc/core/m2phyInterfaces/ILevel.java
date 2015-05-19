@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface ILevel {
 
-    public void addBlock(BodyDef bDef, FixtureDef fDef);
+    public void addBlock(IBody body);
 
     public void updateWorld(float dt);
 

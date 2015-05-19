@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
@@ -108,8 +109,26 @@ public class Player implements IPlayer {
             if (characters.isEmpty()) {
                 characters.add(this.factory.createCharacter(name, 160, 400));
             } else {
-                characters.add(this.factory.createCharacter(name, characters.get(this.activeCharacterIndex).getX(),
+                characters.add(this.factory.createCharacter(name,
+                        characters.get(this.activeCharacterIndex).getX(),
                         characters.get(this.activeCharacterIndex).getY()+16));
+            }
+        }
+    }
+
+    @Override
+    public void addCharacter(String name, IDeathListener listener) {
+        synchronized (characters) {
+            if (characters.isEmpty()) {
+                ICharacter character = this.factory.createCharacter(name, 160, 400);
+                character.addDeathListener(listener);
+                characters.add(character);
+            } else {
+                ICharacter character = this.factory.createCharacter(name,
+                        characters.get(this.activeCharacterIndex).getX(),
+                        characters.get(this.activeCharacterIndex).getY()+16);
+                character.addDeathListener(listener);
+                characters.add(character);
             }
         }
     }

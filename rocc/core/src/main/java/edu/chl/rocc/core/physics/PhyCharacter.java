@@ -33,6 +33,8 @@ public class PhyCharacter implements ICharacter {
     private boolean followerOnJumpPoint;
     private boolean isMoving;
 
+    private Fixture fixture;
+
     public PhyCharacter(World world, float x, float y, String name){
         this.world = world;
         this.width = 18 / PPM;
@@ -62,10 +64,10 @@ public class PhyCharacter implements ICharacter {
         shape.setAsBox(width,height);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
-        fDef.filter.categoryBits = BitMask.BIT_BODY;
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY | BitMask.BIT_JUMPPOINT
-                | BitMask.BIT_FINISH;
-        body.createFixture(fDef).setUserData("body");
+        fDef.filter.categoryBits = BitMask.BIT_FOLLOWER;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_JUMPPOINT;
+        fixture = body.createFixture(fDef);
+        fixture.setUserData("body");
 
         //create foot sensor
         shape.setAsBox(width/2, height/4, new Vec2(0, -30 / PPM) ,0);
@@ -279,27 +281,35 @@ public class PhyCharacter implements ICharacter {
     public boolean inAir() {
         return character.inAir();
     }
-    
+
+    @Override
     public boolean isFollower(){
         return this.character.isFollower();
     }
 
+    @Override
     public void setAsFollower(){
+        fixture.getFilterData().categoryBits = BitMask.BIT_FOLLOWER;
+        fixture.getFilterData().maskBits = BitMask.BIT_GROUND | BitMask.BIT_JUMPPOINT;
         this.character.setAsFollower();
     }
 
+    @Override
     public void setAsLead(){
+        fixture.getFilterData().categoryBits = BitMask.BIT_BODY;
+        fixture.getFilterData().maskBits = BitMask.BIT_GROUND | BitMask.BIT_PICKUPABLE | BitMask.BIT_ENEMY | BitMask.BIT_JUMPPOINT
+                | BitMask.BIT_FINISH;
         this.character.setAsLead();
     }
 
     @Override
     public void addDeathListener(IDeathListener listener) {
-
+        this.character.addDeathListener(listener);
     }
 
     @Override
     public void removeDeathListener(IDeathListener listener) {
-
+        this.character.removeDeathListener(listener);
     }
 
     @Override

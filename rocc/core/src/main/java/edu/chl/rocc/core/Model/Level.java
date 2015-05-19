@@ -43,7 +43,7 @@ public class Level implements ILevel {
 
     // Adds a block for the map to the world
     @Override
-    public void addBlock(BodyDef bDef, FixtureDef fDef){
+    public void addBlock(IBody body){
 
     }
 

@@ -1,5 +1,8 @@
-package edu.chl.rocc.core.m2phyInterfaces;
+package edu.chl.rocc.core.controller;
 
+import edu.chl.rocc.core.m2phyInterfaces.IBullet;
+import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
+import edu.chl.rocc.core.m2phyInterfaces.IPickupable;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.contacts.Contact;
 
@@ -19,4 +22,6 @@ public interface ICollisionListener {
     public List<IEnemy> getEnemiesToChangeDirection();
 
     public List<IBullet> getBulletsToRemove();
+
+    public String getNewState();
 }

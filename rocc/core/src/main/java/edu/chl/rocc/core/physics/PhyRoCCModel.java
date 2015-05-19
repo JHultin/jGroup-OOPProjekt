@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
@@ -99,7 +100,7 @@ public class PhyRoCCModel implements IRoCCModel {
             fDef.friction = 0;
             fDef.shape = cs;
             fDef.filter.categoryBits = BitMask.BIT_GROUND;
-            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_BULLET;
+            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_BULLET | BitMask.BIT_FOLLOWER;
 
             // Create a tile for each block on the map
             for (int row = 0; row < tileLayer.getHeight(); row++) {
@@ -113,8 +114,10 @@ public class PhyRoCCModel implements IRoCCModel {
                         bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
                                           PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
 
+                        Body body = world.createBody(bDef);
+                        body.createFixture(fDef);
                         // Then let the level create the block in the world
-                        model.getLevel().addBlock(bDef, fDef);
+                        model.getLevel().addBlock(new PhyBody(body));
                     }
                 }
             }
@@ -126,8 +129,8 @@ public class PhyRoCCModel implements IRoCCModel {
 
             // Create one food item for each on the map
             for (MapObject mapObject : foodLayer.getObjects()) {
-                float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y") + 8)  / PPM;
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
                 IFood food = new PhyFood(world, x, y);
                 model.getLevel().addPickupable(food);
@@ -141,7 +144,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
-                IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
+                IPickupableCharacter ipc = new PhyPickupableCharacter("doctor", world, x, y);
                 model.getLevel().addPickupable(ipc);
             }
         }
@@ -285,7 +288,7 @@ public class PhyRoCCModel implements IRoCCModel {
     public void removeBullets(List<IBullet> bulletsToRemove){
         for (IBullet bullet : bulletsToRemove){
             if(bullet instanceof IBullet){
-                bullet.dispose(); //have to take away the drawing in the level
+                bullet.dispose();
             }
         }
         model.removeBullets(bulletsToRemove);
@@ -329,6 +332,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addCharacter(String name) {
         this.model.addCharacter(name);
+    }
+
+    @Override
+    public void addCharacter(String name, IDeathListener listener) {
+        this.model.addCharacter(name, listener);
     }
 
     @Override

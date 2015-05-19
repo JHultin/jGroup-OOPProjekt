@@ -16,6 +16,6 @@ public class DeathListener implements IDeathListener {
 
     @Override
     public void deathTriggered(IDeathEvent death) {
-
+        model.handleDeath(death);
     }
 }

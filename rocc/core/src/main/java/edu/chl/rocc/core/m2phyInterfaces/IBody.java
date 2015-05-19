@@ -15,4 +15,6 @@ public interface IBody {
 
     public void setUserData(String userData);
 
+    public void destroy();
+
 }

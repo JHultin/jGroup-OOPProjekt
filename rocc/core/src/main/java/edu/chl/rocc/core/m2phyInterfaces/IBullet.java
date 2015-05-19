@@ -31,5 +31,7 @@ public interface IBullet {
 
     public void dispose();
 
+    public int getBulletDamage();
+
 
 }

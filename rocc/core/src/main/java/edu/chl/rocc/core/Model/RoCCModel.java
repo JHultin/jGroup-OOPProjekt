@@ -3,6 +3,7 @@ package edu.chl.rocc.core.model;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.physics.PhyBullet;
@@ -169,6 +170,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void addCharacter(String name, IDeathListener listener) {
+        this.player.addCharacter(name, listener);
+    }
+
+    @Override
     public void changeLead() {
         this.player.setActiveCharacter((int)(Math.random() * this.player.getCharacters().size()));
     }
@@ -195,7 +201,9 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void removeBullets(List<IBullet> bulletsToRemove) {
-
+        for (IBullet bullet : bulletsToRemove){
+            level.removeBullet(bullet);
+        }
     }
 
     @Override

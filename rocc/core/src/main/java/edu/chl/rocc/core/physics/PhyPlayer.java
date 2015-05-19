@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.math.Vector2;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.PhyRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
@@ -70,6 +71,11 @@ public class PhyPlayer implements IPlayer {
     @Override
     public void addCharacter(String name) {
         this.player.addCharacter(name);
+    }
+
+    @Override
+    public void addCharacter(String name, IDeathListener listener) {
+        this.player.addCharacter(name, listener);
     }
 
     @Override

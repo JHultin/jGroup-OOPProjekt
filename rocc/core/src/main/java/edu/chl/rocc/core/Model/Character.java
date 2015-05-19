@@ -53,6 +53,7 @@ public class Character implements ICharacter {
     @Override
     public void setHP(int value){
         if(value < 0){
+            death("No more hp");
             System.out.print("Input value for health points cannot be negative.");
             // die-method??
         }

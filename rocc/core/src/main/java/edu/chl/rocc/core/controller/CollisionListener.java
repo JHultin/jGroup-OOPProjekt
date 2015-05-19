@@ -1,14 +1,9 @@
 package edu.chl.rocc.core.controller;
 
 import edu.chl.rocc.core.m2phyInterfaces.*;
-import edu.chl.rocc.core.model.Player;
-import edu.chl.rocc.core.physics.PhyCharacter;
-import edu.chl.rocc.core.physics.PhyRoCCModel;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 
@@ -80,47 +75,45 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             if("ground".equals(fb.getBody().getUserData())){
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
             }else if("body".equals(fb.getUserData())){
-                System.out.println("Take HP from character");
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
-                //((ICharacter)fa.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
+                ((ICharacter)fb.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
+                System.out.println("HP character :" +((ICharacter)fb.getBody().getUserData()).getHP());
             }
         }
         if ("enemyUpperSensor".equals(fb.getUserData())){
             if("ground".equals(fa.getBody().getUserData())) {
                 enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
             }else if("body".equals(fa.getUserData())){
-                System.out.println("Take HP from character");
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
-                //((ICharacter)fa.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
+                ((ICharacter)fa.getBody().getUserData()).decHP(((IEnemy) (fb.getBody().getUserData())).getDamageDeal());
+                System.out.println("HP character :" +((ICharacter)fa.getBody().getUserData()).getHP());
             }
         }
 
-        /**
+        /*
          * When bullet hits enemy it takes damage
          */
         if("bullet".equals(fa.getUserData())){
             if("enemyUpperSensor".equals(fb.getUserData())){
-                System.out.println("Takes HP from enemy");
-                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage());
+                ((IEnemy) fb.getBody().getUserData()).decHP(((IBullet) (fa.getBody().getUserData())).getBulletDamage());
+                System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
             }
+            //removes bullet
             bulletsToRemove.add((IBullet) (fa.getBody().getUserData()));
-            //delete bullet
         }
         if("bullet".equals(fb.getUserData())){
             if("enemyUpperSensor".equals(fa.getUserData())){
-                System.out.println("Takes HP from enemy");
-                //((IEnemy) fb.getBody().getUserData()).decHP(((IBullet)fa.getBody().getUserData()).getBulletDamage());
+                ((IEnemy) fa.getBody().getUserData()).decHP(((IBullet) (fb.getBody().getUserData())).getBulletDamage());
+                System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
             }
+            //removes bullet
             bulletsToRemove.add((IBullet) (fb.getBody().getUserData()));
-            //delete bullet
         }
     }
 
         //Called when contact between two fixtures ends
         @Override
         public void endContact(Contact contact){
-            //update world måste vara klar innan detta görs
-
             Fixture fa = contact.getFixtureA();
             Fixture fb = contact.getFixtureB();
 
@@ -149,6 +142,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         }
 
 
+    @Override
     public String getNewState() {
         String ret = null;
         if (newState != null) {
