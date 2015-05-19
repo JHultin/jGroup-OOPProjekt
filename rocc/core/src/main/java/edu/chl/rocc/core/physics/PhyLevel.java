@@ -18,7 +18,7 @@ public class PhyLevel implements ILevel {
 
     private final ILevel level;
     private final World world;
-    private List<Body> bodiesNeedingToDispose;
+    private List<IBody> bodiesNeedingToDispose;
     private List<IEnemy> enemies;
 
     private float aimX, aimY;
@@ -26,15 +26,13 @@ public class PhyLevel implements ILevel {
     public PhyLevel(World world) {
         this.world = world;
         this.level = new Level();
-        this.bodiesNeedingToDispose = new ArrayList<Body>();
+        this.bodiesNeedingToDispose = new ArrayList<IBody>();
         this.enemies = new ArrayList<IEnemy>();
     }
 
     @Override
-    public void addBlock(BodyDef bDef, FixtureDef fDef) {
-        Body body = world.createBody(bDef);
+    public void addBlock(IBody body) {
         bodiesNeedingToDispose.add(body);
-        body.createFixture(fDef);
     }
 
     @Override
@@ -139,8 +137,8 @@ public class PhyLevel implements ILevel {
     @Override
     public void dispose() {
         level.dispose();
-        for (Body body : bodiesNeedingToDispose){
-            world.destroyBody(body);
+        for (IBody body : bodiesNeedingToDispose){
+            body.destroy();
         }
     }
 

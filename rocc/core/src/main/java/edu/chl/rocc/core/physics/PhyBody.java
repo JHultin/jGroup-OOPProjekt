@@ -11,6 +11,10 @@ public class PhyBody implements IBody{
 
     private Body body;
 
+    public PhyBody(Body body){
+        this.body = body;
+    }
+
     @Override
     public void setLinearVelocity(float x, float y) {
         body.setLinearVelocity(new Vec2(x, y));
@@ -34,5 +38,10 @@ public class PhyBody implements IBody{
     @Override
     public void setUserData(String userData) {
         body.setUserData(userData);
+    }
+
+    @Override
+    public void destroy() {
+        body.getWorld().destroyBody(body);
     }
 }

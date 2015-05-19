@@ -113,8 +113,10 @@ public class PhyRoCCModel implements IRoCCModel {
                         bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
                                           PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
 
+                        Body body = world.createBody(bDef);
+                        body.createFixture(fDef);
                         // Then let the level create the block in the world
-                        model.getLevel().addBlock(bDef, fDef);
+                        model.getLevel().addBlock(new PhyBody(body));
                     }
                 }
             }
