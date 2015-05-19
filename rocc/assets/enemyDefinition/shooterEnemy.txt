@@ -6,7 +6,7 @@ JumpForce
 250
 AirForce
 2
-MaxHP
-100
 DamageDeal
 15
+Health
+50

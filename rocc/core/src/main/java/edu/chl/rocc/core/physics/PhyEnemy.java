@@ -26,17 +26,9 @@ public class PhyEnemy implements IEnemy {
     private int dir;
     private final int damageHP;
     private final int airForce;
+    private final int health;
 
-    public PhyEnemy(World world, float x, float y, int healthPoints, String name){
-
-        // Enemy may also have a weapon
-
-        this.world = world;
-        this.width = 16 / PPM;
-        this.height = 25 / PPM;
-        this.enemy = new Enemy(healthPoints, "", 0, 0);
-        this.dir = 2;
-        //this.damageHP = damageHP;
+    public PhyEnemy(World world, float x, float y, String name){
 
         CharacterLoader cl = new CharacterLoader(name, true);
         //this.speed         = cl.getCharecaristic("Speed");
@@ -44,6 +36,15 @@ public class PhyEnemy implements IEnemy {
         //this.jumpForce     = cl.getCharecaristic("JumpForce");
         this.airForce        = cl.getCharecaristic("AirForce");
         this.damageHP        = cl.getCharecaristic("DamageDeal");
+        this.health          = cl.getCharecaristic("Health");
+
+        // Enemy may also have a weapon
+        this.world = world;
+        this.width = 16 / PPM;
+        this.height = 25 / PPM;
+        this.enemy = new Enemy(health, "", 0, 0);
+        this.dir = 2;
+        //this.damageHP = damageHP;
 
 
 

@@ -43,6 +43,6 @@ public class PhyRoCCFactory implements IRoCCFactory {
 
     @Override
     public IEnemy createEnemy(String name, int x, int y, int hp) {
-        return new PhyEnemy(this.world, x, y ,hp , name);
+        return new PhyEnemy(this.world, x, y , name);
     }
 }
