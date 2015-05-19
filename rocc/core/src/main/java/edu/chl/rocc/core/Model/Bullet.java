@@ -43,4 +43,9 @@ public class Bullet implements IBullet {
     public void dispose() {
 
     }
+
+    @Override
+    public int getBulletDamage() {
+        return 0;
+    }
 }

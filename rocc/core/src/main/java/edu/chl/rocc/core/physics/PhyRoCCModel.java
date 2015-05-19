@@ -99,7 +99,7 @@ public class PhyRoCCModel implements IRoCCModel {
             fDef.friction = 0;
             fDef.shape = cs;
             fDef.filter.categoryBits = BitMask.BIT_GROUND;
-            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_BULLET;
+            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_BULLET | BitMask.BIT_FOLLOWER;
 
             // Create a tile for each block on the map
             for (int row = 0; row < tileLayer.getHeight(); row++) {
@@ -143,7 +143,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
-                IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
+                IPickupableCharacter ipc = new PhyPickupableCharacter("doctor", world, x, y);
                 model.getLevel().addPickupable(ipc);
             }
         }
@@ -287,7 +287,7 @@ public class PhyRoCCModel implements IRoCCModel {
     public void removeBullets(List<IBullet> bulletsToRemove){
         for (IBullet bullet : bulletsToRemove){
             if(bullet instanceof IBullet){
-                bullet.dispose(); //have to take away the drawing in the level
+                bullet.dispose();
             }
         }
         model.removeBullets(bulletsToRemove);

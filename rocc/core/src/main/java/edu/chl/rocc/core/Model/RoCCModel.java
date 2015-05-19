@@ -195,7 +195,9 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void removeBullets(List<IBullet> bulletsToRemove) {
-
+        for (IBullet bullet : bulletsToRemove){
+            level.removeBullet(bullet);
+        }
     }
 
     @Override

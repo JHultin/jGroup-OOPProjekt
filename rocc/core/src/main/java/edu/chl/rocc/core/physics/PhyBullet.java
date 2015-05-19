@@ -19,6 +19,7 @@ public class PhyBullet implements IBullet {
     private final World world;
     private final IBullet bullet;
     private float velocity;
+    private final int bulletDamage;
 
     private final Body body;
     //private final Vector2 direction;
@@ -27,7 +28,7 @@ public class PhyBullet implements IBullet {
         this.world = world;
         //this.direction = vec;
         this.bullet = new Bullet(x / PPM, y / PPM, name);
-
+        bulletDamage = 5;
         this.velocity = 500 / PPM;
 
         //Defining & creating body
@@ -35,6 +36,7 @@ public class PhyBullet implements IBullet {
         def.position.set(x / PPM, y / PPM);
         def.type = BodyType.KINEMATIC;
         body = this.world.createBody(def);
+        body.setUserData(this);
 
         //Defining & creating fixture
         CircleShape shape = new CircleShape();
@@ -69,7 +71,13 @@ public class PhyBullet implements IBullet {
 
     @Override
     public void dispose() {
-        body.getWorld().destroyBody(body);
+        this.bullet.dispose();
+        this.world.destroyBody(body);
+    }
+
+    @Override
+    public int getBulletDamage() {
+        return bulletDamage;
     }
 
     /*

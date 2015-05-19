@@ -35,7 +35,7 @@ public class PhyJumpPoint implements IJumpPoint {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_JUMPPOINT;
-        fDef.filter.maskBits = BitMask.BIT_BODY;
+        fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_FOLLOWER;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("jumpPointSensor");
     }

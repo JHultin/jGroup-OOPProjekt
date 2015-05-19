@@ -133,6 +133,7 @@ public class PlayView implements Screen,IViewObservable{
         textures = new HashMap<String, Texture>();
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
+        textures.put("doctor"  , new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")));
         textures.put("enemy"  , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
     }
 
@@ -201,7 +202,7 @@ public class PlayView implements Screen,IViewObservable{
             }
 
         }
-        synchronized (model.getBullets()) {
+        synchronized (model.getEnemies()) {
             for (IEnemy enemy : model.getEnemies()) {
                 batch.draw(textures.get("enemy"), enemy.getX(), enemy.getY());
             }

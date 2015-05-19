@@ -85,7 +85,6 @@ public class PhyLevel implements ILevel {
     @Override
     public void removeBullet(IBullet bullet) {
         level.removeBullet(bullet);
-
     }
     @Override
     public List<IEnemy> getEnemies(){
