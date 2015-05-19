@@ -19,6 +19,7 @@ import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -177,15 +178,25 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
         if (tMap.getLayers().get("finish") != null) {
+            int i = 0;
             //Add enemy in the world
+            List<String> enemiesName = new ArrayList<String>();
+            enemiesName.add("zombie");
+            enemiesName.add("shooterEnemy");
+
             MapLayer enemyLayer = tMap.getLayers().get("enemy");
 
             for (MapObject mapObject : enemyLayer.getObjects()) {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
-                IEnemy enemy = new PhyEnemy(this.world, x, y, 50, "zombie");
-                model.getLevel().addEnemy(enemy);
+                if(i >= enemiesName.size()){
+                    i=0;
+                }
+
+                IEnemy enemy = new PhyEnemy(this.world, x, y, 50, enemiesName.get(i));
+                i++;
+                model.addEnemy(enemy);
             }
         }
     }

@@ -53,8 +53,8 @@ public class PhyEnemy implements IEnemy {
         def.position.set(x , y);
         def.type = BodyType.DYNAMIC;
         body = this.world.createBody(def);
-        body.setLinearVelocity(new Vec2(-1, 0));
         body.setUserData(this);
+        body.setLinearVelocity(new Vec2(-1, 0));
 
         //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
@@ -72,6 +72,7 @@ public class PhyEnemy implements IEnemy {
         fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY | BitMask.BIT_BULLET ;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("enemyUpperSensor");
+
     }
 
     @Override

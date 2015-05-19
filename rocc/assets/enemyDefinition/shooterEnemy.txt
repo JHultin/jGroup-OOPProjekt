@@ -9,4 +9,4 @@ AirForce
 MaxHP
 100
 DamageDeal
-10
+15
