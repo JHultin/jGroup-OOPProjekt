@@ -248,8 +248,6 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public void updateWorld(float dt) {
-        System.out.println("updateworld proccmodel");
-
         this.model.updateWorld(dt);
     }
 
