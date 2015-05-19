@@ -197,7 +197,7 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-        public void jump() {
+    public void jump() {
         this.model.jump();
     }
 
@@ -254,7 +254,7 @@ public class PhyRoCCModel implements IRoCCModel {
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
             if(pickup instanceof IPickupableCharacter){
-                addCharacter(pickup.getName());
+                this.addCharacter(pickup.getName());
             }
             pickup.destroy();
         }

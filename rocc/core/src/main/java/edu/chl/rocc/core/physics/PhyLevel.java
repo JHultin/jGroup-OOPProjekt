@@ -18,7 +18,6 @@ public class PhyLevel implements ILevel {
 
     private final ILevel level;
     private final World world;
-    public static boolean isUpdating;
     private List<Body> bodiesNeedingToDispose;
 
     private float aimX, aimY;
@@ -143,27 +142,10 @@ public class PhyLevel implements ILevel {
         }
     }
 
-    public Vector2 getAim(){
-        return new Vector2(this.getAimX(), this.getAimY());
-    }
-
-    public float getAimX(){
-        return this.aimX;
-    }
-
-    public float getAimY(){
-        return this.aimY;
-    }
-
-    public int getScore(){
-        return level.getScore();
-    }
-
     @Override
     public int getTime(){
         return level.getTime();
     }
-
 
     @Override
     public void updateTime(){

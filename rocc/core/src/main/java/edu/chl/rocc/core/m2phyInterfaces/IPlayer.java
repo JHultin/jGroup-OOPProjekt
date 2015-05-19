@@ -52,5 +52,8 @@ public interface IPlayer {
      */
     public void setActiveCharacter(int i);
 
-
+    /**
+     * @return score
+     */
+    public int getScore();
 }

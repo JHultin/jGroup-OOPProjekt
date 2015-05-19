@@ -100,6 +100,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         return listToReturn;
     }
 
+    //Add to interface
     public String getNewState(){
         String ret = null;
         if (newState != null){

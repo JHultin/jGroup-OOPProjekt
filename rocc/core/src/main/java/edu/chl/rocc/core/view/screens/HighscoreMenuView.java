@@ -30,12 +30,12 @@ public class HighscoreMenuView extends AbstractMenuView {
         titleLabel.setFontScale(2);
 
 
-        /**
+        /*
          * Initialize buttons
          */
         createButtons();
 
-        /**
+        /*
          * adds to table
          */
         //adds title
@@ -61,7 +61,7 @@ public class HighscoreMenuView extends AbstractMenuView {
         backButton.pad(20);
 
 
-        /**
+        /*
          * add listener to buttons
          */
         backButton.addListener(new ClickListener(){

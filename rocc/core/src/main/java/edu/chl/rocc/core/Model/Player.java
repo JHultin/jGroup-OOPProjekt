@@ -20,6 +20,8 @@ public class Player implements IPlayer {
     //Index of the active character in list 'characters'
     private int activeCharacterIndex;
 
+    private int score;
+
    // private List<Weapon> weapons;
 
     /*
@@ -30,6 +32,8 @@ public class Player implements IPlayer {
         this.characters = new ArrayList<ICharacter>();
         this.activeCharacterIndex = 0;
         this.factory = factory;
+
+        this.score = 0;
     }
 
     public Player(List<ICharacter> characters){
@@ -78,11 +82,6 @@ public class Player implements IPlayer {
 
     @Override
     public void jump() {
-        /*
-        for(int i=0; i < characters.size(); i++){
-            characters.get(i).jump();
-        }
-        */
         characters.get(this.activeCharacterIndex).jump();
     }
 
@@ -110,7 +109,7 @@ public class Player implements IPlayer {
                 characters.add(this.factory.createCharacter(name, 160, 400));
             } else {
                 characters.add(this.factory.createCharacter(name, characters.get(this.activeCharacterIndex).getX(),
-                        characters.get(this.activeCharacterIndex).getY()));
+                        characters.get(this.activeCharacterIndex).getY()+16));
             }
         }
     }
@@ -152,6 +151,11 @@ public class Player implements IPlayer {
         } else{
             return Direction.NONE;
         }
+    }
+
+    @Override
+    public int getScore(){
+        return this.score;
     }
 
 }

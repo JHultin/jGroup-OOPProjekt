@@ -40,7 +40,7 @@ public class OptionsMenuView extends AbstractMenuView{
         super(model);
 
 
-        /**
+        /*
          * Creating Options title
          */
         //initialize the titleStyle and titleLabel
@@ -49,12 +49,12 @@ public class OptionsMenuView extends AbstractMenuView{
         titleLabel.setFontScale(2);
 
 
-        /**
+        /*
          * Initialize buttons
          */
         createButtons();
 
-        /**
+        /*
          * adds to table
          */
         //adds title
@@ -75,7 +75,7 @@ public class OptionsMenuView extends AbstractMenuView{
         sliderTable.add(soundVolumeLabel).padRight(10).top();
         sliderTable.add(soundSlider).width(250);
         sliderTable.row();
-        sliderTable.add(musicVolumeLabel).padRight(10);;
+        sliderTable.add(musicVolumeLabel).padRight(10);
         sliderTable.add(musicSlider).width(250);
         table.add(sliderTable).spaceBottom(80);
         table.row();
@@ -88,12 +88,6 @@ public class OptionsMenuView extends AbstractMenuView{
 
         stage.addActor(table);
     }
-
-    @Override
-    public void show() {
-        super.show();
-    }
-
 
     public void createButtons(){
 
@@ -137,8 +131,9 @@ public class OptionsMenuView extends AbstractMenuView{
         musicVolumeLabel = new Label("Music Volume:", sliderLabelStyle);
         musicVolumeLabel.setFontScale(1);
 
-        /**
+        /*
          * Check GeneralOptions for presets
+         * Write on one line
          */
         if( GeneralOptions.getInstance().getOption("isFullscreen") == 1) {
             fullscreenCheckBox.setChecked(true);
@@ -150,14 +145,15 @@ public class OptionsMenuView extends AbstractMenuView{
         musicSlider.setValue(GeneralOptions.getInstance().getOption("musicVolume"));
 
 
-        /**
+        /*
          * add listener to buttons
          */
         fullscreenCheckBox.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
                 if(fullscreenCheckBox.isChecked()){
-                    Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+                    Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width,
+                            Gdx.graphics.getDesktopDisplayMode().height, true);
                     GeneralOptions.getInstance().setOption("isFullscreen", 1);
                 }else{
                     Gdx.graphics.setDisplayMode(720, 480, false);

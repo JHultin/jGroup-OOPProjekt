@@ -176,7 +176,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public int getScore(){
-        return level.getScore();
+        return player.getScore();
     }
 
     @Override

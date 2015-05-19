@@ -66,9 +66,6 @@ public class PlayView implements Screen,IViewObservable{
     private HashMap<String,ProgressBar> healthBarHashMap;
 
 
-    private int time;
-    private int timeCheck;
-
     public PlayView(IRoCCModel model){
         this.model = model;
         batch = new SpriteBatch();
@@ -125,25 +122,17 @@ public class PlayView implements Screen,IViewObservable{
         observerArrayList = new ArrayList<IViewObserver>();
 
 
-        /**
+        /*
          * Initializes the Hashmap and create temporary hashmaps which
          * are then placed in the main hashmap.
          */
-        //ANIMATION TEST
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
         addToAnimationHashMap();
-
-
-        //map = new TmxMapLoader().load("ground-food-map.tmx");
-        //renderer = new OrthogonalTiledMapRenderer(map);
-
-        //this.model.constructWorld(map);
 
         textures = new HashMap<String, Texture>();
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
-        textures.put("enemy" , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
-        //b2dr = new Box2DDebugRenderer();
+        textures.put("enemy"  , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
     }
 
 
@@ -159,8 +148,6 @@ public class PlayView implements Screen,IViewObservable{
 
         batch.setProjectionMatrix(cam.combined);
 
-        //b2dr.render(model.getLevel().getWorld(),camera.combined);
-
         //Updates score and time
         scoreLabel.setText("Score:\n"+model.getScore());
         timeLabel.setText("Time:\n"+model.getTime());
@@ -175,14 +162,15 @@ public class PlayView implements Screen,IViewObservable{
         batch.begin();
 
 
-        /**
+        /*
          * Adds an image and healthbar for all the characters.
          * Updates the value of the HealthBar.
          */
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
                 if (!profileImageHashMap.containsKey(character.getName())) {
-                    profileImageHashMap.put(character.getName(), new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
+                    profileImageHashMap.put(character.getName(),
+                            new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
 
                     createHealthBar(character);
 
@@ -194,7 +182,7 @@ public class PlayView implements Screen,IViewObservable{
                 healthBarHashMap.get(character.getName()).setValue(character.getHP());
             }
         }
-        
+
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
                 renderCharacter(character, delta);
@@ -214,10 +202,8 @@ public class PlayView implements Screen,IViewObservable{
         batch.end();
 
 
-        //HUD TEST
         stage.act();
         stage.draw();
-        //HUD TEST END
     }
 
     @Override
@@ -504,7 +490,6 @@ public class PlayView implements Screen,IViewObservable{
      * HealthBarHashMap.
      * @param character
      */
-
     public void createHealthBar(ICharacter character){
         Skin skin = new Skin();
         Pixmap pixmap = new Pixmap(10, 10, Pixmap.Format.RGBA8888);
@@ -512,8 +497,10 @@ public class PlayView implements Screen,IViewObservable{
         pixmap.fill();
         skin.add("white", new Texture(pixmap));
 
-        TextureRegionDrawable textureBar = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("button/healthBar/healthBarSkin.png"))));
-        ProgressBar.ProgressBarStyle barStyle = new ProgressBar.ProgressBarStyle(skin.newDrawable("white", Color.DARK_GRAY), textureBar);
+        TextureRegionDrawable textureBar = new TextureRegionDrawable(
+                new TextureRegion(new Texture(Gdx.files.internal("button/healthBar/healthBarSkin.png"))));
+        ProgressBar.ProgressBarStyle barStyle =
+                new ProgressBar.ProgressBarStyle(skin.newDrawable("white", Color.DARK_GRAY), textureBar);
         barStyle.knobBefore = barStyle.knob;
 
         ProgressBar bar = new ProgressBar(0, 10, 0.5f, false, barStyle);

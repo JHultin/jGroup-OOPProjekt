@@ -120,9 +120,6 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
     @Override
     public void resize(int width, int height) {
         resize = true;
-        //Lets the view scale
-        //stage.getViewport().update(width,height,true);
-
     }
 
     @Override

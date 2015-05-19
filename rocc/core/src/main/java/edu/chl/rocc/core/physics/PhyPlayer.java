@@ -97,4 +97,9 @@ public class PhyPlayer implements IPlayer {
     public void createBullet(float x, float y, float xDir, float yDir, String name){
         bullets.add(new PhyBullet(this.world, x, y, xDir, yDir, name));
     }
+
+    @Override
+    public int getScore(){
+        return player.getScore();
+    }
 }

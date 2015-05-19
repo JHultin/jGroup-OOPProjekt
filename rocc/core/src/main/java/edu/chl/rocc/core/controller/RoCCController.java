@@ -146,7 +146,7 @@ public class RoCCController implements Runnable{
     }
 
     /**
-     *Used to lowe memory leaking
+     *Used to lower memory leaking
      */
     public void dispose(){
         this.gvm.dispose();
