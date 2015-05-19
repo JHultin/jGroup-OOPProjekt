@@ -56,9 +56,11 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             itemsToRemove.add((IPickupableCharacter) (fb.getBody().getUserData()));
         }
         if ("jumpPointSensor".equals(fa.getUserData())) {
+            ((ICharacter) fb.getBody().getUserData()).death("death by jumpPoint");
             ((ICharacter) fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
         if ("jumpPointSensor".equals(fb.getUserData())) {
+            ((ICharacter) fa.getBody().getUserData()).death("death by jumpPoint");
             ((ICharacter) fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
         if ("finish".equals(fa.getUserData())) {
