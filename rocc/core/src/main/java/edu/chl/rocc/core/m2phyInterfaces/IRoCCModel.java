@@ -92,6 +92,8 @@ public interface IRoCCModel{
     */
     public List<IBullet> getBullets();
 
+    public void addBullet(IBullet bullet);
+
     /**
     * Creates a bullet/projectile.
     * Add it to list of current existing projectiles.
@@ -129,10 +131,14 @@ public interface IRoCCModel{
      */
     public void dispose();
 
-
     public int getScore();
 
     public int getTime();
 
     public void handleDeath(IDeathEvent deathEvent);
+
+    public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange);
+
+    public void removeBullets(List<IBullet> bulletsToRemove);
+
 }

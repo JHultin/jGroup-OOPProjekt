@@ -15,6 +15,38 @@ public class CharacterLoader {
 
     private Map<String, Integer> charecaristics;
 
+    public CharacterLoader(String name, boolean isEnemy){
+        if(isEnemy){
+            charecaristics = new HashMap<String, Integer>();
+            String filePath = "enemyDefinition/" + name + ".txt";
+
+            if (!Gdx.files.internal(filePath).exists()) {
+                setToDeafault();
+                // If it exist get the settings from it
+            } else {
+                try {
+                    FileHandle handle = Gdx.files.internal(filePath);
+                    BufferedReader br = handle.reader(2);
+
+                    String key;
+                    String value;
+                    while ((key = br.readLine()) != null && (value = br.readLine()) != null) {
+                        // File ends with a .
+                        if (!".".equals(key)) {
+                            charecaristics.put(key, Integer.parseInt(value));
+                        } else {
+                            return;
+                        }
+                    }
+                } catch (IOException IOEx) {
+                    setToDeafault();
+                } catch (GdxRuntimeException gdxEx) {
+                    setToDeafault();
+                }
+            }
+        }
+    }
+
     public CharacterLoader(String name) {
 
         charecaristics = new HashMap<String, Integer>();
@@ -45,6 +77,7 @@ public class CharacterLoader {
             }
         }
     }
+
 
     /**
      * Get the value for responding charecaristic

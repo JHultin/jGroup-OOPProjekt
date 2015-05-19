@@ -17,7 +17,9 @@ public interface IEnemy {
 
     public void decHP(int value);
 
-    public ArrayList movePattern();  //tells how the enemy moves
-
     public void dispose();
+
+    public void changeMoveDirection();
+
+    public int getDamageDeal();
 }

@@ -30,4 +30,6 @@ public interface IBullet {
     public String getName();
 
     public void dispose();
+
+
 }

@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.model;
 
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
+
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 import java.util.ArrayList;
 
@@ -47,12 +48,17 @@ public class Enemy implements IEnemy{
     }
 
     @Override
-    public ArrayList movePattern() {
-        return null;
+    public void dispose() {
+
     }
 
     @Override
-    public void dispose() {
+    public void changeMoveDirection() {
 
+    }
+
+    @Override
+    public int getDamageDeal() {
+        return 0;
     }
 }

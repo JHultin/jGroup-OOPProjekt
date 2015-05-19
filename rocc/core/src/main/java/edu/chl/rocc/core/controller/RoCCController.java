@@ -100,7 +100,8 @@ public class RoCCController implements Runnable{
 
             // Set up the game
             // First construct the world, the level and all pickupables.
-            TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin.tmx");
+            TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
+
             ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
             this.model.constructWorld(tiledMap);
 
@@ -117,7 +118,8 @@ public class RoCCController implements Runnable{
             this.model.getPlayer().setActiveCharacter(0);
 
             // Restart the thread and apply correct inputprocessor
-
+            /*isRunning = false;
+            thread.interrupt();*/
             Gdx.input.setInputProcessor(gameProcessor);
             /*this.thread = new Thread(this);
             this.thread.start();
@@ -224,6 +226,11 @@ public class RoCCController implements Runnable{
             if (newState != null) {
                 RoCCController.this.setState(newState);
             }
+            model.changeDirectionOnEnemies(collisionListener.getEnemiesToChangeDirection());
+
+            model.removeBullets(collisionListener.getBulletsToRemove());
+
+
         }
 
         // Add key to keylist or jump
