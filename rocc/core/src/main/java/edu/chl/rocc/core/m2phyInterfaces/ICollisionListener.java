@@ -19,4 +19,6 @@ public interface ICollisionListener {
     public List<IEnemy> getEnemiesToChangeDirection();
 
     public List<IBullet> getBulletsToRemove();
+
+    public String getNewState();
 }

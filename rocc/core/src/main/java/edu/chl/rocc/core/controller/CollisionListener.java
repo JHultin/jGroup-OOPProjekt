@@ -149,6 +149,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         }
 
 
+    @Override
     public String getNewState() {
         String ret = null;
         if (newState != null) {
