@@ -58,13 +58,13 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
-    public float getCharacterXPos(int i) {
-        return this.player.getCharacterXPos(i);
+    public float getCharacterXPos() {
+        return this.player.getCharacterXPos();
     }
 
     @Override
-    public float getCharacterYPos(int i) {
-        return this.player.getCharacterYPos(i);
+    public float getCharacterYPos() {
+        return this.player.getCharacterYPos();
     }
 
     @Override
@@ -90,16 +90,16 @@ public class PhyPlayer implements IPlayer {
         this.player.setActiveCharacter(i);
     }
 
-    @Override
-    public void setActiveCharacter(ICharacter character){
-        this.player.setActiveCharacter(character);
-    }
-
     /*
     * Creates and fires a bullet.
     * Temporarily placed in PhyPlayer, will later be moved to a Weapon class.
     */
     public void createBullet(float x, float y, float xDir, float yDir, String name){
         bullets.add(new PhyBullet(this.world, x, y, xDir, yDir, name));
+    }
+
+    @Override
+    public int getScore(){
+        return player.getScore();
     }
 }

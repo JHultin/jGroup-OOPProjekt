@@ -1,12 +1,16 @@
 package edu.chl.rocc.core.view.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.options.KeyOptions;
 
 import java.util.HashMap;
 
@@ -27,12 +31,15 @@ public class ControlConfigureView extends AbstractMenuView {
 
 
 
-    TextButton moveLeftButton;
-    TextButton moveRightButton;
-    TextButton jumpButton;
-    TextButton shootButton;
-    TextButton nextWeaponButton;
-    TextButton interactButton;
+    private TextButton moveLeftButton;
+    private TextButton moveRightButton;
+    private TextButton jumpButton;
+    private TextButton shootButton;
+    private TextButton nextWeaponButton;
+    private TextButton interactButton;
+
+    private String currentButton;
+
 
     private TextButton defaultButton;
 
@@ -99,6 +106,30 @@ public class ControlConfigureView extends AbstractMenuView {
         stage.addActor(table);
     }
 
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0, 0, 1, 1);
+        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
+
+        if(currentButton != null) {
+            for (String button : keyTitleHashMap.values()) {
+                if (currentButton.equals(keyTitleHashMap.get(button))) {
+                    keysBindingHashMap.get(button).setText("PRESS KEY");
+                } else {
+                    keysBindingHashMap.get(button).setText(Input.Keys.toString(KeyOptions.getInstance().getKey(button)));
+                }
+            }
+        }
+        //nextWeaponButton.setText(Input.Keys.toString(KeyOptions.getInstance().getKey("left")));
+        //interactButton.setText(Input.Keys.toString(KeyOptions.getInstance().getKey("")));
+
+
+        stage.act();
+        stage.draw();
+    }
+
     @Override
     public void show() {
         super.show();
@@ -119,9 +150,11 @@ public class ControlConfigureView extends AbstractMenuView {
         keyTitleHashMap = new HashMap<String, String>();
 
 
-        moveLeftButton = new TextButton("A", textButtonStyle);
-        moveRightButton = new TextButton("D", textButtonStyle);
-        jumpButton = new TextButton("SPACE", textButtonStyle);
+
+
+        moveLeftButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Left")), textButtonStyle);
+        moveRightButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Right")), textButtonStyle);
+        jumpButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Jump")), textButtonStyle);
         shootButton = new TextButton("MOUSE1", textButtonStyle);
         nextWeaponButton = new TextButton("Q", textButtonStyle);
         interactButton = new TextButton("E", textButtonStyle);
@@ -140,7 +173,8 @@ public class ControlConfigureView extends AbstractMenuView {
         moveLeftButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                moveLeftButton.setText("PRESS KEY");
+               // moveLeftButton.setText("PRESS KEY");
+                currentButton = "Move Left";
             }
 
         });
@@ -148,7 +182,8 @@ public class ControlConfigureView extends AbstractMenuView {
         moveRightButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                moveRightButton.setText("PRESS KEY");
+              //  moveRightButton.setText("PRESS KEY");
+                currentButton = "Move Right";
             }
 
         });
@@ -156,7 +191,8 @@ public class ControlConfigureView extends AbstractMenuView {
         jumpButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                jumpButton.setText("PRESS KEY");
+                //jumpButton.setText("PRESS KEY");
+                currentButton = "Jump";
             }
 
         });
@@ -164,7 +200,8 @@ public class ControlConfigureView extends AbstractMenuView {
         shootButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                shootButton.setText("PRESS KEY");
+                //shootButton.setText("PRESS KEY");
+                currentButton = "Shoot";
             }
 
         });
@@ -172,7 +209,8 @@ public class ControlConfigureView extends AbstractMenuView {
         nextWeaponButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                nextWeaponButton.setText("PRESS KEY");
+                //nextWeaponButton.setText("PRESS KEY");
+                currentButton = "Next Weapon";
             }
 
         });
@@ -180,7 +218,8 @@ public class ControlConfigureView extends AbstractMenuView {
         interactButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                interactButton.setText("PRESS KEY");
+                //interactButton.setText("PRESS KEY");
+                currentButton = "Interact";
             }
 
         });
@@ -189,17 +228,17 @@ public class ControlConfigureView extends AbstractMenuView {
         keyTitleHashMap.put("Move Left","Move Left");
         keyTitleHashMap.put("Move Right", "Move Right");
         keyTitleHashMap.put("Jump", "Jump");
-        keyTitleHashMap.put("Shoot", "Shoot");
-        keyTitleHashMap.put("Next Weapon", "Next Weapon");
-        keyTitleHashMap.put("Interact", "Interact");
+      //  keyTitleHashMap.put("Shoot", "Shoot");
+      //  keyTitleHashMap.put("Next Weapon", "Next Weapon");
+      //  keyTitleHashMap.put("Interact", "Interact");
 
 
         keysBindingHashMap.put("Move Left", moveLeftButton);
         keysBindingHashMap.put("Move Right", moveRightButton);
         keysBindingHashMap.put("Jump", jumpButton);
-        keysBindingHashMap.put("Shoot", shootButton);
-        keysBindingHashMap.put("Next Weapon", nextWeaponButton);
-        keysBindingHashMap.put("Interact", interactButton);
+      //  keysBindingHashMap.put("Shoot", shootButton);
+      //  keysBindingHashMap.put("Next Weapon", nextWeaponButton);
+      //  keysBindingHashMap.put("Interact", interactButton);
 
 
         backButton.addListener(new ClickListener(){

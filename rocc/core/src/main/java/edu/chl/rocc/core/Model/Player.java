@@ -17,9 +17,10 @@ public class Player implements IPlayer {
     private final List<ICharacter> characters;
     private IRoCCFactory factory;
 
-    private int activePlayerIndex;
     //Index of the active character in list 'characters'
     private int activeCharacterIndex;
+
+    private int score;
 
    // private List<Weapon> weapons;
 
@@ -31,6 +32,8 @@ public class Player implements IPlayer {
         this.characters = new ArrayList<ICharacter>();
         this.activeCharacterIndex = 0;
         this.factory = factory;
+
+        this.score = 0;
     }
 
     public Player(List<ICharacter> characters){
@@ -50,28 +53,23 @@ public class Player implements IPlayer {
     @Override
     public void moveFollowers(Direction dir){
         if(dir != Direction.NONE) {
+            int count = 0;
+            for (int i=0; i < characters.size(); i++) {
+                if (i != activeCharacterIndex) {
+                    count ++;
+                    float distance = characters.get(this.activeCharacterIndex).getX() - characters.get(i).getX();
 
-            for (int i=1; i < characters.size(); i++) {
-
-            /*
-            if(getDistance(i) > 200){
-                characters.get(i).moveFollower(dir);
-            } else{
-                characters.get(i).moveFollower(Direction.NONE);
-            }
-            */
-                float distance = characters.get(this.activeCharacterIndex).getX() - characters.get(i).getX();
-
-                if (distance > 20 + i * 60) {
-                    characters.get(i).moveFollower(Direction.RIGHT);
-                } else if (distance < -(20 + i * 60)) {
-                    characters.get(i).moveFollower(Direction.LEFT);
-                } else {
-                    characters.get(i).moveFollower(Direction.NONE);
+                    if (distance > 20 + count * 60) {
+                        characters.get(i).moveFollower(Direction.RIGHT);
+                    } else if (distance < -(20 + count * 60)) {
+                        characters.get(i).moveFollower(Direction.LEFT);
+                    } else {
+                        characters.get(i).moveFollower(Direction.NONE);
+                    }
                 }
             }
         } else{
-            for (int k=1; k < characters.size(); k++) {
+            for (int k=0; k < characters.size(); k++) {
                 characters.get(k).moveFollower(Direction.NONE);
             }
         }
@@ -84,11 +82,6 @@ public class Player implements IPlayer {
 
     @Override
     public void jump() {
-        /*
-        for(int i=0; i < characters.size(); i++){
-            characters.get(i).jump();
-        }
-        */
         characters.get(this.activeCharacterIndex).jump();
     }
 
@@ -100,22 +93,24 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public float getCharacterXPos(int i){
-        return characters.get(i).getX();
+    public float getCharacterXPos(){
+        return characters.get(activeCharacterIndex).getX();
     }
 
     @Override
-    public float getCharacterYPos(int i){
-        return characters.get(i).getY();
+    public float getCharacterYPos(){
+        return characters.get(activeCharacterIndex).getY();
     }
 
     @Override
     public void addCharacter(String name) {
-        if (characters.isEmpty()){
-            characters.add(this.factory.createCharacter(name, 160, 400));
-        } else {
-            characters.add(this.factory.createCharacter(name, characters.get(this.activeCharacterIndex).getX(),
-                    characters.get(this.activeCharacterIndex).getY()));
+        synchronized (characters) {
+            if (characters.isEmpty()) {
+                characters.add(this.factory.createCharacter(name, 160, 400));
+            } else {
+                characters.add(this.factory.createCharacter(name, characters.get(this.activeCharacterIndex).getX(),
+                        characters.get(this.activeCharacterIndex).getY()+16));
+            }
         }
     }
 
@@ -133,22 +128,9 @@ public class Player implements IPlayer {
 
     @Override
     public void setActiveCharacter(int i){
+        this.characters.get(activeCharacterIndex).setAsFollower();
         this.activeCharacterIndex = i;
-        this.setActiveCharacter(characters.get(i));
-    }
-
-    @Override
-    public void setActiveCharacter(ICharacter character){
-        /*
-        if(activeCharacterIndex++ < characters.size()){
-            activeCharacterIndex++;
-        } else{
-            activeCharacterIndex = 0;
-        }*/
-
-        characters.get(activeCharacterIndex).setAsFollower();
-        activeCharacterIndex = characters.indexOf(character);
-        character.removeAsFollower();
+        this.characters.get(i).setAsLead();
     }
 
     /*
@@ -169,6 +151,11 @@ public class Player implements IPlayer {
         } else{
             return Direction.NONE;
         }
+    }
+
+    @Override
+    public int getScore(){
+        return this.score;
     }
 
 }

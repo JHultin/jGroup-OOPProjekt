@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.Level;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.dynamics.Body;
 
 import java.util.List;
@@ -47,14 +48,14 @@ public interface IRoCCModel{
     public void shoot(float x, float y);
 
     /**
-    * @return x-coordinate of the given character.
+    * @return x-coordinate of the lead character.
     */
-    public float getCharacterXPos(int i);
+    public float getCharacterXPos();
 
     /**
-    * @return y-coordinate of the given character.
+    * @return y-coordinate of the lead character.
     */
-    public float getCharacterYPos(int i);
+    public float getCharacterYPos();
 
     /**
     * @return the level.
@@ -91,6 +92,8 @@ public interface IRoCCModel{
     */
     public List<IBullet> getBullets();
 
+    public void addBullet(IBullet bullet);
+
     /**
     * Creates a bullet/projectile.
     * Add it to list of current existing projectiles.
@@ -119,12 +122,23 @@ public interface IRoCCModel{
     public void addCharacter(String name);
 
     /**
+     * Randomly sets which character is in the front
+     */
+    public void changeLead();
+
+    /**
      * Called to lower memory leak
      */
     public void dispose();
 
-
     public int getScore();
 
     public int getTime();
+
+    public void handleDeath(IDeathEvent deathEvent);
+
+    public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange);
+
+    public void removeBullets(List<IBullet> bulletsToRemove);
+
 }

@@ -1,7 +1,7 @@
-left
+Move Left
 29
-right
-32
-jump
+Jump
 62
+Move Right
+32
 .

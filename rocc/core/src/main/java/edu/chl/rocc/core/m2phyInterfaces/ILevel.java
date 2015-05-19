@@ -57,8 +57,6 @@ public interface ILevel {
 
     public void dispose();
 
-    public int getScore();
-
     public int getTime();
 
     public void updateTime();

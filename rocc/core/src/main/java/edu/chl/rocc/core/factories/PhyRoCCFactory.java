@@ -40,4 +40,9 @@ public class PhyRoCCFactory implements IRoCCFactory {
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
         return new PhyPickupableCharacter(name, world, x, y);
     }
+
+    @Override
+    public IEnemy createEnemy(String name, int x, int y, int hp) {
+        return new PhyEnemy(this.world, x, y ,hp , name);
+    }
 }

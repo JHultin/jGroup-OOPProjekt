@@ -38,11 +38,11 @@ public class PhyBullet implements IBullet {
 
         //Defining & creating fixture
         CircleShape shape = new CircleShape();
-        shape.setRadius(5);
+        shape.setRadius(5 /PPM);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BULLET;
-        fDef.filter.maskBits = BitMask.BIT_GROUND;
+        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_ENEMY;
         body.createFixture(fDef).setUserData("bullet");
         body.setLinearVelocity(new Vec2(xDir * velocity, yDir * velocity));
     }

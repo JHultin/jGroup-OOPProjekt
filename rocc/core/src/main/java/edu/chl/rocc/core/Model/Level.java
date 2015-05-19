@@ -25,10 +25,12 @@ public class Level implements ILevel {
     private List<IPickupable> pickupables;
     private List<IJumpPoint> jumpPoints;
     private List<IBullet> bullets;
-    private ArrayList<IEnemy> enemies;
+    private List<IEnemy> enemies;
     private List<IFinishPoint> finishPoints;
+    
 
     private ArrayList <String> highscore;
+
 
     public Level(){
         pickupables  = new ArrayList<IPickupable>();
@@ -98,17 +100,16 @@ public class Level implements ILevel {
 
     @Override
     public void addEnemy(IEnemy enemy) {
-        enemies.add(enemy);
     }
 
     @Override
     public List<IEnemy> getEnemies() {
-        return enemies;
+        return null;
     }
 
     @Override
     public void removeEnemy(IEnemy enemy) {
-        enemies.remove(enemy);
+
     }
 
     @Override
@@ -124,14 +125,6 @@ public class Level implements ILevel {
         for (IBullet bullet : bullets){
             bullet.dispose();
         }
-        for (IEnemy enemy : enemies){
-            enemy.dispose();
-        }
-    }
-
-    @Override
-    public int getScore(){
-        return score;
     }
 
     @Override

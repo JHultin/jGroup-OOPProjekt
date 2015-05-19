@@ -1,6 +1,7 @@
 package edu.chl.rocc.core.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -31,6 +32,7 @@ public class RoCCController implements Runnable{
     private final RoCCView main;
     private final GameViewManager gvm;
     private CollisionListener collisionListener;
+    private final IDeathListener deathListener;
     private String currentView;
 
     // Inputprocessor for while ingame
@@ -44,10 +46,10 @@ public class RoCCController implements Runnable{
     private boolean inGame;
 
     // Tells how far in between the world shall update, in seconds
-    private float updateSpeed = 1 / 60f;
+    private final float updateSpeed = 1 / 60f;
 
     // The current key configurations
-    private KeyOptions keyOptions;
+    private final KeyOptions keyOptions;
 
     private ViewChooser viewChooser;
 
@@ -74,8 +76,10 @@ public class RoCCController implements Runnable{
         // Start the thread
         this.thread = new Thread(this);
         this.thread.start();
-        viewChooser = new ViewChooser(gvm.getViewObserver());
 
+        this.viewChooser = new ViewChooser(gvm.getViewObserver());
+
+        this.deathListener = new DeathListener(model);
     }
 
     /**
@@ -96,7 +100,8 @@ public class RoCCController implements Runnable{
 
             // Set up the game
             // First construct the world, the level and all pickupables.
-            TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin.tmx");
+            TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
+
             ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
             this.model.constructWorld(tiledMap);
 
@@ -113,7 +118,8 @@ public class RoCCController implements Runnable{
             this.model.getPlayer().setActiveCharacter(0);
 
             // Restart the thread and apply correct inputprocessor
-
+            /*isRunning = false;
+            thread.interrupt();*/
             Gdx.input.setInputProcessor(gameProcessor);
             /*this.thread = new Thread(this);
             this.thread.start();
@@ -142,7 +148,7 @@ public class RoCCController implements Runnable{
     }
 
     /**
-     *Used to lowe memory leaking
+     *Used to lower memory leaking
      */
     public void dispose(){
         this.gvm.dispose();
@@ -185,12 +191,12 @@ public class RoCCController implements Runnable{
         private void sendUpdate(){
             // Find correct direction for the active character to move in
             Direction dir;
-            if (keys.contains(keyOptions.getKey("right")))
-                if (keys.contains(keyOptions.getKey("left")))
+            if (keys.contains(keyOptions.getKey("Move Right")))
+                if (keys.contains(keyOptions.getKey("Move Left")))
                     dir = Direction.NONE;
                 else
                     dir = Direction.RIGHT;
-            else if (keys.contains((keyOptions.getKey("left"))))
+            else if (keys.contains((keyOptions.getKey("Move Left"))))
                 dir = Direction.LEFT;
             else
                 dir = Direction.NONE;
@@ -220,13 +226,21 @@ public class RoCCController implements Runnable{
             if (newState != null) {
                 RoCCController.this.setState(newState);
             }
+            model.changeDirectionOnEnemies(collisionListener.getEnemiesToChangeDirection());
+
+            model.removeBullets(collisionListener.getBulletsToRemove());
+
+
         }
 
         // Add key to keylist or jump
         @Override
         public boolean keyDown(int keycode) {
-            if (keycode == keyOptions.getKey("jump"))
+            if (keycode == keyOptions.getKey("Jump"))
                 model.jump();
+            else if (keycode == Input.Keys.TAB){
+                model.changeLead();
+            }
             else if (!keys.contains(keycode))
                 keys.add(keycode);
             return false;
@@ -286,6 +300,7 @@ public class RoCCController implements Runnable{
             return false;
         }
     }
+
 
 
     private class ConfigureControlsProcessor implements InputProcessor {
@@ -351,10 +366,6 @@ public class RoCCController implements Runnable{
             observable.register(this);
         }
 
-
-
     }
-
-
 
 }

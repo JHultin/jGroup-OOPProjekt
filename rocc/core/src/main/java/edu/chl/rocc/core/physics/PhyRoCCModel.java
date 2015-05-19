@@ -13,6 +13,7 @@ import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.RoCCModel;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -85,9 +86,9 @@ public class PhyRoCCModel implements IRoCCModel {
             Vec2[] v = new Vec2[5];
             float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
             v[0] = new Vec2(-offset, -offset);
-            v[1] = new Vec2(-offset, offset);
-            v[2] = new Vec2(offset, offset);
-            v[3] = new Vec2(offset, -offset);
+            v[1] = new Vec2(-offset,  offset);
+            v[2] = new Vec2( offset,  offset);
+            v[3] = new Vec2( offset, -offset);
             v[4] = new Vec2(-offset, -offset);
             cs.createChain(v, 5);
 
@@ -110,7 +111,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
                         // Set the position for the block
                         bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
-                                PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
+                                          PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
 
                         // Then let the level create the block in the world
                         model.getLevel().addBlock(bDef, fDef);
@@ -126,7 +127,7 @@ public class PhyRoCCModel implements IRoCCModel {
             // Create one food item for each on the map
             for (MapObject mapObject : foodLayer.getObjects()) {
                 float x = ((Float) mapObject.getProperties().get("x") + 16) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y") + 8) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y") + 8)  / PPM;
 
                 IFood food = new PhyFood(world, x, y);
                 model.getLevel().addPickupable(food);
@@ -141,7 +142,6 @@ public class PhyRoCCModel implements IRoCCModel {
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
                 IPickupableCharacter ipc = new PhyPickupableCharacter("enemy", world, x, y);
-
                 model.getLevel().addPickupable(ipc);
             }
         }
@@ -160,9 +160,9 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
 
-        if (tMap.getLayers().get("finish") != null){
+        if (tMap.getLayers().get("finish") != null) {
             MapLayer finLayer = tMap.getLayers().get("finish");
-            for(MapObject finish : finLayer.getObjects()){
+            for (MapObject finish : finLayer.getObjects()) {
                 float x = ((Float) finish.getProperties().get("x")) / PPM;
                 float y = ((Float) finish.getProperties().get("y")) / PPM;
 
@@ -171,6 +171,18 @@ public class PhyRoCCModel implements IRoCCModel {
 
                 IFinishPoint finPoint = new PhyFinishPoint(world, x, y, width, height);
                 model.getLevel().addFinish(finPoint);
+            }
+        }
+        if (tMap.getLayers().get("finish") != null) {
+            //Add enemy in the world
+            MapLayer enemyLayer = tMap.getLayers().get("enemy");
+
+            for (MapObject mapObject : enemyLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
+
+                IEnemy enemy = new PhyEnemy(this.world, x, y, 50, "zombie");
+                model.getLevel().addEnemy(enemy);
             }
         }
     }
@@ -196,7 +208,7 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-        public void jump() {
+    public void jump() {
         this.model.jump();
     }
 
@@ -211,13 +223,13 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public float getCharacterXPos(int i) {
-        return this.model.getCharacterXPos(i);
+    public float getCharacterXPos() {
+        return this.model.getCharacterXPos();
     }
 
     @Override
-    public float getCharacterYPos(int i) {
-        return this.model.getCharacterYPos(i);
+    public float getCharacterYPos() {
+        return this.model.getCharacterYPos();
     }
 
     @Override
@@ -253,12 +265,32 @@ public class PhyRoCCModel implements IRoCCModel {
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
             if(pickup instanceof IPickupableCharacter){
-                addCharacter(pickup.getName());
+                this.addCharacter(pickup.getName());
             }
             pickup.destroy();
         }
         model.removeItems(itemsToRemove);
     }
+
+    @Override
+    public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange){
+        for (IEnemy enemy : enemyDirToChange){
+            if(enemy instanceof IEnemy){
+                enemy.changeMoveDirection();
+            }
+        }
+    }
+
+    @Override
+    public void removeBullets(List<IBullet> bulletsToRemove){
+        for (IBullet bullet : bulletsToRemove){
+            if(bullet instanceof IBullet){
+                bullet.dispose(); //have to take away the drawing in the level
+            }
+        }
+        model.removeBullets(bulletsToRemove);
+    }
+
 
     @Override
     public List<IBullet> getBullets() {
@@ -270,19 +302,23 @@ public class PhyRoCCModel implements IRoCCModel {
         this.model.createBullet();
     }*/
 
+    public void addBullet(IBullet bullet){
+        this.model.addBullet(bullet);
+    }
+
     @Override
     public List<ICharacter> getCharacters() {
-        return model.getCharacters();
+        return this.model.getCharacters();
     }
 
     @Override
     public List<IEnemy> getEnemies () {
-          return model.getEnemies();
+          return this.model.getEnemies();
     }
 
     @Override
     public void addEnemy (IEnemy enemy){
-        model.addEnemy(enemy);
+        this.model.addEnemy(enemy);
     }
 
     @Override
@@ -293,6 +329,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void addCharacter(String name) {
         this.model.addCharacter(name);
+    }
+
+    @Override
+    public void changeLead() {
+        this.model.changeLead();
     }
 
     @Override
@@ -309,6 +350,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public int getTime(){
         return model.getTime();
+    }
+
+    @Override
+    public void handleDeath(IDeathEvent deathEvent) {
+        this.model.handleDeath(deathEvent);
     }
 }
 

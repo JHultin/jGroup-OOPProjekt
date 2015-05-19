@@ -1,6 +1,12 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.utility.DeathEvent;
+import edu.chl.rocc.core.utility.IDeathEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -19,10 +25,9 @@ public class Character implements ICharacter {
     private Direction lastDir;
     private boolean inAir;
 
-    private Direction followerDir;
-    private Direction lastFollowerDir;
-
     private boolean isFollower;
+
+    private final List<IDeathListener> deathListeners;
 
 
     public Character(String name){
@@ -31,12 +36,10 @@ public class Character implements ICharacter {
 
         this.direction = Direction.NONE;
         this.lastDir = this.direction;
-        followerDir = Direction.NONE;
-        this.lastFollowerDir = followerDir;
-
 
         isFollower = true;
 
+        this.deathListeners = new ArrayList<IDeathListener>();
     }
 
     @Override
@@ -74,9 +77,9 @@ public class Character implements ICharacter {
     @Override
     public void moveFollower(Direction dir){
         if(!dir.equals(Direction.NONE)){
-            lastFollowerDir = followerDir;
+            lastDir = direction;
         }
-        followerDir = dir;
+        direction = dir;
     }
 
     @Override
@@ -107,17 +110,6 @@ public class Character implements ICharacter {
     public void leftGround() {
         inAir = true;
     }
-
-    @Override
-    public Direction getFollowerDirection(){
-        return followerDir;
-    }
-
-    @Override
-    public Direction getLastFollowerDir(){
-        return lastFollowerDir;
-    }
-
 
     @Override
     public float getX(){
@@ -197,8 +189,30 @@ public class Character implements ICharacter {
     }
 
     @Override
-    public void removeAsFollower(){
+    public void setAsLead(){
         this.isFollower = false;
     }
 
+    @Override
+    public void addDeathListener(IDeathListener listener) {
+        this.deathListeners.add(listener);
+    }
+
+    @Override
+    public void removeDeathListener(IDeathListener listener) {
+        this.deathListeners.remove(listener);
+    }
+
+    @Override
+    public void death(String message) {
+        IDeathEvent deathEvent = new DeathEvent(this, message);
+        death(deathEvent);
+    }
+
+    @Override
+    public void death(IDeathEvent deathEvent) {
+        for(IDeathListener deathListener : deathListeners){
+            deathListener.deathTriggered(deathEvent);
+        }
+    }
 }

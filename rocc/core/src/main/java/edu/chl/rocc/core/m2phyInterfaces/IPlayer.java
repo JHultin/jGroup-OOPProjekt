@@ -26,14 +26,14 @@ public interface IPlayer {
     public boolean frontCharacterIsMoving();
 
     /**
-    * @return x-coordinate of the character.
+    * @return x-coordinate of the lead character.
     */
-    public float getCharacterXPos(int i);
+    public float getCharacterXPos();
 
     /**
-    * @return y-coordinate of the character.
+    * @return y-coordinate of the lead character.
     */
-    public float getCharacterYPos(int i);
+    public float getCharacterYPos();
 
     /**
     * Adds a character to the character list.
@@ -47,10 +47,13 @@ public interface IPlayer {
 
     public void dispose();
 
+    /**
+     * Change which character the player is playing as.
+     */
     public void setActiveCharacter(int i);
 
     /**
-    * Change which character the player is playing as.
-    */
-    public void setActiveCharacter(ICharacter character);
+     * @return score
+     */
+    public int getScore();
 }

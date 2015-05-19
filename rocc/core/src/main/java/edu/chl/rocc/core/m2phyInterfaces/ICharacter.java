@@ -5,7 +5,7 @@ import edu.chl.rocc.core.model.Direction;
 /**
  * Created by Joel on 2015-05-03.
  */
-public interface ICharacter {
+public interface ICharacter extends IMortal{
 
     /**
     * @return the character's health.
@@ -38,11 +38,6 @@ public interface ICharacter {
     public void moveFollower(Direction dir);
 
     public boolean isMoving();
-
-    public Direction getFollowerDirection();
-
-    public Direction getLastFollowerDir();
-
 
     /**
     * Make the character jump by changing its y-coordinate.
@@ -88,6 +83,6 @@ public interface ICharacter {
 
     public void setAsFollower();
 
-    public void removeAsFollower();
+    public void setAsLead();
 
 }

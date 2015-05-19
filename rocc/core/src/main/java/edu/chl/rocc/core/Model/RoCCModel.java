@@ -6,6 +6,7 @@ import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.physics.PhyBullet;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.dynamics.Body;
 
 import java.util.List;
@@ -81,17 +82,17 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void shoot(float x, float y){
         //level.setAim(x, y);
-        level.createBullet(this.getCharacterXPos(0), this.getCharacterYPos(0), x, y);
+        level.createBullet(this.getCharacterXPos(), this.getCharacterYPos(), x, y);
     }
 
     @Override
-    public float getCharacterXPos(int i){
-        return player.getCharacterXPos(i);
+    public float getCharacterXPos(){
+        return player.getCharacterXPos();
     }
 
     @Override
-    public float getCharacterYPos(int i){
-        return player.getCharacterYPos(i);
+    public float getCharacterYPos(){
+        return player.getCharacterYPos();
     }
 
     /*
@@ -138,6 +139,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void addBullet(IBullet bullet) {
+        
+    }
+
+    @Override
     public List<ICharacter> getCharacters() {
         return player.getCharacters();
     }
@@ -163,6 +169,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void changeLead() {
+        this.player.setActiveCharacter((int)(Math.random() * this.player.getCharacters().size()));
+    }
+
+    @Override
     public void dispose(){
         level.dispose();
         player.dispose();
@@ -170,12 +181,27 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public int getScore(){
-        return level.getScore();
+        return player.getScore();
     }
 
     @Override
-    public int getTime(){
+    public int getTime() {
         return level.getTime();
+    }
+    public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange) {
+
+
+    }
+
+    @Override
+    public void removeBullets(List<IBullet> bulletsToRemove) {
+
+    }
+
+    @Override
+    public void handleDeath(IDeathEvent deathEvent) {
+        // Temp code
+        System.out.println(deathEvent.getMessage());
     }
 
 }

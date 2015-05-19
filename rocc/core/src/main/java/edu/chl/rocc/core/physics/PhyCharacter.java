@@ -2,10 +2,13 @@ package edu.chl.rocc.core.physics;
 
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.m2phyInterfaces.IMortal;
 import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.model.Character;
 import edu.chl.rocc.core.utility.CharacterLoader;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -19,8 +22,6 @@ public class PhyCharacter implements ICharacter {
     private final ICharacter character;
     private final float width, height;
     private final Body body;
-    private int leftV;
-    private int rightV;
     private int characterOnGround;
     private Direction direction;
     private Direction airDir;
@@ -98,29 +99,20 @@ public class PhyCharacter implements ICharacter {
     @Override
     public void move(Direction dir) {
         if (dir != direction && (characterOnGround > 0)) {
-                if (dir.equals(Direction.LEFT)) {
-                    body.setLinearVelocity(new Vec2(-speed / PPM, 0));
-                    leftV = leftV + 1;
-                    this.isMoving = true;
-                } else if (dir.equals(Direction.RIGHT)) {
-                    body.setLinearVelocity(new Vec2( speed / PPM, 0));
-                    rightV = rightV + 1;
-                    this.isMoving = true;
-                } else if (dir.equals(Direction.UP)) {
+            if (dir.equals(Direction.LEFT)) {
+                body.setLinearVelocity(new Vec2(-speed / PPM, 0));
+                this.isMoving = true;
+            } else if (dir.equals(Direction.RIGHT)) {
+                body.setLinearVelocity(new Vec2( speed / PPM, 0));
+                this.isMoving = true;
+            } else if (dir.equals(Direction.UP)) {
 
-                } else if (dir.equals(Direction.DOWN)) {
+            } else if (dir.equals(Direction.DOWN)) {
 
-                } else if (dir.equals(Direction.NONE)) {
-                    if (leftV > 0) {
-                        body.setLinearVelocity(new Vec2(0, 0));
-                        leftV = leftV - 1;
-                        this.isMoving = false;
-                    } else if (rightV > 0) {
-                        body.setLinearVelocity(new Vec2(0, 0));
-                        rightV = rightV - 1;
-                        this.isMoving = false;
-                    }
-                }
+            } else if (dir.equals(Direction.NONE)) {
+                body.setLinearVelocity(new Vec2(0, 0));
+                this.isMoving = false;
+            }
             direction = dir;
         } else if (dir != airDir && characterOnGround == 0){
             if (dir.equals(Direction.LEFT)) {
@@ -140,28 +132,18 @@ public class PhyCharacter implements ICharacter {
             }
             airDir = dir;
         }
-
+        this.character.move(dir);
     }
 
     @Override
     public void moveFollower(Direction dir){
         this.move(dir);
-        character.moveFollower(dir);
+        this.character.moveFollower(dir);
     }
 
     @Override
     public boolean isMoving(){
         return this.isMoving;
-    }
-
-    @Override
-    public Direction getFollowerDirection(){
-        return character.getFollowerDirection();
-    }
-
-    @Override
-    public Direction getLastFollowerDir(){
-        return character.getLastFollowerDir();
     }
 
     @Override
@@ -182,6 +164,7 @@ public class PhyCharacter implements ICharacter {
         }
     }
 
+    //Write on one line
     @Override
     public void toggleFollowerOnJumpPoint(){
         if(this.followerOnJumpPoint){
@@ -199,23 +182,21 @@ public class PhyCharacter implements ICharacter {
     @Override
     public void hitGround(){
         if (characterOnGround == 0){
-                if (airDir.equals(Direction.LEFT)) {
-                    body.setLinearVelocity(new Vec2(-speed / PPM, 0));
-                    leftV = leftV + 1;
-                } else if (airDir.equals(Direction.RIGHT)) {
-                    body.setLinearVelocity(new Vec2( speed / PPM, 0));
-                    rightV = rightV + 1;
-                } else if (airDir.equals(Direction.UP)) {
+            if (airDir.equals(Direction.LEFT)) {
+                body.setLinearVelocity(new Vec2(-speed / PPM, 0));
+            } else if (airDir.equals(Direction.RIGHT)) {
+                body.setLinearVelocity(new Vec2( speed / PPM, 0));
+            } else if (airDir.equals(Direction.UP)) {
 
-                } else if (airDir.equals(Direction.DOWN)) {
+            } else if (airDir.equals(Direction.DOWN)) {
 
-                } else if (airDir.equals(Direction.NONE)) {
-                    body.setLinearVelocity(new Vec2(0, 0));
-                    this.isMoving = false;
-                }
-                direction = airDir;
+            } else if (airDir.equals(Direction.NONE)) {
+                body.setLinearVelocity(new Vec2(0, 0));
+                this.isMoving = false;
+            }
+            direction = airDir;
 
-            character.hitGround();
+            this.character.hitGround();
         }
         characterOnGround++;
 
@@ -228,9 +209,9 @@ public class PhyCharacter implements ICharacter {
         if (characterOnGround == 0){
             if(airDir != Direction.UP) {
                 this.body.setLinearVelocity(new Vec2(0, 0));
-                character.leftGround();
             }
             airDir = Direction.NONE;
+            this.character.leftGround();
         }
     }
 
@@ -278,6 +259,7 @@ public class PhyCharacter implements ICharacter {
         return hash;
     }
 
+    // Ta bort
     @Override
     public void setCurrentDirection(Direction dir){
         character.setCurrentDirection(dir);
@@ -306,8 +288,28 @@ public class PhyCharacter implements ICharacter {
         this.character.setAsFollower();
     }
 
-    public void removeAsFollower(){
-        this.character.removeAsFollower();
+    public void setAsLead(){
+        this.character.setAsLead();
+    }
+
+    @Override
+    public void addDeathListener(IDeathListener listener) {
+
+    }
+
+    @Override
+    public void removeDeathListener(IDeathListener listener) {
+
+    }
+
+    @Override
+    public void death(String message) {
+        this.character.death(message);
+    }
+
+    @Override
+    public void death(IDeathEvent deathEvent) {
+        this.character.death(deathEvent);
     }
 }
 

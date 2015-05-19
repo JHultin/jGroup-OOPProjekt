@@ -8,8 +8,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.ConcurrentModificationException;
-import java.util.HashMap;
+import java.util.*;
+import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,11 +21,9 @@ import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.view.AnimationHandler;
+import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * This class is supposed to contain the
@@ -68,9 +66,6 @@ public class PlayView implements Screen,IViewObservable{
     private Table characterProfileTable;
     private HashMap<String,ProgressBar> healthBarHashMap;
 
-
-    private int time;
-    private int timeCheck;
 
     public PlayView(IRoCCModel model){
         this.model = model;
@@ -128,25 +123,17 @@ public class PlayView implements Screen,IViewObservable{
         observerArrayList = new ArrayList<IViewObserver>();
 
 
-        /**
+        /*
          * Initializes the Hashmap and create temporary hashmaps which
          * are then placed in the main hashmap.
          */
-        //ANIMATION TEST
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
         addToAnimationHashMap();
-
-
-        //map = new TmxMapLoader().load("ground-food-map.tmx");
-        //renderer = new OrthogonalTiledMapRenderer(map);
-
-        //this.model.constructWorld(map);
 
         textures = new HashMap<String, Texture>();
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
-        textures.put("enemy" , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
-        //b2dr = new Box2DDebugRenderer();
+        textures.put("enemy"  , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
     }
 
 
@@ -162,14 +149,12 @@ public class PlayView implements Screen,IViewObservable{
 
         batch.setProjectionMatrix(cam.combined);
 
-        //b2dr.render(model.getLevel().getWorld(),camera.combined);
-
         //Updates score and time
         scoreLabel.setText("Score:\n"+model.getScore());
         timeLabel.setText("Time:\n"+model.getTime());
 
         //Set camera to follow player
-        cam.position.set(new Vector2(model.getCharacterXPos(0), model.getCharacterYPos(0)), 0);
+        cam.position.set(new Vector2(model.getCharacterXPos(), model.getCharacterYPos()), 0);
         cam.update();
 
         renderer.setView(cam);
@@ -178,49 +163,54 @@ public class PlayView implements Screen,IViewObservable{
         batch.begin();
 
 
-        /**
+        /*
          * Adds an image and healthbar for all the characters.
          * Updates the value of the HealthBar.
          */
-        try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.
+        synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
-              if(!profileImageHashMap.containsKey(character.getName())) {
-                profileImageHashMap.put(character.getName(), new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
+                if (!profileImageHashMap.containsKey(character.getName())) {
+                    profileImageHashMap.put(character.getName(),
+                            new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
 
-                createHealthBar(character);
+                    createHealthBar(character);
 
-                characterProfileTable.add(profileImageHashMap.get(character.getName())).left().pad(2);
-                characterProfileTable.row();
-                characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
-                characterProfileTable.row();
+                    characterProfileTable.add(profileImageHashMap.get(character.getName())).left().pad(2);
+                    characterProfileTable.row();
+                    characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
+                    characterProfileTable.row();
+                }
+                healthBarHashMap.get(character.getName()).setValue(character.getHP());
             }
-            healthBarHashMap.get(character.getName()).setValue(character.getHP());
-        }
-    }catch(ConcurrentModificationException e){
-        System.out.println("ConcurrentModificationException");
-    }
-
-    try {//this try-catch is only temporary to stop the game from crashing from ConcurrentModificationException.
-        for (ICharacter character : model.getCharacters()) {
-            renderCharacter(character, delta);
-        }
-    }catch(ConcurrentModificationException e){
-        System.out.println("ConcurrentModificationException");
-    }
-        for (IPickupable pickupable : model.getPickupables()){
-            batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
         }
 
-        for(IBullet bullet : model.getBullets()){
-            batch.draw(textures.get("bullet"), bullet.getX(), bullet.getY());
+        synchronized (model.getCharacters()) {
+            for (ICharacter character : model.getCharacters()) {
+                renderCharacter(character, delta);
+            }
+        }
+        synchronized (model.getPickupables()) {
+            for (IPickupable pickupable : model.getPickupables()) {
+                batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
+            }
+        }
+
+        synchronized (model.getBullets()) {
+            for (IBullet bullet : model.getBullets()) {
+                batch.draw(textures.get("bullet"), bullet.getX(), bullet.getY());
+            }
+
+        }
+        synchronized (model.getBullets()) {
+            for (IEnemy enemy : model.getEnemies()) {
+                batch.draw(textures.get("enemy"), enemy.getX(), enemy.getY());
+            }
         }
         batch.end();
 
 
-        //HUD TEST
         stage.act();
         stage.draw();
-        //HUD TEST END
     }
 
     @Override
@@ -299,7 +289,6 @@ public class PlayView implements Screen,IViewObservable{
      * @param delta
      */
     public void renderCharacter(ICharacter character, float delta){
-        if(!character.isFollower()) {//paints front character animationd
             if (character.inAir() == true) {
                 if (character.getDirection().equals(Direction.LEFT)) {
                     textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
@@ -326,35 +315,6 @@ public class PlayView implements Screen,IViewObservable{
                 }
             }
 
-        }else if(character.isFollower()){//Paints the follower animation
-
-            if (character.inAir() == true) {
-                if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
-                } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
-                } else {
-                    if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpLeft.png")));
-                    } else {
-                        textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/jumpRight.png")));
-                    }
-                }
-            } else if (character.getFollowerDirection().equals(Direction.RIGHT)) {
-                charactersAnimationHashMap.get(character.getName()).get("moveRight").update(delta);
-                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveRight").getFrame();
-            } else if (character.getFollowerDirection().equals(Direction.LEFT)) {
-                charactersAnimationHashMap.get(character.getName()).get("moveLeft").update(delta);
-                textureRegion = charactersAnimationHashMap.get(character.getName()).get("moveLeft").getFrame();
-            } else if (character.getFollowerDirection().equals(Direction.NONE)) {
-                if (character.getLastFollowerDir().equals(Direction.LEFT)) {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleLeft.png")));
-                } else {
-                    textureRegion = new TextureRegion(new Texture(Gdx.files.internal("characters/" + character.getName() + "/idleRight.png")));
-                }
-            }
-        }
-
         batch.draw(textureRegion, character.getX(), character.getY());
     }//renderCharacter end
 
@@ -364,7 +324,7 @@ public class PlayView implements Screen,IViewObservable{
     public void addToAnimationHashMap(){
 
 
-     /*
+/*
         for(ICharacter character : model.getCharacters()){
             HashMap<String,AnimationHandler> hashMap = new HashMap<String, AnimationHandler>();
             TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/"+ character.getName() + "/moveRight.png")), 34, 51)[0];
@@ -507,7 +467,6 @@ public class PlayView implements Screen,IViewObservable{
      * HealthBarHashMap.
      * @param character
      */
-
     public void createHealthBar(ICharacter character){
         Skin skin = new Skin();
         Pixmap pixmap = new Pixmap(10, 10, Pixmap.Format.RGBA8888);
@@ -515,8 +474,10 @@ public class PlayView implements Screen,IViewObservable{
         pixmap.fill();
         skin.add("white", new Texture(pixmap));
 
-        TextureRegionDrawable textureBar = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("button/healthBar/healthBarSkin.png"))));
-        ProgressBar.ProgressBarStyle barStyle = new ProgressBar.ProgressBarStyle(skin.newDrawable("white", Color.DARK_GRAY), textureBar);
+        TextureRegionDrawable textureBar = new TextureRegionDrawable(
+                new TextureRegion(new Texture(Gdx.files.internal("button/healthBar/healthBarSkin.png"))));
+        ProgressBar.ProgressBarStyle barStyle =
+                new ProgressBar.ProgressBarStyle(skin.newDrawable("white", Color.DARK_GRAY), textureBar);
         barStyle.knobBefore = barStyle.knob;
 
         ProgressBar bar = new ProgressBar(0, 10, 0.5f, false, barStyle);

@@ -8,8 +8,6 @@ package edu.chl.rocc.core.view.observers;
  */
 public interface IViewObserver {
 
-    //Have to figure out which parameters to send through
-    //TODO
     public void viewUpdated(String screen);
 
 }

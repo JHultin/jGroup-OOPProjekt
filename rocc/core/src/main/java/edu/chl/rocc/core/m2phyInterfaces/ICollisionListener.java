@@ -16,4 +16,7 @@ public interface ICollisionListener {
 
     public List<IPickupable> getItemsToRemove();
 
+    public List<IEnemy> getEnemiesToChangeDirection();
+
+    public List<IBullet> getBulletsToRemove();
 }
