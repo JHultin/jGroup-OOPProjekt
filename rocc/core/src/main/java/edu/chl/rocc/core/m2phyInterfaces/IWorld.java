@@ -8,10 +8,16 @@ import org.jbox2d.dynamics.BodyDef;
  */
 public interface IWorld {
 
-
-
+    /**
+     * Creates a body with body definition,def
+     * @param def
+     */
     public void createBody(BodyDef def);
 
+    /**
+     * Destroys the body
+     * @param body
+     */
     public void destroyBody(Body body);
 
     //public hashCode();
