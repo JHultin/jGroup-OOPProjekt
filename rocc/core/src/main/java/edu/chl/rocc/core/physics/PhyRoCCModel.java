@@ -173,16 +173,17 @@ public class PhyRoCCModel implements IRoCCModel {
                 model.getLevel().addFinish(finPoint);
             }
         }
+        if (tMap.getLayers().get("finish") != null) {
+            //Add enemy in the world
+            MapLayer enemyLayer = tMap.getLayers().get("enemy");
 
-        //Add enemy in the world
-        MapLayer enemyLayer = tMap.getLayers().get("enemy");
+            for (MapObject mapObject : enemyLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
-        for (MapObject mapObject : enemyLayer.getObjects()){
-            float x = ((Float) mapObject.getProperties().get("x")) /PPM;
-            float y = ((Float) mapObject.getProperties().get("y")) /PPM;
-
-            IEnemy enemy = new PhyEnemy(this.world, x, y, 50,"zombie");
-            model.getLevel().addEnemy(enemy);
+                IEnemy enemy = new PhyEnemy(this.world, x, y, 50, "zombie");
+                model.getLevel().addEnemy(enemy);
+            }
         }
     }
 

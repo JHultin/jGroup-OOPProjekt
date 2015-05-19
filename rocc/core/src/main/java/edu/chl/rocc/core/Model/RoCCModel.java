@@ -139,6 +139,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void addBullet(IBullet bullet) {
+        
+    }
+
+    @Override
     public List<ICharacter> getCharacters() {
         return player.getCharacters();
     }
@@ -185,6 +190,11 @@ public class RoCCModel implements IRoCCModel {
     }
     public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange) {
 
+
+    }
+
+    @Override
+    public void removeBullets(List<IBullet> bulletsToRemove) {
 
     }
 
