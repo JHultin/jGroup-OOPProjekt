@@ -10,17 +10,11 @@ public class AnimationHandler {
 
     private TextureRegion[] frames;
     private float time;
+    private float timeCheck;
+
     private float delay;
     private int currentFrame;
     private int timesPlayed;
-
-    public AnimationHandler(){
-
-    }
-
-    public AnimationHandler(TextureRegion[] frames){
-        this(frames,1/12f);
-    }
 
     public AnimationHandler(TextureRegion[] frames, float delay){
         this.frames = frames;
@@ -30,20 +24,16 @@ public class AnimationHandler {
         timesPlayed = 0;
     }
 
-    public void update(float dt){
-        if(delay <= 0) {
-            return;
-        }else{
-            time +=dt;
-        }
-
-        while(time >= delay){
+    public void update(){
+        if (timeCheck < 1) {
+            timeCheck+=delay;
+        } else if (timeCheck >= 1) {
+            timeCheck = 0;
             step();
         }
     }
 
-    public void step(){
-        time -= delay;
+    private void step(){
         currentFrame++;
         if(currentFrame == frames.length){
             currentFrame = 0;
@@ -58,8 +48,5 @@ public class AnimationHandler {
     public int getTimesPlayed(){
         return timesPlayed;
     }
-
-
-
 
 }

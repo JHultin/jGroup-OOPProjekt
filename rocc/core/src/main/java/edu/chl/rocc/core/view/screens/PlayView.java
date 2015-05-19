@@ -291,7 +291,7 @@ public class PlayView implements Screen,IViewObservable{
      * @param delta
      */
     public void renderCharacter(ICharacter character, float delta){
-        charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).update(delta);
+        charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).update();
         textureRegion = new TextureRegion(
                 charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).getFrame());
 
@@ -322,10 +322,10 @@ public class PlayView implements Screen,IViewObservable{
         HashMap<String,AnimationHandler> motherHashmap = new HashMap<String, AnimationHandler>();
         //Right
         TextureRegion[] textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/moveRight.png")), 34, 51)[0];
-        motherHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/4f));
+        motherHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/12f));
         //Left
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/moveLeft.png")), 34, 51)[0];
-        motherHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/4f));
+        motherHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/12f));
         //IdleRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/mother/idleRight.png")), 34, 49)[0];
         motherHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions,1/1f));
@@ -351,10 +351,10 @@ public class PlayView implements Screen,IViewObservable{
         HashMap<String,AnimationHandler> zombieHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveRight.png")), 36, 50)[0];
-        zombieHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/3f));
+        zombieHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/12f));
         //left
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/moveLeft.png")), 36, 50)[0];
-        zombieHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/3f));
+        zombieHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/12f));
         //IdleRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/enemy/idleRight.png")), 23, 50)[0];
         zombieHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions,1/1f));
@@ -381,10 +381,10 @@ public class PlayView implements Screen,IViewObservable{
         HashMap<String,AnimationHandler> doctorHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveRight.png")), 24, 50)[0];
-        doctorHashmap.put("falseRIGHT",new AnimationHandler(textureRegions, 1/4f));
+        doctorHashmap.put("falseRIGHT",new AnimationHandler(textureRegions, 1/12f));
         //left
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/moveLeft.png")), 24, 50)[0];
-        doctorHashmap.put("falseLEFT",new AnimationHandler(textureRegions, 1/4f));
+        doctorHashmap.put("falseLEFT",new AnimationHandler(textureRegions, 1/12f));
         //IdleRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/doctor/idleRight.png")), 24, 50)[0];
         doctorHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions, 1/1f));
@@ -410,10 +410,10 @@ public class PlayView implements Screen,IViewObservable{
         HashMap<String,AnimationHandler> soldierHashmap = new HashMap<String, AnimationHandler>();
         //Right
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/moveRight.png")), 25, 50)[0];
-        soldierHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/4f));
+        soldierHashmap.put("falseRIGHT",new AnimationHandler(textureRegions,1/12f));
         //left
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/moveLeft.png")), 25, 50)[0];
-        soldierHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/4f));
+        soldierHashmap.put("falseLEFT",new AnimationHandler(textureRegions,1/12f));
         //IdleRight
         textureRegions = TextureRegion.split(new Texture(Gdx.files.internal("characters/soldier/idleRight.png")), 24, 50)[0];
         soldierHashmap.put("falseNONERIGHT",new AnimationHandler(textureRegions,1/1f));
