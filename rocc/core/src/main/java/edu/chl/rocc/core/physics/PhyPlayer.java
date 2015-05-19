@@ -105,6 +105,11 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
+    public void addToScore(int value){
+        player.addToScore(value);
+    }
+
+    @Override
     public int getScore(){
         return player.getScore();
     }

@@ -171,6 +171,11 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public void addToScore(int value){
+        this.score +=value;
+    }
+
+    @Override
     public int getScore(){
         return this.score;
     }
