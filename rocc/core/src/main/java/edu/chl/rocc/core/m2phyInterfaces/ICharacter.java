@@ -85,4 +85,9 @@ public interface ICharacter extends IMortal{
 
     public void setAsLead();
 
+    /**
+     * @return current Character state
+     */
+    public String getMoveState();
+
 }

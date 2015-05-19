@@ -311,5 +311,10 @@ public class PhyCharacter implements ICharacter {
     public void death(IDeathEvent deathEvent) {
         this.character.death(deathEvent);
     }
+
+    @Override
+    public String getMoveState(){
+        return character.getMoveState();
+    }
 }
 
