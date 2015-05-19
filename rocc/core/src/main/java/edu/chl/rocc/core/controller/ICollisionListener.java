@@ -13,15 +13,35 @@ import java.util.List;
  */
 public interface ICollisionListener {
 
+    /**
+     * Called when two fixtures collides that are able to collide
+     * @param contact
+     */
     public void beginContact(Contact contact);
 
+    /**
+     * Called when two fixtures are not in collision anymore that had collided
+     * @param contact
+     */
     public void endContact(Contact contact);
 
+    /**
+     * @return a list of Pickupable items to remove
+     */
     public List<IPickupable> getItemsToRemove();
 
+    /**
+     * @return a list of enemies to change direction on
+     */
     public List<IEnemy> getEnemiesToChangeDirection();
 
+    /**
+     * @return a list of bullets to remove
+     */
     public List<IBullet> getBulletsToRemove();
 
+    /**
+     * @return the new state
+     */
     public String getNewState();
 }
