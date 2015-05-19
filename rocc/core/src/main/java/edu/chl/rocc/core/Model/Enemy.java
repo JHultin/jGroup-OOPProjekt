@@ -39,12 +39,22 @@ public class Enemy implements IEnemy{
 
     @Override
     public void setHP(int value) {
-        this.healthPoints = value;
+        if(value < 0){
+            //death("No more hp");
+            System.out.print("Input value for health points cannot be negative.");
+            // die-method??
+        }
+
+        if(value <= healthPoints && value >= 0){
+            this.healthPoints = value;
+        }else{
+            this.healthPoints = value;
+        }
     }
 
     @Override
     public void decHP(int value) {
-        this.healthPoints = this.healthPoints - value;
+        this.setHP(this.healthPoints - value);
     }
 
     @Override

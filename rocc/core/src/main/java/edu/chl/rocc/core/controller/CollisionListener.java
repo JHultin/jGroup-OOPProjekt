@@ -98,6 +98,9 @@ public class CollisionListener implements ContactListener, ICollisionListener {
                 ((IEnemy) fb.getBody().getUserData()).decHP(((IBullet) (fa.getBody().getUserData())).getBulletDamage());
                 System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
             }
+            if("ground".equals(fb.getUserData())){
+                System.out.println(fa.getBody().getUserData());
+            }
             //removes bullet
             bulletsToRemove.add((IBullet) (fa.getBody().getUserData()));
         }
@@ -105,6 +108,9 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             if("enemyUpperSensor".equals(fa.getUserData())){
                 ((IEnemy) fa.getBody().getUserData()).decHP(((IBullet) (fb.getBody().getUserData())).getBulletDamage());
                 System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
+            }
+            if("ground".equals(fa.getUserData())){
+                System.out.println(fa.getBody().getUserData());
             }
             //removes bullet
             bulletsToRemove.add((IBullet) (fb.getBody().getUserData()));

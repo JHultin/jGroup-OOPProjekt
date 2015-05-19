@@ -100,7 +100,7 @@ public class PhyRoCCModel implements IRoCCModel {
             fDef.friction = 0;
             fDef.shape = cs;
             fDef.filter.categoryBits = BitMask.BIT_GROUND;
-            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_BULLET | BitMask.BIT_FOLLOWER;
+            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_BULLET | BitMask.BIT_ENEMY | BitMask.BIT_FOLLOWER;
 
             // Create a tile for each block on the map
             for (int row = 0; row < tileLayer.getHeight(); row++) {
