@@ -538,11 +538,11 @@ public class PlayView implements Screen,IViewObservable{
                 new ProgressBar.ProgressBarStyle(skin.newDrawable("white", Color.DARK_GRAY), textureBar);
         barStyle.knobBefore = barStyle.knob;
 
-        ProgressBar bar = new ProgressBar(0, 10, 0.5f, false, barStyle);
+        ProgressBar bar = new ProgressBar(0, character.getHP(), 0.5f, false, barStyle);
         bar.setPosition(10, 10);
         bar.setAnimateDuration(1);
 
-        bar.setValue(10);
+        bar.setValue(character.getHP());
 
         healthBarHashMap.put(character.getName(),bar);
     }
