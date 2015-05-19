@@ -40,8 +40,6 @@ public class PhyLevel implements ILevel {
 
     @Override
     public void updateWorld(float dt) {
-        System.out.println("updateworld i PhyLevel");
-
         world.step(dt, 6, 2);
         updateTime();
     }

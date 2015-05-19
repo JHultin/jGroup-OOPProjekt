@@ -213,9 +213,10 @@ public class PlayView implements Screen,IViewObservable{
             }
 
         }
-
-        for(IEnemy enemy : model.getEnemies()){
-            batch.draw(textures.get("enemy"), enemy.getX(), enemy.getY());
+        synchronized (model.getBullets()) {
+            for (IEnemy enemy : model.getEnemies()) {
+                batch.draw(textures.get("enemy"), enemy.getX(), enemy.getY());
+            }
         }
         batch.end();
 

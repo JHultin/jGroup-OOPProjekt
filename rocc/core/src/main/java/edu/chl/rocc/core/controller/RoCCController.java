@@ -118,8 +118,8 @@ public class RoCCController implements Runnable{
             this.model.getPlayer().setActiveCharacter(0);
 
             // Restart the thread and apply correct inputprocessor
-            isRunning = false;
-            thread.interrupt();
+            /*isRunning = false;
+            thread.interrupt();*/
             Gdx.input.setInputProcessor(gameProcessor);
             /*this.thread = new Thread(this);
             this.thread.start();
