@@ -21,9 +21,8 @@ public interface IRoCCModel{
      * Creates the world, all pickupable items and teh blocks making the level.
      * The map must contain a tiledLayer named "ground" and objectlayers named "food" and "charcters"
      * defining the level.
-     * @param tMap map to build of
      */
-    public void constructWorld(TiledMap tMap);
+    public void constructWorld();
 
     /**
     * Move the character in a given direction.

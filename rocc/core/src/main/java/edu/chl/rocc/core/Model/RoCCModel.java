@@ -42,7 +42,7 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void constructWorld(TiledMap tMap){
+    public void constructWorld(){
 
     }
 
