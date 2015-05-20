@@ -131,8 +131,9 @@ public class PlayView implements Screen,IViewObservable{
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
 
         //Adds the different animation state names in a array
-        currentAnimation = new String[]{"falseRIGHT","falseLEFT","falseNONERIGHT","falseNONELEFT"
-                ,"trueRIGHT","trueLEFT","trueNONERIGHT","trueNONELEFT"};
+        currentAnimation = new String[]{"falseRIGHTfalse","falseLEFTfalse","falseNONERIGHTfalse","falseNONELEFTfalse"
+                ,"trueRIGHTfalse","trueLEFTfalse","trueNONERIGHTfalse","trueNONELEFTfalse", "falseRIGHTtrue","falseLEFTtrue","falseNONERIGHTtrue","falseNONELEFTtrue"
+                ,"trueRIGHTtrue","trueLEFTtrue","trueNONERIGHTtrue","trueNONELEFTtrue"};
         characterNames = new String[]{"mother","soldier","enemy","doctor"};
 
         //Gets the characters and initiates their textures,

@@ -1,0 +1,7 @@
+Move Left
+29
+Jump
+62
+Move Right
+32
+.

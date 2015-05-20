@@ -24,6 +24,10 @@ public class Character implements ICharacter {
     private Direction direction;
     private Direction lastDir;
     private boolean inAir;
+    private boolean damageTaken;
+
+    private int timeCount;
+
 
     private boolean isFollower;
 
@@ -70,6 +74,7 @@ public class Character implements ICharacter {
     @Override
     public void decHP(int value){
         this.setHP(this.getHP() - value);
+        damageTaken = true;
     }
 
     @Override
@@ -202,10 +207,20 @@ public class Character implements ICharacter {
 
     @Override
     public String getMoveState(){
-        if(!this.getDirection().equals(Direction.NONE)) {
-            return "" + inAir + getDirection().toString();
-        }else {
-            return "" + inAir + getDirection().toString() + getLastDirection().toString();
+        boolean tmpDamageTaken = damageTaken;
+
+        if(damageTaken) {
+            if (timeCount < 60) {//is used to decide for how long damageState will continue
+                timeCount++;
+            } else {
+                damageTaken = false;
+                timeCount = 0;
+            }
+        }
+        if (!this.getDirection().equals(Direction.NONE)) {
+            return "" + inAir + getDirection().toString()+ tmpDamageTaken;
+        } else {
+            return "" + inAir + getDirection().toString() + getLastDirection().toString() + tmpDamageTaken;
         }
     }
 

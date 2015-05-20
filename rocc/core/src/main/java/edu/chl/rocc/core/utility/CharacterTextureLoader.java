@@ -64,13 +64,22 @@ public class CharacterTextureLoader {
         }
 
         private void setToDefaultAnimation(){
-            characterAnimations.put("falseRIGHT", "characters/soldier/moveRight.png");
-            characterAnimations.put("falseLEFT", "characters/soldier/moveLeft.png");
-            characterAnimations.put("falseNONERIGHT", "characters/soldier/idleRight.png");
-            characterAnimations.put("falseNONELEFT", "characters/soldier/idleLeft.png");
-            characterAnimations.put("trueRIGHT", "characters/soldier/jumpRight.png");
-            characterAnimations.put("trueLEFT", "characters/soldier/jumpLeft.png");
-            characterAnimations.put("trueNONERIGHT", "characters/soldier/jumpRight.png");
-            characterAnimations.put("trueNONELEFT", "characters/soldier/jumpLeft.png");
+            characterAnimations.put("falseRIGHTfalse", "characters/soldier/moveRight.png");
+            characterAnimations.put("falseLEFTfalse", "characters/soldier/moveLeft.png");
+            characterAnimations.put("falseNONERIGHTfalse", "characters/soldier/idleRight.png");
+            characterAnimations.put("falseNONELEFTfalse", "characters/soldier/idleLeft.png");
+            characterAnimations.put("trueRIGHTfalse", "characters/soldier/jumpRight.png");
+            characterAnimations.put("trueLEFTfalse", "characters/soldier/jumpLeft.png");
+            characterAnimations.put("trueNONERIGHTfalse", "characters/soldier/jumpRight.png");
+            characterAnimations.put("trueNONELEFTfalse", "characters/soldier/jumpLeft.png");
+
+            characterAnimations.put("falseRIGHTtrue", "characters/soldier/moveRightDamage.png");
+            characterAnimations.put("falseLEFTtrue", "characters/soldier/moveLeftDamage.png");
+            characterAnimations.put("falseNONERIGHTtrue", "characters/soldier/idleRightDamage.png");
+            characterAnimations.put("falseNONELEFTtrue", "characters/soldier/idleLeftDamage.png");
+            characterAnimations.put("trueRIGHTtrue", "characters/soldier/jumpRightDamage.png");
+            characterAnimations.put("trueLEFTtrue", "characters/soldier/jumpLeftDamage.png");
+            characterAnimations.put("trueNONERIGHTtrue", "characters/soldier/jumpRightDamage.png");
+            characterAnimations.put("trueNONELEFTtrue", "characters/soldier/jumpLeftDamage.png");
         }
 }
