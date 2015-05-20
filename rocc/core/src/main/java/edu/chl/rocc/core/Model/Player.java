@@ -27,7 +27,7 @@ public class Player implements IPlayer {
     //Index of active/wielded weapon in list 'weapons'
     private int activeWeaponIndex;
     private List<IWeapon> weapons;
-    //private List<IBullet> bullets;
+    private List<IBullet> bullets;
 
     /*
     * Constructor creating a single character and adds it to the character list.
@@ -40,8 +40,9 @@ public class Player implements IPlayer {
 
         this.score = 0;
 
-        this.weapons = new ArrayList<IWeapon>();
         this.activeWeaponIndex = 0;
+        this.weapons = new ArrayList<IWeapon>();
+        this.bullets = new ArrayList<IBullet>();
     }
 
     public Player(List<ICharacter> characters){
@@ -146,16 +147,7 @@ public class Player implements IPlayer {
     @Override
     public void addWeapon(String name){
         synchronized (weapons) {
-            weapons.add(this.factory.createWeapon(name, 160, 400));
-
-            /*if (weapons.isEmpty()) {
-                weapons.add(this.factory.createWeapon(name, 160, 400));
-            } else {
-                weapons.add(this.factory.createWeapon(name,
-                        characters.get(this.activeCharacterIndex).getX(),
-                        characters.get(this.activeCharacterIndex).getY()+16));
-            }
-            */
+            weapons.add(this.factory.createWeapon(name, this.getCharacterXPos(), this.getCharacterYPos()));
         }
     }
 
@@ -165,20 +157,27 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void shoot(float x, float y){
-        // skicka vidare till weapon, som shoot() under
-        // weapon har hand om spawn x/y för bullets
-    }
-
-    @Override
-    public void shoot(float x, float y, float xDir, float yDir){
-        //this.weapons.get(activeWeaponIndex).createBullet(x, y, xDir, yDir);
-    }
-
-    @Override
     public List<IWeapon> getWeapons(){
         return this.weapons;
     }
+
+    @Override
+    public void addBullet(IBullet bullet){
+        this.bullets.add(bullet);
+    }
+
+    @Override
+    public List<IBullet> getBullets(){
+        return this.bullets;
+    }
+
+    @Override
+    public void shoot(float xDir, float yDir){
+        // skicka vidare till weapon, som shoot() under
+        // weapon har hand om spawn x/y för bullets
+        this.bullets.add(this.getWeapon().createBullet(this.getCharacterXPos(), this.getCharacterYPos(), xDir, yDir));
+    }
+
 
     @Override
     public void dispose() {

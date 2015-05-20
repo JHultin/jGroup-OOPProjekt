@@ -92,8 +92,6 @@ public interface IRoCCModel{
      */
     public IWeapon getWeapon();
 
-    public void addBullet(IBullet bullet);
-
     /**
     * @return list of all current existing projectiles in the level.
     */

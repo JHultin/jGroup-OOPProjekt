@@ -60,7 +60,7 @@ public class Level implements ILevel {
 
     @Override
     public void addJumpPoint(IJumpPoint jumpPoint){
-        jumpPoints.add(jumpPoint);
+        this.jumpPoints.add(jumpPoint);
     }
 
     @Override
@@ -70,12 +70,12 @@ public class Level implements ILevel {
 
     @Override
     public void addBullet(IBullet bullet){
-        bullets.add(bullet);
+        this.bullets.add(bullet);
     }
 
     @Override
     public void removeBullet(IBullet bullet) {
-        bullets.remove(bullet);
+        this.bullets.remove(bullet);
     }
 
     @Override

@@ -24,8 +24,6 @@ public interface IPlayer {
     */
     public void moveFollowers(Direction dir);
 
-    public void shoot(float xDir, float yDir);
-
     /**
     * @return x-coordinate of the lead character.
     */
@@ -64,11 +62,16 @@ public interface IPlayer {
     public List<IWeapon> getWeapons();
 
     /**
-     * @return a list of all the players weapons.
+     * Adds a bullet to the bullet list.
      */
-    //public List<IWeapon> getWeapons();
+    public void addBullet(IBullet bullet);
 
-    public void shoot(float x, float y, float xDir, float yDir);
+    /**
+     * @return a list of all existing bullets in the world.
+     */
+    public List<IBullet> getBullets();
+
+    public void shoot(float xDir, float yDir);
 
     public void dispose();
 

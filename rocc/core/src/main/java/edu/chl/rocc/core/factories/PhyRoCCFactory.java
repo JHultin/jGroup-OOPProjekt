@@ -38,7 +38,7 @@ public class PhyRoCCFactory implements IRoCCFactory {
 
     @Override
     public IWeapon createWeapon(String name, float x, float y){
-        return new PhyWeapon(this.world, new PhyBulletFactory(this.world), name, x, y);
+        return new PhyWeapon(new PhyBulletFactory(this.world), name);
     }
 
     @Override

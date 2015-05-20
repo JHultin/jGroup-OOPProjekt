@@ -23,29 +23,18 @@ public class PhyWeapon implements IWeapon {
     private final IWeapon weapon;
     //private final float width, height;
 
-    // kan kanske ta bort world sen då body ej ska finnas och world finns i bulletfactory
-    public PhyWeapon(World world, IBulletFactory bFac, String name, float x, float y){
+    public PhyWeapon(IBulletFactory bFac, String name){
         this.weapon = new Weapon(bFac, name);
     }
 
     @Override
-    public void createBullet(float xDir, float yDir){
-        this.weapon.createBullet(xDir, yDir);
+    public IBullet createBullet(float x, float y, float xDir, float yDir){
+        return this.weapon.createBullet(x, y, xDir, yDir);
     }
 
     @Override
     public String getName(){
         return this.weapon.getName();
-    }
-
-    @Override
-    public float getX(){
-        return this.weapon.getX();
-    }
-
-    @Override
-    public float getY(){
-        return this.weapon.getY();
     }
 
     @Override

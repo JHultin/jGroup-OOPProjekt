@@ -56,12 +56,6 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
-    public void shoot(float x, float y, float xDir, float yDir){
-        //createBullet(x, y, xDir, yDir, "");
-        this.player.shoot(x, y, xDir, yDir);
-    }
-
-    @Override
     public float getCharacterXPos() {
         return this.player.getCharacterXPos();
     }
@@ -99,6 +93,16 @@ public class PhyPlayer implements IPlayer {
     @Override
     public List<IWeapon> getWeapons(){
         return this.player.getWeapons();
+    }
+
+    @Override
+    public void addBullet(IBullet bullet){
+        this.player.addBullet(bullet);
+    }
+
+    @Override
+    public List<IBullet> getBullets(){
+        return this.player.getBullets();
     }
 
     @Override

@@ -324,10 +324,6 @@ public class PhyRoCCModel implements IRoCCModel {
         this.model.createBullet();
     }*/
 
-    public void addBullet(IBullet bullet){
-        this.model.addBullet(bullet);
-    }
-
     @Override
     public List<ICharacter> getCharacters() {
         return this.model.getCharacters();

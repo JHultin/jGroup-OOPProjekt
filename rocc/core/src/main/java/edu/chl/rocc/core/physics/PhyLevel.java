@@ -63,17 +63,17 @@ public class PhyLevel implements ILevel {
 
     @Override
     public List<IBullet> getBullets(){
-        return level.getBullets();
+        return this.level.getBullets();
     }
 
     @Override
     public void addBullet(IBullet bullet){
-        level.addBullet(bullet);
+        this.level.addBullet(bullet);
     }
 
     @Override
     public void removeBullet(IBullet bullet) {
-        level.removeBullet(bullet);
+        this.level.removeBullet(bullet);
     }
     @Override
     public List<IEnemy> getEnemies(){

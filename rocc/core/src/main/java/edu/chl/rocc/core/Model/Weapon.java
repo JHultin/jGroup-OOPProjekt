@@ -19,7 +19,7 @@ public class Weapon implements IWeapon {
 
     private final String name;
     private final float width, height;
-    private float x, y;
+    //private float x, y;
 
     private List<IBullet> bullets;
     private final IBulletFactory bulletFactory;
@@ -38,27 +38,14 @@ public class Weapon implements IWeapon {
     }
 
     @Override
-    public void createBullet(float xDir, float yDir){
-        //this.bulletFactory.createBullet("", 0, 0, xDir, yDir);
-
-        this.bulletFactory.createBullet("", this.getX() + this.bulletSpawnX,
-                this.getY() + this.bulletSpawnY, xDir, yDir);
-        System.out.println("Create bullet in factory.");
+    public IBullet createBullet(float x, float y, float xDir, float yDir){
+        return this.bulletFactory.createBullet("", x + this.bulletSpawnX,
+                y + this.bulletSpawnY, xDir, yDir);
     }
 
     @Override
     public String getName(){
         return this.name;
-    }
-
-    @Override
-    public float getX(){
-        return this.x;
-    }
-
-    @Override
-    public float getY(){
-        return this.y;
     }
 
     @Override
