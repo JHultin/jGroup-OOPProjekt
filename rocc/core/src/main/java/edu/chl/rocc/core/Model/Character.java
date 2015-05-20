@@ -74,7 +74,7 @@ public class Character implements ICharacter {
 
     @Override
     public void move(Direction dir){
-        if(!dir.equals(Direction.NONE)){
+        if(!direction.equals(Direction.NONE)) {
             lastDir = direction;
         }
         direction = dir;
@@ -207,10 +207,10 @@ public class Character implements ICharacter {
 
     @Override
     public String getMoveState(){
-        if(this.getDirection() == Direction.NONE) {
-            return "" + inAir + getDirection().toString() + getLastDirection().toString();
-        }else {
+        if(!this.getDirection().equals(Direction.NONE)) {
             return "" + inAir + getDirection().toString();
+        }else {
+            return "" + inAir + getDirection().toString() + getLastDirection().toString();
         }
     }
 
