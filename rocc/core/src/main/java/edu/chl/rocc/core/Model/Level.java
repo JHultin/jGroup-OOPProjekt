@@ -121,8 +121,8 @@ public class Level implements ILevel {
     public void updateTime() {
         if (timeCheck < 60) {
             timeCheck++;
-        } else if (timeCheck >= 60) {
-            timeCheck = 0;
+        } else if (timeCheck == 60) {
+            timeCheck = 1;
             time++;
         }
     }

@@ -311,15 +311,15 @@ public class PlayView implements Screen,IViewObservable{
     /**
      * A method which places all the animation textures in a hashMap.
      */
-    //this method isn't nearly done, it has be less repeated code.
     public void addToAnimationHashMap(String character){
         CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character);
         HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
 
         for(int i = 0; i<currentAnimation.length; i++){
             TextureRegion[] textureRegions;
+            Texture texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture(
+                    currentAnimation[i])));
 
-            Texture texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture(currentAnimation[i])));
             if(texture.getWidth() > 50){//Checks if texture contains several images and needs to split
                 textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
             }else{
