@@ -64,4 +64,9 @@ public interface IEnemy {
      * @param dir
      */
     public void move(Direction dir);
+
+    /**
+     * @return the enemy moveState as a string
+     */
+    public String getMoveState();
 }

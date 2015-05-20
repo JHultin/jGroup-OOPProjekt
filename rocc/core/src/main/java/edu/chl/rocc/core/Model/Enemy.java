@@ -16,6 +16,9 @@ public class Enemy implements IEnemy{
     private final String name;
     private Direction direction;
     private Direction lastDir;
+    private boolean damageTaken;//A boolean to keep track if damageBeingTaken
+
+    private int timeCount;
 
     public Enemy(int healthPoints, String enemyName, float x, float y){
        this.setHP(healthPoints);
@@ -59,6 +62,7 @@ public class Enemy implements IEnemy{
     @Override
     public void decHP(int value) {
         this.setHP(this.healthPoints - value);
+        damageTaken = true;
     }
 
     @Override
@@ -83,7 +87,7 @@ public class Enemy implements IEnemy{
 
     @Override
     public Direction getDirection() {
-        return null;
+        return direction;
     }
 
     @Override
@@ -92,5 +96,21 @@ public class Enemy implements IEnemy{
                 lastDir = direction;
             }
             direction = dir;
+    }
+
+    @Override
+    public String getMoveState(){
+        boolean tmpDamageTaken = damageTaken;
+
+        if(damageTaken) {
+            if (timeCount < 60) {//is used to decide for how long damageState will continue
+                timeCount++;
+            } else {
+                damageTaken = false;
+                timeCount = 0;
+            }
+        }
+
+        return "" + false + getDirection().toString() + tmpDamageTaken;
     }
 }

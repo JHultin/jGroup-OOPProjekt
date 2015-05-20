@@ -134,7 +134,7 @@ public class PlayView implements Screen,IViewObservable{
         currentAnimation = new String[]{"falseRIGHTfalse","falseLEFTfalse","falseNONERIGHTfalse","falseNONELEFTfalse"
                 ,"trueRIGHTfalse","trueLEFTfalse","trueNONERIGHTfalse","trueNONELEFTfalse", "falseRIGHTtrue","falseLEFTtrue","falseNONERIGHTtrue","falseNONELEFTtrue"
                 ,"trueRIGHTtrue","trueLEFTtrue","trueNONERIGHTtrue","trueNONELEFTtrue"};
-        characterNames = new String[]{"mother","soldier","enemy","doctor","noEyes"};
+        characterNames = new String[]{"mother","soldier","zombie","doctor","noEyes"};
 
         //Gets the characters and initiates their textures,
         //this has to be in show because otherwise the model.getCharacters aren't initiated.
@@ -147,7 +147,7 @@ public class PlayView implements Screen,IViewObservable{
         textures.put("weapon" , new Texture(Gdx.files.internal("weapons/AK-47.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
         textures.put("noEyes"  , new Texture(Gdx.files.internal("characters/noEyes/idleLeft.png")));
-        textures.put("enemy"   , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
+        textures.put("zombie"   , new Texture(Gdx.files.internal("characters/zombie/idleLeft.png")));
 
     }
 
@@ -218,7 +218,17 @@ public class PlayView implements Screen,IViewObservable{
         }
         synchronized (model.getEnemies()) {
             for (IEnemy enemy : model.getEnemies()) {
-                batch.draw(textures.get("enemy"), enemy.getX(), enemy.getY());
+                if(charactersAnimationHashMap.containsKey(enemy.getName())) {
+                    //System.out.println(enemy.getName());
+                    charactersAnimationHashMap.get(enemy.getName()).get(enemy.getMoveState()).update();
+                    textureRegion = new TextureRegion(
+                            charactersAnimationHashMap.get(enemy.getName()).get(enemy.getMoveState()).getFrame());
+
+                    batch.draw(textureRegion, enemy.getX(), enemy.getY());
+                }else{
+                    System.out.println(enemy.getName());
+                    batch.draw(textures.get("zombie"), enemy.getX(), enemy.getY());
+                }
             }
         }
 

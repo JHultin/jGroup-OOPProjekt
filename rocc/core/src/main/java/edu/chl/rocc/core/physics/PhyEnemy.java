@@ -41,7 +41,7 @@ public class PhyEnemy implements IEnemy {
         this.world = world;
         this.width = 16 / PPM;
         this.height = 25 / PPM;
-        this.enemy = new Enemy(health, "", 0, 0);
+        this.enemy = new Enemy(health, name, 0, 0);
         this.direction = Direction.LEFT;
 
 
@@ -138,6 +138,11 @@ public class PhyEnemy implements IEnemy {
     public void dispose() {
         this.enemy.dispose();
         world.destroyBody(body);
+    }
+
+    @Override
+    public String getMoveState(){
+        return enemy.getMoveState();
     }
 
     /*
