@@ -1,7 +1,5 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
-import org.jbox2d.dynamics.World;
-
 /**
  * Interface for projectiles.
  *
