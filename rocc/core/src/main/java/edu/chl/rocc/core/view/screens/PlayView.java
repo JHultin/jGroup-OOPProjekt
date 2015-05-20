@@ -136,10 +136,10 @@ public class PlayView implements Screen,IViewObservable{
 
 
         textures = new HashMap<String, Texture>();
-        textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
-        textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
+        textures.put("food"    , new Texture(Gdx.files.internal("shaitpizza.png")));
+        textures.put("bullet"  , new Texture(Gdx.files.internal("bullet.png")));
         textures.put("doctor"  , new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")));
-        textures.put("enemy"  , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
+        textures.put("enemy"   , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
 
     }
 
