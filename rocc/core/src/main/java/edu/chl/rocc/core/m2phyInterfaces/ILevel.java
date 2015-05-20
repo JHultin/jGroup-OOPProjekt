@@ -1,7 +1,5 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
-import org.jbox2d.dynamics.World;
-
 import java.util.List;
 
 /**
@@ -12,8 +10,6 @@ public interface ILevel {
     public void addBlock(IBody body);
 
     public void updateWorld(float dt);
-
-    public World getWorld();
 
     public void addPickupable(IPickupable pickup);
 

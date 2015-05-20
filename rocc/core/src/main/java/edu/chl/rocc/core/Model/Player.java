@@ -4,9 +4,7 @@ import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
-
 import java.lang.*;
-import java.lang.Character;
 import java.util.ArrayList;
 import java.util.List;
 
