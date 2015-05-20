@@ -53,6 +53,7 @@ public class PlayView implements Screen,IViewObservable{
     //ANIMATION
     private HashMap<String,HashMap<String,AnimationHandler>> charactersAnimationHashMap;
     private TextureRegion textureRegion;
+    private String[] characterNames;
     private String[] currentAnimation;
     //ANIMATION TEST END
 
@@ -131,9 +132,13 @@ public class PlayView implements Screen,IViewObservable{
         //Adds the different animation state names in a array
         currentAnimation = new String[]{"falseRIGHT","falseLEFT","falseNONERIGHT","falseNONELEFT"
                 ,"trueRIGHT","trueLEFT","trueNONERIGHT","trueNONELEFT"};
+        characterNames = new String[]{"mother","soldier","enemy","doctor"};
 
-
-
+        //Gets the characters and initiates their textures,
+        //this has to be in show because otherwise the model.getCharacters aren't initiated.
+        for(int i = 0; i<characterNames.length; i++) {
+            addToAnimationHashMap(characterNames[i]);
+        }
 
         textures = new HashMap<String, Texture>();
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
@@ -146,11 +151,7 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void show() {
-        //Gets the characters and initiates their textures,
-        //this has to be in show because otherwise the model.getCharacters aren't initiated.
-        for(ICharacter character : model.getCharacters()) {
-            addToAnimationHashMap(character);
-        }
+
     }
 
     @Override
@@ -311,8 +312,8 @@ public class PlayView implements Screen,IViewObservable{
      * A method which places all the animation textures in a hashMap.
      */
     //this method isn't nearly done, it has be less repeated code.
-    public void addToAnimationHashMap(ICharacter character){
-        CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character.getName());
+    public void addToAnimationHashMap(String character){
+        CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character);
         HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
 
         for(int i = 0; i<currentAnimation.length; i++){
@@ -328,7 +329,7 @@ public class PlayView implements Screen,IViewObservable{
             animationHashmap.put(currentAnimation[i], new AnimationHandler(textureRegions, 1 / 12f));
         }
 
-        charactersAnimationHashMap.put(character.getName(), animationHashmap);
+        charactersAnimationHashMap.put(character, animationHashmap);
     }//addToAnimationHashMap end
 
 
