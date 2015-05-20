@@ -1,6 +1,5 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.model.Direction;
