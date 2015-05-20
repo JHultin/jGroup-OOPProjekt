@@ -21,6 +21,7 @@ public class RoCCModel implements IRoCCModel {
 
     // Handles all characters and weapons
     private IPlayer player;
+    private IWeapon weapon;
 
     /**
      * Constructor for the model, creates a player and a level defined by a factory
@@ -30,6 +31,7 @@ public class RoCCModel implements IRoCCModel {
     public RoCCModel(IRoCCFactory factory){
         level = factory.createLevel("");
         player = factory.createPlayer("");
+        //this.weapon = player.getWeapon();
     }
 
     @Override
@@ -78,8 +80,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void shoot(float x, float y){
-        //level.setAim(x, y);
-        level.createBullet(this.getCharacterXPos(), this.getCharacterYPos(), x, y);
+        this.player.getWeapon().createBullet(this.getCharacterXPos(), this.getCharacterYPos(), x, y);
     }
 
     @Override
@@ -138,6 +139,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void addBullet(IBullet bullet) {
         
+    }
+
+    @Override
+    public void addWeapon(String name){
+        this.player.addWeapon(name);
     }
 
     @Override

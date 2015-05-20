@@ -40,7 +40,13 @@ public class RoCCFactory implements IRoCCFactory {
         return new PickupableCharacter(name);
     }
 
+    @Override
     public IEnemy createEnemy(String name, int x, int y, int hp){
         return new Enemy(hp, name, x, y);
+    }
+
+    @Override
+    public IWeapon createWeapon(String name, float x, float y){
+        return new Weapon(new BulletFactory(), name);
     }
 }

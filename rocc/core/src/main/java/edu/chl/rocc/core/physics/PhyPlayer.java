@@ -2,9 +2,11 @@ package edu.chl.rocc.core.physics;
 
 import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.controller.IDeathListener;
+import edu.chl.rocc.core.factories.PhyBulletFactory;
 import edu.chl.rocc.core.factories.PhyRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
+import edu.chl.rocc.core.m2phyInterfaces.IWeapon;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.model.Player;
@@ -21,12 +23,16 @@ public class PhyPlayer implements IPlayer {
 
     private IPlayer player;
     private World world;
-    private List<IBullet> bullets;
+
+    //private IWeapon weapon;
+    //private List<IBullet> bullets;
 
     public PhyPlayer(World world){
         this.player = new Player(new PhyRoCCFactory(world));
-        this.bullets = new ArrayList<IBullet>();
         this.world = world;
+
+        //this.weapon = new PhyWeapon(new PhyBulletFactory(world));
+        //this.bullets = new ArrayList<IBullet>();
     }
 
     @Override
@@ -54,8 +60,10 @@ public class PhyPlayer implements IPlayer {
         return this.player.frontCharacterIsMoving();
     }
 
+    @Override
     public void shoot(float x, float y, float xDir, float yDir){
-        createBullet(x, y, xDir, yDir, "");
+        //createBullet(x, y, xDir, yDir, "");
+        this.player.shoot(x, y, xDir, yDir);
     }
 
     @Override
@@ -84,11 +92,18 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
+    public void addWeapon(String name){
+        this.player.addWeapon(name);
+    }
+
+    @Override
+    public IWeapon getWeapon(){
+        return this.player.getWeapon();
+    }
+
+    @Override
     public void dispose() {
         player.dispose();
-        for (IBullet bullet : bullets){
-            bullet.dispose();
-        }
     }
 
     @Override
@@ -100,9 +115,11 @@ public class PhyPlayer implements IPlayer {
     * Creates and fires a bullet.
     * Temporarily placed in PhyPlayer, will later be moved to a Weapon class.
     */
+    /*
     public void createBullet(float x, float y, float xDir, float yDir, String name){
-        bullets.add(new PhyBullet(this.world, x, y, xDir, yDir, name));
+        bullets.add(new PhyBullet(this.world, name, x, y, xDir, yDir));
     }
+    */
 
     @Override
     public void addToScore(int value){

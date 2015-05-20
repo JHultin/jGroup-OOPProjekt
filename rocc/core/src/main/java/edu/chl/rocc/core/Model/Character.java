@@ -10,8 +10,8 @@ import java.util.List;
 
 
 /**
- * A class for the playable characters.
- * Handeling data and setters/getters.
+ * A class for the playable characters, handeling data and setters/getters.
+ * <br>Implements ICharacter.
  *
  * @author Jenny Orell
  */

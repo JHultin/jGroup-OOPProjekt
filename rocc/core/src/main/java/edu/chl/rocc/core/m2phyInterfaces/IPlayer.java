@@ -48,6 +48,12 @@ public interface IPlayer {
      */
     public List<ICharacter> getCharacters();
 
+    public void addWeapon(String name);
+
+    public IWeapon getWeapon();
+
+    public void shoot(float x, float y, float xDir, float yDir);
+
     public void dispose();
 
     /**

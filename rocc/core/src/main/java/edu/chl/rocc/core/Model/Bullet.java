@@ -6,6 +6,7 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
  * Class for projectiles.
+ * <br>Implements IBullet.
  *
  * @author Jenny Orell
  */
@@ -14,7 +15,7 @@ public class Bullet implements IBullet {
     private final float x, y;
     private final String name;
 
-    public Bullet(float x, float y, String name){
+    public Bullet(String name, float x, float y){
         this.x = x / PPM;
         this.y = y / PPM;
         this.name = name;

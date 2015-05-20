@@ -11,6 +11,7 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
  * Class for projectiles handling the physics.
+ * <br>Implements IBullet.
  *
  * @author Jenny Orell
  */
@@ -31,12 +32,13 @@ public class PhyBullet implements IBullet {
      */
 
 
+    //public PhyBullet(World world, float x, float y, float xDir, float yDir, String name /*, boolean isEnemyBullet*/){
 
-    public PhyBullet(World world, float x, float y, float xDir, float yDir, String name /*, boolean isEnemyBullet*/){
+    public PhyBullet(World world, String name, float x, float y, float xDir, float yDir /*, boolean isEnemyBullet*/){
         this.world = world;
         //this.direction = vec;
-        this.bullet = new Bullet(x / PPM, y / PPM, name);
         bulletDamage = 5;
+        this.bullet = new Bullet(name, x / PPM, y / PPM);
         this.velocity = 500 / PPM;
 
         //Defining & creating body

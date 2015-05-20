@@ -325,6 +325,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void addWeapon(String name){
+        this.model.addWeapon(name);
+    }
+
+    @Override
     public List<ICharacter> getCharacters() {
         return this.model.getCharacters();
     }

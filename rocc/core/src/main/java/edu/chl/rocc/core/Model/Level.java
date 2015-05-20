@@ -64,11 +64,6 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void createBullet(float x, float y, float xDir, float yDir){
-
-    }
-
-    @Override
     public List<IBullet> getBullets(){
         return this.bullets;
     }

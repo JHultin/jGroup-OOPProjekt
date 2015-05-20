@@ -21,4 +21,6 @@ public interface IRoCCFactory {
 
     public IEnemy createEnemy(String name, int x, int y, int hp);
 
+    public IWeapon createWeapon(String name, float x, float y);
+
 }

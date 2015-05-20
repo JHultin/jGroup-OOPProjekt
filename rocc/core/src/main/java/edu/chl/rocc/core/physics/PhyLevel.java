@@ -62,12 +62,6 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public void createBullet(float x, float y, float xDir, float yDir){
-        IBullet bullet = new PhyBullet(this.world, x, y, xDir, yDir, "");
-        this.addBullet(bullet);
-    }
-
-    @Override
     public List<IBullet> getBullets(){
         return level.getBullets();
     }

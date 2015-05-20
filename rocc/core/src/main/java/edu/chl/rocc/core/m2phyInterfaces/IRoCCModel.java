@@ -91,6 +91,8 @@ public interface IRoCCModel{
 
     public void addBullet(IBullet bullet);
 
+    public void addWeapon(String name);
+
     /**
     * Creates a bullet/projectile.
     * Add it to list of current existing projectiles.

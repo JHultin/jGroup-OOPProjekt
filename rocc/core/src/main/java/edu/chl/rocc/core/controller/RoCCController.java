@@ -10,6 +10,7 @@ import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.options.KeyOptions;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
+import edu.chl.rocc.core.physics.PhyWeapon;
 import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -119,6 +120,8 @@ public class RoCCController implements Runnable{
             this.model.addCharacter("soldier", deathListener);
 
             this.model.getPlayer().setActiveCharacter(0);
+
+            this.model.addWeapon("weapon");
 
             // Restart the thread and apply correct inputprocessor
             /*isRunning = false;

@@ -20,11 +20,6 @@ public interface ILevel {
     public void addJumpPoint(IJumpPoint jumpPoint);
 
     /**
-    * Create a bullet/projectile.
-    */
-    public void createBullet(float x, float y, float xDir, float yDir);
-
-    /**
     * Returns a list of all current existing projectiles in the level.
     */
     public List<IBullet> getBullets();

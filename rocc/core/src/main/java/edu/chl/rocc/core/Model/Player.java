@@ -1,9 +1,12 @@
 package edu.chl.rocc.core.model;
 
 import edu.chl.rocc.core.controller.IDeathListener;
+import edu.chl.rocc.core.factories.BulletFactory;
 import edu.chl.rocc.core.factories.IRoCCFactory;
+import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
+import edu.chl.rocc.core.m2phyInterfaces.IWeapon;
 import java.lang.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +24,10 @@ public class Player implements IPlayer {
 
     private int score;
 
-   // private List<Weapon> weapons;
+    //private IWeapon weapon;
+    private List<IWeapon> weapons;
+    private int activeWeaponIndex;
+    private List<IBullet> bullets;
 
     /*
     * Constructor creating a single character and adds it to the character list.
@@ -33,6 +39,11 @@ public class Player implements IPlayer {
         this.factory = factory;
 
         this.score = 0;
+
+        //this.weapon = new Weapon(new BulletFactory());
+
+        this.weapons = new ArrayList<IWeapon>();
+        this.activeWeaponIndex = 0;
     }
 
     public Player(List<ICharacter> characters){
@@ -135,10 +146,44 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public void addWeapon(String name){
+        //this.weapons.add(weapon);
+
+        synchronized (weapons) {
+            weapons.add(this.factory.createWeapon(name, 160, 400));
+            /*if (weapons.isEmpty()) {
+                weapons.add(this.factory.createWeapon(name, 160, 400));
+            } else {
+                weapons.add(this.factory.createWeapon(name,
+                        characters.get(this.activeCharacterIndex).getX(),
+                        characters.get(this.activeCharacterIndex).getY()+16));
+            }
+            */
+        }
+    }
+
+    @Override
+    public IWeapon getWeapon(){
+        return this.weapons.get(activeWeaponIndex);
+    }
+
+    @Override
+    public void shoot(float x, float y, float xDir, float yDir){
+        this.weapons.get(activeWeaponIndex).createBullet(x, y, xDir, yDir);
+    }
+
+    @Override
     public void dispose() {
+        this.weapons.get(activeWeaponIndex).dispose();
+
         for(ICharacter character : characters){
             character.dispose();
         }
+        /*
+        for (IBullet bullet : bullets){
+            bullet.dispose();
+        }
+        */
     }
 
     @Override
