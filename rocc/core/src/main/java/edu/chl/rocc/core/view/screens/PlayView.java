@@ -222,7 +222,7 @@ public class PlayView implements Screen,IViewObservable{
         }
 
         //batch.draw(textures.get("weapon"), model.getCharacterXPos(0) + 8, model.getCharacterYPos(0) + 5);
-        batch.draw(textures.get("weapon"), model.getWeapon().getX(), model.getWeapon().getY());
+        //batch.draw(textures.get("weapon"), model.getWeapon().getX(), model.getWeapon().getY());
 
         batch.end();
 

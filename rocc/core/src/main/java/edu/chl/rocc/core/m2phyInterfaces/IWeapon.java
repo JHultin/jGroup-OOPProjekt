@@ -13,6 +13,11 @@ public interface IWeapon {
     public void createBullet(float xDir, float yDir);
 
     /**
+     * @return the name/ID of the weapon.
+     */
+    public String getName();
+
+    /**
      * @return the x-coordinate of the weapon.
      */
     public float getX();
@@ -21,8 +26,6 @@ public interface IWeapon {
      * @return the y-coordinate of the weapon.
      */
     public float getY();
-
-    public String getName();
 
     public void dispose();
 

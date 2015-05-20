@@ -61,7 +61,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void jump() {
-        player.jump();
+        this.player.jump();
     }
 
     @Override
@@ -127,6 +127,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void addWeapon(String name){
+        this.player.addWeapon(name);
+    }
+
+    @Override
     public IWeapon getWeapon(){
         return this.player.getWeapon();
     }
@@ -139,11 +144,6 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void addBullet(IBullet bullet) {
         
-    }
-
-    @Override
-    public void addWeapon(String name){
-        this.player.addWeapon(name);
     }
 
     @Override

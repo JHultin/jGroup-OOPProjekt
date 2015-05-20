@@ -95,11 +95,6 @@ public class Character implements ICharacter {
     public void toggleFollowerOnJumpPoint(){ }
 
     @Override
-    public boolean isOnJumpPoint(){
-        return false;
-    }
-
-    @Override
     public void hitGround() {
         inAir = false;
     }

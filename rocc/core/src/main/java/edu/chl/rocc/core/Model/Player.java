@@ -24,10 +24,10 @@ public class Player implements IPlayer {
 
     private int score;
 
-    //private IWeapon weapon;
-    private List<IWeapon> weapons;
+    //Index of active/wielded weapon in list 'weapons'
     private int activeWeaponIndex;
-    private List<IBullet> bullets;
+    private List<IWeapon> weapons;
+    //private List<IBullet> bullets;
 
     /*
     * Constructor creating a single character and adds it to the character list.
@@ -39,8 +39,6 @@ public class Player implements IPlayer {
         this.factory = factory;
 
         this.score = 0;
-
-        //this.weapon = new Weapon(new BulletFactory());
 
         this.weapons = new ArrayList<IWeapon>();
         this.activeWeaponIndex = 0;

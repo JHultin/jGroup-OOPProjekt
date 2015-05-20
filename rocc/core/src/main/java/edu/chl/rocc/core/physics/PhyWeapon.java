@@ -34,6 +34,11 @@ public class PhyWeapon implements IWeapon {
     }
 
     @Override
+    public String getName(){
+        return this.weapon.getName();
+    }
+
+    @Override
     public float getX(){
         return this.weapon.getX();
     }
@@ -41,11 +46,6 @@ public class PhyWeapon implements IWeapon {
     @Override
     public float getY(){
         return this.weapon.getY();
-    }
-
-    @Override
-    public String getName(){
-        return this.weapon.getName();
     }
 
     @Override

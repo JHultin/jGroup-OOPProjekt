@@ -304,6 +304,10 @@ public class PhyRoCCModel implements IRoCCModel {
         model.removeBullets(bulletsToRemove);
     }
 
+    @Override
+    public void addWeapon(String name){
+        this.model.addWeapon(name);
+    }
 
     @Override
     public IWeapon getWeapon(){
@@ -322,11 +326,6 @@ public class PhyRoCCModel implements IRoCCModel {
 
     public void addBullet(IBullet bullet){
         this.model.addBullet(bullet);
-    }
-
-    @Override
-    public void addWeapon(String name){
-        this.model.addWeapon(name);
     }
 
     @Override

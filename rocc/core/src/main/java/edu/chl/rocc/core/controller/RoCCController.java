@@ -121,6 +121,7 @@ public class RoCCController implements Runnable{
 
             this.model.getPlayer().setActiveCharacter(0);
 
+            // Create weapon
             this.model.addWeapon("weapon");
 
             // Restart the thread and apply correct inputprocessor

@@ -83,13 +83,16 @@ public interface IRoCCModel{
     public void removeItems(List<IPickupable> itemsToRemove);
 
     /**
+     * Add a weapon.
+     */
+    public void addWeapon(String name);
+
+    /**
      * @return the current wielded weapon.
      */
     public IWeapon getWeapon();
 
     public void addBullet(IBullet bullet);
-
-    public void addWeapon(String name);
 
     /**
     * @return list of all current existing projectiles in the level.

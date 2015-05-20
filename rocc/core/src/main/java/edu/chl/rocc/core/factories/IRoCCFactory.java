@@ -17,10 +17,10 @@ public interface IRoCCFactory {
 
     public IFood createFood(String name, int x, int y);
 
+    public IWeapon createWeapon(String name, float x, float y);
+
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y);
 
     public IEnemy createEnemy(String name, int x, int y, int hp);
-
-    public IWeapon createWeapon(String name, float x, float y);
 
 }

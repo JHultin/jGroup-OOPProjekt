@@ -36,6 +36,11 @@ public class RoCCFactory implements IRoCCFactory {
     }
 
     @Override
+    public IWeapon createWeapon(String name, float x, float y){
+        return new Weapon(new BulletFactory(), name);
+    }
+
+    @Override
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
         return new PickupableCharacter(name);
     }
@@ -43,10 +48,5 @@ public class RoCCFactory implements IRoCCFactory {
     @Override
     public IEnemy createEnemy(String name, int x, int y, int hp){
         return new Enemy(hp, name, x, y);
-    }
-
-    @Override
-    public IWeapon createWeapon(String name, float x, float y){
-        return new Weapon(new BulletFactory(), name);
     }
 }

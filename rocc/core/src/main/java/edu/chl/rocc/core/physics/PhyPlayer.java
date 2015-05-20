@@ -25,18 +25,9 @@ public class PhyPlayer implements IPlayer {
     private final IPlayer player;
     private final World world;
 
-    private int activeWeaponIndex;
-    //private IWeapon weapon;
-    private List<IWeapon> weapons;
-    //private List<IBullet> bullets;
-
     public PhyPlayer(World world){
         this.player = new Player(new PhyRoCCFactory(world));
         this.world = world;
-
-        this.activeWeaponIndex = 0;
-        this.weapons = new ArrayList<IWeapon>();
-        //this.bullets = new ArrayList<IBullet>();
     }
 
     @Override
@@ -107,7 +98,7 @@ public class PhyPlayer implements IPlayer {
 
     @Override
     public List<IWeapon> getWeapons(){
-        return this.weapons;
+        return this.player.getWeapons();
     }
 
     @Override
@@ -135,16 +126,6 @@ public class PhyPlayer implements IPlayer {
     public float getDistance(int i){
         return this.player.getDistance(i);
     }
-
-    /*
-    * Creates and fires a bullet.
-    * Temporarily placed in PhyPlayer, will later be moved to a Weapon class.
-    */
-    /*
-    public void createBullet(float x, float y, float xDir, float yDir, String name){
-        bullets.add(new PhyBullet(this.world, name, x, y, xDir, yDir));
-    }
-    */
 
     @Override
     public void addToScore(int value){

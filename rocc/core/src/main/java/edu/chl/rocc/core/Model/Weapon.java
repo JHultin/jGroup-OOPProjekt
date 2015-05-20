@@ -47,6 +47,11 @@ public class Weapon implements IWeapon {
     }
 
     @Override
+    public String getName(){
+        return this.name;
+    }
+
+    @Override
     public float getX(){
         return this.x;
     }
@@ -54,11 +59,6 @@ public class Weapon implements IWeapon {
     @Override
     public float getY(){
         return this.y;
-    }
-
-    @Override
-    public String getName(){
-        return this.name;
     }
 
     @Override

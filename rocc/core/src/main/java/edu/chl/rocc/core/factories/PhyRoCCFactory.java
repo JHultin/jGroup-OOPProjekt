@@ -37,6 +37,11 @@ public class PhyRoCCFactory implements IRoCCFactory {
     }
 
     @Override
+    public IWeapon createWeapon(String name, float x, float y){
+        return new PhyWeapon(this.world, new PhyBulletFactory(this.world), name, x, y);
+    }
+
+    @Override
     public IPickupableCharacter createPickupAbleCharacter(String name, int x, int y) {
         return new PhyPickupableCharacter(name, world, x, y);
     }
@@ -44,10 +49,5 @@ public class PhyRoCCFactory implements IRoCCFactory {
     @Override
     public IEnemy createEnemy(String name, int x, int y, int hp) {
         return new PhyEnemy(this.world, x, y , name);
-    }
-
-    @Override
-    public IWeapon createWeapon(String name, float x, float y){
-        return new PhyWeapon(this.world, new PhyBulletFactory(this.world), name, x, y);
     }
 }

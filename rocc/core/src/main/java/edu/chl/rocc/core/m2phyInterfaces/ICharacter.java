@@ -46,8 +46,6 @@ public interface ICharacter extends IMortal{
 
     public void toggleFollowerOnJumpPoint();
 
-    public boolean isOnJumpPoint();
-
     public void hitGround();
 
     public void leftGround();
