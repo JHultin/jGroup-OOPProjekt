@@ -128,6 +128,10 @@ public class PlayView implements Screen,IViewObservable{
          */
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
 
+        //Adds the different animation state names in a array
+        currentAnimation = new String[]{"falseRIGHT","falseLEFT","falseNONERIGHT","falseNONELEFT"
+                ,"trueRIGHT","trueLEFT","trueNONERIGHT","trueNONELEFT"};
+
 
 
 
@@ -144,9 +148,6 @@ public class PlayView implements Screen,IViewObservable{
     public void show() {
         //Gets the characters and initiates their textures,
         //this has to be in show because otherwise the model.getCharacters aren't initiated.
-        currentAnimation = new String[]{"falseRIGHT","falseLEFT","falseNONERIGHT","falseNONELEFT"
-                ,"trueRIGHT","trueLEFT","trueNONERIGHT","trueNONELEFT"};
-
         for(ICharacter character : model.getCharacters()) {
             addToAnimationHashMap(character);
         }
