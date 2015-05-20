@@ -53,6 +53,7 @@ public class PlayView implements Screen,IViewObservable{
     //ANIMATION
     private HashMap<String,HashMap<String,AnimationHandler>> charactersAnimationHashMap;
     private TextureRegion textureRegion;
+    private String[] currentAnimation;
     //ANIMATION TEST END
 
     //Pause windowtest
@@ -143,6 +144,9 @@ public class PlayView implements Screen,IViewObservable{
     public void show() {
         //Gets the characters and initiates their textures,
         //this has to be in show because otherwise the model.getCharacters aren't initiated.
+        currentAnimation = new String[]{"falseRIGHT","falseLEFT","falseNONERIGHT","falseNONELEFT"
+                ,"trueRIGHT","trueLEFT","trueNONERIGHT","trueNONELEFT"};
+
         for(ICharacter character : model.getCharacters()) {
             addToAnimationHashMap(character);
         }
@@ -301,56 +305,31 @@ public class PlayView implements Screen,IViewObservable{
         batch.draw(textureRegion, character.getX(), character.getY());
     }//renderCharacter end
 
+
     /**
      * A method which places all the animation textures in a hashMap.
      */
     //this method isn't nearly done, it has be less repeated code.
     public void addToAnimationHashMap(ICharacter character){
-            CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character.getName());
-            HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
+        CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character.getName());
+        HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
 
-            //Move Right
-            Texture texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseRIGHT")));
-            TextureRegion[] textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
-            animationHashmap.put("falseRIGHT", new AnimationHandler(textureRegions, 1 / 12f));
+        for(int i = 0; i<currentAnimation.length; i++){
+            TextureRegion[] textureRegions;
 
-            //Move Left
-            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseLEFT")));
-            textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
-            animationHashmap.put("falseLEFT", new AnimationHandler(textureRegions, 1 / 12f));
+            Texture texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture(currentAnimation[i])));
+            if(texture.getWidth() > 50){//Checks if texture contains several images and needs to split
+                textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
+            }else{
+                textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
+            }
 
-            //IdleRight
-            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseNONERIGHT")));
-            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-            animationHashmap.put("falseNONERIGHT", new AnimationHandler(textureRegions, 1 / 1f));
+            animationHashmap.put(currentAnimation[i], new AnimationHandler(textureRegions, 1 / 12f));
+        }
 
-            //IdleRight
-            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("falseNONELEFT")));
-            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-            animationHashmap.put("falseNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
-
-            //JumpRight
-            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueRIGHT")));
-            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-            animationHashmap.put("trueRIGHT", new AnimationHandler(textureRegions, 1 / 1f));
-
-            //JumpLeft
-            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueLEFT")));
-            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-            animationHashmap.put("trueLEFT", new AnimationHandler(textureRegions, 1 / 1f));
-
-            //JumpIdleRight
-            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueNONERIGHT")));
-            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-            animationHashmap.put("trueNONERIGHT", new AnimationHandler(textureRegions, 1 / 1f));
-
-            //JumpIdleLeft
-            texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture("trueNONELEFT")));
-            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-            animationHashmap.put("trueNONELEFT", new AnimationHandler(textureRegions, 1 / 1f));
-
-            charactersAnimationHashMap.put(character.getName(), animationHashmap);
+        charactersAnimationHashMap.put(character.getName(), animationHashmap);
     }//addToAnimationHashMap end
+
 
     public void createPauseWindow(){
         Window.WindowStyle pauseWindowStyle = new Window.WindowStyle();
