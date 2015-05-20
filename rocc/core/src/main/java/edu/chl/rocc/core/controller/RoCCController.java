@@ -119,7 +119,7 @@ public class RoCCController implements Runnable{
             this.model.addCharacter("doctor" , deathListener);
             this.model.addCharacter("soldier", deathListener);
 
-            this.model.getPlayer().setActiveCharacter(0);
+            this.model.setActiveCharacter(0);
 
             // Create weapon
             this.model.addWeapon("weapon");

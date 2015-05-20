@@ -124,7 +124,7 @@ public class PhyRoCCModel implements IRoCCModel {
                         Body body = world.createBody(bDef);
                         body.createFixture(fDef);
                         // Then let the level create the block in the world
-                        model.getLevel().addBlock(new PhyBody(body));
+                        model.addBlock(new PhyBody(body));
                     }
                 }
             }
@@ -140,7 +140,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
                 IFood food = new PhyFood(world, x, y);
-                model.getLevel().addPickupable(food);
+                model.addPickupable(food);
             }
         }
         // Do the same with the pickupable characters
@@ -152,7 +152,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
                 IPickupableCharacter ipc = new PhyPickupableCharacter("doctor", world, x, y);
-                model.getLevel().addPickupable(ipc);
+                model.addPickupable(ipc);
             }
         }
 
@@ -166,7 +166,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float y = ((Float) point.getProperties().get("y")) / PPM;
 
                 IJumpPoint ijp = new PhyJumpPoint(world, dir , x, y);
-                model.getLevel().addJumpPoint(ijp);
+                model.addJumpPoint(ijp);
             }
         }
 
@@ -180,7 +180,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float height = ((Float) finish.getProperties().get("height")) / PPM;
 
                 IFinishPoint finPoint = new PhyFinishPoint(world, x, y, width, height);
-                model.getLevel().addFinish(finPoint);
+                model.addFinish(finPoint);
             }
         }
         if (tMap.getLayers().get("finish") != null) {
@@ -205,6 +205,11 @@ public class PhyRoCCModel implements IRoCCModel {
                 model.addEnemy(enemy);
             }
         }
+    }
+
+    @Override
+    public void addBlock(IBody body) {
+        this.model.addBlock(body);
     }
 
     @Override
@@ -247,16 +252,6 @@ public class PhyRoCCModel implements IRoCCModel {
         return this.model.getCharacterYPos();
     }
 
-    @Override
-    public ILevel getLevel() {
-        return this.model.getLevel();
-    }
-
-    @Override
-    public IPlayer getPlayer() {
-        return this.model.getPlayer();
-    }
-
     public IRoCCModel getModel() {
         return model;
     }
@@ -269,6 +264,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public List<IPickupable> getPickupables() {
         return model.getPickupables();
+    }
+
+    @Override
+    public void addPickupable(IPickupable pickup) {
+        this.model.addPickupable(pickup);
     }
 
     /**
@@ -304,6 +304,21 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
         model.removeBullets(bulletsToRemove);
+    }
+
+    @Override
+    public void addJumpPoint(IJumpPoint jumpPoint) {
+        this.model.addJumpPoint(jumpPoint);
+    }
+
+    @Override
+    public void addFinish(IFinishPoint finish) {
+        this.model.addFinish(finish);
+    }
+
+    @Override
+    public void setActiveCharacter(int activeIndex) {
+        this.model.setActiveCharacter(activeIndex);
     }
 
     @Override
