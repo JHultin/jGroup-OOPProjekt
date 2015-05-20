@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
-import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.ICollisionListener;
 import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.utility.IDeathEvent;
@@ -110,7 +110,7 @@ public interface IRoCCModel{
      * Sets a collitionlistener to the world, this will then handle all collistions
      * @param collisionListener listener to set to the world
      */
-    public void setCollisionListener(CollisionListener collisionListener);
+    public void setCollisionListener(ICollisionListener collisionListener);
 
     /**
      * Creates a new character, adds it to the player and the world

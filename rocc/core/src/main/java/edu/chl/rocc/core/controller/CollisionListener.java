@@ -6,6 +6,7 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
 
     public ArrayList<IEnemy> enemyToChangeDirection;
     public ArrayList<IBullet> bulletsToRemove;
+
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();
         enemyToChangeDirection = new ArrayList<IEnemy>();
@@ -73,7 +75,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             if("ground".equals(fb.getBody().getUserData())){
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
             }else if("body".equals(fb.getUserData())){
-                enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
+                enemyToChangeDirection.add((IEnemy)(fa.getBody().getUserData()));
                 ((ICharacter)fb.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
                 System.out.println("HP character :" +((ICharacter)fb.getBody().getUserData()).getHP());
             }
@@ -83,7 +85,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
                 enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
             }else if("body".equals(fa.getUserData())){
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
-                ((ICharacter)fa.getBody().getUserData()).decHP(((IEnemy) (fb.getBody().getUserData())).getDamageDeal());
+                ((ICharacter)fa.getBody()).decHP(((IEnemy) (fb.getBody().getUserData())).getDamageDeal());
                 System.out.println("HP character :" +((ICharacter)fa.getBody().getUserData()).getHP());
             }
         }
@@ -91,18 +93,18 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         //When bullet hits enemy it takes damage
         if("bullet".equals(fa.getUserData())){
             if("enemyUpperSensor".equals(fb.getUserData())){
-                ((IEnemy) fb.getBody().getUserData()).decHP(((IBullet) (fa.getBody().getUserData())).getBulletDamage());
+                ((IEnemy) fb.getBody().getUserData()).decHP(((IBullet) (fa.getBody())).getBulletDamage());
                 System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
             }
             if("ground".equals(fb.getUserData())){
-                System.out.println(fa.getBody().getUserData());
+                System.out.println(fa.getBody());
             }
             //removes bullet
             bulletsToRemove.add((IBullet) (fa.getBody().getUserData()));
         }
         if("bullet".equals(fb.getUserData())){
             if("enemyUpperSensor".equals(fa.getUserData())){
-                ((IEnemy) fa.getBody().getUserData()).decHP(((IBullet) (fb.getBody().getUserData())).getBulletDamage());
+                ((IEnemy) (fa.getBody().getUserData())).decHP(((IBullet) (fb.getBody().getUserData())).getBulletDamage());
                 System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
             }
             if("ground".equals(fa.getUserData())){
@@ -132,6 +134,27 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if ("jumpPointSensor".equals(fb.getUserData())) {
             ((ICharacter) fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
+    }
+
+    @Override
+    public void preSolve(Contact contact, Manifold manifold) {
+
+    }
+
+    @Override
+    public void postSolve(Contact contact, ContactImpulse contactImpulse) {
+
+    }
+
+
+    @Override
+    public void beginContact(IContact contact) {
+        beginContact((Contact) contact);
+    }
+
+    @Override
+    public void endContact(IContact contact) {
+        endContact((Contact) contact);
     }
 
     @Override
@@ -174,11 +197,4 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         bulletsToRemove.clear();
         return listToReturn;
     }
-
-    @Override
-    public void preSolve(Contact contact, Manifold manifold) {}
-
-    @Override
-    public void postSolve(Contact contact, ContactImpulse contactImpulse) {}
-
-    }
+}

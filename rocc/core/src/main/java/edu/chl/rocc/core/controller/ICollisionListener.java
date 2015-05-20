@@ -3,7 +3,6 @@ package edu.chl.rocc.core.controller;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
 import edu.chl.rocc.core.m2phyInterfaces.IPickupable;
-import org.jbox2d.dynamics.contacts.Contact;
 
 import java.util.List;
 
@@ -16,13 +15,13 @@ public interface ICollisionListener {
      * Called when two fixtures collides that are able to collide
      * @param contact
      */
-    public void beginContact(Contact contact);
+    public void beginContact(IContact contact);
 
     /**
      * Called when two fixtures are not in collision anymore that had collided
      * @param contact
      */
-    public void endContact(Contact contact);
+    public void endContact(IContact contact);
 
     /**
      * @return a list of Pickupable items to remove

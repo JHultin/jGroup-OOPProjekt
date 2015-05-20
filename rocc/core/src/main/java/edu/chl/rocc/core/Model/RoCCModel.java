@@ -1,13 +1,12 @@
 package edu.chl.rocc.core.model;
 
-import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.ICollisionListener;
 import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.utility.IDeathEvent;
 
 import java.util.List;
-
 
 /**
  * A class handling the game model.
@@ -155,7 +154,7 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void setCollisionListener(CollisionListener collisionListener) {
+    public void setCollisionListener(ICollisionListener collisionListener) {
 
     }
 

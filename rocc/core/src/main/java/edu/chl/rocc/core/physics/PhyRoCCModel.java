@@ -9,12 +9,14 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import edu.chl.rocc.core.controller.CollisionListener;
+import edu.chl.rocc.core.controller.ICollisionListener;
 import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.model.RoCCModel;
 import edu.chl.rocc.core.utility.IDeathEvent;
+import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -340,8 +342,8 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void setCollisionListener(CollisionListener collisionListener) {
-        this.world.setContactListener(collisionListener);
+    public void setCollisionListener(ICollisionListener collisionListener) {
+        this.world.setContactListener((ContactListener)collisionListener);
     }
 
     @Override

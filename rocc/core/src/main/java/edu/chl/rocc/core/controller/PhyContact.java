@@ -1,21 +1,27 @@
 package edu.chl.rocc.core.controller;
 
-import org.jbox2d.dynamics.Fixture;
+import edu.chl.rocc.core.m2phyInterfaces.IFixture;
+import edu.chl.rocc.core.physics.PhyFixture;
+import org.jbox2d.dynamics.contacts.Contact;
 
 /**
  * Created by Yen on 2015-05-20.
  */
 public class PhyContact implements IContact {
 
-    private PhyContact contact;
+    private Contact contact;
 
-    @Override
-    public Fixture getFixtureA() {
-        return  ;
+    public PhyContact(Contact contact){
+        this.contact = contact;
     }
 
     @Override
-    public Fixture getFixtureB() {
-        return null;
+    public IFixture getFixtureA() {
+        return new PhyFixture(contact.getFixtureA());
+    }
+
+    @Override
+    public IFixture getFixtureB() {
+        return new PhyFixture(contact.getFixtureB());
     }
 }
