@@ -65,31 +65,32 @@ public class Level implements ILevel {
 
     @Override
     public List<IBullet> getBullets(){
-        return this.bullets;
+        return bullets;
     }
 
     @Override
     public void addBullet(IBullet bullet){
-        this.bullets.add(bullet);
+        bullets.add(bullet);
     }
 
     @Override
     public void removeBullet(IBullet bullet) {
-        this.bullets.remove(bullet);
+        bullets.remove(bullet);
     }
 
     @Override
     public void addEnemy(IEnemy enemy) {
+        enemies.add(enemy);
     }
 
     @Override
     public List<IEnemy> getEnemies() {
-        return null;
+        return enemies;
     }
 
     @Override
     public void removeEnemy(IEnemy enemy) {
-
+        enemies.remove(enemy);
     }
 
     @Override

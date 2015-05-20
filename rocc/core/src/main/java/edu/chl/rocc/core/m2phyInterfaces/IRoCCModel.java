@@ -22,6 +22,12 @@ public interface IRoCCModel{
     public void constructWorld();
 
     /**
+     *
+     * @param body
+     */
+    public void addBlock(IBody body);
+
+    /**
     * Move the character in a given direction.
     */
     public void moveSideways(Direction dir);
@@ -52,15 +58,6 @@ public interface IRoCCModel{
     */
     public float getCharacterYPos();
 
-    /**
-    * @return the level.
-    */
-    public ILevel getLevel();
-
-    /**
-    * @return the player.
-    */
-    public IPlayer getPlayer();
 
     /**
      * Updates the physical world, eg. all collisions and movement.
@@ -74,6 +71,11 @@ public interface IRoCCModel{
      * @return a list of all pickupable items
      */
     public List<IPickupable> getPickupables();
+
+    /**
+     *
+     */
+    public void addPickupable(IPickupable pickup);
 
     /**
      * Removes all items in given list from the world and the level.
@@ -140,4 +142,9 @@ public interface IRoCCModel{
 
     public void removeBullets(List<IBullet> bulletsToRemove);
 
+    public void addJumpPoint(IJumpPoint jumpPoint);
+
+    public void addFinish(IFinishPoint finish);
+
+    public void setActiveCharacter(int activeIndex);
 }

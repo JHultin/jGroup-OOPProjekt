@@ -42,6 +42,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void addBlock(IBody body){
+        level.addBlock(body);
+    }
+
+    @Override
     public void moveSideways(Direction dir){
         player.move(dir);
     }
@@ -92,15 +97,6 @@ public class RoCCModel implements IRoCCModel {
         this.player.addCharacter(c);
     }*/
 
-    @Override
-    public ILevel getLevel(){
-        return level;
-    }
-
-    @Override
-    public IPlayer getPlayer(){
-        return this.player;
-    }
 
     @Override
     public void updateWorld(float dt){
@@ -111,6 +107,9 @@ public class RoCCModel implements IRoCCModel {
     public List<IPickupable> getPickupables() {
         return level.getPickupables();
     }
+
+    @Override
+    public void addPickupable(IPickupable pickup){ level.addPickupable(pickup); }
 
     /**
      * Removes items from the level using it's removePickupable method
@@ -198,6 +197,21 @@ public class RoCCModel implements IRoCCModel {
         for (IBullet bullet : bulletsToRemove){
             level.removeBullet(bullet);
         }
+    }
+
+    @Override
+    public void addJumpPoint(IJumpPoint jumpPoint) {
+        level.addJumpPoint(jumpPoint);
+    }
+
+    @Override
+    public void addFinish(IFinishPoint finish) {
+        level.addFinish(finish);
+    }
+
+    @Override
+    public void setActiveCharacter(int activeIndex) {
+        player.setActiveCharacter(activeIndex);
     }
 
     @Override
