@@ -1,7 +1,5 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 import java.util.List;

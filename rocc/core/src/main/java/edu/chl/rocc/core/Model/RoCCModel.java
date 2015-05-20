@@ -1,14 +1,11 @@
 package edu.chl.rocc.core.model;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.*;
 import edu.chl.rocc.core.m2phyInterfaces.*;
-import edu.chl.rocc.core.physics.PhyBullet;
 import edu.chl.rocc.core.utility.IDeathEvent;
-import org.jbox2d.dynamics.Body;
 
 import java.util.List;
 

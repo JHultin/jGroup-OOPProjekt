@@ -39,7 +39,7 @@ public class ControlConfigureView extends AbstractMenuView {
     private TextButton interactButton;
 
     private String currentButton;
-
+    private String keyToChange;
 
     private TextButton defaultButton;
 
@@ -67,6 +67,8 @@ public class ControlConfigureView extends AbstractMenuView {
          * Initialize buttons
          */
         createButtons();
+
+        keyToChange = new String();
 
         /**
          * adds to table
@@ -113,15 +115,14 @@ public class ControlConfigureView extends AbstractMenuView {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
 
-        if(currentButton != null) {
-            for (String button : keyTitleHashMap.values()) {
-                if (currentButton.equals(keyTitleHashMap.get(button))) {
-                    keysBindingHashMap.get(button).setText("PRESS KEY");
-                } else {
-                    keysBindingHashMap.get(button).setText(Input.Keys.toString(KeyOptions.getInstance().getKey(button)));
-                }
+        for (String button : keyTitleHashMap.values()) {
+            if (keyToChange.equals(keyTitleHashMap.get(button))) {
+
+            } else {
+                keysBindingHashMap.get(button).setText(Input.Keys.toString(KeyOptions.getInstance().getKey(button)));
             }
         }
+
         //nextWeaponButton.setText(Input.Keys.toString(KeyOptions.getInstance().getKey("left")));
         //interactButton.setText(Input.Keys.toString(KeyOptions.getInstance().getKey("")));
 
@@ -135,6 +136,12 @@ public class ControlConfigureView extends AbstractMenuView {
         super.show();
     }
 
+    @Override
+    public void resume(){
+        super.resume();
+
+        Gdx.input.setInputProcessor(stage);
+    }
 
     public void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
@@ -173,8 +180,9 @@ public class ControlConfigureView extends AbstractMenuView {
         moveLeftButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-               // moveLeftButton.setText("PRESS KEY");
-                currentButton = "Move Left";
+                moveLeftButton.setText("PRESS KEY");
+                keyToChange = "Move Left";
+                notifyObserver("keySetter");
             }
 
         });
@@ -182,8 +190,9 @@ public class ControlConfigureView extends AbstractMenuView {
         moveRightButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-              //  moveRightButton.setText("PRESS KEY");
-                currentButton = "Move Right";
+                moveRightButton.setText("PRESS KEY");
+                keyToChange = "Move Right";
+                notifyObserver("keySetter");
             }
 
         });
@@ -191,8 +200,9 @@ public class ControlConfigureView extends AbstractMenuView {
         jumpButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                //jumpButton.setText("PRESS KEY");
-                currentButton = "Jump";
+                jumpButton.setText("PRESS KEY");
+                keyToChange = "Jump";
+                notifyObserver("keySetter");
             }
 
         });
@@ -200,8 +210,9 @@ public class ControlConfigureView extends AbstractMenuView {
         shootButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                //shootButton.setText("PRESS KEY");
+                shootButton.setText("PRESS KEY");
                 currentButton = "Shoot";
+                notifyObserver("keySetter");
             }
 
         });
@@ -209,8 +220,9 @@ public class ControlConfigureView extends AbstractMenuView {
         nextWeaponButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                //nextWeaponButton.setText("PRESS KEY");
-                currentButton = "Next Weapon";
+                nextWeaponButton.setText("PRESS KEY");
+                keyToChange = "Next Weapon";
+                notifyObserver("keySetter");
             }
 
         });
@@ -218,8 +230,9 @@ public class ControlConfigureView extends AbstractMenuView {
         interactButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                //interactButton.setText("PRESS KEY");
-                currentButton = "Interact";
+                interactButton.setText("PRESS KEY");
+                keyToChange = "Interact";
+                notifyObserver("keySetter");
             }
 
         });
@@ -244,9 +257,17 @@ public class ControlConfigureView extends AbstractMenuView {
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
+                KeyOptions.getInstance().saveKeys();
                 notifyObserver("options");
             }
         });
 
+    }
+
+    public void setKey(int keycode){
+        if(keyToChange != null){
+            KeyOptions.getInstance().setKey(keyToChange, keycode);
+            keyToChange = null;
+        }
     }
 }

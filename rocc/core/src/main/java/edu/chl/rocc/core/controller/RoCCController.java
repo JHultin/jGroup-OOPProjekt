@@ -13,6 +13,7 @@ import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
+import edu.chl.rocc.core.view.screens.ControlConfigureView;
 import edu.chl.rocc.core.view.screens.PlayView;
 import org.jbox2d.common.Vec2;
 
@@ -92,11 +93,12 @@ public class RoCCController implements Runnable{
      * @param str
      */
     public void setState(String str){
-        // Tell the GameViewManager to choose the correct screen
-        gvm.setActiveView(str);
+
 
         // If a game is started
         if ("game".equals(str) && !"game".equals(currentView)) {
+            // Tell the GameViewManager to choose the correct screen
+            gvm.setActiveView(str);
             // Stop the thread
             /*this.isRunning = false;
             this.thread.interrupt();*/
@@ -130,6 +132,9 @@ public class RoCCController implements Runnable{
         // If we went to a menu instead
         } else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))){
+            // Tell the GameViewManager to choose the correct screen
+            gvm.setActiveView(str);
+
             this.inGame = false;
             /*isRunning = false;
             thread.interrupt();*/
@@ -138,10 +143,19 @@ public class RoCCController implements Runnable{
             thread.start();
             isRunning = true;*/
         } else if("configureControls".equals(str)){
+            if(!"keySetter".equals(str)){
+                // Tell the GameViewManager to choose the correct screen
+                gvm.setActiveView(str);
+                System.out.println("asdf1");
+            }else{
+                gvm.getActiveView().resume();
+                System.out.println("asdf2");
+            }
             this.inGame = false;
             model.dispose();
+        }else if("keySetter".equals(str)){
             Gdx.input.setInputProcessor(configureControlsProcessor);
-
+            System.out.println(str);
         }
         currentView = str;
         // Tell main to update to correct screen
@@ -307,6 +321,8 @@ public class RoCCController implements Runnable{
     private class ConfigureControlsProcessor implements InputProcessor {
         @Override
         public boolean keyDown(int keycode) {
+            System.out.println("Key Down");
+            ((ControlConfigureView)gvm.getActiveView()).setKey(keycode);
             return false;
         }
 

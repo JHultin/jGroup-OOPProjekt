@@ -82,7 +82,9 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     @Override
     public void register(IViewObserver observer) {
-        observerArrayList.add(observer);
+        if(!observerArrayList.contains(observer)) {
+            observerArrayList.add(observer);
+        }
     }
 
     @Override
@@ -92,9 +94,9 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     @Override
     public void notifyObserver(String screen) {
-        for(IViewObserver observer : observerArrayList){
-            observer.viewUpdated(screen);
-        }
+            for (IViewObserver observer : observerArrayList) {
+                observer.viewUpdated(screen);
+            }
     }
 
 

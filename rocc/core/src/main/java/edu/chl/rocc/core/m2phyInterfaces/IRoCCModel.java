@@ -4,9 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import edu.chl.rocc.core.controller.CollisionListener;
 import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.model.Direction;
-import edu.chl.rocc.core.model.Level;
 import edu.chl.rocc.core.utility.IDeathEvent;
-import org.jbox2d.dynamics.Body;
 
 import java.util.List;
 

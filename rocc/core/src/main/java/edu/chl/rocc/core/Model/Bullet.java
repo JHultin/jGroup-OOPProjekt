@@ -1,7 +1,6 @@
 package edu.chl.rocc.core.model;
 
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
-import org.jbox2d.dynamics.World;
 
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
