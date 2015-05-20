@@ -14,12 +14,16 @@ public class Enemy implements IEnemy{
     private int healthPoints;
     private final float x, y;
     private final String name;
+    private Direction direction;
+    private Direction lastDir;
 
     public Enemy(int healthPoints, String enemyName, float x, float y){
        this.setHP(healthPoints);
         this.x = x;
         this.y = y;
         this.name = enemyName;
+        this.direction = Direction.LEFT;
+        this.lastDir = this.direction;
     }
 
     @Override
@@ -75,5 +79,18 @@ public class Enemy implements IEnemy{
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public Direction getDirection() {
+        return null;
+    }
+
+    @Override
+    public void move(Direction dir) {
+            if(!direction.equals(Direction.NONE)) {
+                lastDir = direction;
+            }
+            direction = dir;
     }
 }

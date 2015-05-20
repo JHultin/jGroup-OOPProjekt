@@ -21,10 +21,11 @@ public class PhyEnemy implements IEnemy {
     private final Body body;
     private final BodyDef def;
     private final FixtureDef fDef;
-    private int dir;
+    private Direction direction;
     private final int damageHP;
     private final int airForce;
     private final int health;
+    private int i = 0;
 
     public PhyEnemy(World world, float x, float y, String name){
 
@@ -41,7 +42,7 @@ public class PhyEnemy implements IEnemy {
         this.width = 16 / PPM;
         this.height = 25 / PPM;
         this.enemy = new Enemy(health, "", 0, 0);
-        this.dir = 2;
+        this.direction = Direction.LEFT;
 
 
 
@@ -74,19 +75,18 @@ public class PhyEnemy implements IEnemy {
 
     @Override
     public void changeMoveDirection(){
-        if(dir == 0 || dir == 2) {
-            if(dir == 2) {
-                body.setLinearVelocity(new Vec2(airForce, 0));
+            if(i==1) {
+                if (this.direction.equals(Direction.LEFT)) {
+                    body.setLinearVelocity(new Vec2(airForce, 0));
+                    this.direction = Direction.RIGHT;
+                } else {
+                    body.setLinearVelocity(new Vec2(-airForce, 0));
+                    this.direction = Direction.LEFT;
+                }
+                i = i - 2;
+                this.enemy.move(this.direction);
             }
-            dir = dir - 2;
-        }else if(dir == -2 || dir == 1){
-            if (dir == -2){
-                body.setLinearVelocity(new Vec2(-airForce,0));
-                dir = dir + 3;
-            }else if(dir == 1){
-                dir++;
-            }
-        }
+        i++;
     }
 
     @Override
@@ -122,6 +122,16 @@ public class PhyEnemy implements IEnemy {
     @Override
     public void decHP(int value) {
         this.enemy.decHP(value);
+    }
+
+    @Override
+    public Direction getDirection(){
+        return this.direction;
+    }
+
+    @Override
+    public void move(Direction dir) {
+        this.enemy.move(direction);
     }
 
     @Override

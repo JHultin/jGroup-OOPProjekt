@@ -1,5 +1,7 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
+import edu.chl.rocc.core.model.Direction;
+
 /**
  * Created by Yen on 2015-05-09.
  */
@@ -51,4 +53,15 @@ public interface IEnemy {
      * @return the name of the enemy
      */
     public String getName();
+
+    /**
+    * @return the direction of the enemy
+    */
+    public Direction getDirection();
+
+    /**
+     * Created for handle the direction for the visual enemy
+     * @param dir
+     */
+    public void move(Direction dir);
 }
