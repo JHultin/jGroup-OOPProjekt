@@ -134,7 +134,7 @@ public class PlayView implements Screen,IViewObservable{
         currentAnimation = new String[]{"falseRIGHTfalse","falseLEFTfalse","falseNONERIGHTfalse","falseNONELEFTfalse"
                 ,"trueRIGHTfalse","trueLEFTfalse","trueNONERIGHTfalse","trueNONELEFTfalse", "falseRIGHTtrue","falseLEFTtrue","falseNONERIGHTtrue","falseNONELEFTtrue"
                 ,"trueRIGHTtrue","trueLEFTtrue","trueNONERIGHTtrue","trueNONELEFTtrue"};
-        characterNames = new String[]{"mother","soldier","enemy","doctor"};
+        characterNames = new String[]{"mother","soldier","enemy","doctor","noEyes"};
 
         //Gets the characters and initiates their textures,
         //this has to be in show because otherwise the model.getCharacters aren't initiated.
@@ -146,7 +146,7 @@ public class PlayView implements Screen,IViewObservable{
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
         textures.put("weapon" , new Texture(Gdx.files.internal("weapons/AK-47.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
-        textures.put("doctor"  , new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")));
+        textures.put("noEyes"  , new Texture(Gdx.files.internal("characters/noEyes/idleLeft.png")));
         textures.put("enemy"   , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
 
     }

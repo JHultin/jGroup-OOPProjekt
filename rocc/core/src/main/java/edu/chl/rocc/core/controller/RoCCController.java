@@ -150,10 +150,8 @@ public class RoCCController implements Runnable{
             if(!"keySetter".equals(str)){
                 // Tell the GameViewManager to choose the correct screen
                 gvm.setActiveView(str);
-                System.out.println("asdf1");
             }else{
                 gvm.getActiveView().resume();
-                System.out.println("asdf2");
             }
             this.inGame = false;
             model.dispose();
