@@ -1,9 +1,7 @@
 package edu.chl.rocc.core.model;
 
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
-
 import static edu.chl.rocc.core.GlobalConstants.PPM;
-import java.util.ArrayList;
 
 /**
  * A class for handeling enemies(except for box2D stuff)
@@ -17,7 +15,7 @@ public class Enemy implements IEnemy{
     private final float x, y;
     private final String name;
 
-    public Enemy(int healthPoints, String enemyName, float x, float y){  //maybe not enemyName
+    public Enemy(int healthPoints, String enemyName, float x, float y){
        this.setHP(healthPoints);
         this.x = x;
         this.y = y;

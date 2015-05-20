@@ -54,6 +54,8 @@ public class RoCCController implements Runnable{
 
     private ViewChooser viewChooser;
 
+    private TiledMap tiledMap;
+
     /**
      * Constructor for the controller.
      * Everything that need to exist when the game starts here.
@@ -61,7 +63,8 @@ public class RoCCController implements Runnable{
      * @param main the main view to update throughout
      */
     public RoCCController(RoCCView main){
-        this.model = new PhyRoCCModel();
+        this.tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
+        this.model = new PhyRoCCModel(tiledMap);
         this.main = main;
         this.gvm = new GameViewManager(model);
 
@@ -102,10 +105,8 @@ public class RoCCController implements Runnable{
 
             // Set up the game
             // First construct the world, the level and all pickupables.
-            TiledMap tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
-
             ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
-            this.model.constructWorld(tiledMap);
+            this.model.constructWorld();
 
             // Add correct listener to handle the collisions in the world
             this.collisionListener = new CollisionListener();

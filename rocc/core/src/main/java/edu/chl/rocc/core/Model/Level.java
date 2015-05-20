@@ -2,10 +2,7 @@ package edu.chl.rocc.core.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import edu.chl.rocc.core.m2phyInterfaces.*;
-
-import org.jbox2d.dynamics.World;
 
 
 /**
@@ -45,11 +42,6 @@ public class Level implements ILevel {
     @Override
     public void updateWorld(float dt){
      //   updateTime();
-    }
-
-    @Override
-    public World getWorld(){
-        return null;
     }
 
     @Override

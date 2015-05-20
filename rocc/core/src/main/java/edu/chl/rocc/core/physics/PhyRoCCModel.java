@@ -40,15 +40,19 @@ public class PhyRoCCModel implements IRoCCModel {
     // The physics world in which all physics items exist
     private World world;
 
+    private TiledMap tMap;
+
     /**
      * Constructor for the model
      */
-    public PhyRoCCModel() {
+    public PhyRoCCModel(TiledMap tMap) {
 
         //Change cursor/crosshair
         Pixmap pm = new Pixmap(Gdx.files.internal("crosshair.png"));
         Gdx.input.setCursorImage(pm, 16, 16);
         pm.dispose();
+
+        this.tMap = tMap;
     }
 
     @Override
@@ -64,7 +68,7 @@ public class PhyRoCCModel implements IRoCCModel {
      * {@inheritDoc}
      */
     @Override
-    public void constructWorld(TiledMap tMap) {
+    public void constructWorld() {
 
         // Start with cearing the world, using a gravity defined in a constantsclass
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
