@@ -1,13 +1,11 @@
 package edu.chl.rocc.core.physics;
 
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
-import edu.chl.rocc.core.m2phyInterfaces.IWorld;
 import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.utility.CharacterLoader;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
-import java.util.*;
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
@@ -17,10 +15,10 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
  */
 public class PhyEnemy implements IEnemy {
 
-    private final World world;   //private final IWorld world;
+    private final World world;
     private final IEnemy enemy;
     private final float width, height;
-    private final Body body;     //private final IBody body;
+    private final Body body;
     private final BodyDef def;
     private final FixtureDef fDef;
     private int dir;
@@ -28,7 +26,7 @@ public class PhyEnemy implements IEnemy {
     private final int airForce;
     private final int health;
 
-    public PhyEnemy(World world/*remove*/, float x, float y, String name){
+    public PhyEnemy(World world, float x, float y, String name){
 
         CharacterLoader cl = new CharacterLoader(name, true);
         //this.speed         = cl.getCharecaristic("Speed");
@@ -39,7 +37,7 @@ public class PhyEnemy implements IEnemy {
         this.health          = cl.getCharecaristic("Health");
 
         // Enemy may also have a weapon
-        this.world = world;         //this.world = new PhyWorld(); ???
+        this.world = world;
         this.width = 16 / PPM;
         this.height = 25 / PPM;
         this.enemy = new Enemy(health, "", 0, 0);
