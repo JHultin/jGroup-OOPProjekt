@@ -81,11 +81,6 @@ public class Character implements ICharacter {
     }
 
     @Override
-    public void moveFollower(Direction dir){
-        move(dir);
-    }
-
-    @Override
     public boolean isMoving(){
         return false;
     }

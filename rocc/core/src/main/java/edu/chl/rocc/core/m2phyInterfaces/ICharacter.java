@@ -32,11 +32,6 @@ public interface ICharacter extends IMortal{
     */
     public void move(Direction dir);
 
-    /**
-    * Move a follower in a given direction.
-    */
-    public void moveFollower(Direction dir);
-
     public boolean isMoving();
 
     /**

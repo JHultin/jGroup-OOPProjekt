@@ -138,12 +138,6 @@ public class PhyCharacter implements ICharacter {
     }
 
     @Override
-    public void moveFollower(Direction dir){
-        this.move(dir);
-        this.character.moveFollower(dir);
-    }
-
-    @Override
     public boolean isMoving(){
         return this.isMoving;
     }
