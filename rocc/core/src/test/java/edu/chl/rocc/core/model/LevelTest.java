@@ -9,12 +9,31 @@ public class LevelTest {
 
     @Test
     public void testAddPickupable() throws Exception {
+        Level level = new Level();
 
+        IPickupable pickupableCharacter;
+        String[]pickupableCharacters = new String[]{"mother","soldier","doctor"};
+
+
+        for(int i = 0; i<pickupableCharacters.length; i++){
+            pickupableCharacter = new PickupableCharacter(pickupableCharacters[i]);
+            level.addPickupable(pickupableCharacter);
+        }
+
+        assertTrue(level.getPickupables().get(2).getName().equals("doctor"));
     }
 
     @Test
     public void testRemovePickupable() throws Exception {
+        Level level = new Level();
 
+        IPickupable pickupableCharacter = new PickupableCharacter("mother");
+
+        level.addPickupable(pickupableCharacter);
+
+        level.removePickupable(pickupableCharacter);
+
+        assertTrue(!level.getPickupables().contains(pickupableCharacter));
     }
 
     @Test
