@@ -46,4 +46,9 @@ public interface IEnemy {
      * @return the damage the enemy deals
      */
     public int getDamageDeal();
+
+    /**
+     * @return the name of the enemy
+     */
+    public String getName();
 }

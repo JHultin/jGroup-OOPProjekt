@@ -15,11 +15,13 @@ public class Enemy implements IEnemy{
 
     private int healthPoints;
     private final float x, y;
+    private final String name;
 
     public Enemy(int healthPoints, String enemyName, float x, float y){  //maybe not enemyName
        this.setHP(healthPoints);
         this.x = x;
         this.y = y;
+        this.name = enemyName;
     }
 
     @Override
@@ -70,5 +72,10 @@ public class Enemy implements IEnemy{
     @Override
     public int getDamageDeal() {
         return 0;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
