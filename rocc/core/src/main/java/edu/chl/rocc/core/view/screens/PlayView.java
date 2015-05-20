@@ -219,14 +219,12 @@ public class PlayView implements Screen,IViewObservable{
         synchronized (model.getEnemies()) {
             for (IEnemy enemy : model.getEnemies()) {
                 if(charactersAnimationHashMap.containsKey(enemy.getName())) {
-                    //System.out.println(enemy.getName());
                     charactersAnimationHashMap.get(enemy.getName()).get(enemy.getMoveState()).update();
                     textureRegion = new TextureRegion(
                             charactersAnimationHashMap.get(enemy.getName()).get(enemy.getMoveState()).getFrame());
 
                     batch.draw(textureRegion, enemy.getX(), enemy.getY());
                 }else{
-                    System.out.println(enemy.getName());
                     batch.draw(textures.get("zombie"), enemy.getX(), enemy.getY());
                 }
             }
