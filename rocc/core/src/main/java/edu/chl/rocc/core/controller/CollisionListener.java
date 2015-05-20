@@ -6,7 +6,6 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,6 @@ public class CollisionListener implements ContactListener, ICollisionListener {
 
     public ArrayList<IEnemy> enemyToChangeDirection;
     public ArrayList<IBullet> bulletsToRemove;
-
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();
         enemyToChangeDirection = new ArrayList<IEnemy>();
@@ -90,9 +88,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             }
         }
 
-        /*
-         * When bullet hits enemy it takes damage
-         */
+        //When bullet hits enemy it takes damage
         if("bullet".equals(fa.getUserData())){
             if("enemyUpperSensor".equals(fb.getUserData())){
                 ((IEnemy) fb.getBody().getUserData()).decHP(((IBullet) (fa.getBody().getUserData())).getBulletDamage());
@@ -117,35 +113,36 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         }
     }
 
-        //Called when contact between two fixtures ends
-        @Override
-        public void endContact(Contact contact){
-            Fixture fa = contact.getFixtureA();
-            Fixture fb = contact.getFixtureB();
 
-            if ("footSensor".equals(fa.getUserData())) {
-                ((ICharacter) fa.getBody().getUserData()).leftGround();
-            }
-            if ("footSensor".equals(fb.getUserData())) {
-                ((ICharacter) fb.getBody().getUserData()).leftGround();
-            }
-            if ("jumpPointSensor".equals(fa.getUserData())) {
-                ((ICharacter) fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
-            }
-            if ("jumpPointSensor".equals(fb.getUserData())) {
-                ((ICharacter) fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
-            }
-        }
+    //Called when contact between two fixtures ends
+    @Override
+    public void endContact(Contact contact){
+        Fixture fa = contact.getFixtureA();
+        Fixture fb = contact.getFixtureB();
 
-        @Override
-        public List<IPickupable> getItemsToRemove(){
-            List<IPickupable> listToReturn = new ArrayList<IPickupable>(itemsToRemove.size());
-            for (IPickupable pickup : itemsToRemove) {
-                listToReturn.add(pickup);
-            }
-            itemsToRemove.clear();
-            return listToReturn;
+        if ("footSensor".equals(fa.getUserData())) {
+            ((ICharacter) fa.getBody().getUserData()).leftGround();
         }
+        if ("footSensor".equals(fb.getUserData())) {
+            ((ICharacter) fb.getBody().getUserData()).leftGround();
+        }
+        if ("jumpPointSensor".equals(fa.getUserData())) {
+            ((ICharacter) fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
+        }
+        if ("jumpPointSensor".equals(fb.getUserData())) {
+            ((ICharacter) fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
+        }
+    }
+
+    @Override
+    public List<IPickupable> getItemsToRemove(){
+        List<IPickupable> listToReturn = new ArrayList<IPickupable>(itemsToRemove.size());
+        for (IPickupable pickup : itemsToRemove) {
+            listToReturn.add(pickup);
+        }
+        itemsToRemove.clear();
+        return listToReturn;
+    }
 
 
     @Override
@@ -179,12 +176,9 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     }
 
     @Override
-    public void preSolve(Contact contact, Manifold manifold) {
-
-    }
+    public void preSolve(Contact contact, Manifold manifold) {}
 
     @Override
-    public void postSolve(Contact contact, ContactImpulse contactImpulse) {
+    public void postSolve(Contact contact, ContactImpulse contactImpulse) {}
 
     }
-}
