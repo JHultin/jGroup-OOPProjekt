@@ -57,17 +57,17 @@ public class Player implements IPlayer {
                     float distance = characters.get(this.activeCharacterIndex).getX() - characters.get(i).getX();
 
                     if (distance > 20 + count * 60) {
-                        characters.get(i).moveFollower(Direction.RIGHT);
+                        characters.get(i).move(Direction.RIGHT);
                     } else if (distance < -(20 + count * 60)) {
-                        characters.get(i).moveFollower(Direction.LEFT);
+                        characters.get(i).move(Direction.LEFT);
                     } else {
-                        characters.get(i).moveFollower(Direction.NONE);
+                        characters.get(i).move(Direction.NONE);
                     }
                 }
             }
         } else{
             for (int k=0; k < characters.size(); k++) {
-                characters.get(k).moveFollower(Direction.NONE);
+                characters.get(k).move(Direction.NONE);
             }
         }
     }

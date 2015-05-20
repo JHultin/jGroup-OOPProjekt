@@ -18,10 +18,10 @@ import org.jbox2d.dynamics.*;
  */
 public class PhyCharacter implements ICharacter {
 
-    private final World world;    //private final IWorld world;
+    private final World world;
     private final ICharacter character;
     private final float width, height;
-    private final Body body;      //private final PhyBody body;
+    private final Body body;
     private int characterOnGround;
     private Direction direction;
     private Direction airDir;
@@ -35,8 +35,8 @@ public class PhyCharacter implements ICharacter {
 
     private Fixture fixture;
 
-    public PhyCharacter(World world/*remove*/, float x, float y, String name){
-        this.world = world;   //this.world = new PhyWorld(); ???
+    public PhyCharacter(World world, float x, float y, String name){
+        this.world = world;
         this.width = 18 / PPM;
         this.height = 35 / PPM;
         this.character = new Character(name);
@@ -135,12 +135,6 @@ public class PhyCharacter implements ICharacter {
             airDir = dir;
         }
         this.character.move(dir);
-    }
-
-    @Override
-    public void moveFollower(Direction dir){
-        this.move(dir);
-        this.character.moveFollower(dir);
     }
 
     @Override

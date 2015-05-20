@@ -130,6 +130,5 @@ public class KeyOptions {
         } else {
             keys.put(key, value);
         }
-        System.out.println(keys.get(key));
     }
 }
