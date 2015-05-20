@@ -24,7 +24,15 @@ public class PhyBullet implements IBullet {
     private final Body body;
     //private final Vector2 direction;
 
-    public PhyBullet(World world, float x, float y, float xDir, float yDir, String name){
+    /*
+        public PhyBullet(World world, float x, float y, float xDir, float yDir, String name){
+            this(World world, float x, float y, float xDir, float yDir, String name, false);
+        }
+     */
+
+
+
+    public PhyBullet(World world, float x, float y, float xDir, float yDir, String name /*, boolean isEnemyBullet*/){
         this.world = world;
         //this.direction = vec;
         this.bullet = new Bullet(x / PPM, y / PPM, name);
@@ -44,6 +52,11 @@ public class PhyBullet implements IBullet {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BULLET;
+        /*if(isEnemyBullet){
+            fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
+        }else{
+             fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_ENEMY;
+        }*/
         fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_ENEMY;
         body.createFixture(fDef).setUserData("bullet");
         body.setLinearVelocity(new Vec2(xDir * velocity, yDir * velocity));
@@ -79,6 +92,12 @@ public class PhyBullet implements IBullet {
     public int getBulletDamage() {
         return bulletDamage;
     }
+
+    /*
+        public boolean getIsEnemyBullet(){
+
+        }
+     */
 
     /*
     public Vector2 getDirection(){

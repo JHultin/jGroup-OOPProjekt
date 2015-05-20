@@ -97,6 +97,11 @@ public class PhyEnemy implements IEnemy {
     }
 
     @Override
+    public String getName() {
+        return this.enemy.getName();
+    }
+
+    @Override
     public float getX() {
         return (body.getPosition().x - width) * PPM;
     }
@@ -126,4 +131,8 @@ public class PhyEnemy implements IEnemy {
         this.enemy.dispose();
         world.destroyBody(body);
     }
+
+    /*
+        add a method for enemies that will shoot, can have value in txt
+     */
 }
