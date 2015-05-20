@@ -86,10 +86,14 @@ public class CharacterTest {
 
     @Test
     public void testToggleFollowerOnJumpPoint() throws Exception {
+        /*
+         * OBS! Metoden isOnJumpPoint() finns ej längre i PhyCharacter!
+         *
         boolean before = character.isOnJumpPoint();
         character.toggleFollowerOnJumpPoint();
         boolean after = character.isOnJumpPoint();
         assertTrue(before != after);
+        */
     }
 
     @Test
