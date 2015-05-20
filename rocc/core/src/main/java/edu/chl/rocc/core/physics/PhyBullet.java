@@ -18,11 +18,12 @@ import static edu.chl.rocc.core.GlobalConstants.PPM;
 public class PhyBullet implements IBullet {
 
     private final World world;
+    private final Body body;
+
     private final IBullet bullet;
     private float velocity;
     private final int bulletDamage;
 
-    private final Body body;
     //private final Vector2 direction;
 
     /*
@@ -36,8 +37,10 @@ public class PhyBullet implements IBullet {
 
     public PhyBullet(World world, String name, float x, float y, float xDir, float yDir /*, boolean isEnemyBullet*/){
         this.world = world;
+
         //this.direction = vec;
         bulletDamage = 5;
+
         this.bullet = new Bullet(name, x / PPM, y / PPM);
         this.velocity = 500 / PPM;
 
@@ -113,6 +116,10 @@ public class PhyBullet implements IBullet {
 
     public Vec2 getVelocity(){
         return new Vec2(500 / PPM, 0);
+        */
+
+    @Override
+    public void destroy() {
+        this.world.destroyBody(body);
     }
-    */
 }

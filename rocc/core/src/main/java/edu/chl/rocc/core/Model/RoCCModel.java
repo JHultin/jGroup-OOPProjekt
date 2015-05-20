@@ -55,11 +55,6 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public boolean frontCharacterIsMoving(){
-        return this.player.frontCharacterIsMoving();
-    }
-
-    @Override
     public boolean characterIsMoving(ICharacter character){
         return character.isMoving();
     }
@@ -79,8 +74,8 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void shoot(float x, float y){
-        this.player.getWeapon().createBullet(this.getCharacterXPos(), this.getCharacterYPos(), x, y);
+    public void shoot(float xDir, float yDir){
+        this.player.shoot(xDir, yDir);
     }
 
     @Override
@@ -129,6 +124,11 @@ public class RoCCModel implements IRoCCModel {
         for (IPickupable pickup : itemsToRemove){
             level.removePickupable(pickup);
         }
+    }
+
+    @Override
+    public IWeapon getWeapon(){
+        return this.player.getWeapon();
     }
 
     @Override

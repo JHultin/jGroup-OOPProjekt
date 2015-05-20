@@ -216,11 +216,6 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public boolean frontCharacterIsMoving(){
-        return this.model.frontCharacterIsMoving();
-    }
-
-    @Override
     public boolean characterIsMoving(ICharacter character){
         return false;
     }
@@ -309,6 +304,11 @@ public class PhyRoCCModel implements IRoCCModel {
         model.removeBullets(bulletsToRemove);
     }
 
+
+    @Override
+    public IWeapon getWeapon(){
+        return this.model.getWeapon();
+    }
 
     @Override
     public List<IBullet> getBullets() {

@@ -31,8 +31,6 @@ public interface IRoCCModel{
     */
     public void moveFollowers(Direction dir);
 
-    public boolean frontCharacterIsMoving();
-
     public boolean characterIsMoving(ICharacter character);
 
     /**
@@ -85,19 +83,18 @@ public interface IRoCCModel{
     public void removeItems(List<IPickupable> itemsToRemove);
 
     /**
-    * @return list of all current existing projectiles in the level.
-    */
-    public List<IBullet> getBullets();
+     * @return the current wielded weapon.
+     */
+    public IWeapon getWeapon();
 
     public void addBullet(IBullet bullet);
 
     public void addWeapon(String name);
 
     /**
-    * Creates a bullet/projectile.
-    * Add it to list of current existing projectiles.
+    * @return list of all current existing projectiles in the level.
     */
-    //public void createBullet();
+    public List<IBullet> getBullets();
 
     /**
     * @return list of all the playable characters.

@@ -24,7 +24,7 @@ public interface IPlayer {
     */
     public void moveFollowers(Direction dir);
 
-    public boolean frontCharacterIsMoving();
+    public void shoot(float xDir, float yDir);
 
     /**
     * @return x-coordinate of the lead character.
@@ -48,18 +48,29 @@ public interface IPlayer {
      */
     public List<ICharacter> getCharacters();
 
+    /**
+     * Add/create a weapon to the weapon list.
+     */
     public void addWeapon(String name);
 
+    /**
+     * @return the weapon at the given index in the weapon list.
+     */
     public IWeapon getWeapon();
+
+    /**
+     * @return a list of all the players weapons.
+     */
+    public List<IWeapon> getWeapons();
+
+    /**
+     * @return a list of all the players weapons.
+     */
+    //public List<IWeapon> getWeapons();
 
     public void shoot(float x, float y, float xDir, float yDir);
 
     public void dispose();
-
-    /**
-     * Change which character the player is playing as.
-     */
-    public void setActiveCharacter(int i);
 
     /**
      * Adds a value to the total score
@@ -71,4 +82,24 @@ public interface IPlayer {
      * @return score
      */
     public int getScore();
+
+    /**
+     * Change which character the player is playing as.
+     */
+    public void setActiveCharacter(int i);
+
+    /**
+     * Change which character the player is playing as.
+     */
+    public void setFrontCharacter(ICharacter character);
+
+    /**
+     * @return the index of the front character in the character list.
+     */
+    public int getFrontCharacterIndex();
+
+    /**
+     * @return the distance between the front character and a follower.
+     */
+    public float getDistance(int i);
 }

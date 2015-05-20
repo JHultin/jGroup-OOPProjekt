@@ -20,6 +20,7 @@ public class PhyBulletFactory implements IBulletFactory {
 
     @Override
     public IBullet createBullet(String name, float x, float y, float xDir, float yDir){
+        System.out.println("Create bullet. x: " + x + " , y: " + y);
         return new PhyBullet(this.world, name, x, y, xDir, yDir);
     }
 }

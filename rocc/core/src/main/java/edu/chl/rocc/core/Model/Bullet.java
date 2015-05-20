@@ -22,7 +22,9 @@ public class Bullet implements IBullet {
     }
 
     @Override
-    public void fire(){ }
+    public void fire(){
+
+    }
 
     @Override
     public float getX(){
@@ -47,5 +49,10 @@ public class Bullet implements IBullet {
     @Override
     public int getBulletDamage() {
         return 0;
+    }
+
+    @Override
+    public void destroy() {
+
     }
 }

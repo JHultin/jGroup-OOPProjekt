@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.utility.CharacterTextureLoader;
@@ -142,7 +143,7 @@ public class PlayView implements Screen,IViewObservable{
 
         textures = new HashMap<String, Texture>();
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
-        textures.put("weapon" , new Texture(Gdx.files.internal("weapons/weapon.png")));
+        textures.put("weapon" , new Texture(Gdx.files.internal("weapons/AK-47.png")));
         textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
         textures.put("doctor"  , new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")));
         textures.put("enemy"   , new Texture(Gdx.files.internal("characters/enemy/idleLeft.png")));
@@ -219,6 +220,10 @@ public class PlayView implements Screen,IViewObservable{
                 batch.draw(textures.get("enemy"), enemy.getX(), enemy.getY());
             }
         }
+
+        //batch.draw(textures.get("weapon"), model.getCharacterXPos(0) + 8, model.getCharacterYPos(0) + 5);
+        batch.draw(textures.get("weapon"), model.getWeapon().getX(), model.getWeapon().getY());
+
         batch.end();
 
 

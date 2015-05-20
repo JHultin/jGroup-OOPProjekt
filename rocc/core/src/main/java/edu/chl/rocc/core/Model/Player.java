@@ -55,6 +55,11 @@ public class Player implements IPlayer {
     public void move(Direction dir) {
         if (this.activeCharacterIndex < characters.size()){
             characters.get(this.activeCharacterIndex).move(dir);
+            /*
+        if (this.frontCharacterIndex < characters.size()){
+            characters.get(this.frontCharacterIndex).move(dir);
+            characters.get(this.frontCharacterIndex).setCurrentDirection(dir);
+            */
         }
     }
 
@@ -81,11 +86,6 @@ public class Player implements IPlayer {
                 characters.get(k).move(Direction.NONE);
             }
         }
-    }
-
-    @Override
-    public boolean frontCharacterIsMoving(){
-        return characters.get(activeCharacterIndex).isMoving();
     }
 
     @Override
@@ -147,10 +147,9 @@ public class Player implements IPlayer {
 
     @Override
     public void addWeapon(String name){
-        //this.weapons.add(weapon);
-
         synchronized (weapons) {
             weapons.add(this.factory.createWeapon(name, 160, 400));
+
             /*if (weapons.isEmpty()) {
                 weapons.add(this.factory.createWeapon(name, 160, 400));
             } else {
@@ -168,8 +167,19 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public void shoot(float x, float y){
+        // skicka vidare till weapon, som shoot() under
+        // weapon har hand om spawn x/y för bullets
+    }
+
+    @Override
     public void shoot(float x, float y, float xDir, float yDir){
-        this.weapons.get(activeWeaponIndex).createBullet(x, y, xDir, yDir);
+        //this.weapons.get(activeWeaponIndex).createBullet(x, y, xDir, yDir);
+    }
+
+    @Override
+    public List<IWeapon> getWeapons(){
+        return this.weapons;
     }
 
     @Override
@@ -193,11 +203,21 @@ public class Player implements IPlayer {
         this.characters.get(i).setAsLead();
     }
 
-    /*
-    * Returns the distance between the front character and a follower.
-    */
+    @Override
+    public void setFrontCharacter(ICharacter character){
+        characters.get(activeCharacterIndex).setAsFollower();
+        activeCharacterIndex = characters.indexOf(character);
+        character.setAsLead();
+    }
+
+    @Override
+    public int getFrontCharacterIndex(){
+        return activeCharacterIndex;
+    }
+
+    @Override
     public float getDistance(int i){
-        return Math.abs(characters.get(i).getX() - characters.get(0).getX());
+        return Math.abs(characters.get(i).getX() - characters.get(activeCharacterIndex).getX());
     }
 
     /*
