@@ -53,7 +53,7 @@ public class PhyBullet implements IBullet {
 
         //Defining & creating fixture
         CircleShape shape = new CircleShape();
-        shape.setRadius(5 /PPM);
+        shape.setRadius(3 / PPM);
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BULLET;
@@ -68,18 +68,13 @@ public class PhyBullet implements IBullet {
     }
 
     @Override
-    public void fire(){
-        //body.setLinearVelocity(this.getVelocity());
-    }
-
-    @Override
     public float getX(){
-        return body.getPosition().x * PPM - 16;
+        return body.getPosition().x * PPM + 2;
     }
 
     @Override
     public float getY(){
-        return body.getPosition().y * PPM - 16;
+        return body.getPosition().y * PPM + 2;
     }
 
     @Override

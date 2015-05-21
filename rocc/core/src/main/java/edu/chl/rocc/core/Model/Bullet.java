@@ -22,18 +22,13 @@ public class Bullet implements IBullet {
     }
 
     @Override
-    public void fire(){
-
-    }
-
-    @Override
     public float getX(){
-        return this.x * PPM + 16;
+        return this.x * PPM + 2;
     }
 
     @Override
     public float getY(){
-        return this.y * PPM + 16;
+        return this.y * PPM + 2;
     }
 
     @Override
