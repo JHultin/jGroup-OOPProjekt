@@ -31,8 +31,8 @@ public class Weapon implements IWeapon {
         this.bullets = new ArrayList<IBullet>();
 
         // Hämta från textfil baserat på "name"
-        this.bulletSpawnX = 32 / PPM;
-        this.bulletSpawnY = 16 / PPM;
+        this.bulletSpawnX = 45;
+        this.bulletSpawnY = 22;
         this.width = 32 / PPM;
         this.height = 32 / PPM;
     }
