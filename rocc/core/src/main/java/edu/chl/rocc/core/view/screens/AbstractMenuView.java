@@ -89,6 +89,7 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     @Override
     public void notifyObserver(String screen) {
+      //  System.out.println("notified");
             for (IViewObserver observer : observerArrayList) {
                 observer.viewUpdated(screen);
             }

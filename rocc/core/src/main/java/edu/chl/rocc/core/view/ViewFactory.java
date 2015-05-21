@@ -28,7 +28,9 @@ public class ViewFactory {
         if(view.equals("configureControls")){
             return  new ControlConfigureView(model);
         }
-
+        if(view.equals("stats")){
+            return new PlayStatsView(model);
+        }
         return null;
     }
 }

@@ -130,28 +130,31 @@ public class RoCCController implements Runnable{
             this.thread.start();
             this.isRunning = true;*/
             this.inGame = true;
-            main.setScreen(gvm.getActiveView());
+
+            // Tell main to update to correct screen
+            this.main.setScreen(this.gvm.getActiveView());
         // If we went to a menu instead
         } else if (("menu".equals(str))||("loadGame".equals(str))||
-                ("options".equals(str))||("highscore".equals(str))){
+                ("options".equals(str))||("highscore".equals(str))
+                ||"stats".equals(str)){
 
             // Tell the GameViewManager to choose the correct screen
-            gvm.setActiveView(str);
+            this.gvm.setActiveView(str);
             this.inGame = false;
-            model.dispose();
-            main.setScreen(gvm.getActiveView());
+            this.model.dispose();
+            this.main.setScreen(this.gvm.getActiveView());
         } else if("configureControls".equals(str)){
             this.inGame = false;
-            model.dispose();
-            gvm.setActiveView(str);
-            main.setScreen(gvm.getActiveView());
+            this.model.dispose();
+            this.gvm.setActiveView(str);
+
+            // Tell main to update to correct screen
+            this.main.setScreen(this.gvm.getActiveView());
         }else if("keySetter".equals(str)){
-            gvm.getActiveView().hide();
+            this.gvm.getActiveView().hide();
             Gdx.input.setInputProcessor(configureControlsProcessor);
         }
         currentView = str;
-        // Tell main to update to correct screen
-        //main.setScreen(gvm.getActiveView());
     }
 
     /**
@@ -365,16 +368,16 @@ public class RoCCController implements Runnable{
 
         private IViewObservable observable;
 
-        public ViewChooser(IViewObservable observerable){
-            this.observable = observerable;
+        public ViewChooser(IViewObservable observable){
+            this.observable = observable;
             this.observable.register(this);
         }
 
         @Override
         public void viewUpdated(String screen) {
             setState(screen);
-            observable = gvm.getViewObserver();
-            observable.register(this);
+            this.observable = gvm.getViewObserver();
+            this.observable.register(this);
         }
 
     }

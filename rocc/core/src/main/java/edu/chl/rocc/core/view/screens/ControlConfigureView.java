@@ -40,6 +40,7 @@ public class ControlConfigureView extends AbstractMenuView {
     private TextButton defaultButton;
     private TextButton backButton;
 
+    private boolean resize;
 
     public ControlConfigureView(IRoCCModel model){
         super(model);
@@ -97,6 +98,12 @@ public class ControlConfigureView extends AbstractMenuView {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
+        if(resize) {
+            stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+            resize = false;
+        }
+
+
         for (int i = 0; i<keyTitleArray.length; i++) {
             if (keyToChange.equals(keyTitleArray[i])) {
 
@@ -120,6 +127,11 @@ public class ControlConfigureView extends AbstractMenuView {
     public void resume(){
         super.resume();
         Gdx.input.setInputProcessor(stage);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        resize = true;
     }
 
     @Override

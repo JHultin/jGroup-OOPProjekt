@@ -73,6 +73,7 @@ public class LoadMenuView extends AbstractMenuView {
             }
         });
 
-    }}
+    }
+}
 
 
