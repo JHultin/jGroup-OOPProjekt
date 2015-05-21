@@ -19,7 +19,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
+import edu.chl.rocc.core.model.Direction;
 import edu.chl.rocc.core.utility.CharacterTextureLoader;
+import edu.chl.rocc.core.utility.WeaponTextureLoader;
 import edu.chl.rocc.core.view.AnimationHandler;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -51,14 +53,16 @@ public class PlayView implements Screen,IViewObservable{
     private Stage stage;
     private Table table;
 
-
-    Sound sound;
     //ANIMATION
     private HashMap<String,HashMap<String,AnimationHandler>> charactersAnimationHashMap;
     private TextureRegion textureRegion;
     private String[] characterNames;
     private String[] currentAnimation;
-    //ANIMATION TEST END
+
+    //WeaponTexture
+    private String[] weaponNames;
+    private String[] weaponTextures;
+    private HashMap<String, HashMap<String,Texture>> weaponHashMap;
 
     //Pause windowtest
     private Window pauseWindow;
@@ -86,9 +90,9 @@ public class PlayView implements Screen,IViewObservable{
 
         //Initializes the text
         labelStyle = new Label.LabelStyle(font,Color.BLACK);
-        scoreLabel = new Label("Score:\n1337", labelStyle);
+        scoreLabel = new Label("Score:", labelStyle);
         scoreLabel.setFontScale(1);
-        timeLabel = new Label("Time:\n00:00", labelStyle);
+        timeLabel = new Label("Time:", labelStyle);
         timeLabel.setFontScale(1);
 
         scoreTimeTable.add(scoreLabel).pad(15);
@@ -144,10 +148,20 @@ public class PlayView implements Screen,IViewObservable{
             addToAnimationHashMap(characterNames[i]);
         }
 
+        //Adds the different weapon textures
+        weaponHashMap = new HashMap<String, HashMap<String, Texture>>();
+        weaponNames = new String[]{"ak-47","plasmaGun"};
+        weaponTextures = new String[]{"LEFT","RIGHT","bullet"};
+
+        for(int i = 0; i<weaponNames.length; i++){
+            addToWeaponTextureHashMap(weaponNames[i]);
+        }
+
+
         textures = new HashMap<String, Texture>();
         textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
-        textures.put("weapon" , new Texture(Gdx.files.internal("weapons/weapon.png")));
-        textures.put("bullet" , new Texture(Gdx.files.internal("bullet.png")));
+        textures.put("weapon" , new Texture(Gdx.files.internal("weapons/plasmaGun/weaponLeft.png")));
+        textures.put("bullet" , new Texture(Gdx.files.internal("weapons/plasmaGun/bullet.png")));
         textures.put("noEyes"  , new Texture(Gdx.files.internal("characters/noEyes/idleLeft.png")));
         textures.put("zombie"   , new Texture(Gdx.files.internal("characters/zombie/idleLeft.png")));
 
@@ -204,8 +218,15 @@ public class PlayView implements Screen,IViewObservable{
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
                 renderCharacter(character);
+
+
             }
         }
+
+        //Draws the weapon
+        batch.draw(weaponHashMap.get((model.getWeapon().getName())).get(""+Direction.RIGHT)
+                , model.getCharacterXPos() + 3, model.getCharacterYPos() + 10);
+
         synchronized (model.getPickupables()) {
             for (IPickupable pickupable : model.getPickupables()) {
                 batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
@@ -232,7 +253,9 @@ public class PlayView implements Screen,IViewObservable{
             }
         }
 
-        batch.draw(textures.get("weapon"), model.getCharacterXPos() + 3, model.getCharacterYPos() + 10);
+
+
+        //batch.draw(textures.get("weapon"), model.getCharacterXPos() + 3, model.getCharacterYPos() + 10);
 
         batch.end();
 
@@ -344,6 +367,21 @@ public class PlayView implements Screen,IViewObservable{
 
         charactersAnimationHashMap.put(character, animationHashmap);
     }//addToAnimationHashMap end
+
+    /**
+     * A method which places all the weapon textures in a hashMap.
+     */
+    public void addToWeaponTextureHashMap(String weapon){
+        WeaponTextureLoader weaponTextureLoader = new WeaponTextureLoader(weapon);
+        HashMap<String, Texture> textureHashmap = new HashMap<String, Texture>();
+
+        for(int i = 0; i<weaponTextures.length; i++){
+            Texture texture = new Texture(Gdx.files.internal(weaponTextureLoader.getCharacterTexture(weaponTextures[i])));
+            textureHashmap.put(weaponTextures[i],texture);
+        }
+
+        weaponHashMap.put(weapon, textureHashmap);
+    }
 
 
     public void createPauseWindow(){

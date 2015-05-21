@@ -120,7 +120,7 @@ public class RoCCController implements Runnable{
             this.model.setActiveCharacter(0);
 
             // Create weapon
-            this.model.addWeapon("weapon");
+            this.model.addWeapon("plasmaGun");
 
             // Restart the thread and apply correct inputprocessor
             /*isRunning = false;
