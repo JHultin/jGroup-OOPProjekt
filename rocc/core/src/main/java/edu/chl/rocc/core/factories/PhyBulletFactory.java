@@ -13,13 +13,17 @@ import org.jbox2d.dynamics.World;
 public class PhyBulletFactory implements IBulletFactory {
 
     private final World world;
+    private final int width, height;
 
     public PhyBulletFactory(World world){
         this.world = world;
+
+        this.width = 2;
+        this.height = 2;
     }
 
     @Override
     public IBullet createBullet(String name, float x, float y, float xDir, float yDir){
-        return new PhyBullet(this.world, name, x, y, xDir, yDir);
+        return new PhyBullet(this.world, name, x - width, y - height, xDir, yDir);
     }
 }

@@ -172,8 +172,6 @@ public class Player implements IPlayer {
 
     @Override
     public void shoot(float xDir, float yDir){
-        // skicka vidare till weapon, som shoot() under
-        // weapon har hand om spawn x/y för bullets
         this.bullets.add(this.getWeapon().createBullet(this.getCharacterXPos(), this.getCharacterYPos(), xDir, yDir));
     }
 
