@@ -71,11 +71,6 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
         table = new Table(skin);
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-
-        //Just to show where the cells are located.
-        // table.debug();//Remove
-
-
         stage.addActor(backgroundImage);
     }
 

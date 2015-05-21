@@ -147,17 +147,18 @@ public class RoCCController implements Runnable{
             thread.start();
             isRunning = true;*/
         } else if("configureControls".equals(str)){
-            if(!"keySetter".equals(str)){
-                // Tell the GameViewManager to choose the correct screen
+            if(!"keySetter".equals(currentView)){
                 gvm.setActiveView(str);
+               // System.out.println("setConfigureControl View");
             }else{
                 gvm.getActiveView().resume();
+               // System.out.println("return to Stage input");
             }
             this.inGame = false;
             model.dispose();
         }else if("keySetter".equals(str)){
             Gdx.input.setInputProcessor(configureControlsProcessor);
-            System.out.println(str);
+           // System.out.println("set Configure ControlProcessor to input");
         }
         currentView = str;
         // Tell main to update to correct screen
@@ -235,6 +236,7 @@ public class RoCCController implements Runnable{
 
             // Then update the world
             model.updateWorld(updateSpeed);
+
 
             // Lastly do all operations that triggered from the update
             // but can't be reacted to during the update
@@ -321,10 +323,17 @@ public class RoCCController implements Runnable{
 
 
     private class ConfigureControlsProcessor implements InputProcessor {
+
+        private ConfigureControlsProcessor (){
+
+        }
+
+
         @Override
         public boolean keyDown(int keycode) {
             System.out.println("Key Down");
             ((ControlConfigureView)gvm.getActiveView()).setKey(keycode);
+            gvm.getActiveView().resume();
             return false;
         }
 

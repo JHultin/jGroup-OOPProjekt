@@ -34,7 +34,6 @@ public class OptionsMenuView extends AbstractMenuView{
     private Label soundVolumeLabel;
     private Label musicVolumeLabel;
     private Slider musicSlider;
-    private ScrollPane controlConfigPane;
 
     public OptionsMenuView(IRoCCModel model){
         super(model);
@@ -54,10 +53,7 @@ public class OptionsMenuView extends AbstractMenuView{
          */
         createButtons();
 
-        /*
-         * adds to table
-         */
-        //adds title
+        //adds title to table
         table.add(titleLabel).spaceBottom(70);
         table.row();
 
@@ -83,7 +79,7 @@ public class OptionsMenuView extends AbstractMenuView{
         table.add(backButton).width(buttonWidth);
 
 
-        //table.debug();
+        //table.debug();//used to show grid lines
 
 
         stage.addActor(table);
@@ -132,15 +128,10 @@ public class OptionsMenuView extends AbstractMenuView{
         musicVolumeLabel.setFontScale(1);
 
         /*
-         * Check GeneralOptions for presets
+         * Checks GeneralOptions for presets
          * Write on one line
          */
-        if( GeneralOptions.getInstance().getOption("isFullscreen") == 1) {
-            fullscreenCheckBox.setChecked(true);
-        }else{
-            fullscreenCheckBox.setChecked(false);
-        }
-
+        fullscreenCheckBox.setChecked(GeneralOptions.getInstance().getOption("isFullscreen") == 1);
         soundSlider.setValue(GeneralOptions.getInstance().getOption("soundVolume"));
         musicSlider.setValue(GeneralOptions.getInstance().getOption("musicVolume"));
 

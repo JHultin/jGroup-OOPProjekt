@@ -31,7 +31,7 @@ public class GeneralOptions {
     }
 
     private GeneralOptions() {
-        this.filePath = "options/general.txt";
+        this.filePath = "assets/options/general.txt";
 
         // Create the keyMap as a Hashmap
         this.options = new HashMap<String, Integer>(10);
@@ -74,7 +74,7 @@ public class GeneralOptions {
      * @return successfully wrote to file
      */
     public boolean saveOptions(){
-        File dir = new File("options");
+        File dir = new File("assets/options");
         if (!dir.exists()){
             try{
                 dir.mkdir();

@@ -38,7 +38,6 @@ public class ControlConfigureView extends AbstractMenuView {
     private TextButton nextWeaponButton;
     private TextButton interactButton;
 
-    private String currentButton;
     private String keyToChange;
 
     private TextButton defaultButton;
@@ -114,7 +113,6 @@ public class ControlConfigureView extends AbstractMenuView {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-
         for (String button : keyTitleHashMap.values()) {
             if (keyToChange.equals(keyTitleHashMap.get(button))) {
 
@@ -122,10 +120,6 @@ public class ControlConfigureView extends AbstractMenuView {
                 keysBindingHashMap.get(button).setText(Input.Keys.toString(KeyOptions.getInstance().getKey(button)));
             }
         }
-
-        //nextWeaponButton.setText(Input.Keys.toString(KeyOptions.getInstance().getKey("left")));
-        //interactButton.setText(Input.Keys.toString(KeyOptions.getInstance().getKey("")));
-
 
         stage.act();
         stage.draw();
@@ -139,7 +133,6 @@ public class ControlConfigureView extends AbstractMenuView {
     @Override
     public void resume(){
         super.resume();
-
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -159,9 +152,12 @@ public class ControlConfigureView extends AbstractMenuView {
 
 
 
-        moveLeftButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Left")), textButtonStyle);
-        moveRightButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Right")), textButtonStyle);
-        jumpButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Jump")), textButtonStyle);
+        moveLeftButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Left"))
+                , textButtonStyle);
+        moveRightButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Right"))
+                , textButtonStyle);
+        jumpButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Jump"))
+                , textButtonStyle);
         shootButton = new TextButton("MOUSE1", textButtonStyle);
         nextWeaponButton = new TextButton("Q", textButtonStyle);
         interactButton = new TextButton("E", textButtonStyle);
@@ -194,7 +190,6 @@ public class ControlConfigureView extends AbstractMenuView {
                 keyToChange = "Move Right";
                 notifyObserver("keySetter");
             }
-
         });
 
         jumpButton.addListener(new ClickListener(){
@@ -211,7 +206,7 @@ public class ControlConfigureView extends AbstractMenuView {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 shootButton.setText("PRESS KEY");
-                currentButton = "Shoot";
+                keyToChange = "Shoot";
                 notifyObserver("keySetter");
             }
 

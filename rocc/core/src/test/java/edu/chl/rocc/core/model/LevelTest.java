@@ -19,7 +19,7 @@ public class LevelTest {
             pickupableCharacter = new PickupableCharacter(pickupableCharacters[i]);
             level.addPickupable(pickupableCharacter);
         }
-
+        
         assertTrue(level.getPickupables().get(2).getName().equals("doctor"));
     }
 
