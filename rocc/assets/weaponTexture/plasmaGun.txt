@@ -1,0 +1,7 @@
+LEFT
+weapons/plasmaGun/weaponLeft.png
+RIGHT
+weapons/plasmaGun/weaponRight.png
+bullet
+weapons/plasmaGun/bullet.png
+.
