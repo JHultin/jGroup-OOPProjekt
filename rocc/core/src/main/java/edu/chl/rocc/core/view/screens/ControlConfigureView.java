@@ -2,6 +2,7 @@ package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -23,13 +24,9 @@ public class ControlConfigureView extends AbstractMenuView {
     private Label.LabelStyle titleStyle;
     private Label titleLabel;
 
-
-
     //A hashMap to contain all the button and one to contain all the button names.
     private HashMap<String,TextButton> keysBindingHashMap;
-    private HashMap<String, String> keyTitleHashMap;
-
-
+    private String[] keyTitleArray;
 
     private TextButton moveLeftButton;
     private TextButton moveRightButton;
@@ -41,54 +38,44 @@ public class ControlConfigureView extends AbstractMenuView {
     private String keyToChange;
 
     private TextButton defaultButton;
-
-
-
-
-
-
     private TextButton backButton;
 
 
     public ControlConfigureView(IRoCCModel model){
         super(model);
 
-        /**
-         * Creating Options title
-         */
+        Gdx.input.setInputProcessor(stage);
+
+        //Creating Options title
         //initialize the titleStyle and titleLabel
         titleStyle = new Label.LabelStyle(font, Color.BLACK);
         titleLabel = new Label("Configure Controls", titleStyle);
         titleLabel.setFontScale(2);
 
 
-        /**
-         * Initialize buttons
-         */
+        //Initialize buttons
         createButtons();
 
         keyToChange = new String();
+        keyTitleArray = new String[]{"Move Left","Move Right","Jump"};
 
-        /**
-         * adds to table
-         */
+
+        //adds to table
         //adds title
         table.add(titleLabel).padBottom(20);
         table.row();
 
-
-
         Table buttonConfigureTable = new Table();
 
-
         float buttonWidth = 200;
-        /**
+
+        /*
          * Gets the title name of the button and uses them
          * as a key to retrive the right button
          */
-        for(String buttonName : keyTitleHashMap.values()){
-            buttonConfigureTable.add(new Label(buttonName, titleStyle)).right().padRight(15).padBottom(10);
-            buttonConfigureTable.add(keysBindingHashMap.get(buttonName)).width(buttonWidth).padBottom(15);
+        for(int i = 0; i<keyTitleArray.length; i++){
+            buttonConfigureTable.add(new Label(keyTitleArray[i], titleStyle)).right().padRight(15).padBottom(10);
+            buttonConfigureTable.add(keysBindingHashMap.get(keyTitleArray[i])).width(buttonWidth).padBottom(15);
             buttonConfigureTable.row();
         }
 
@@ -102,22 +89,19 @@ public class ControlConfigureView extends AbstractMenuView {
 
         table.add(bottomTable);
 
-       // table.debug();
-
         stage.addActor(table);
     }
-
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        for (String button : keyTitleHashMap.values()) {
-            if (keyToChange.equals(keyTitleHashMap.get(button))) {
+        for (int i = 0; i<keyTitleArray.length; i++) {
+            if (keyToChange.equals(keyTitleArray[i])) {
 
             } else {
-                keysBindingHashMap.get(button).setText(Input.Keys.toString(KeyOptions.getInstance().getKey(button)));
+                keysBindingHashMap.get(keyTitleArray[i]).setText(Input.Keys.toString(KeyOptions.getInstance().getKey(keyTitleArray[i])));
             }
         }
 
@@ -127,7 +111,9 @@ public class ControlConfigureView extends AbstractMenuView {
 
     @Override
     public void show() {
-        super.show();
+       // super.show();
+        Gdx.input.setInputProcessor(stage);
+        System.out.println(Gdx.input.getInputProcessor());
     }
 
     @Override
@@ -136,6 +122,11 @@ public class ControlConfigureView extends AbstractMenuView {
         Gdx.input.setInputProcessor(stage);
     }
 
+    @Override
+    public void hide() {
+        super.hide();
+        Gdx.input.setInputProcessor(null);
+    }
     public void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
         //Padding to button
@@ -144,13 +135,7 @@ public class ControlConfigureView extends AbstractMenuView {
         defaultButton = new TextButton("Defaults", textButtonStyle);
         defaultButton.pad(10);
 
-
-
         keysBindingHashMap = new HashMap<String, TextButton>();
-        keyTitleHashMap = new HashMap<String, String>();
-
-
-
 
         moveLeftButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Left"))
                 , textButtonStyle);
@@ -170,9 +155,7 @@ public class ControlConfigureView extends AbstractMenuView {
         interactButton.pad(10);
 
 
-        /**
-         * add listener to buttons
-         */
+        //add listener to buttons
         moveLeftButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -233,14 +216,6 @@ public class ControlConfigureView extends AbstractMenuView {
         });
 
 
-        keyTitleHashMap.put("Move Left","Move Left");
-        keyTitleHashMap.put("Move Right", "Move Right");
-        keyTitleHashMap.put("Jump", "Jump");
-      //  keyTitleHashMap.put("Shoot", "Shoot");
-      //  keyTitleHashMap.put("Next Weapon", "Next Weapon");
-      //  keyTitleHashMap.put("Interact", "Interact");
-
-
         keysBindingHashMap.put("Move Left", moveLeftButton);
         keysBindingHashMap.put("Move Right", moveRightButton);
         keysBindingHashMap.put("Jump", jumpButton);
@@ -260,9 +235,10 @@ public class ControlConfigureView extends AbstractMenuView {
     }
 
     public void setKey(int keycode){
-        if(keyToChange != null){
+        if(!keyToChange.equals("")){
             KeyOptions.getInstance().setKey(keyToChange, keycode);
-            keyToChange = null;
+            KeyOptions.getInstance().saveKeys();
+            keyToChange = "";
         }
     }
 }

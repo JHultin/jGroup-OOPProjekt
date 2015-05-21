@@ -94,8 +94,6 @@ public class RoCCController implements Runnable{
      * @param str
      */
     public void setState(String str){
-
-
         // If a game is started
         if ("game".equals(str) && !"game".equals(currentView)) {
             // Tell the GameViewManager to choose the correct screen
@@ -132,37 +130,28 @@ public class RoCCController implements Runnable{
             this.thread.start();
             this.isRunning = true;*/
             this.inGame = true;
-
+            main.setScreen(gvm.getActiveView());
         // If we went to a menu instead
         } else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))){
+
             // Tell the GameViewManager to choose the correct screen
             gvm.setActiveView(str);
-
             this.inGame = false;
-            /*isRunning = false;
-            thread.interrupt();*/
             model.dispose();
-            /*thread = new Thread(this);
-            thread.start();
-            isRunning = true;*/
+            main.setScreen(gvm.getActiveView());
         } else if("configureControls".equals(str)){
-            if(!"keySetter".equals(currentView)){
-                gvm.setActiveView(str);
-               // System.out.println("setConfigureControl View");
-            }else{
-                gvm.getActiveView().resume();
-               // System.out.println("return to Stage input");
-            }
             this.inGame = false;
             model.dispose();
+            gvm.setActiveView(str);
+            main.setScreen(gvm.getActiveView());
         }else if("keySetter".equals(str)){
+            gvm.getActiveView().hide();
             Gdx.input.setInputProcessor(configureControlsProcessor);
-           // System.out.println("set Configure ControlProcessor to input");
         }
         currentView = str;
         // Tell main to update to correct screen
-        main.setScreen(gvm.getActiveView());
+        //main.setScreen(gvm.getActiveView());
     }
 
     /**
@@ -324,14 +313,8 @@ public class RoCCController implements Runnable{
 
     private class ConfigureControlsProcessor implements InputProcessor {
 
-        private ConfigureControlsProcessor (){
-
-        }
-
-
         @Override
         public boolean keyDown(int keycode) {
-            System.out.println("Key Down");
             ((ControlConfigureView)gvm.getActiveView()).setKey(keycode);
             gvm.getActiveView().resume();
             return false;
