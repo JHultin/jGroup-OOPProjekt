@@ -7,8 +7,14 @@ import edu.chl.rocc.core.m2phyInterfaces.IFixture;
  */
 public interface IContact {
 
+    /**
+     * @return the first fixture
+     */
     public IFixture getFixtureA();
 
+    /**
+     * @return the second fixture
+     */
     public IFixture getFixtureB();
 
 }
