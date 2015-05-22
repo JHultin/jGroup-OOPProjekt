@@ -1,18 +1,11 @@
 package edu.chl.rocc.core.model;
 
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-import edu.chl.rocc.core.controller.DeathListener;
+import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.controller.IDeathListener;
-import edu.chl.rocc.core.factories.RoCCFactory;
 import edu.chl.rocc.core.utility.IDeathEvent;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 import static org.junit.Assert.*;
 

@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.model;
 
-import edu.chl.rocc.core.factories.RoCCFactory;
+import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IWeapon;
 import org.junit.Before;

@@ -1,5 +1,6 @@
-package edu.chl.rocc.core.factories;
+package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.factories.IBulletFactory;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.model.Bullet;
 

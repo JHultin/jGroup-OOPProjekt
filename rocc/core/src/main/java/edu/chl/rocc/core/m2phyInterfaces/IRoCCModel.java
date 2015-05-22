@@ -2,7 +2,7 @@ package edu.chl.rocc.core.m2phyInterfaces;
 
 import edu.chl.rocc.core.controller.ICollisionListener;
 import edu.chl.rocc.core.controller.IDeathListener;
-import edu.chl.rocc.core.model.Direction;
+import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.utility.IDeathEvent;
 
 import java.util.List;

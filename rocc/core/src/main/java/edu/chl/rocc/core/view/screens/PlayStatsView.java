@@ -35,6 +35,9 @@ public class PlayStatsView extends AbstractMenuView{
         titleLabel = new Label("Your Stats", titleStyle);
         titleLabel.setFontScale(2);
 
+        scoreLabel = new Label("0",titleStyle);
+        timeLabel = new Label("0",titleStyle);
+
         /**
          * Initialize buttons
          */
@@ -49,10 +52,10 @@ public class PlayStatsView extends AbstractMenuView{
 
         Table textTable = new Table();
         textTable.add(new Label("Score: ", titleStyle)).padBottom(20);
-        textTable.add(new Label("100", titleStyle)).padRight(10).padBottom(20);
+        textTable.add(scoreLabel).padRight(10).padBottom(20);
         textTable.row();
         textTable.add(new Label("Time; ", titleStyle));
-        textTable.add(new Label("200", titleStyle)).padRight(10);
+        textTable.add(timeLabel).padRight(10);
 
         table.add(textTable).padBottom(100);
         table.row();
@@ -71,6 +74,8 @@ public class PlayStatsView extends AbstractMenuView{
     @Override
     public void show() {
         super.show();
+        scoreLabel.setText("" + model.getScore());
+        timeLabel.setText("" + model.getTime());
     }
 
 

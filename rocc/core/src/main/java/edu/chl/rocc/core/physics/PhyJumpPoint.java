@@ -1,7 +1,7 @@
 package edu.chl.rocc.core.physics;
 
 import edu.chl.rocc.core.m2phyInterfaces.IJumpPoint;
-import edu.chl.rocc.core.model.Direction;
+import edu.chl.rocc.core.Direction;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
 

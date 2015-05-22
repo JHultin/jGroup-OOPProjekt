@@ -1,20 +1,14 @@
 package edu.chl.rocc.core.physics;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
-import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.controller.IDeathListener;
-import edu.chl.rocc.core.factories.PhyBulletFactory;
-import edu.chl.rocc.core.factories.PhyRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.m2phyInterfaces.IWeapon;
-import edu.chl.rocc.core.model.Direction;
+import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.model.Player;
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

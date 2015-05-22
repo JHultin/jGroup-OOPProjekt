@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.IBullet;

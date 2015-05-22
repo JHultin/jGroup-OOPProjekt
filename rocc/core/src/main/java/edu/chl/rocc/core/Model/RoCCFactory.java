@@ -1,8 +1,7 @@
-package edu.chl.rocc.core.factories;
+package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.*;
-import edu.chl.rocc.core.model.*;
-import edu.chl.rocc.core.model.Character;
 
 /**
  * Iterface for factory creating all objects handling all non-physics related logic in our game

@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.model;
+package edu.chl.rocc.core;
 
 /**
  * Created by Yen on 2015-04-22.

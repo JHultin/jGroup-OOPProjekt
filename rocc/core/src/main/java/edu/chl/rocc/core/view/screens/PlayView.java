@@ -2,7 +2,6 @@ package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -19,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
-import edu.chl.rocc.core.model.Direction;
+import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.utility.CharacterTextureLoader;
 import edu.chl.rocc.core.utility.WeaponTextureLoader;
 import edu.chl.rocc.core.view.AnimationHandler;

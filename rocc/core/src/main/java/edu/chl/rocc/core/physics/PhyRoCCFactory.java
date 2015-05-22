@@ -1,7 +1,7 @@
-package edu.chl.rocc.core.factories;
+package edu.chl.rocc.core.physics;
 
+import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.*;
-import edu.chl.rocc.core.physics.*;
 import org.jbox2d.dynamics.World;
 
 /**

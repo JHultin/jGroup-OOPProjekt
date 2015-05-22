@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
-import edu.chl.rocc.core.model.Direction;
+import edu.chl.rocc.core.Direction;
 
 /**
  * Created by Joel on 2015-05-03.

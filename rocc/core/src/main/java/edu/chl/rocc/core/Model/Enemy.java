@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
