@@ -77,7 +77,6 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             }else if("body".equals(fb.getUserData())){
                 enemyToChangeDirection.add((IEnemy)(fa.getBody().getUserData()));
                 ((ICharacter)fb.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
-                System.out.println("HP character :" +((ICharacter)fb.getBody().getUserData()).getHP());
             }
         }
         if ("enemyUpperSensor".equals(fb.getUserData())){
@@ -86,7 +85,6 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             }else if("body".equals(fa.getUserData())){
                 enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
                 ((ICharacter)fa.getBody()).decHP(((IEnemy) (fb.getBody().getUserData())).getDamageDeal());
-                System.out.println("HP character :" +((ICharacter)fa.getBody().getUserData()).getHP());
             }
         }
 

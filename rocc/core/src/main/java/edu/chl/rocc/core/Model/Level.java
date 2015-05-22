@@ -52,20 +52,9 @@ public class Level implements ILevel {
         pickupables.remove(pickup);
     }
 
-
     @Override
     public List<IPickupable> getPickupables() {
         return pickupables;
-    }
-
-    @Override
-    public void addJumpPoint(IJumpPoint jumpPoint){
-        this.jumpPoints.add(jumpPoint);
-    }
-
-    @Override
-    public List<IBullet> getBullets(){
-        return bullets;
     }
 
     @Override
@@ -76,6 +65,16 @@ public class Level implements ILevel {
     @Override
     public void removeBullet(IBullet bullet) {
         bullets.remove(bullet);
+    }
+
+    @Override
+    public List<IBullet> getBullets(){
+        return bullets;
+    }
+
+    @Override
+    public void addJumpPoint(IJumpPoint jumpPoint){
+        this.jumpPoints.add(jumpPoint);
     }
 
     @Override

@@ -183,7 +183,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 model.addFinish(finPoint);
             }
         }
-        if (tMap.getLayers().get("finish") != null) {
+        if (tMap.getLayers().get("enemy") != null) {
             int i = 0;
             //Add enemy in the world
             List<String> enemiesName = new ArrayList<String>();

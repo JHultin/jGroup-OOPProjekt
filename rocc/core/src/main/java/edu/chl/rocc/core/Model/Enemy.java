@@ -21,7 +21,7 @@ public class Enemy implements IEnemy{
     private int timeCount;
 
     public Enemy(int healthPoints, String enemyName, float x, float y){
-       this.setHP(healthPoints);
+        this.setHP(healthPoints);
         this.x = x;
         this.y = y;
         this.name = enemyName;
