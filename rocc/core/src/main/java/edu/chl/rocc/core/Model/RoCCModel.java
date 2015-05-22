@@ -32,11 +32,6 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void aim(int x, int y){
-
-    }
-
-    @Override
     public void constructWorld(){
 
     }
@@ -64,15 +59,6 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void jump() {
         this.player.jump();
-    }
-
-    @Override
-    public void jumpFollowerIfPossible(){
-        for(int i=0; i<this.player.getCharacters().size(); i++){
-            if(this.characterIsMoving(this.player.getCharacters().get(i))){
-                this.player.getCharacters().get(i).jumpIfFollower();
-            }
-        }
     }
 
     @Override
@@ -174,7 +160,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void changeLead() {
-        this.player.setActiveCharacter((int)(Math.random() * this.player.getCharacters().size()));
+        this.player.cycleActivePlayer();
     }
 
     @Override
@@ -197,6 +183,8 @@ public class RoCCModel implements IRoCCModel {
     public int getTime() {
         return level.getTime();
     }
+
+
     public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange) {
 
 
@@ -206,6 +194,7 @@ public class RoCCModel implements IRoCCModel {
     public void removeBullets(List<IBullet> bulletsToRemove) {
         for (IBullet bullet : bulletsToRemove){
             level.removeBullet(bullet);
+            //player.removeBullet(bullet)
         }
     }
 

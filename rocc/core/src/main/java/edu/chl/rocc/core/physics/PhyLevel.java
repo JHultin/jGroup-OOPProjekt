@@ -1,15 +1,10 @@
 package edu.chl.rocc.core.physics;
 
-import com.badlogic.gdx.math.Vector2;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.model.Level;
-import org.jbox2d.common.Vec2;
-import jdk.nashorn.internal.ir.Flags;
 import org.jbox2d.dynamics.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
  * Created by Joel on 2015-05-03.
@@ -19,15 +14,11 @@ public class PhyLevel implements ILevel {
     private final ILevel level;
     private final World world;
     private List<IBody> bodiesNeedingToDispose;
-    private List<IEnemy> enemies;
-
-    private float aimX, aimY;
 
     public PhyLevel(World world) {
         this.world = world;
         this.level = new Level();
         this.bodiesNeedingToDispose = new ArrayList<IBody>();
-        this.enemies = new ArrayList<IEnemy>();
     }
 
     @Override
@@ -75,20 +66,19 @@ public class PhyLevel implements ILevel {
     public void removeBullet(IBullet bullet) {
         this.level.removeBullet(bullet);
     }
+
     @Override
     public List<IEnemy> getEnemies(){
-        return enemies;
+        return level.getEnemies();
     }
 
     @Override
     public void addEnemy(IEnemy enemy) {
-        enemies.add(enemy);
+        level.addEnemy(enemy);
     }
 
     @Override
-    public void removeEnemy(IEnemy enemy) {
-        enemies.remove(enemy);
-    }
+    public void removeEnemy(IEnemy enemy){ level.removeEnemy(enemy); }
 
     @Override
     public boolean equals(Object o){
@@ -109,12 +99,6 @@ public class PhyLevel implements ILevel {
         hash += world.hashCode();
         // hash += level.hashCode(); // For when level gets a hashCode
         return hash;
-    }
-
-    @Override
-    public void setAim(float x, float y){
-        this.aimX = x;
-        this.aimY = y;
     }
 
     @Override

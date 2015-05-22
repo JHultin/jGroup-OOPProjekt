@@ -83,7 +83,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             if("ground".equals(fa.getBody().getUserData())) {
                 enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
             }else if("body".equals(fa.getUserData())){
-                enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
+                enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
                 ((ICharacter)fa.getBody()).decHP(((IEnemy) (fb.getBody().getUserData())).getDamageDeal());
             }
         }

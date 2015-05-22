@@ -56,15 +56,6 @@ public class PhyRoCCModel implements IRoCCModel {
         this.tMap = tMap;
     }
 
-    @Override
-    public void aim(int x, int y) {
-        this.model.aim(x, y);
-    }
-
-    public Vec2 getAim() {
-        return null;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -99,28 +90,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
         this.createFinish();
 
-        if (tMap.getLayers().get("enemy") != null) {
-            int i = 0;
-            //Add enemy in the world
-            List<String> enemiesName = new ArrayList<String>();
-            enemiesName.add("zombie");
-            enemiesName.add("shooterEnemy");
-
-            MapLayer enemyLayer = tMap.getLayers().get("enemy");
-
-            for (MapObject mapObject : enemyLayer.getObjects()) {
-                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
-
-                if(i >= enemiesName.size()){
-                    i=0;
-                }
-
-                IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
-                i++;
-                model.addEnemy(enemy);
-            }
-        }
+        this.createEnemies();
     }
 
     private void createTileLayer(String layer, Short categoryBits, Short maskBits){
@@ -196,7 +166,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
-                IPickupableCharacter ipc = new PhyPickupableCharacter("noEyes", world, x, y);
+                IPickupableCharacter ipc = new PhyPickupableCharacter("" + mapObject.getProperties().get("Name"), world, x, y);
                 model.addPickupable(ipc);
             }
         }
@@ -234,6 +204,31 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    private void createEnemies(){
+        if (tMap.getLayers().get("enemy") != null) {
+            int i = 0;
+            //Add enemy in the world
+            List<String> enemiesName = new ArrayList<String>();
+            enemiesName.add("zombie");
+            enemiesName.add("shooterEnemy");
+
+            MapLayer enemyLayer = tMap.getLayers().get("enemy");
+
+            for (MapObject mapObject : enemyLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
+
+                if(i >= enemiesName.size()){
+                    i=0;
+                }
+
+                IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
+                i++;
+                model.addEnemy(enemy);
+            }
+        }
+    }
+
     @Override
     public void addBlock(IBody body) {
         this.model.addBlock(body);
@@ -257,11 +252,6 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void jump() {
         this.model.jump();
-    }
-
-    @Override
-    public void jumpFollowerIfPossible(){
-        this.model.jumpFollowerIfPossible();
     }
 
     @Override
@@ -314,18 +304,14 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange){
         for (IEnemy enemy : enemyDirToChange){
-            if(enemy instanceof IEnemy){
                 enemy.changeMoveDirection();
-            }
         }
     }
 
     @Override
     public void removeBullets(List<IBullet> bulletsToRemove){
         for (IBullet bullet : bulletsToRemove){
-            if(bullet instanceof IBullet){
                 bullet.dispose();
-            }
         }
         model.removeBullets(bulletsToRemove);
     }

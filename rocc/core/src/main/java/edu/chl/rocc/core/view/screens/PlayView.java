@@ -217,8 +217,6 @@ public class PlayView implements Screen,IViewObservable{
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
                 renderCharacter(character);
-
-
             }
         }
 

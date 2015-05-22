@@ -91,13 +91,6 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void jumpFollower(){
-        for(int i=0; i<characters.size(); i++){
-            characters.get(i).jumpIfFollower();
-        }
-    }
-
-    @Override
     public float getCharacterXPos(){
         return characters.get(activeCharacterIndex).getX();
     }
@@ -187,10 +180,8 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void setFrontCharacter(ICharacter character){
-        characters.get(activeCharacterIndex).setAsFollower();
-        activeCharacterIndex = characters.indexOf(character);
-        character.setAsLead();
+    public void cycleActivePlayer() {
+        this.setActiveCharacter((activeCharacterIndex + 1) % characters.size());
     }
 
     @Override

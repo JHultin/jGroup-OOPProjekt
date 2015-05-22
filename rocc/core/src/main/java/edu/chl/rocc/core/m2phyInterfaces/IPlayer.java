@@ -12,8 +12,6 @@ public interface IPlayer {
 
     public void jump();
 
-    public void jumpFollower();
-
     /**
     * Move the front character in a given direction.
     */
@@ -83,10 +81,7 @@ public interface IPlayer {
      */
     public void setActiveCharacter(int i);
 
-    /**
-     * Change which character the player is playing as.
-     */
-    public void setFrontCharacter(ICharacter character);
+    public void cycleActivePlayer();
 
     /**
      * @return the index of the front character in the character list.

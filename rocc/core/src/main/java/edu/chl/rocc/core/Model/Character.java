@@ -95,9 +95,6 @@ public class Character implements ICharacter {
     public void jump(){}
 
     @Override
-    public void jumpIfFollower(){ }
-
-    @Override
     public void toggleFollowerOnJumpPoint(){ }
 
     @Override
