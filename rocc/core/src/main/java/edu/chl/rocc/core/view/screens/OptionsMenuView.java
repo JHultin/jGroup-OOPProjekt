@@ -35,9 +35,13 @@ public class OptionsMenuView extends AbstractMenuView{
     private Label musicVolumeLabel;
     private Slider musicSlider;
 
+
+    private GeneralOptions generalOptions;
+
     public OptionsMenuView(IRoCCModel model){
         super(model);
 
+        generalOptions = GeneralOptions.getInstance();
 
         /*
          * Creating Options title
@@ -131,9 +135,9 @@ public class OptionsMenuView extends AbstractMenuView{
          * Checks GeneralOptions for presets
          * Write on one line
          */
-        fullscreenCheckBox.setChecked(GeneralOptions.getInstance().getOption("isFullscreen") == 1);
-        soundSlider.setValue(GeneralOptions.getInstance().getOption("soundVolume"));
-        musicSlider.setValue(GeneralOptions.getInstance().getOption("musicVolume"));
+        fullscreenCheckBox.setChecked(generalOptions.getOption("isFullscreen") == 1);
+        soundSlider.setValue(generalOptions.getOption("soundVolume"));
+        musicSlider.setValue(generalOptions.getOption("musicVolume"));
 
 
         /*
@@ -145,10 +149,10 @@ public class OptionsMenuView extends AbstractMenuView{
                 if(fullscreenCheckBox.isChecked()){
                     Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width,
                             Gdx.graphics.getDesktopDisplayMode().height, true);
-                    GeneralOptions.getInstance().setOption("isFullscreen", 1);
+                    generalOptions.setOption("isFullscreen", 1);
                 }else{
                     Gdx.graphics.setDisplayMode(720, 480, false);
-                    GeneralOptions.getInstance().setOption("isFullscreen",0);
+                    generalOptions.setOption("isFullscreen",0);
                 }
 
             }
@@ -156,20 +160,20 @@ public class OptionsMenuView extends AbstractMenuView{
         soundSlider.addListener(new ClickListener(){
            @Override
             public void clicked(InputEvent event, float x, float y){
-                GeneralOptions.getInstance().setOption("soundVolume", (int)soundSlider.getValue());
+               generalOptions.setOption("soundVolume", (int)soundSlider.getValue());
            }
         });
         musicSlider.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                GeneralOptions.getInstance().setOption("musicVolume", (int)musicSlider.getValue());
+                generalOptions.setOption("musicVolume", (int)musicSlider.getValue());
             }
         });
 
         controlsButton.addListener(new ClickListener(){
            @Override
             public void clicked(InputEvent event, float x, float y){
-               GeneralOptions.getInstance().saveOptions();
+               generalOptions.saveOptions();
                notifyObserver("configureControls");
            }
         });
@@ -177,7 +181,7 @@ public class OptionsMenuView extends AbstractMenuView{
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                GeneralOptions.getInstance().saveOptions();
+                generalOptions.saveOptions();
                 notifyObserver("menu");
             }
         });
