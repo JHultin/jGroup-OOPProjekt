@@ -119,7 +119,7 @@ public class RoCCController implements Runnable{
             this.model.setActiveCharacter(0);
 
             // Create weapon
-            this.model.addWeapon("plasmaGun");
+            this.model.addWeapon("ak-47");
 
             // Restart the thread and apply correct inputprocessor
             /*isRunning = false;
@@ -130,32 +130,43 @@ public class RoCCController implements Runnable{
             this.isRunning = true;*/
             this.inGame = true;
 
+            this.viewChooser.setObservable(gvm.getViewObserver());
             // Tell main to update to correct screen
             this.main.setScreen(this.gvm.getActiveView());
         // If we went to a menu instead
         } else if("resume".equals(str)){
             Gdx.input.setInputProcessor(gameProcessor);
+            this.viewChooser.setObservable(gvm.getViewObserver());
             gvm.getActiveView().resume();
             this.inGame = true;
         }else if (("menu".equals(str))||("loadGame".equals(str))||
-                ("options".equals(str))||("highscore".equals(str))
-                ||"stats".equals(str)){
+                ("options".equals(str))||("highscore".equals(str))){
 
             // Tell the GameViewManager to choose the correct screen
             this.gvm.setActiveView(str);
             this.inGame = false;
             this.model.dispose();
+
+            this.viewChooser.setObservable(gvm.getViewObserver());
             this.main.setScreen(this.gvm.getActiveView());
         } else if("configureControls".equals(str)){
             this.inGame = false;
             this.model.dispose();
             this.gvm.setActiveView(str);
 
+            this.viewChooser.setObservable(gvm.getViewObserver());
             // Tell main to update to correct screen
             this.main.setScreen(this.gvm.getActiveView());
         }else if("keySetter".equals(str)){
             this.gvm.getActiveView().hide();
             Gdx.input.setInputProcessor(configureControlsProcessor);
+        } else if("stats".equals(str)){
+            this.inGame = false;
+            this.model.dispose();
+            this.gvm.setActiveView(str);
+
+            this.viewChooser.setObservable(gvm.getViewObserver());
+            this.main.setScreen(this.gvm.getActiveView());
         }
         currentView = str;
     }
@@ -366,8 +377,6 @@ public class RoCCController implements Runnable{
         }
     }
 
-
-
     /**
      * An inner class which gets updated when a menubutton is clicked.
      */
@@ -380,13 +389,14 @@ public class RoCCController implements Runnable{
             this.observable.register(this);
         }
 
+        public void setObservable(IViewObservable observable){
+            this.observable = observable;
+            this.observable.register(this);
+        }
+
         @Override
         public void viewUpdated(String screen) {
             setState(screen);
-            if(!screen.equals("resume")) {
-                this.observable = gvm.getViewObserver();
-                this.observable.register(this);
-            }
         }
 
     }

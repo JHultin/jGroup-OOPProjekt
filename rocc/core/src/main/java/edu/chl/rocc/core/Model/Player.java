@@ -171,6 +171,7 @@ public class Player implements IPlayer {
         for(ICharacter character : characters){
             character.dispose();
         }
+
         /*
         for (IBullet bullet : bullets){
             bullet.dispose();

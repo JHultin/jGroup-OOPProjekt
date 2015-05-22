@@ -62,10 +62,10 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             ((ICharacter) fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
         }
         if ("finish".equals(fa.getUserData())) {
-            this.newState = "menu";
+            this.newState = "stats";
         }
         if ("finish".equals(fb.getUserData())) {
-            this.newState = "menu";
+            this.newState = "stats";
         }
 
         /**
