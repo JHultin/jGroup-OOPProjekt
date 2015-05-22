@@ -46,7 +46,7 @@
  <objectgroup name="characters">
   <object id="15" x="1212" y="953" width="33" height="30">
    <properties>
-    <property name="Name" value="noEyes"/>
+    <property name="Name" value="doctor"/>
    </properties>
   </object>
   <object id="16" x="1670" y="896" width="27" height="27">
