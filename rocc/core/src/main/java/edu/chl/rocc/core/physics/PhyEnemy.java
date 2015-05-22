@@ -72,6 +72,7 @@ public class PhyEnemy implements IEnemy {
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("enemyUpperSensor");  //change to name of enemy?
 
+        System.out.println(getDirection());
     }
 
     @Override

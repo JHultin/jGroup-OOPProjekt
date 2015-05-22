@@ -183,6 +183,8 @@ public class RoCCModel implements IRoCCModel {
     public int getTime() {
         return level.getTime();
     }
+
+
     public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange) {
 
 

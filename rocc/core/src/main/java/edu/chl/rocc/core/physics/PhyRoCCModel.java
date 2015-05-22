@@ -304,18 +304,14 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange){
         for (IEnemy enemy : enemyDirToChange){
-            if(enemy instanceof IEnemy){
                 enemy.changeMoveDirection();
-            }
         }
     }
 
     @Override
     public void removeBullets(List<IBullet> bulletsToRemove){
         for (IBullet bullet : bulletsToRemove){
-            if(bullet instanceof IBullet){
                 bullet.dispose();
-            }
         }
         model.removeBullets(bulletsToRemove);
     }

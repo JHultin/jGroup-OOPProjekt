@@ -75,6 +75,6 @@
  </objectgroup>
  <objectgroup name="enemy">
   <object id="37" x="1491" y="979" width="44" height="37"/>
-  <object id="38" x="861.467" y="987.485" width="38.8356" height="31.0965" rotation="1.35456"/>
+  <object id="38" x="859.467" y="929.485" width="38.8356" height="31.0965" rotation="1.35456"/>
  </objectgroup>
 </map>
