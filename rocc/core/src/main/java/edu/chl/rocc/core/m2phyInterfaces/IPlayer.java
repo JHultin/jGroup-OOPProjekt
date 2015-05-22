@@ -61,17 +61,7 @@ public interface IPlayer {
      */
     public List<IWeapon> getWeapons();
 
-    /**
-     * Adds a bullet to the bullet list.
-     */
-    public void addBullet(IBullet bullet);
-
-    /**
-     * @return a list of all existing bullets in the world.
-     */
-    public List<IBullet> getBullets();
-
-    public void shoot(float xDir, float yDir);
+    public IBullet shoot(float xDir, float yDir);
 
     public void dispose();
 

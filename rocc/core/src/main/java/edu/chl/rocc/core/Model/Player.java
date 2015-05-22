@@ -27,7 +27,6 @@ public class Player implements IPlayer {
     //Index of active/wielded weapon in list 'weapons'
     private int activeWeaponIndex;
     private List<IWeapon> weapons;
-    private List<IBullet> bullets;
 
     /*
     * Constructor creating a single character and adds it to the character list.
@@ -42,7 +41,6 @@ public class Player implements IPlayer {
 
         this.activeWeaponIndex = 0;
         this.weapons = new ArrayList<IWeapon>();
-        this.bullets = new ArrayList<IBullet>();
     }
 
     public Player(List<ICharacter> characters){
@@ -162,20 +160,9 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void addBullet(IBullet bullet){
-        this.bullets.add(bullet);
+    public IBullet shoot(float xDir, float yDir){
+        return this.getWeapon().createBullet(this.getCharacterXPos(), this.getCharacterYPos(), xDir, yDir);
     }
-
-    @Override
-    public List<IBullet> getBullets(){
-        return this.bullets;
-    }
-
-    @Override
-    public void shoot(float xDir, float yDir){
-        this.bullets.add(this.getWeapon().createBullet(this.getCharacterXPos(), this.getCharacterYPos(), xDir, yDir));
-    }
-
 
     @Override
     public void dispose() {
