@@ -309,7 +309,6 @@ public class RoCCController implements Runnable{
         // Outdated, should probably be removed
         @Override
         public boolean mouseMoved(int screenX, int screenY) {
-            model.aim(screenX, Gdx.graphics.getHeight() - screenY);
             return false;
         }
 
