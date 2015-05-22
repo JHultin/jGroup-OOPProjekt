@@ -166,7 +166,7 @@ public class PhyRoCCModel implements IRoCCModel {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
 
-                IPickupableCharacter ipc = new PhyPickupableCharacter("noEyes", world, x, y);
+                IPickupableCharacter ipc = new PhyPickupableCharacter("" + mapObject.getProperties().get("Name"), world, x, y);
                 model.addPickupable(ipc);
             }
         }
