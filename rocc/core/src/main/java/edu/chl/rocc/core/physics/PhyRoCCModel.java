@@ -210,7 +210,7 @@ public class PhyRoCCModel implements IRoCCModel {
             //Add enemy in the world
             List<String> enemiesName = new ArrayList<String>();
             enemiesName.add("zombie");
-            enemiesName.add("shooterEnemy");
+            enemiesName.add("bigZombie");
 
             MapLayer enemyLayer = tMap.getLayers().get("enemy");
 

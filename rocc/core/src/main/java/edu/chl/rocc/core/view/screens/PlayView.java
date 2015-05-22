@@ -139,7 +139,7 @@ public class PlayView implements Screen,IViewObservable{
         currentAnimation = new String[]{"falseRIGHTfalse","falseLEFTfalse","falseNONERIGHTfalse","falseNONELEFTfalse"
                 ,"trueRIGHTfalse","trueLEFTfalse","trueNONERIGHTfalse","trueNONELEFTfalse", "falseRIGHTtrue","falseLEFTtrue","falseNONERIGHTtrue","falseNONELEFTtrue"
                 ,"trueRIGHTtrue","trueLEFTtrue","trueNONERIGHTtrue","trueNONELEFTtrue"};
-        characterNames = new String[]{"mother","soldier","zombie","doctor","noEyes"};
+        characterNames = new String[]{"mother","soldier","zombie","bigZombie","doctor","noEyes"};
 
         //Gets the characters and initiates their textures,
         //this has to be in show because otherwise the model.getCharacters aren't initiated.
