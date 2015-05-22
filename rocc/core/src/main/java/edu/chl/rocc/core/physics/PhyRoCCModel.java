@@ -81,79 +81,18 @@ public class PhyRoCCModel implements IRoCCModel {
         model = new RoCCModel(factory);
 
         // Get the layer with information about the solid ground
-        if (tMap.getLayers().get("ground") != null) {
-            TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get("ground");
+        this.createTileLayer("ground",
+                BitMask.BIT_GROUND,
+                (short) (BitMask.BIT_BODY | BitMask.BIT_BULLET | BitMask.BIT_ENEMY | BitMask.BIT_FOLLOWER)
+        );
 
-            // Create definitions for body and fixture
-            BodyDef bDef = new BodyDef();
-            FixtureDef fDef = new FixtureDef();
-
-            // Create a shape for each groundblock
-            ChainShape cs = new ChainShape();
-            Vec2[] v = new Vec2[5];
-            float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
-            v[0] = new Vec2(-offset, -offset);
-            v[1] = new Vec2(-offset,  offset);
-            v[2] = new Vec2( offset,  offset);
-            v[3] = new Vec2( offset, -offset);
-            v[4] = new Vec2(-offset, -offset);
-            cs.createChain(v, 5);
-
-            // Define the body and fixture specifications which all block share
-            bDef.type = BodyType.STATIC;
-            bDef.userData = "ground";
-
-            fDef.friction = 0;
-            fDef.shape = cs;
-            fDef.filter.categoryBits = BitMask.BIT_GROUND;
-            fDef.filter.maskBits = BitMask.BIT_BODY | BitMask.BIT_BULLET | BitMask.BIT_ENEMY | BitMask.BIT_FOLLOWER;
-
-            // Create a tile for each block on the map
-            for (int row = 0; row < tileLayer.getHeight(); row++) {
-                for (int col = 0; col < tileLayer.getWidth(); col++) {
-                    TiledMapTileLayer.Cell cell = tileLayer.getCell(col, row);
-
-                    // If there is a tile at the position
-                    if (cell != null && cell.getTile() != null) {
-
-                        // Set the position for the block
-                        bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
-                                          PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
-
-                        Body body = world.createBody(bDef);
-                        body.createFixture(fDef);
-                        // Then let the level create the block in the world
-                        model.addBlock(new PhyBody(body));
-                    }
-                }
-            }
-        }
+        this.createTileLayer("mapFrame", BitMask.BIT_FRAME, BitMask.BIT_BULLET);
 
         // Continue with the layer specifying the food
-        if (tMap.getLayers().get("food") != null) {
-            MapLayer foodLayer = tMap.getLayers().get("food");
+        this.createFood();
 
-            // Create one food item for each on the map
-            for (MapObject mapObject : foodLayer.getObjects()) {
-                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
-
-                IFood food = new PhyFood(world, x, y);
-                model.addPickupable(food);
-            }
-        }
         // Do the same with the pickupable characters
-        if (tMap.getLayers().get("characters") != null) {
-            MapLayer ipcLayer = tMap.getLayers().get("characters");
-
-            for (MapObject mapObject : ipcLayer.getObjects()) {
-                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
-
-                IPickupableCharacter ipc = new PhyPickupableCharacter("noEyes", world, x, y);
-                model.addPickupable(ipc);
-            }
-        }
+        this.createCharacters();
 
         if (tMap.getLayers().get("jumpPoints") != null) {
             MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
@@ -169,19 +108,8 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
 
-        if (tMap.getLayers().get("finish") != null) {
-            MapLayer finLayer = tMap.getLayers().get("finish");
-            for (MapObject finish : finLayer.getObjects()) {
-                float x = ((Float) finish.getProperties().get("x")) / PPM;
-                float y = ((Float) finish.getProperties().get("y")) / PPM;
+        this.createFinish();
 
-                float width = ((Float) finish.getProperties().get("width")) / PPM;
-                float height = ((Float) finish.getProperties().get("height")) / PPM;
-
-                IFinishPoint finPoint = new PhyFinishPoint(world, x, y, width, height);
-                model.addFinish(finPoint);
-            }
-        }
         if (tMap.getLayers().get("enemy") != null) {
             int i = 0;
             //Add enemy in the world
@@ -202,6 +130,101 @@ public class PhyRoCCModel implements IRoCCModel {
                 IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
                 i++;
                 model.addEnemy(enemy);
+            }
+        }
+    }
+
+    private void createTileLayer(String layer, Short categoryBits, Short maskBits){
+        if (tMap.getLayers().get(layer) != null) {
+            TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get(layer);
+
+            // Create definitions for body and fixture
+            BodyDef bDef = new BodyDef();
+            FixtureDef fDef = new FixtureDef();
+
+            // Create a shape for each groundblock
+            ChainShape cs = new ChainShape();
+            Vec2[] v = new Vec2[5];
+            float offset = PhyConstants.BLOCK_SIZE / 2 / PPM;
+            v[0] = new Vec2(-offset, -offset);
+            v[1] = new Vec2(-offset,  offset);
+            v[2] = new Vec2( offset,  offset);
+            v[3] = new Vec2( offset, -offset);
+            v[4] = new Vec2(-offset, -offset);
+            cs.createChain(v, 5);
+
+            // Define the body and fixture specifications which all block share
+            bDef.type = BodyType.STATIC;
+            bDef.userData = layer;
+
+            fDef.friction = 0;
+            fDef.shape = cs;
+            fDef.filter.categoryBits = categoryBits;
+            fDef.filter.maskBits = maskBits;
+
+            // Create a tile for each block on the map
+            for (int row = 0; row < tileLayer.getHeight(); row++) {
+                for (int col = 0; col < tileLayer.getWidth(); col++) {
+                    TiledMapTileLayer.Cell cell = tileLayer.getCell(col, row);
+
+                    // If there is a tile at the position
+                    if (cell != null && cell.getTile() != null) {
+
+                        // Set the position for the block
+                        bDef.position.set(PhyConstants.BLOCK_SIZE * (col + 0.5f) / PPM,
+                                PhyConstants.BLOCK_SIZE * (row + 0.5f) / PPM);
+
+                        Body body = world.createBody(bDef);
+                        body.createFixture(fDef);
+                        // Then let the level create the block in the world
+                        model.addBlock(new PhyBody(body));
+                    }
+                }
+            }
+        }
+    }
+
+    private void createFood(){
+        if (tMap.getLayers().get("food") != null) {
+            MapLayer foodLayer = tMap.getLayers().get("food");
+
+            // Create one food item for each on the map
+            for (MapObject mapObject : foodLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
+
+                IFood food = new PhyFood(world, x, y);
+                model.addPickupable(food);
+            }
+        }
+    }
+
+    private void createCharacters(){
+        if (tMap.getLayers().get("characters") != null) {
+            MapLayer ipcLayer = tMap.getLayers().get("characters");
+
+            for (MapObject mapObject : ipcLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
+
+                IPickupableCharacter ipc = new PhyPickupableCharacter("noEyes", world, x, y);
+                model.addPickupable(ipc);
+            }
+        }
+    }
+
+    private void createFinish(){
+        if (tMap.getLayers().get("finish") != null) {
+            MapLayer finLayer = tMap.getLayers().get("finish");
+            for (MapObject finish : finLayer.getObjects()) {
+                float x = ((Float) finish.getProperties().get("x")) / PPM;
+                float y = ((Float) finish.getProperties().get("y")) / PPM;
+
+                float width = ((Float) finish.getProperties().get("width")) / PPM;
+                float height = ((Float) finish.getProperties().get("height")) / PPM;
+
+                IFinishPoint finPoint = new PhyFinishPoint(world, x, y, width, height);
+                model.addFinish(finPoint);
             }
         }
     }
@@ -334,11 +357,6 @@ public class PhyRoCCModel implements IRoCCModel {
     public List<IBullet> getBullets() {
         return this.model.getBullets();
     }
-
-    /*@Override
-    public void createBullet(){
-        this.model.createBullet();
-    }*/
 
     @Override
     public List<ICharacter> getCharacters() {
