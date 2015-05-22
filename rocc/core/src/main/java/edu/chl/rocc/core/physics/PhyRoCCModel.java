@@ -94,19 +94,8 @@ public class PhyRoCCModel implements IRoCCModel {
         // Do the same with the pickupable characters
         this.createCharacters();
 
-        if (tMap.getLayers().get("jumpPoints") != null) {
-            MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
-            for(MapObject point : jumpLayer.getObjects()){
-                Direction dir;
-                dir = ("right".equals((String)(point.getProperties().get("direction"))) ? Direction.RIGHT : Direction.LEFT);
-
-                float x = ((Float) point.getProperties().get("x")) / PPM;
-                float y = ((Float) point.getProperties().get("y")) / PPM;
-
-                IJumpPoint ijp = new PhyJumpPoint(world, dir , x, y);
-                model.addJumpPoint(ijp);
-            }
-        }
+        // Create layer for jump points
+        this.createJumpPoints();
 
         this.createFinish();
 
@@ -209,6 +198,22 @@ public class PhyRoCCModel implements IRoCCModel {
 
                 IPickupableCharacter ipc = new PhyPickupableCharacter("noEyes", world, x, y);
                 model.addPickupable(ipc);
+            }
+        }
+    }
+
+    private void createJumpPoints(){
+        if (tMap.getLayers().get("jumpPoints") != null) {
+            MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
+            for(MapObject point : jumpLayer.getObjects()){
+                Direction dir;
+                dir = ("right".equals((String)(point.getProperties().get("direction"))) ? Direction.RIGHT : Direction.LEFT);
+
+                float x = ((Float) point.getProperties().get("x")) / PPM;
+                float y = ((Float) point.getProperties().get("y")) / PPM;
+
+                IJumpPoint ijp = new PhyJumpPoint(world, dir , x, y);
+                model.addJumpPoint(ijp);
             }
         }
     }
