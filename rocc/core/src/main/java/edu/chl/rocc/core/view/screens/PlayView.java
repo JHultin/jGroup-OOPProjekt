@@ -163,7 +163,7 @@ public class PlayView implements Screen,IViewObservable{
         textures.put("bullet" , new Texture(Gdx.files.internal("weapons/plasmaGun/bullet.png")));
         textures.put("noEyes"  , new Texture(Gdx.files.internal("characters/noEyes/idleLeft.png")));
         textures.put("zombie"   , new Texture(Gdx.files.internal("characters/zombie/idleLeft.png")));
-
+        textures.put("doctor", new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")));
     }
 
 
