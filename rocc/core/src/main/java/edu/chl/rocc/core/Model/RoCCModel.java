@@ -192,6 +192,7 @@ public class RoCCModel implements IRoCCModel {
     public void removeBullets(List<IBullet> bulletsToRemove) {
         for (IBullet bullet : bulletsToRemove){
             level.removeBullet(bullet);
+            //player.removeBullet(bullet)
         }
     }
 
