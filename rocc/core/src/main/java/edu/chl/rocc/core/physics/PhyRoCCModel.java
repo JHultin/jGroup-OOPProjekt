@@ -410,6 +410,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void incScore(int inc) {
+        this.model.incScore(inc);
+    }
+
+    @Override
     public int getTime(){
         return model.getTime();
     }

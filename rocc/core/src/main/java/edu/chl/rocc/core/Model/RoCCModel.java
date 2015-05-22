@@ -184,6 +184,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void incScore(int inc) {
+        this.player.incScore(inc);
+    }
+
+    @Override
     public int getTime() {
         return level.getTime();
     }
