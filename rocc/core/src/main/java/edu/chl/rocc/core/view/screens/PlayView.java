@@ -275,12 +275,14 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void pause() {
-
+        Gdx.input.setInputProcessor(stage);
+        stage.addActor(pauseWindow);
     }
 
     @Override
     public void resume() {
-
+        //notifyObserver("resume");
+        pauseWindow.remove(); //used to remove pausewindow
     }
 
     @Override
@@ -319,9 +321,9 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void notifyObserver(String screen) {
-        for(IViewObserver observer : observerArrayList){
-            observer.viewUpdated(screen);
-        }
+            for (IViewObserver observer : observerArrayList) {
+                observer.viewUpdated(screen);
+            }
     }
 
     public void setMap(TiledMap tMap){
@@ -425,21 +427,21 @@ public class PlayView implements Screen,IViewObservable{
         restartButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                notifyObserver("restart");
+//                notifyObserver("restart");
             }
         });
 
         optionsButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                notifyObserver("options");
+//                notifyObserver("options");
             }
         });
 
         quitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                notifyObserver("quit");
+                notifyObserver("menu");
             }
         });
 
