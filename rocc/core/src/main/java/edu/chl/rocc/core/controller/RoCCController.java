@@ -118,7 +118,7 @@ public class RoCCController implements Runnable{
             this.model.setActiveCharacter(0);
 
             // Create weapon
-            this.model.addWeapon("ak-47");
+            this.model.addWeapon("plasmaGun");
 
             // Restart the thread and apply correct inputprocessor
             /*isRunning = false;
@@ -135,7 +135,6 @@ public class RoCCController implements Runnable{
         // If we went to a menu instead
         } else if("resume".equals(str)){
             Gdx.input.setInputProcessor(gameProcessor);
-            this.viewChooser.setObservable(gvm.getViewObserver());
             gvm.getActiveView().resume();
             this.inGame = true;
         }else if (("menu".equals(str))||("loadGame".equals(str))||
