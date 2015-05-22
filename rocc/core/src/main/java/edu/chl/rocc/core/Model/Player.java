@@ -117,7 +117,7 @@ public class Player implements IPlayer {
     public void addCharacter(String name, IDeathListener listener) {
         synchronized (characters) {
             if (characters.isEmpty()) {
-                ICharacter character = this.factory.createCharacter(name, 160, 400);
+                ICharacter character = this.factory.createCharacter(name, 1200, 1200);
                 character.addDeathListener(listener);
                 characters.add(character);
             } else {

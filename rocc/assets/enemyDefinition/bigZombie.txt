@@ -1,5 +1,5 @@
 Speed
-2
+1
 NumberOfJumps
 1
 JumpForce
@@ -7,6 +7,6 @@ JumpForce
 AirForce
 2
 DamageDeal
-15
+20
 Health
-50
+100

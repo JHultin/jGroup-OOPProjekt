@@ -16,7 +16,6 @@ public class Enemy implements IEnemy{
     private final float x, y;
     private final String name;
     private Direction direction;
-    private Direction lastDir;
     private boolean damageTaken;//A boolean to keep track if damageBeingTaken
 
     private int timeCount;
@@ -27,7 +26,6 @@ public class Enemy implements IEnemy{
         this.y = y;
         this.name = enemyName;
         this.direction = Direction.LEFT;
-        this.lastDir = this.direction;
     }
 
     @Override
@@ -89,9 +87,6 @@ public class Enemy implements IEnemy{
 
     @Override
     public void move(Direction dir) {
-            if(!direction.equals(Direction.NONE)) {
-                lastDir = direction;
-            }
             direction = dir;
     }
 
