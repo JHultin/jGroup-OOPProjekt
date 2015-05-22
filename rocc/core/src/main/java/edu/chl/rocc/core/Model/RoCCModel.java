@@ -118,6 +118,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
+            if(pickup instanceof IPickupableCharacter){
+                this.addCharacter(pickup.getName());
+            } else if (pickup instanceof IFood) {
+                player.incScore(10);
+            }
             level.removePickupable(pickup);
         }
     }
@@ -181,6 +186,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public int getScore(){
         return player.getScore();
+    }
+
+    @Override
+    public void incScore(int inc) {
+        this.player.incScore(inc);
     }
 
     @Override

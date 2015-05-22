@@ -76,6 +76,8 @@ public interface IPlayer {
      */
     public int getScore();
 
+    public void incScore(int inc);
+
     /**
      * Change which character the player is playing as.
      */
