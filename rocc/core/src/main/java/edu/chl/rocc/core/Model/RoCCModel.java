@@ -6,7 +6,6 @@ import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.factories.IRoCCFactory;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 import edu.chl.rocc.core.utility.IDeathEvent;
-
 import java.util.List;
 
 /**
@@ -78,7 +77,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void shoot(float xDir, float yDir){
-        this.player.shoot(xDir, yDir);
+        this.level.addBullet(this.player.shoot(xDir, yDir));
     }
 
     @Override
@@ -135,7 +134,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public List<IBullet> getBullets(){
-        return this.player.getBullets();
+        return this.level.getBullets();
     }
 
     @Override

@@ -15,6 +15,7 @@ public enum BitMask {
     public static final short BIT_JUMPPOINT = 64;
     public static final short BIT_FINISH = 128;
     public static final short BIT_FOLLOWER = 256;
+    public static final short BIT_FRAME = 512;
 };
 
 
