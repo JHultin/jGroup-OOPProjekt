@@ -12,6 +12,9 @@
  <tileset firstgid="12" name="cloud" tilewidth="32" tileheight="32">
   <image source="cloud.png" width="96" height="32"/>
  </tileset>
+ <tileset firstgid="15" name="sign" tilewidth="32" tileheight="32">
+  <image source="sign.png" width="128" height="96"/>
+ </tileset>
  <layer name="sky" width="165" height="60">
   <data encoding="base64" compression="zlib">
    eJztwzENAAAMBKHb37/fyugCCaumqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqurbA8RIqXQ=
@@ -24,7 +27,7 @@
  </layer>
  <layer name="foreground" width="165" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt29GqwjAQANEqgv//x5f7IIZi02qb7IacgQERbcFMs1bwsSzLI5m3QsxHdH+1JjEn0f198rlocmai+9vqUZPzEt3g1tzW5LxEN/gsHt8WTSK+ya09UpPzEt3hVo+anJfouf2a3ZrEi6gW188BLzSJbLT4Xvjta8xplPTqsLZHahIlEbNbk6iRoUdNokSTyEaGHjWJkl79bd3baBJrMuyRmkSJJpENTSIbmkQ2NIlsaBLZ0CSy0aq5T79HahJHsE8iGxEtahI1NIls9OzQ7MYRrmxv775GkzhC75mtyXzck50/qsl1l3jz6b/uo3i/4Bi9mjwyv8l/NTm+V+xNmc4V2aQu863rN/eprdY7a5M9r/2R/bW7WntHu2zdb8Yuz3im6VGuh+h1m8HoNR7J6LWa1SOff3Qb2Xvcm9NXv+8XW59r79gtz19bx3Ietzh+q+ZG3Bd79sx9e8/irGuvy7af7a/vHXGPY90z15rrlCRJkiRJkiRJkiRJkiRJkqP4B6kITu8=
+   eJzt29tqwkAUQNFYBB97v/7/h3b6IA1iYqJOzhlmbdhQSk2IszPHCN0Pw7BP5m4k+iO6v7km0SfR/Z3zMGiyZ6L7m+pRk/0S3eDU3NZkv0Q3eBj9vBs0ifgmp/ZITfZLdIdTPWqyX6Ln9nF2axJHolo8/R1wRJPIRo3PhWv/xpzGmK06nNsjNYkxEbNbk5gjQ4+axBhNIhsZetQkxmzV39SzjSZxSoY9UpMYo0lkQ5PIhiaRDU0iG5pENjSJbNRq7tz3kZrEElrcJx+LT8Xn4svqK0Z2Ilq8tcnX4lvxvfix+oqRnRab/Cx+Fb+LP6uvGNnZskOfJ7GEe7Z36blGk1jC1jNbk/l4SHb+qCZPu8Q/5/7XvRUf7nCMrZpcMr/JPzXZvvfYmzKdK7JJXeZb1zXPqbXWO2uTW977LXttd3PtLe2ydr8Zu7zFW5pu5X6IXrcejF7jloxeq15d8v5Ht5G9x0tz+t6vu8ba57p07Jrnn1vH8TyucfxazbW4L27ZMy+79SzOuva6rPveXvvaFvc4znvLveY+JUmSJEmSJEmSJEmSJEmSZCv+AmmHT+U=
   </data>
  </layer>
  <layer name="ground" width="165" height="60">
