@@ -100,8 +100,8 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
-    public void setFrontCharacter(ICharacter character){
-        this.player.setFrontCharacter(character);
+    public void cycleActivePlayer(){
+        this.player.cycleActivePlayer();
     }
 
     @Override

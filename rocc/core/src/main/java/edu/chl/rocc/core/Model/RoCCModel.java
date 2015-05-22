@@ -169,7 +169,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void changeLead() {
-        this.player.setActiveCharacter((int)(Math.random() * this.player.getCharacters().size()));
+        this.player.cycleActivePlayer();
     }
 
     @Override
