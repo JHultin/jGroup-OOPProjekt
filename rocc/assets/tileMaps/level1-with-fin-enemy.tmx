@@ -22,9 +22,14 @@
    eJzt2jEOwyAMBVAO0Ob+x22krm2G1hDbvCexG2M+GTIGAMBvHud6nuu4uxAuVTwnNQPfZL5rmWurKKqfzoXZzFh/zpjKzC/wiWyI162n3fYD9BaRWStzT8ZCXe4vQC3/5vaq3M/yvmSpIxM9qWvXfw2q1ct8ZgKYbbec2W2/Wej7W5Y+RNaxek9ZekhfZgwAAOL5zgYAAAAAAAAAAAAAAAAAAAAAAACAMV7H0wV9
   </data>
  </layer>
+ <layer name="foreground" width="165" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt29GqwjAQANEqgv//x5f7IIZi02qb7IacgQERbcFMs1bwsSzLI5m3QsxHdH+1JjEn0f198rlocmai+9vqUZPzEt3g1tzW5LxEN/gsHt8WTSK+ya09UpPzEt3hVo+anJfouf2a3ZrEi6gW188BLzSJbLT4Xvjta8xplPTqsLZHahIlEbNbk6iRoUdNokSTyEaGHjWJkl79bd3baBJrMuyRmkSJJpENTSIbmkQ2NIlsaBLZ0CSy0aq5T79HahJHsE8iGxEtahI1NIls9OzQ7MYRrmxv775GkzhC75mtyXzck50/qsl1l3jz6b/uo3i/4Bi9mjwyv8l/NTm+V+xNmc4V2aQu863rN/eprdY7a5M9r/2R/bW7WntHu2zdb8Yuz3im6VGuh+h1m8HoNR7J6LWa1SOff3Qb2Xvcm9NXv+8XW59r79gtz19bx3Ietzh+q+ZG3Bd79sx9e8/irGuvy7af7a/vHXGPY90z15rrlCRJkiRJkiRJkiRJkiRJkqP4B6kITu8=
+  </data>
+ </layer>
  <layer name="ground" width="165" height="60">
   <data encoding="base64" compression="zlib">
-   eJztm1tugzAQAGlCS3v/Czd8WEKWFxu/dm3PSKNGbQoYJpugqvu2bbuSXxFhTaz2SJProtUkcxIktFqkSZDQnJOxLmFNrDYJ60KTYA3tJqUuYV20eww1uTddMVhHu8drk6+NOQn6PYbmJKyNdo9+k7xvg3aPzEnw0e7RNXn9CmvTu78j8D1mJFzRnpE0CT5WenSPAaw0SY/gsNIjTYLDSo80CY7eLbr7bpoECc05yd+3IQTv22ANmgRrWGhyb75KGAmNJs/7HOYkSGjNSb/Ld+uFwjBoNHltk3tv8NFs0v9syayEEws9Xh+/MxydnDXPrLUmc6zRqjum3pzHWbL2GbXQ5PfHH++YQvfm0vMlU3H7c18lQq2XvA5iPb4iP59VC03+fvwLHJvUpfR839rvKaHtluxT+9pbVbPJ2Hv23axM0Z+nLeaOtM27fa06/0ZpUuoy1mvK9U6dp6X9xUz9rPHk+tTaVk4Xof+pqnWMVpoMraNkTT17S9G9Np7s48m1723OcVntLWcd0tpmVvu8l/a3strt5MzXu+eP2sLx8HiPzN+bxdZrfrr91s+37iodxtZYcg5qnL/UbRyV99tjbdJ2W14TxFxXmYk4hvSIVjw2ekTENWXucT6frK31/fPM5w/rmdILLc3nDNf0uFH72BBxPpktqC0NIsry+kDEkcydWdzzYkh6QERERERExJ7+A0YzVZ0=
+   eJzt2o1ugjAUBtDi2N/7v/Bosm6uA1Fx3DtyTnKDRkPb+HEVoRQAAAAAACCTYarT53YIngtUQ5FH8jjP4xg8F6iGok+SR+2LQ7eFKGP5zqIeSbSxyCS59HlsjyGKHkk2fR5lkmh9HmWSaDJJNq5vk40eSTYySTbuuyAbfZJsXsvPTD7FTge+/jN37k0Wc9cW9Uoizd1/0XJ5a/1396z5yBVlKZP31CPW1vr23uo8t6z9iBWpzeF5qpez5zUb/TnQcOH9W9fWxmvbJXNZ33IcrOXxtPL6UStSm8PbVO/l99yWcrn0/r4e/Z0yt98tY0Z/9lnrqOra+n76F31naZ+XxlqbB8d0Sz/dmr+1uva3hkwe2155u6basXHtGAAAAAAAAAAAAAAAAAAAALCHD3CvBHM=
   </data>
  </layer>
  <objectgroup name="food">
