@@ -12,8 +12,6 @@ public interface IPlayer {
 
     public void jump();
 
-    public void jumpFollower();
-
     /**
     * Move the front character in a given direction.
     */

@@ -134,6 +134,10 @@ public class PhyCharacter implements ICharacter {
             airDir = dir;
         }
         this.character.move(dir);
+
+        if(this.character.isFollower() && this.isOnJumpPoint && this.isMoving){
+            this.jump();
+        }
     }
 
     @Override
@@ -150,13 +154,6 @@ public class PhyCharacter implements ICharacter {
 
            character.leftGround();
        }
-    }
-
-    @Override
-    public void jumpIfFollower(){
-        if(this.character.isFollower() && this.isOnJumpPoint){
-            this.jump();
-        }
     }
 
     //Write on one line

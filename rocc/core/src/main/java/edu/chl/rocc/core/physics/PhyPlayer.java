@@ -30,11 +30,6 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
-    public void jumpFollower(){
-        this.player.jumpFollower();
-    }
-
-    @Override
     public void move(Direction dir) {
         this.player.move(dir);
     }

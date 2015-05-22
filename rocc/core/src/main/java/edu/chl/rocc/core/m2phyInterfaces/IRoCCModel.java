@@ -42,8 +42,6 @@ public interface IRoCCModel{
     */
     public void jump();
 
-    public void jumpFollowerIfPossible();
-
     public void shoot(float x, float y);
 
     /**

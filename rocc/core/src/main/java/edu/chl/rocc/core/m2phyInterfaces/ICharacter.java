@@ -39,11 +39,6 @@ public interface ICharacter extends IMortal{
     */
     public void jump();
 
-    /**
-    * Make the character jump if it is a follower.
-    */
-    public void jumpIfFollower();
-
     public void toggleFollowerOnJumpPoint();
 
     public void hitGround();

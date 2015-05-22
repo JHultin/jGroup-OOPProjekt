@@ -251,11 +251,6 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void jumpFollowerIfPossible(){
-        this.model.jumpFollowerIfPossible();
-    }
-
-    @Override
     public void shoot(float x, float y){
         this.model.shoot(x, y);
     }

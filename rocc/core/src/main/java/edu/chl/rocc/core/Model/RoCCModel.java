@@ -62,15 +62,6 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void jumpFollowerIfPossible(){
-        for(int i=0; i<this.player.getCharacters().size(); i++){
-            if(this.characterIsMoving(this.player.getCharacters().get(i))){
-                this.player.getCharacters().get(i).jumpIfFollower();
-            }
-        }
-    }
-
-    @Override
     public void shoot(float xDir, float yDir){
         this.level.addBullet(this.player.shoot(xDir, yDir));
     }
