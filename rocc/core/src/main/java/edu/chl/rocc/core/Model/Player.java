@@ -225,4 +225,9 @@ public class Player implements IPlayer {
         return this.score;
     }
 
+    @Override
+    public void incScore(int inc) {
+        this.score += inc;
+    }
+
 }
