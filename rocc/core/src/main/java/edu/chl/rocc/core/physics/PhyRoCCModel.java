@@ -90,28 +90,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
         this.createFinish();
 
-        if (tMap.getLayers().get("enemy") != null) {
-            int i = 0;
-            //Add enemy in the world
-            List<String> enemiesName = new ArrayList<String>();
-            enemiesName.add("zombie");
-            enemiesName.add("shooterEnemy");
-
-            MapLayer enemyLayer = tMap.getLayers().get("enemy");
-
-            for (MapObject mapObject : enemyLayer.getObjects()) {
-                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
-                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
-
-                if(i >= enemiesName.size()){
-                    i=0;
-                }
-
-                IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
-                i++;
-                model.addEnemy(enemy);
-            }
-        }
+        this.createEnemies();
     }
 
     private void createTileLayer(String layer, Short categoryBits, Short maskBits){
@@ -221,6 +200,31 @@ public class PhyRoCCModel implements IRoCCModel {
 
                 IFinishPoint finPoint = new PhyFinishPoint(world, x, y, width, height);
                 model.addFinish(finPoint);
+            }
+        }
+    }
+
+    private void createEnemies(){
+        if (tMap.getLayers().get("enemy") != null) {
+            int i = 0;
+            //Add enemy in the world
+            List<String> enemiesName = new ArrayList<String>();
+            enemiesName.add("zombie");
+            enemiesName.add("shooterEnemy");
+
+            MapLayer enemyLayer = tMap.getLayers().get("enemy");
+
+            for (MapObject mapObject : enemyLayer.getObjects()) {
+                float x = ((Float) mapObject.getProperties().get("x")) / PPM;
+                float y = ((Float) mapObject.getProperties().get("y")) / PPM;
+
+                if(i >= enemiesName.size()){
+                    i=0;
+                }
+
+                IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
+                i++;
+                model.addEnemy(enemy);
             }
         }
     }
