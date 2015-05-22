@@ -297,9 +297,6 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
-            if(pickup instanceof IPickupableCharacter){
-                this.addCharacter(pickup.getName());
-            }
             pickup.destroy();
         }
         model.removeItems(itemsToRemove);
@@ -398,6 +395,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public int getScore(){
         return model.getScore();
+    }
+
+    @Override
+    public void incScore(int inc) {
+        this.model.incScore(inc);
     }
 
     @Override

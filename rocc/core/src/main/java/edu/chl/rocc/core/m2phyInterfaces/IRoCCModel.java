@@ -132,6 +132,8 @@ public interface IRoCCModel{
 
     public int getScore();
 
+    public void incScore(int inc);
+
     public int getTime();
 
     public void handleDeath(IDeathEvent deathEvent);

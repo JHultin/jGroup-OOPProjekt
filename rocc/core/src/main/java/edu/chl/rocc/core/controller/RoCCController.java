@@ -133,7 +133,11 @@ public class RoCCController implements Runnable{
             // Tell main to update to correct screen
             this.main.setScreen(this.gvm.getActiveView());
         // If we went to a menu instead
-        } else if (("menu".equals(str))||("loadGame".equals(str))||
+        } else if("resume".equals(str)){
+            Gdx.input.setInputProcessor(gameProcessor);
+            gvm.getActiveView().resume();
+            this.inGame = true;
+        }else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))
                 ||"stats".equals(str)){
 
@@ -246,12 +250,16 @@ public class RoCCController implements Runnable{
         // Add key to keylist or jump
         @Override
         public boolean keyDown(int keycode) {
+            if(keycode == Input.Keys.ESCAPE){
+                inGame = false;
+                gvm.getActiveView().pause();
+            }
+
             if (keycode == keyOptions.getKey("Jump"))
                 model.jump();
             else if (keycode == Input.Keys.TAB){
                 model.changeLead();
-            }
-            else if (!keys.contains(keycode))
+            }else if (!keys.contains(keycode))
                 keys.add(keycode);
             return false;
         }
@@ -375,8 +383,10 @@ public class RoCCController implements Runnable{
         @Override
         public void viewUpdated(String screen) {
             setState(screen);
-            this.observable = gvm.getViewObserver();
-            this.observable.register(this);
+            if(!screen.equals("resume")) {
+                this.observable = gvm.getViewObserver();
+                this.observable.register(this);
+            }
         }
 
     }

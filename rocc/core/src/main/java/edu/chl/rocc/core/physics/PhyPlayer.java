@@ -124,4 +124,9 @@ public class PhyPlayer implements IPlayer {
     public int getScore(){
         return player.getScore();
     }
+
+    @Override
+    public void incScore(int inc) {
+        this.player.incScore(inc);
+    }
 }
