@@ -21,8 +21,6 @@ public class PhyLevel implements ILevel {
     private List<IBody> bodiesNeedingToDispose;
     private List<IEnemy> enemies;
 
-    private float aimX, aimY;
-
     public PhyLevel(World world) {
         this.world = world;
         this.level = new Level();
@@ -109,12 +107,6 @@ public class PhyLevel implements ILevel {
         hash += world.hashCode();
         // hash += level.hashCode(); // For when level gets a hashCode
         return hash;
-    }
-
-    @Override
-    public void setAim(float x, float y){
-        this.aimX = x;
-        this.aimY = y;
     }
 
     @Override

@@ -56,15 +56,6 @@ public class PhyRoCCModel implements IRoCCModel {
         this.tMap = tMap;
     }
 
-    @Override
-    public void aim(int x, int y) {
-        this.model.aim(x, y);
-    }
-
-    public Vec2 getAim() {
-        return null;
-    }
-
     /**
      * {@inheritDoc}
      */

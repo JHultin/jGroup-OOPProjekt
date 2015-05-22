@@ -12,8 +12,6 @@ import java.util.List;
  */
 public interface IRoCCModel{
 
-    public void aim(int x, int y);
-
     /**
      * Creates the world, all pickupable items and teh blocks making the level.
      * The map must contain a tiledLayer named "ground" and objectlayers named "food" and "charcters"

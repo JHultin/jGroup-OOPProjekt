@@ -32,11 +32,6 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void aim(int x, int y){
-
-    }
-
-    @Override
     public void constructWorld(){
 
     }

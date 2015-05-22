@@ -40,8 +40,6 @@ public interface ILevel {
 
     public void removeEnemy(IEnemy enemy);
 
-    public void setAim(float x, float y);
-
     public void addFinish(IFinishPoint finishPoint);
 
     public void dispose();

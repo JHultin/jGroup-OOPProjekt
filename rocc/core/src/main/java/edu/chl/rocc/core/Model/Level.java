@@ -93,9 +93,6 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void setAim(float x, float y){ }
-
-    @Override
     public void addFinish(IFinishPoint finishPoint) {
         finishPoints.add(finishPoint);
     }
