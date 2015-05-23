@@ -49,11 +49,15 @@ public class PhyRoCCModel implements IRoCCModel {
     public PhyRoCCModel(TiledMap tMap) {
 
         //Change cursor/crosshair
-        Pixmap pm = new Pixmap(Gdx.files.internal("crosshair.png"));
-        Gdx.input.setCursorImage(pm, 16, 16);
-        pm.dispose();
+        this.setCrosshair("crosshair");
 
         this.tMap = tMap;
+    }
+
+    private void setCrosshair(String imgName){
+        Pixmap pm = new Pixmap(Gdx.files.internal(imgName + ".png"));
+        Gdx.input.setCursorImage(pm, 16, 16);
+        pm.dispose();
     }
 
     /**
