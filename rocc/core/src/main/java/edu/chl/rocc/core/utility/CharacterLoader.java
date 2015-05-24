@@ -11,48 +11,15 @@ import java.util.Map;
 /**
  * Created by Joel on 2015-05-13.
  */
-public class CharacterLoader {
-
-    private Map<String, Integer> charecaristics;
+public class CharacterLoader extends AbsInformationHandler {
 
     public CharacterLoader(String name) {
         this(name, false);
     }
 
     public CharacterLoader(String name, boolean isEnemy){
-        charecaristics = new HashMap<String, Integer>();
-        String filePath;
-        if(isEnemy) {
-            filePath = "enemyDefinition/" + name + ".txt";
-        } else {
-            filePath = "characterDefinition/" + name + ".txt";
-        }
-
-        if (!Gdx.files.internal(filePath).exists()) {
-            setToDeafault();
-            // If it exist get the settings from it
-        } else {
-            try {
-                FileHandle handle = Gdx.files.internal(filePath);
-                BufferedReader br = handle.reader(2);
-
-                String key;
-                String value;
-                while ((key = br.readLine()) != null && (value = br.readLine()) != null) {
-                    // File ends with a .
-                    if (!".".equals(key)) {
-                        charecaristics.put(key, Integer.parseInt(value));
-                    } else {
-                        return;
-                    }
-                }
-            } catch (IOException IOEx) {
-                setToDeafault();
-            } catch (GdxRuntimeException gdxEx) {
-                setToDeafault();
-            }
-        }
-
+        super("" + (isEnemy ? "enemyDefinition/" : "characterDefinition/") + name + ".txt",
+                (isEnemy ? new File("enemyDefinition") : new File("characterDefinition")));
     }
 
 
@@ -62,14 +29,14 @@ public class CharacterLoader {
      * @return set value for the action
      */
     public int getCharecaristic(String charecaristic){
-        return charecaristics.get(charecaristic);
+        return Integer.parseInt(super.getInfo(charecaristic));
     }
 
-    private void setToDeafault(){
-        charecaristics.put("MaxHP", 100);
-        charecaristics.put("Speed", 200);
-        charecaristics.put("NumberOfJumps", 1);
-        charecaristics.put("JumpForce", 250);
-        charecaristics.put("AirForce", 100);
+    protected void setToDefault(){
+        super.setInfo("MaxHP"        , "100");
+        super.setInfo("Speed"        , "200");
+        super.setInfo("NumberOfJumps", "1");
+        super.setInfo("JumpForce"    , "250");
+        super.setInfo("AirForce"     , "100");
     }
 }
