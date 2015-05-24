@@ -65,6 +65,7 @@ public class RoCCController implements Runnable{
     public RoCCController(RoCCView main){
         this.tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
         this.model = new PhyRoCCModel(tiledMap);
+        this.deathListener = new DeathListener(model);
         this.main = main;
         this.gvm = new GameViewManager(model);
 
@@ -82,8 +83,6 @@ public class RoCCController implements Runnable{
         this.thread.start();
 
         this.viewChooser = new ViewChooser(gvm.getViewObserver());
-
-        this.deathListener = new DeathListener(model);
     }
 
     /**
@@ -97,14 +96,11 @@ public class RoCCController implements Runnable{
         if ("game".equals(str) && !"game".equals(currentView)) {
             // Tell the GameViewManager to choose the correct screen
             gvm.setActiveView(str);
-            // Stop the thread
-            /*this.isRunning = false;
-            this.thread.interrupt();*/
 
             // Set up the game
             // First construct the world, the level and all pickupables.
             ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
-            this.model.constructWorld();
+            this.model.constructWorld(deathListener);
 
             // Add correct listener to handle the collisions in the world
             this.collisionListener = new CollisionListener();
@@ -120,13 +116,8 @@ public class RoCCController implements Runnable{
             // Create weapon
             this.model.addWeapon("plasmaGun");
 
-            // Restart the thread and apply correct inputprocessor
-            /*isRunning = false;
-            thread.interrupt();*/
             Gdx.input.setInputProcessor(gameProcessor);
-            /*this.thread = new Thread(this);
-            this.thread.start();
-            this.isRunning = true;*/
+
             this.inGame = true;
 
             this.viewChooser.setObservable(gvm.getViewObserver());

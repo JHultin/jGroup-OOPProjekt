@@ -237,8 +237,9 @@ public class PhyRoCCModel implements IRoCCModel {
                 }
 
                 IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
-                if (listener != null)
+                if (listener != null) {
                     enemy.addDeathListener(listener);
+                }
                 i++;
                 model.addEnemy(enemy);
             }
