@@ -1,7 +1,14 @@
 package edu.chl.rocc.core.model;
 
 import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
+import edu.chl.rocc.core.utility.DeathEvent;
+import edu.chl.rocc.core.utility.IDeathEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static edu.chl.rocc.core.GlobalConstants.PPM;
 
 /**
@@ -20,12 +27,16 @@ public class Enemy implements IEnemy{
 
     private int timeCount;
 
+    private final List<IDeathListener> deathListeners;
+
     public Enemy(int healthPoints, String enemyName, float x, float y){
         this.setHP(healthPoints);
         this.x = x;
         this.y = y;
         this.name = enemyName;
         this.direction = Direction.LEFT;
+
+        this.deathListeners = new ArrayList<IDeathListener>();
     }
 
     @Override
@@ -104,5 +115,27 @@ public class Enemy implements IEnemy{
         }
 
         return "" + false + getDirection().toString() + tmpDamageTaken;
+    }
+
+    @Override
+    public void addDeathListener(IDeathListener listener) {
+        this.deathListeners.add(listener);
+    }
+
+    @Override
+    public void removeDeathListener(IDeathListener listener) {
+        this.deathListeners.remove(listener);
+    }
+
+    @Override
+    public void death(String message) {
+        this.death(new DeathEvent(this, message));
+    }
+
+    @Override
+    public void death(IDeathEvent deathEvent) {
+        for(IDeathListener deathListener : deathListeners){
+            deathListener.deathTriggered(deathEvent);
+        }
     }
 }

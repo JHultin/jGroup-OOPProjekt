@@ -1,9 +1,11 @@
 package edu.chl.rocc.core.physics;
 
 import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.controller.IDeathListener;
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
 import edu.chl.rocc.core.model.*;
 import edu.chl.rocc.core.utility.CharacterLoader;
+import edu.chl.rocc.core.utility.IDeathEvent;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -145,6 +147,26 @@ public class PhyEnemy implements IEnemy {
     @Override
     public String getMoveState(){
         return enemy.getMoveState();
+    }
+
+    @Override
+    public void addDeathListener(IDeathListener listener) {
+        this.enemy.addDeathListener(listener);
+    }
+
+    @Override
+    public void removeDeathListener(IDeathListener listener) {
+        this.enemy.removeDeathListener(listener);
+    }
+
+    @Override
+    public void death(String message) {
+        this.enemy.death(message);
+    }
+
+    @Override
+    public void death(IDeathEvent deathEvent) {
+        this.enemy.death(deathEvent);
     }
 
     /*

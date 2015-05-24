@@ -5,7 +5,7 @@ import edu.chl.rocc.core.Direction;
 /**
  * Created by Yen on 2015-05-09.
  */
-public interface IEnemy {
+public interface IEnemy extends IMortal {
 
     /**
      * @return the X position of enemy
