@@ -65,6 +65,11 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
+    public void removeLead() {
+        this.player.removeLead();
+    }
+
+    @Override
     public List<ICharacter> getCharacters() {
         return player.getCharacters();
     }

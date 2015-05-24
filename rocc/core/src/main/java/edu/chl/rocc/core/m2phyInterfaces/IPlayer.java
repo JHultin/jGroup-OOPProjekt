@@ -39,6 +39,8 @@ public interface IPlayer {
 
     public void addCharacter(String name, IDeathListener listener);
 
+    public void removeLead();
+
     /**
      * @return list of all characters.
      */

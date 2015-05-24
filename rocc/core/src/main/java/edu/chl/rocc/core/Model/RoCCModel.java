@@ -194,7 +194,6 @@ public class RoCCModel implements IRoCCModel {
     public void removeBullets(List<IBullet> bulletsToRemove) {
         for (IBullet bullet : bulletsToRemove){
             level.removeBullet(bullet);
-            //player.removeBullet(bullet)
         }
     }
 
@@ -215,8 +214,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void handleDeath(IDeathEvent deathEvent) {
-        // Temp code
-        System.out.println(deathEvent.getMessage());
+        player.removeLead();
     }
 
 }

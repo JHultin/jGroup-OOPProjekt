@@ -131,6 +131,16 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public void removeLead() {
+        characters.get(activeCharacterIndex).dispose();
+        if (characters.size() > 1) {
+            characters.remove(activeCharacterIndex);
+            this.cycleActivePlayer();
+        } else {
+        }
+    }
+
+    @Override
     public List<ICharacter> getCharacters() {
         return characters;
     }

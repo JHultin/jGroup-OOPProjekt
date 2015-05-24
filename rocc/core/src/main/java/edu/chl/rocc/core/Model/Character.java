@@ -45,6 +45,8 @@ public class Character implements ICharacter {
         isFollower = true;
 
         this.deathListeners = new ArrayList<IDeathListener>();
+
+        System.out.println(name);
     }
 
     @Override
@@ -54,15 +56,12 @@ public class Character implements ICharacter {
 
     @Override
     public void setHP(int value){
-        if(value < 0){
+        if(value <= 0){
             death("No more hp");
-            System.out.print("Input value for health points cannot be negative.");
-            // die-method??
-        }
-
-        if(value <= maxHealth && value >= 0){
+            this.healthPoints = 0;
+        } else if(value <= maxHealth && value > 0){
             this.healthPoints = value;
-        }else{
+        } else {
             this.healthPoints = maxHealth;
         }
     }
@@ -129,13 +128,18 @@ public class Character implements ICharacter {
 
     @Override
     public boolean equals(Object o){
+        System.out.println("equals in character");
         if (this == o){
+            System.out.println("1: " + (this == o));
             return true;
         } else if (o == null){
+            System.out.println("2: " + (o == null));
             return false;
         } else if (this.getClass() != o.getClass()){
+            System.out.println("3: " + (this.getClass() != o.getClass()));
             return false;
         } else {
+            System.out.println("3: " + (this.hashCode() == o.hashCode()));
             return this.hashCode() == o.hashCode();
         }
     }
