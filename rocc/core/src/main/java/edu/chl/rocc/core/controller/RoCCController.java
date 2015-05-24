@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.RoCCView;
-import edu.chl.rocc.core.options.KeyOptions;
+import edu.chl.rocc.core.utility.KeyOptions;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.observers.IViewObservable;

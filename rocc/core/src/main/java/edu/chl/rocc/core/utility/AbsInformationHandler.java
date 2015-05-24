@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.options;
+package edu.chl.rocc.core.utility;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -9,40 +9,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Joel on 2015-05-12.
+ * Created by Joel on 2015-05-24.
  */
-public class GeneralOptions {
+public abstract class AbsInformationHandler{
 
-    // The only instance
-    private static final GeneralOptions instance = new GeneralOptions();
+    private final File folder;
 
-    // Map of which virtual keys responds to which "command"
-    private Map<String, Integer> options;
+    // Map of which values responds to which "command"
+    private final Map<String, String> info;
 
     // Path to file where settings are saved
-    private String filePath;
+    private final String filePath;
 
-    /**
-     * Getter for the shared instance
-     * @return the instance
-     */
-    public static GeneralOptions getInstance(){
-        return instance;
-    }
 
-    private GeneralOptions() {
-        this.filePath = "assets/options/general.txt";
+    protected AbsInformationHandler(String filePath, File folder) {
+        this.folder = folder;
+        this.filePath = filePath;
 
         // Create the keyMap as a Hashmap
-        this.options = new HashMap<String, Integer>(10);
+        this.info = new HashMap<String, String>();
 
         // If the file specifying the keysettings doesm't exist, set them to default values and write a new file
         if (!Gdx.files.internal(filePath).exists()){
-            options.put("soundVolume",  100);
-            options.put("musicVolume",  100);
-            options.put("isFullscreen", 0);
-            saveOptions();
-
+            setToDefault();
+            saveInfo();
             // If it exist get the settings from it
         } else {
             try {
@@ -56,25 +46,27 @@ public class GeneralOptions {
                 while ((key = br.readLine()) != null && (value = br.readLine()) != null) {
                     // File ends with a .
                     if (!".".equals(key)) {
-                        setOption(key, Integer.parseInt(value));
+                        setInfo(key, value);
                     } else {
                         return;
                     }
                 }
             } catch (IOException IOEx) {
-                saveOptions();
+                saveInfo();
             } catch (GdxRuntimeException gdxEx) {
-                saveOptions();
+                saveInfo();
             }
         }
     }
+
+    protected abstract void setToDefault();
 
     /**
      * Call to write the current setting to file
      * @return successfully wrote to file
      */
-    public boolean saveOptions(){
-        File dir = new File("assets/options");
+    protected boolean saveInfo(){
+        File dir = folder;
         if (!dir.exists()){
             try{
                 dir.mkdir();
@@ -89,7 +81,7 @@ public class GeneralOptions {
             PrintWriter pw = new PrintWriter(fw);
 
             // Write the key followed by responding value
-            for (Map.Entry<String, Integer> optionEntry : options.entrySet()){
+            for (Map.Entry<String, String> optionEntry : info.entrySet()){
                 pw.println(optionEntry.getKey());
                 pw.println(optionEntry.getValue());
             }
@@ -111,8 +103,8 @@ public class GeneralOptions {
      * @param option action
      * @return set value for the action
      */
-    public int getOption(String option){
-        return options.get(option);
+    protected String getInfo(String option){
+        return info.get(option);
     }
 
     /**
@@ -120,11 +112,12 @@ public class GeneralOptions {
      * @param option action to set
      * @param value value to give it
      */
-    public void setOption(String option, int value) {
-        if (options.containsKey(option)){
-            options.replace(option, value);
+    protected void setInfo(String option, String value) {
+        if (info.containsKey(option)){
+            info.replace(option, value);
         } else {
-            options.put(option, value);
+            info.put(option, value);
         }
     }
+
 }

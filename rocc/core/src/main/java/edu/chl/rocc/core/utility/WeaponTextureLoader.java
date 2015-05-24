@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,43 +13,9 @@ import java.util.Map;
 /**
  * Created by Jacob on 2015-05-21.
  */
-public class WeaponTextureLoader {
-
-    private Map<String, String> weaponTexture;
-
-
+public class WeaponTextureLoader extends AbsInformationHandler{
     public WeaponTextureLoader(String name){
-
-        weaponTexture = new HashMap<String, String>();
-
-        String filePath = "weaponTexture/" + name + ".txt";
-
-
-        if (!Gdx.files.internal(filePath).exists()) {
-            setToDefaultAnimation();
-            // Else if file exist get the settings from it
-        } else {
-            try {
-                FileHandle handle = Gdx.files.internal(filePath);
-                BufferedReader br = handle.reader(2);
-
-                String key;
-                String value;
-                while ((key = br.readLine()) != null && (value = br.readLine()) != null) {
-                    // File ends with a .
-                    if (!".".equals(key)) {
-                        weaponTexture.put(key, value);
-                    } else {
-                        return;
-                    }
-                }
-            } catch (IOException IOEx) {
-                setToDefaultAnimation();
-            } catch (GdxRuntimeException gdxEx) {
-                setToDefaultAnimation();
-            }
-        }
-
+        super("weaponTexture/" + name + ".txt", new File("weaponTexture"));
     }
 
 
@@ -58,13 +25,13 @@ public class WeaponTextureLoader {
      * @return set value for the action
      */
     public String getCharacterTexture(String characterAnimation){
-        return weaponTexture.get(characterAnimation);
+        return super.getInfo(characterAnimation);
     }
 
-    private void setToDefaultAnimation(){
-        weaponTexture.put("LEFT", "weapons/ak-47/weaponLeft.png");
-        weaponTexture.put("RIGHT", "weapons/ak-47/weaponRight.png");
-        weaponTexture.put("bullet", "weapons/ak-47/bullet.png");
+    protected void setToDefault(){
+        super.setInfo("LEFT", "weapons/ak-47/weaponLeft.png");
+        super.setInfo("RIGHT", "weapons/ak-47/weaponRight.png");
+        super.setInfo("bullet", "weapons/ak-47/bullet.png");
 
     }
 }
