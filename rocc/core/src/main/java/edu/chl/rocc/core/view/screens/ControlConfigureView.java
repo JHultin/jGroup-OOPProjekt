@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.options.KeyOptions;
 
+import java.security.Key;
 import java.util.HashMap;
 
 /**
@@ -37,6 +38,8 @@ public class ControlConfigureView extends AbstractMenuView {
 
     private String keyToChange;
 
+    private KeyOptions keyOptions;
+
     private TextButton defaultButton;
     private TextButton backButton;
 
@@ -46,6 +49,8 @@ public class ControlConfigureView extends AbstractMenuView {
         super(model);
 
         Gdx.input.setInputProcessor(stage);
+
+        keyOptions = KeyOptions.getInstance();
 
         //Creating Options title
         //initialize the titleStyle and titleLabel
@@ -108,7 +113,7 @@ public class ControlConfigureView extends AbstractMenuView {
             if (keyToChange.equals(keyTitleArray[i])) {
 
             } else {
-                keysBindingHashMap.get(keyTitleArray[i]).setText(Input.Keys.toString(KeyOptions.getInstance().getKey(keyTitleArray[i])));
+                keysBindingHashMap.get(keyTitleArray[i]).setText(Input.Keys.toString(keyOptions.getKey(keyTitleArray[i])));
             }
         }
 
@@ -149,11 +154,11 @@ public class ControlConfigureView extends AbstractMenuView {
 
         keysBindingHashMap = new HashMap<String, TextButton>();
 
-        moveLeftButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Left"))
+        moveLeftButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Move Left"))
                 , textButtonStyle);
-        moveRightButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Move Right"))
+        moveRightButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Move Right"))
                 , textButtonStyle);
-        jumpButton = new TextButton(Input.Keys.toString(KeyOptions.getInstance().getKey("Jump"))
+        jumpButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Jump"))
                 , textButtonStyle);
         shootButton = new TextButton("MOUSE1", textButtonStyle);
         nextWeaponButton = new TextButton("Q", textButtonStyle);
@@ -235,11 +240,18 @@ public class ControlConfigureView extends AbstractMenuView {
       //  keysBindingHashMap.put("Next Weapon", nextWeaponButton);
       //  keysBindingHashMap.put("Interact", interactButton);
 
+        defaultButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                keyOptions.setToDefault();
+            }
+        });
+
 
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                KeyOptions.getInstance().saveKeys();
+                keyOptions.saveKeys();
                 notifyObserver("options");
             }
         });
@@ -248,8 +260,8 @@ public class ControlConfigureView extends AbstractMenuView {
 
     public void setKey(int keycode){
         if(!keyToChange.equals("")){
-            KeyOptions.getInstance().setKey(keyToChange, keycode);
-            KeyOptions.getInstance().saveKeys();
+            keyOptions.setKey(keyToChange, keycode);
+            keyOptions.saveKeys();
             keyToChange = "";
         }
     }

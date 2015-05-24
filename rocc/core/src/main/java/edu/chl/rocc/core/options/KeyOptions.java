@@ -110,6 +110,14 @@ public class KeyOptions {
         }
     }
 
+
+    public void setToDefault(){
+        keys.put("Move Left",  Input.Keys.A);
+        keys.put("Move Right", Input.Keys.D);
+        keys.put("Jump",       Input.Keys.SPACE);
+        saveKeys();
+    }
+
     /**
      * Get the value for responding action
      * @param key action
