@@ -30,9 +30,8 @@ public class ControlConfigureView extends AbstractMenuView {
     private TextButton moveLeftButton;
     private TextButton moveRightButton;
     private TextButton jumpButton;
-    private TextButton shootButton;
-    private TextButton nextWeaponButton;
-    private TextButton interactButton;
+    private TextButton pauseButton;
+    private TextButton switchCharacterButton;
 
     private String keyToChange;
 
@@ -61,7 +60,7 @@ public class ControlConfigureView extends AbstractMenuView {
         createButtons();
 
         keyToChange = new String();
-        keyTitleArray = new String[]{"Move Left","Move Right","Jump"};
+        keyTitleArray = new String[]{"Move Left","Move Right","Jump","Pause","Switch Character"};
 
 
         //adds to table
@@ -158,16 +157,19 @@ public class ControlConfigureView extends AbstractMenuView {
                 , textButtonStyle);
         jumpButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Jump"))
                 , textButtonStyle);
-        shootButton = new TextButton("MOUSE1", textButtonStyle);
-        nextWeaponButton = new TextButton("Q", textButtonStyle);
-        interactButton = new TextButton("E", textButtonStyle);
+        pauseButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Pause"))
+                , textButtonStyle);
+        switchCharacterButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Switch Character"))
+                , textButtonStyle);
+
+
 
         moveLeftButton.pad(10);
         moveRightButton.pad(10);
         jumpButton.pad(10);
-        shootButton.pad(10);
-        nextWeaponButton.pad(10);
-        interactButton.pad(10);
+        pauseButton.pad(10);
+        switchCharacterButton.pad(10);
+
 
 
         //add listener to buttons
@@ -200,43 +202,33 @@ public class ControlConfigureView extends AbstractMenuView {
 
         });
 
-        shootButton.addListener(new ClickListener(){
+        pauseButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
-                shootButton.setText("PRESS KEY");
-                keyToChange = "Shoot";
+            public void clicked(InputEvent event, float x, float y) {
+                pauseButton.setText("PRESS KEY");
+                keyToChange = "Pause";
                 notifyObserver("keySetter");
             }
 
         });
 
-        nextWeaponButton.addListener(new ClickListener(){
+        switchCharacterButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
-                nextWeaponButton.setText("PRESS KEY");
-                keyToChange = "Next Weapon";
+            public void clicked(InputEvent event, float x, float y) {
+                pauseButton.setText("PRESS KEY");
+                keyToChange = "Switch Character";
                 notifyObserver("keySetter");
             }
 
         });
-
-        interactButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                interactButton.setText("PRESS KEY");
-                keyToChange = "Interact";
-                notifyObserver("keySetter");
-            }
-
-        });
-
 
         keysBindingHashMap.put("Move Left", moveLeftButton);
         keysBindingHashMap.put("Move Right", moveRightButton);
         keysBindingHashMap.put("Jump", jumpButton);
-      //  keysBindingHashMap.put("Shoot", shootButton);
-      //  keysBindingHashMap.put("Next Weapon", nextWeaponButton);
-      //  keysBindingHashMap.put("Interact", interactButton);
+        keysBindingHashMap.put("Pause", pauseButton);
+        keysBindingHashMap.put("Switch Character", switchCharacterButton);
+
+
 
         defaultButton.addListener(new ClickListener(){
             @Override

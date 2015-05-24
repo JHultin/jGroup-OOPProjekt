@@ -1,5 +1,9 @@
 Move Left
 29
+Pause
+131
+Switch Character
+61
 Jump
 62
 Move Right

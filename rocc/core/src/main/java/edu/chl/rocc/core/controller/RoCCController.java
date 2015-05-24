@@ -263,14 +263,14 @@ public class RoCCController implements Runnable{
         // Add key to keylist or jump
         @Override
         public boolean keyDown(int keycode) {
-            if(keycode == Input.Keys.ESCAPE){
+            if(keycode == keyOptions.getKey("Pause")){
                 inGame = false;
                 gvm.getActiveView().pause();
             }
 
             if (keycode == keyOptions.getKey("Jump"))
                 model.jump();
-            else if (keycode == Input.Keys.TAB){
+            else if (keycode == keyOptions.getKey("Switch Character")){
                 model.changeLead();
             }else if (!keys.contains(keycode))
                 keys.add(keycode);

@@ -45,6 +45,8 @@ public class KeyOptions extends AbsInformationHandler{
         super.setInfo("Move Left", Integer.toString(Input.Keys.A));
         super.setInfo("Move Right", Integer.toString(Input.Keys.D));
         super.setInfo("Jump", Integer.toString(Input.Keys.SPACE));
+        super.setInfo("Pause", Integer.toString(Input.Keys.ESCAPE));
+        super.setInfo("Switch Character", Integer.toString(Input.Keys.TAB));
     }
 
     /**
