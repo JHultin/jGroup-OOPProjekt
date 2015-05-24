@@ -71,7 +71,11 @@ public class PhyRoCCModel implements IRoCCModel {
      */
     @Override
     public void constructWorld() {
+        this.constructWorld(null);
+    }
 
+    @Override
+    public void constructWorld(IDeathListener listener) {
         // Start with cearing the world, using a gravity defined in a constantsclass
         this.world = new World(new Vec2(0, PhyConstants.GRAVITY));
 
@@ -100,7 +104,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
         this.createFinish();
 
-        this.createEnemies();
+        this.createEnemies(listener);
     }
 
     private void createTileLayer(String layer, Short categoryBits, Short maskBits){
@@ -214,7 +218,7 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
-    private void createEnemies(){
+    private void createEnemies(IDeathListener listener){
         if (tMap.getLayers().get("enemy") != null) {
             int i = 0;
             //Add enemy in the world
@@ -233,6 +237,8 @@ public class PhyRoCCModel implements IRoCCModel {
                 }
 
                 IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
+                if (listener != null)
+                    enemy.addDeathListener(listener);
                 i++;
                 model.addEnemy(enemy);
             }

@@ -19,6 +19,8 @@ public interface IRoCCModel{
      */
     public void constructWorld();
 
+    public void constructWorld(IDeathListener listener);
+
     /**
      *
      * @param body

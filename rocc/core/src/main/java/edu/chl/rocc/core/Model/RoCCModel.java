@@ -37,6 +37,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void constructWorld(IDeathListener listener) {
+
+    }
+
+    @Override
     public void addBlock(IBody body){
         level.addBlock(body);
     }

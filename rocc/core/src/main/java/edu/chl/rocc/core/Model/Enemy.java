@@ -57,9 +57,8 @@ public class Enemy implements IEnemy{
     @Override
     public void setHP(int value) {
         if(value < 0){
-            //death("No more hp");
-            System.out.print("Input value for health points cannot be negative.");
-            // die-method??
+            death("No more hp");
+            this.healthPoints = 0;
         }else{
             this.healthPoints = value;
         }
