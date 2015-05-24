@@ -219,7 +219,12 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void handleDeath(IDeathEvent deathEvent) {
-        player.removeLead();
+        if (deathEvent.getSource() instanceof ICharacter) {
+            player.removeLead();
+        } else if (deathEvent.getSource() instanceof IEnemy) {
+            player.addToScore(25);
+            level.removeEnemy((IEnemy)(deathEvent.getSource()));
+        }
     }
 
 }
