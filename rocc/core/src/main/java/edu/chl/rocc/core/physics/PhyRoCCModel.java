@@ -48,12 +48,22 @@ public class PhyRoCCModel implements IRoCCModel {
      */
     public PhyRoCCModel(TiledMap tMap) {
 
-        //Change cursor/crosshair
-        Pixmap pm = new Pixmap(Gdx.files.internal("crosshair.png"));
-        Gdx.input.setCursorImage(pm, 16, 16);
-        pm.dispose();
+        this.setCrosshair("crosshair");
 
         this.tMap = tMap;
+    }
+
+    /**
+     * Changes the cursor/crosshair.
+     */
+    private void setCrosshair(String imgName){
+        try{
+            Pixmap pm = new Pixmap(Gdx.files.internal(imgName + ".png"));
+            Gdx.input.setCursorImage(pm, 16, 16);
+            pm.dispose();
+        } catch (com.badlogic.gdx.utils.GdxRuntimeException rte){
+            System.out.println("Error in setting crosshair: File " + "\"" + imgName + ".png\" not found.");
+        }
     }
 
     /**

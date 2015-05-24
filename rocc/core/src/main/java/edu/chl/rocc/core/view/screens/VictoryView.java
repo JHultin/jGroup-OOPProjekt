@@ -12,7 +12,7 @@ import edu.chl.rocc.core.options.GeneralOptions;
 /**
  * Created by Jacob on 2015-05-21.
  */
-public class PlayStatsView extends AbstractMenuView{
+public class VictoryView extends AbstractMenuView{
 
     //PlayStatsLabel title
     private Label.LabelStyle titleStyle;
@@ -24,7 +24,7 @@ public class PlayStatsView extends AbstractMenuView{
     private TextButton backButton;
 
 
-    public PlayStatsView(IRoCCModel model){
+    public VictoryView(IRoCCModel model){
         super(model);
 
         /**
@@ -32,7 +32,7 @@ public class PlayStatsView extends AbstractMenuView{
          */
         //initialize the titleStyle and titleLabel
         titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("Your Stats", titleStyle);
+        titleLabel = new Label("Victory!", titleStyle);
         titleLabel.setFontScale(2);
 
         scoreLabel = new Label("0",titleStyle);

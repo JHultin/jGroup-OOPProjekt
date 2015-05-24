@@ -29,7 +29,7 @@ public class ViewFactory {
             return  new ControlConfigureView(model);
         }
         if(view.equals("stats")){
-            return new PlayStatsView(model);
+            return new VictoryView(model);
         }
         return null;
     }
