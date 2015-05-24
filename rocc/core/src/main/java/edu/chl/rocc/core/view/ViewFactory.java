@@ -28,8 +28,11 @@ public class ViewFactory {
         if(view.equals("configureControls")){
             return  new ControlConfigureView(model);
         }
-        if(view.equals("stats")){
+        if(view.equals("victory")){
             return new VictoryView(model);
+        }
+        if(view.equals("defeat")){
+            return new DefeatView(model);
         }
         return null;
     }

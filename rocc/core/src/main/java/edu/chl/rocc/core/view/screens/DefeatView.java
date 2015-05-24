@@ -2,14 +2,16 @@ package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 
 /**
- * Created by Jacob on 2015-05-21.
+ * Created by Jacob on 2015-05-24.
  */
-public class VictoryView extends AbstractMenuView{
+public class DefeatView extends AbstractMenuView{
 
     //Label title
     private Label.LabelStyle titleStyle;
@@ -21,7 +23,7 @@ public class VictoryView extends AbstractMenuView{
     private TextButton backButton;
 
 
-    public VictoryView(IRoCCModel model){
+    public DefeatView(IRoCCModel model){
         super(model);
 
         /**
@@ -29,7 +31,7 @@ public class VictoryView extends AbstractMenuView{
          */
         //initialize the titleStyle and titleLabel
         titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("Victory!", titleStyle);
+        titleLabel = new Label("You Died", titleStyle);
         titleLabel.setFontScale(2);
 
         scoreLabel = new Label("0",titleStyle);
@@ -47,6 +49,8 @@ public class VictoryView extends AbstractMenuView{
         table.add(titleLabel).padBottom(50);
         table.row();
 
+        Table contentTable = new Table();
+
         Table textTable = new Table();
         textTable.add(new Label("Score: ", titleStyle)).padBottom(20);
         textTable.add(scoreLabel).padRight(10).padBottom(20);
@@ -54,7 +58,18 @@ public class VictoryView extends AbstractMenuView{
         textTable.add(new Label("Time; ", titleStyle));
         textTable.add(timeLabel).padRight(10);
 
-        table.add(textTable).padBottom(100);
+        contentTable.add(textTable).left();
+
+        Table killedByTable = new Table();
+        killedByTable.add(new Label("Killed by: ", titleStyle));
+
+        contentTable.add(killedByTable).right().expandX();
+
+
+
+        table.add(contentTable).padBottom(100).expandX();
+
+
         table.row();
 
         float buttonWidth = 150;
@@ -71,13 +86,13 @@ public class VictoryView extends AbstractMenuView{
     @Override
     public void show() {
         super.show();
-        scoreLabel.setText("" + model.getScore());
-        timeLabel.setText("" + model.getTime());
+//        scoreLabel.setText("" + model.getScore());
+ //       timeLabel.setText("" + model.getTime());
     }
 
 
     public void createButtons(){
-        nextLevelButton = new TextButton("Next Level", textButtonStyle);
+        nextLevelButton = new TextButton("Try Again", textButtonStyle);
         backButton = new TextButton("Back to Menu", textButtonStyle);
 
         //Padding to button
@@ -96,3 +111,4 @@ public class VictoryView extends AbstractMenuView{
 
     }
 }
+

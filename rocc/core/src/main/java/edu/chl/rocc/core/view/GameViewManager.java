@@ -34,7 +34,8 @@ public class GameViewManager {
         viewHashMap.put("options", ViewFactory.createView("options", model));
         viewHashMap.put("configureControls", ViewFactory.createView("configureControls", model));
         viewHashMap.put("highscore", ViewFactory.createView("highscore", model));
-        viewHashMap.put("stats", ViewFactory.createView("stats", model));
+        viewHashMap.put("victory", ViewFactory.createView("victory", model));
+        viewHashMap.put("defeat", ViewFactory.createView("defeat", model));
 
      }
 

@@ -158,7 +158,14 @@ public class RoCCController implements Runnable{
         }else if("keySetter".equals(str)){
             this.gvm.getActiveView().hide();
             Gdx.input.setInputProcessor(configureControlsProcessor);
-        } else if("stats".equals(str)){
+        } else if("victory".equals(str)){
+            this.inGame = false;
+            this.model.dispose();
+            this.gvm.setActiveView(str);
+
+            this.viewChooser.setObservable(gvm.getViewObserver());
+            this.main.setScreen(this.gvm.getActiveView());
+        } else if("defeat".equals(str)){
             this.inGame = false;
             this.model.dispose();
             this.gvm.setActiveView(str);
