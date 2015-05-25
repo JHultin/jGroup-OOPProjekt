@@ -5,7 +5,7 @@ import edu.chl.rocc.core.model.pure.PickupableCharacter;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
  * Created by Joel on 2015-05-12.

@@ -1,9 +1,7 @@
 package edu.chl.rocc.core.model.pure;
 
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.model.m2phyInterfaces.ICharacter;
-import edu.chl.rocc.core.model.pure.RoCCFactory;
-import edu.chl.rocc.core.model.pure.RoCCModel;
 import org.junit.Before;
 import org.junit.Test;
 

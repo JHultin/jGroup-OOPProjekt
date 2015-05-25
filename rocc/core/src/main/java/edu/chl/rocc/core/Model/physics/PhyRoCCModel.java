@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.model.physics;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -12,7 +12,7 @@ import edu.chl.rocc.core.observers.ICollisionListener;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.model.factories.*;
 import edu.chl.rocc.core.model.m2phyInterfaces.*;
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.model.pure.RoCCModel;
 import edu.chl.rocc.core.observers.IDeathEvent;
 import org.jbox2d.callbacks.ContactListener;

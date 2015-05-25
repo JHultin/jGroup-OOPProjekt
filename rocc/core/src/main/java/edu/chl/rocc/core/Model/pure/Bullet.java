@@ -2,7 +2,7 @@ package edu.chl.rocc.core.model.pure;
 
 import edu.chl.rocc.core.model.m2phyInterfaces.IBullet;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
  * Class for projectiles.

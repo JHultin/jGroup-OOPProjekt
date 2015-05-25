@@ -1,11 +1,11 @@
 package edu.chl.rocc.core.model.physics;
 
 import edu.chl.rocc.core.model.m2phyInterfaces.IJumpPoint;
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
  * Class for jump points handling physics.

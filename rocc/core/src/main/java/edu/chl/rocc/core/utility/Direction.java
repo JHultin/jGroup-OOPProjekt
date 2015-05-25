@@ -1,4 +1,4 @@
-package edu.chl.rocc.core;
+package edu.chl.rocc.core.utility;
 
 /**
  * Created by Yen on 2015-04-22.

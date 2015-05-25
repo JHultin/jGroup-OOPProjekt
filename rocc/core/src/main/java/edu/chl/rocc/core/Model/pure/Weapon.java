@@ -7,7 +7,7 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IWeapon;
 import java.util.ArrayList;
 import java.util.List;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
  * Class for weapons.

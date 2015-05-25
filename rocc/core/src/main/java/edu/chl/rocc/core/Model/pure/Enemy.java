@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.model.pure;
 
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.model.m2phyInterfaces.IEnemy;
 import edu.chl.rocc.core.observers.DeathEvent;
@@ -9,7 +9,7 @@ import edu.chl.rocc.core.observers.IDeathEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
  * A class for handeling enemies(except for box2D stuff)

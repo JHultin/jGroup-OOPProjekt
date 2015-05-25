@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.model.pure;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 import edu.chl.rocc.core.model.m2phyInterfaces.IFood;
 
 /**

@@ -1,8 +1,8 @@
 package edu.chl.rocc.core.model.physics;
 
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.model.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.pure.Character;

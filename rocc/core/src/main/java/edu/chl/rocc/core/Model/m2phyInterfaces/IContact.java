@@ -1,7 +1,5 @@
 
-package edu.chl.rocc.core.model.factories;
-
-import edu.chl.rocc.core.model.m2phyInterfaces.IFixture;
+package edu.chl.rocc.core.model.m2phyInterfaces;
 
 /**
  * Created by Yen on 2015-05-20.

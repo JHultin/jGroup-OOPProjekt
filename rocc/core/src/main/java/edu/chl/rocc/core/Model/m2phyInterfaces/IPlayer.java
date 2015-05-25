@@ -1,7 +1,7 @@
 package edu.chl.rocc.core.model.m2phyInterfaces;
 
 import edu.chl.rocc.core.observers.IDeathListener;
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 
 import java.util.List;
 

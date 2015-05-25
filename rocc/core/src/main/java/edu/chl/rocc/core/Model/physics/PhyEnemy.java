@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.model.physics;
 
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.model.m2phyInterfaces.IEnemy;
 import edu.chl.rocc.core.model.pure.Enemy;
@@ -9,7 +9,7 @@ import edu.chl.rocc.core.observers.IDeathEvent;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
-import static edu.chl.rocc.core.GlobalConstants.PPM;
+import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
  * A class to handle enemies (including box2D stuff)

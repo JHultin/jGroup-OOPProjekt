@@ -4,7 +4,7 @@ import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.model.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.model.m2phyInterfaces.ICharacter;
 import edu.chl.rocc.core.model.m2phyInterfaces.IWeapon;
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.model.m2phyInterfaces.IPlayer;
 import edu.chl.rocc.core.model.pure.Player;
 import org.jbox2d.dynamics.World;

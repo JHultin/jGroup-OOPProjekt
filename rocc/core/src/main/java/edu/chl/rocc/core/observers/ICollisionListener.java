@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.observers;
 
-import edu.chl.rocc.core.model.factories.IContact;
+import edu.chl.rocc.core.model.m2phyInterfaces.IContact;
 import edu.chl.rocc.core.model.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.model.m2phyInterfaces.IEnemy;
 import edu.chl.rocc.core.model.m2phyInterfaces.IPickupable;

@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.model.pure;
 
-import edu.chl.rocc.core.Direction;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.observers.IDeathEvent;
 import org.junit.After;
