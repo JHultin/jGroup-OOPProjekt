@@ -57,7 +57,7 @@ public class Character implements ICharacter {
         if(value <= 0){
             death("No more hp");
             this.healthPoints = 0;
-        } else if(value <= maxHealth && value > 0){
+        } else if(value <= maxHealth){
             this.healthPoints = value;
         } else {
             this.healthPoints = maxHealth;
