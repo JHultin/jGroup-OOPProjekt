@@ -20,15 +20,12 @@ public class Weapon implements IWeapon {
     private final String name;
     private final float width, height;
     //private float x, y;
-
-    private List<IBullet> bullets;
     private final IBulletFactory bulletFactory;
     private final float bulletSpawnX, bulletSpawnY;
 
     public Weapon(IBulletFactory bFac, String name){
         this.bulletFactory = bFac;
         this.name = name;
-        this.bullets = new ArrayList<IBullet>();
 
         // Hämta från textfil baserat på "name"
         this.bulletSpawnX = 45;
