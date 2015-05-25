@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class AnimationHandler {
 
-    private TextureRegion[] frames;
+    private final TextureRegion[] frames;
     private float time;
     private float timeCheck;
 

@@ -134,8 +134,10 @@ public class Player implements IPlayer {
     public void removeLead() {
         characters.get(activeCharacterIndex).dispose();
         if (characters.size() > 1) {
-            characters.remove(activeCharacterIndex);
+            int playerToRemove = activeCharacterIndex;
             this.cycleActivePlayer();
+            characters.remove(playerToRemove);
+            activeCharacterIndex = activeWeaponIndex % characters.size();
         } else {
         }
     }

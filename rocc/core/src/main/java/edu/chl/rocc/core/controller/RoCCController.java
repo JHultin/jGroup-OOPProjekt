@@ -223,7 +223,7 @@ public class RoCCController{
             model.moveSideways(dir);
 
             // Then all other characters
-            model.moveFollowers(dir);
+             model.moveFollowers(dir);
 
             // Do all shots cerated since last update
             for(Vec2 v : shots){
