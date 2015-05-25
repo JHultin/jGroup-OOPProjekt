@@ -26,7 +26,7 @@ import java.util.ArrayList;
  *
  * Created by Joel on 2015-04-22.
  */
-public class RoCCController implements Runnable{
+public class RoCCController{
 
     // The different moduels in the project
     private final IRoCCModel model;
@@ -78,11 +78,27 @@ public class RoCCController implements Runnable{
         this.main.setScreen(this.gvm.getActiveView());
         this.inGame = false;
 
-        // Start the thread
-        this.thread = new Thread(this);
-        this.thread.start();
-
         this.viewChooser = new ViewChooser(gvm.getViewObserver());
+    }
+
+    public void start(){
+        this.thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (RoCCController.this.isRunning){
+                    try {
+                        // If we're ingame use the input from the gameprocessor
+                        if (inGame) {
+                            gameProcessor.sendUpdate();
+                        }
+                        Thread.sleep((long)(updateSpeed * 1000));
+                    } catch (InterruptedException e) {
+                        RoCCController.this.isRunning = false;
+                    }
+                }
+            }
+        });
+        this.thread.start();
     }
 
     /**
@@ -173,24 +189,6 @@ public class RoCCController implements Runnable{
     public void dispose(){
         this.gvm.dispose();
         this.model.dispose();
-    }
-
-    /**
-     *Is called as long as the thread runs, tells correct processor to update
-     */
-    @Override
-    public void run() {
-        while (this.isRunning){
-            try {
-                // If we're ingame use the input from the gameprocessor
-                if (inGame) {
-                    gameProcessor.sendUpdate();
-                }
-                Thread.sleep((long)(updateSpeed * 1000));
-            } catch (InterruptedException e) {
-                this.isRunning = false;
-            }
-        }
     }
 
     // Handles input when ingame

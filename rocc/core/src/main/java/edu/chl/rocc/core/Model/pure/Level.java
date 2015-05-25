@@ -19,7 +19,6 @@ public class Level implements ILevel {
     private List<IBullet> bullets;
     private List<IEnemy> enemies;
     private List<IFinishPoint> finishPoints;
-    private ArrayList <String> highscore;
 
 
     public Level(){

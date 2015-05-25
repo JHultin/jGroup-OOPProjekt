@@ -10,6 +10,7 @@ public class RoCCView extends Game {
     @Override
 	public void create () {
         controller = new RoCCController(this);
+        controller.start();
     }
 
 	@Override

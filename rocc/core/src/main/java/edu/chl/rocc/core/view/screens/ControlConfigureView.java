@@ -59,7 +59,7 @@ public class ControlConfigureView extends AbstractMenuView {
         //Initialize buttons
         createButtons();
 
-        keyToChange = new String();
+        keyToChange = "";
         keyTitleArray = new String[]{"Move Left","Move Right","Jump","Pause","Switch Character"};
 
 

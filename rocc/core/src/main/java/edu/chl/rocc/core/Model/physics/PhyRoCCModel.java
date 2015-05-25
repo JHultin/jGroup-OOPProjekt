@@ -33,8 +33,6 @@ public class PhyRoCCModel implements IRoCCModel {
 
     private IRoCCFactory factory;
 
-    private List<IBullet> bullets;
-
     // The model that does all non physics related logic
     private IRoCCModel model;
 
