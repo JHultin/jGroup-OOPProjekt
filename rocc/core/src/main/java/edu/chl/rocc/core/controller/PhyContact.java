@@ -1,7 +1,8 @@
 package edu.chl.rocc.core.controller;
 
-import edu.chl.rocc.core.m2phyInterfaces.IFixture;
-import edu.chl.rocc.core.physics.PhyFixture;
+import edu.chl.rocc.core.model.m2phyInterfaces.IFixture;
+import edu.chl.rocc.core.model.physics.PhyFixture;
+import edu.chl.rocc.core.model.factories.IContact;
 import org.jbox2d.dynamics.contacts.Contact;
 
 /**

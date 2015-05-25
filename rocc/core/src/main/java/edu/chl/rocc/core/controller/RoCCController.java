@@ -1,15 +1,15 @@
 package edu.chl.rocc.core.controller;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.Direction;
 import edu.chl.rocc.core.RoCCView;
+import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.utility.KeyOptions;
-import edu.chl.rocc.core.physics.PhyRoCCModel;
+import edu.chl.rocc.core.model.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;

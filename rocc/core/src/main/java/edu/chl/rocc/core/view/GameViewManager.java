@@ -1,15 +1,10 @@
 package edu.chl.rocc.core.view;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import edu.chl.rocc.core.RoCCView;
-import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 
 import java.util.HashMap;
-import java.util.Stack;
 
 /**
  * A class which manages the different views.

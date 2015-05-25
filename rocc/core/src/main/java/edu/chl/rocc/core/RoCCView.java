@@ -1,11 +1,7 @@
 package edu.chl.rocc.core;
 
 import com.badlogic.gdx.Game;
-import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.controller.RoCCController;
-import edu.chl.rocc.core.physics.PhyRoCCModel;
-import edu.chl.rocc.core.view.GameViewManager;
-import javafx.stage.Screen;
 
 
 public class RoCCView extends Game {
