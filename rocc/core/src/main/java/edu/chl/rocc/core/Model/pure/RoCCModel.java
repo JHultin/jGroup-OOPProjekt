@@ -16,10 +16,10 @@ import java.util.List;
 public class RoCCModel implements IRoCCModel {
 
     // The level keeps track of all items in the game
-    private final ILevel level;
+    final ILevel level;
 
     // Handles all characters and weapons
-    private final IPlayer player;
+    final IPlayer player;
 
     /**
      * Constructor for the model, creates a player and a level defined by a factory

@@ -101,6 +101,18 @@ public class Level implements ILevel {
         for (IBullet bullet : bullets){
             bullet.dispose();
         }
+        for (IPickupable pickupable : pickupables){
+            pickupable.destroy();
+        }
+        for (IJumpPoint jumpPoint : jumpPoints){
+            // dispose of jumpPoint
+        }
+        for (IEnemy enemy : enemies){
+            enemy.dispose();
+        }
+        for (IFinishPoint finishPoint : finishPoints){
+            finishPoint.dispose();
+        }
     }
 
     @Override

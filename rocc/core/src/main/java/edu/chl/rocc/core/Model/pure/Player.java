@@ -26,7 +26,7 @@ public class Player implements IPlayer {
 
     //Index of active/wielded weapon in list 'weapons'
     private int activeWeaponIndex;
-    private List<IWeapon> weapons;
+    private final List<IWeapon> weapons;
 
     /*
     * Constructor creating a single character and adds it to the character list.
@@ -46,6 +46,7 @@ public class Player implements IPlayer {
     public Player(List<ICharacter> characters){
 
         this.characters = characters;
+        this.weapons = new ArrayList<IWeapon>();
     }
 
     @Override
@@ -79,8 +80,8 @@ public class Player implements IPlayer {
                 }
             }
         } else{
-            for (int k=0; k < characters.size(); k++) {
-                characters.get(k).move(Direction.NONE);
+            for (ICharacter character : characters) {
+                character.move(Direction.NONE);
             }
         }
     }
