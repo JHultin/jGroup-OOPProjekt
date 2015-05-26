@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.view;
+package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

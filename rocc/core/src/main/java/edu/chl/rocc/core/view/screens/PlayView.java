@@ -21,7 +21,6 @@ import edu.chl.rocc.core.model.m2phyInterfaces.*;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.utility.CharacterTextureLoader;
 import edu.chl.rocc.core.utility.WeaponTextureLoader;
-import edu.chl.rocc.core.view.AnimationHandler;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
