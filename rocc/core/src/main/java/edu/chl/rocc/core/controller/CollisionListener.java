@@ -17,11 +17,11 @@ import java.util.List;
  */
 public class CollisionListener implements ContactListener, ICollisionListener {
 
-    public ArrayList<IPickupable> itemsToRemove;
-    public String newState;
+    private final List<IPickupable> itemsToRemove;
+    private String newState;
 
-    public ArrayList<IEnemy> enemyToChangeDirection;
-    public ArrayList<IBullet> bulletsToRemove;
+    private final List<IEnemy> enemyToChangeDirection;
+    private final List<IBullet> bulletsToRemove;
 
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();

@@ -13,7 +13,7 @@ public class PhyLevel implements ILevel {
 
     private final ILevel level;
     private final World world;
-    private List<IBody> bodiesNeedingToDispose;
+    private final List<IBody> bodiesNeedingToDispose;
 
     public PhyLevel(World world) {
         this.world = world;

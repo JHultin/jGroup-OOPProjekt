@@ -14,11 +14,11 @@ public class Level implements ILevel {
     private int timeCheck;
 
     private int score;
-    private List<IPickupable> pickupables;
-    private List<IJumpPoint> jumpPoints;
-    private List<IBullet> bullets;
-    private List<IEnemy> enemies;
-    private List<IFinishPoint> finishPoints;
+    private final List<IPickupable> pickupables;
+    private final List<IJumpPoint> jumpPoints;
+    private final List<IBullet> bullets;
+    private final List<IEnemy> enemies;
+    private final List<IFinishPoint> finishPoints;
 
 
     public Level(){

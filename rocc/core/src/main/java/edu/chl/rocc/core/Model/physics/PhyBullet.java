@@ -20,7 +20,7 @@ public class PhyBullet implements IBullet {
     private final Body body;
 
     private final IBullet bullet;
-    private float velocity;
+    private final float velocity;
     private final int bulletDamage;
 
     //private final Vector2 direction;

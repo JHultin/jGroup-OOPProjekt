@@ -32,7 +32,7 @@ public class PhyCharacter implements ICharacter {
     private boolean isOnJumpPoint;
     private boolean isMoving;
 
-    private Fixture fixture;
+    private final Fixture fixture;
 
     public PhyCharacter(World world, float x, float y, String name){
         this.world = world;

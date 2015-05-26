@@ -9,7 +9,7 @@ import org.jbox2d.dynamics.Body;
  */
 public class PhyBody implements IBody{
 
-    private Body body;
+    private final Body body;
 
     public PhyBody(Body body){
         this.body = body;

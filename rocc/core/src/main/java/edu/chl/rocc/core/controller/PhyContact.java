@@ -10,7 +10,7 @@ import org.jbox2d.dynamics.contacts.Contact;
  */
 public class PhyContact implements IContact {
 
-    private Contact contact;
+    private final Contact contact;
 
     public PhyContact(Contact contact){
         this.contact = contact;

@@ -11,7 +11,7 @@ public class PhyFixture implements IFixture {
 
     //Unecessary class
 
-    private Fixture fixture;
+    private final Fixture fixture;
 
     public PhyFixture(Fixture fixture){
         this.fixture = fixture;

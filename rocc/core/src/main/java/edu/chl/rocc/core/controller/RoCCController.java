@@ -18,6 +18,7 @@ import edu.chl.rocc.core.view.screens.PlayView;
 import org.jbox2d.common.Vec2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controllerclass for the RoCC project
@@ -37,9 +38,9 @@ public class RoCCController{
     private String currentView;
 
     // Inputprocessor for while ingame
-    private GameProcessor gameProcessor;
+    private final GameProcessor gameProcessor;
     //Inputprocessor for ConfigureControlView
-    private ConfigureControlsProcessor configureControlsProcessor;
+    private final ConfigureControlsProcessor configureControlsProcessor;
 
     // Treads and boolean to show when the tread should operate
     private Thread thread;
@@ -52,7 +53,7 @@ public class RoCCController{
     // The current key configurations
     private final KeyOptions keyOptions;
 
-    private ViewChooser viewChooser;
+    private final ViewChooser viewChooser;
 
     private TiledMap tiledMap;
 
@@ -195,10 +196,10 @@ public class RoCCController{
     private class GameProcessor implements InputProcessor{
 
         // Holds information on which keys that are currently pressed
-        private ArrayList<Integer> keys;
+        private final List<Integer> keys;
 
         // List of all shots to make everytime the game updates
-        private ArrayList<Vec2> shots;
+        private final List<Vec2> shots;
 
         private GameProcessor (){
             keys = new ArrayList<Integer>();

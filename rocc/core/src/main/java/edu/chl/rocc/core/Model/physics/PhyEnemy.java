@@ -28,6 +28,7 @@ public class PhyEnemy implements IEnemy {
     private final int damageHP;
     private final int airForce;
     private final int health;
+    // dåligt variabelnamn
     private int i = 0;
 
     public PhyEnemy(World world, float x, float y, String name){
