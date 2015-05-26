@@ -177,12 +177,6 @@ public class Player implements IPlayer {
         for(ICharacter character : characters){
             character.dispose();
         }
-
-        /*
-        for (IBullet bullet : bullets){
-            bullet.dispose();
-        }
-        */
     }
 
     @Override
@@ -200,11 +194,6 @@ public class Player implements IPlayer {
     @Override
     public int getFrontCharacterIndex(){
         return activeCharacterIndex;
-    }
-
-    @Override
-    public float getDistance(int i){
-        return Math.abs(characters.get(i).getX() - characters.get(activeCharacterIndex).getX());
     }
 
     @Override

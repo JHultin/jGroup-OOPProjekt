@@ -89,9 +89,4 @@ public interface IPlayer {
      * @return the index of the front character in the character list.
      */
     public int getFrontCharacterIndex();
-
-    /**
-     * @return the distance between the front character and a follower.
-     */
-    public float getDistance(int i);
 }

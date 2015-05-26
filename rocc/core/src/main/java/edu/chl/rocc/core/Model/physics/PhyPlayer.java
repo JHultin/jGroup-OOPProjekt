@@ -109,12 +109,6 @@ public class PhyPlayer implements IPlayer {
         return this.player.getFrontCharacterIndex();
     }
 
-
-    @Override
-    public float getDistance(int i){
-        return this.player.getDistance(i);
-    }
-
     @Override
     public void addToScore(int value){
         player.addToScore(value);
