@@ -1,14 +1,6 @@
 package edu.chl.rocc.core.utility;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A Class which reads the files which contains the different

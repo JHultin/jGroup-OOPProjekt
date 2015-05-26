@@ -4,9 +4,6 @@ import edu.chl.rocc.core.model.factories.IBulletFactory;
 import edu.chl.rocc.core.model.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.model.m2phyInterfaces.IWeapon;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**

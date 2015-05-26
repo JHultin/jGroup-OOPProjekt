@@ -284,10 +284,6 @@ public class PhyRoCCModel implements IRoCCModel {
         return this.model.getCharacterYPos();
     }
 
-    public IRoCCModel getModel() {
-        return model;
-    }
-
     @Override
     public void updateWorld(float dt) {
         this.model.updateWorld(dt);

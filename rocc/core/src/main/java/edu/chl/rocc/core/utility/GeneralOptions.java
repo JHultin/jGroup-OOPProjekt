@@ -1,12 +1,6 @@
 package edu.chl.rocc.core.utility;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Joel on 2015-05-12.

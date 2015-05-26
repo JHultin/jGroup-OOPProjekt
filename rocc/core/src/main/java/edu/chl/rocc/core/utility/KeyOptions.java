@@ -1,13 +1,8 @@
 package edu.chl.rocc.core.utility;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A class handling choosing and storing keysettings.

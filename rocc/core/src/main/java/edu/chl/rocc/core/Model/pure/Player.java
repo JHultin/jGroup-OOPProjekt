@@ -206,19 +206,6 @@ public class Player implements IPlayer {
         return Math.abs(characters.get(i).getX() - characters.get(activeCharacterIndex).getX());
     }
 
-    /*
-    * Returns the x-direction towards the front character from a follower.
-    */
-    public Direction getDirection(int i){
-        if(characters.get(0).getX() - characters.get(i).getX() > 0){
-            return Direction.RIGHT;
-        } else if(characters.get(0).getX() - characters.get(i).getX() < 0){
-            return Direction.LEFT;
-        } else{
-            return Direction.NONE;
-        }
-    }
-
     @Override
     public void addToScore(int value){
         this.score +=value;
