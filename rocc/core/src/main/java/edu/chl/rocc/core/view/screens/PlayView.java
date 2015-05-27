@@ -31,22 +31,20 @@ import edu.chl.rocc.core.view.observers.IViewObserver;
  */
 public class PlayView implements Screen,IViewObservable{
 
-
-    private SpriteBatch batch;
+    private final SpriteBatch batch;
     private OrthographicCamera cam;
 
     private Map<String, Texture> textures;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
-    private IRoCCModel model;
+    private final IRoCCModel model;
 
     private ArrayList<IViewObserver> observerArrayList;
 
     private BitmapFont font = new BitmapFont();
     private Label.LabelStyle labelStyle;
-    private Label scoreLabel;
-    private Label timeLabel;
+    private Label scoreLabel, timeLabel;
 
     private Stage stage;
     private Table table;
@@ -82,10 +80,6 @@ public class PlayView implements Screen,IViewObservable{
         table = new Table();
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-
-        characterProfileTable = new Table();
-        Table scoreTimeTable = new Table();
-
         //Initializes the text
         labelStyle = new Label.LabelStyle(font,Color.BLACK);
         scoreLabel = new Label("Score:", labelStyle);
@@ -93,45 +87,30 @@ public class PlayView implements Screen,IViewObservable{
         timeLabel = new Label("Time:", labelStyle);
         timeLabel.setFontScale(1);
 
+        characterProfileTable = new Table();
+        Table scoreTimeTable = new Table();
+
         scoreTimeTable.add(scoreLabel).pad(15);
         scoreTimeTable.add(timeLabel).pad(15);
-
-
 
         //adds to table
         table.add(characterProfileTable).left().top();
         table.add(scoreTimeTable).right().expand().top();
 
-
         //Initialize healthBar and profilePics
         profileImageHashMap = new HashMap<String, Image>();
         healthBarHashMap = new HashMap<String, ProgressBar>();
 
-
         //Add table to stage
-       // table.debug();
         stage.addActor(table);
 
-
-        /**
-         * Pause window
-         */
         //Initialize the pause window and everything it contains
         createPauseWindow();
-        //Add window
-        // stage.addActor(pauseWindow); //pauseWindow should be added to stage when user press escape
-       // pauseWindow.remove(); //used to remove pausewindow
-
-        //END
-
 
         observerArrayList = new ArrayList<IViewObserver>();
 
 
-        /*
-         * Initializes the Hashmap and create temporary hashmaps which
-         * are then placed in the main hashmap.
-         */
+         // Initializes the Hashmap and create temporary hashmaps which are then placed in the main hashmap.
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
 
         //Adds the different animation state names in a array
@@ -191,7 +170,6 @@ public class PlayView implements Screen,IViewObservable{
 
         batch.begin();
 
-
         /*
          * Adds an image and healthbar for all the characters.
          * Updates the value of the HealthBar.
@@ -215,7 +193,11 @@ public class PlayView implements Screen,IViewObservable{
 
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
-                renderCharacter(character);
+                charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).update();
+                textureRegion = new TextureRegion(
+                        charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).getFrame());
+
+                batch.draw(textureRegion, character.getX(), character.getY());
             }
         }
 
@@ -249,10 +231,6 @@ public class PlayView implements Screen,IViewObservable{
                 }
             }
         }
-
-
-
-        //batch.draw(textures.get("weapon"), model.getCharacterXPos() + 3, model.getCharacterYPos() + 10);
 
         batch.end();
 
@@ -329,19 +307,6 @@ public class PlayView implements Screen,IViewObservable{
     }
 
 
-    /**
-     * A method which finds out which animation a character
-     * will perform.
-     * @param character
-     */
-    public void renderCharacter(ICharacter character){
-        charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).update();
-        textureRegion = new TextureRegion(
-                charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).getFrame());
-
-        batch.draw(textureRegion, character.getX(), character.getY());
-    }//renderCharacter end
-
 
     /**
      * A method which places all the animation textures in a hashMap.
@@ -387,7 +352,6 @@ public class PlayView implements Screen,IViewObservable{
         Window.WindowStyle pauseWindowStyle = new Window.WindowStyle();
         pauseWindowStyle.titleFont = font;
         pauseWindowStyle.titleFontColor = Color.BLACK;
-        //pauseWindowStyle.background = pauseSkin.getDrawable("buttonUp");
 
         pauseWindow = new Window("PAUSE", pauseWindowStyle);
 
@@ -403,7 +367,6 @@ public class PlayView implements Screen,IViewObservable{
         textButtonStyle.pressedOffsetX = 1;
         textButtonStyle.font = font;
         textButtonStyle.fontColor = Color.BLACK;
-
 
 
         TextButton resumeButton = new TextButton("Resume",textButtonStyle);
@@ -424,7 +387,7 @@ public class PlayView implements Screen,IViewObservable{
         restartButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-//                notifyObserver("restart");
+                notifyObserver("game");
             }
         });
 
@@ -454,7 +417,6 @@ public class PlayView implements Screen,IViewObservable{
         for(Cell cell : pauseWindow.getCells()){
             pauseWindow.getCell(cell.getActor()).spaceBottom(10);
         }
-
 
         pauseWindow.pack();
 

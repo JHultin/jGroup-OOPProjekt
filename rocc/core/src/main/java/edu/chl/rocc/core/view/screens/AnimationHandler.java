@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class AnimationHandler {
 
     private final TextureRegion[] frames;
-    private float time;
     private float timeCheck;
 
     private float delay;
@@ -19,7 +18,6 @@ public class AnimationHandler {
     public AnimationHandler(TextureRegion[] frames, float delay){
         this.frames = frames;
         this.delay = delay;
-        time = 0;
         currentFrame = 0;
         timesPlayed = 0;
     }

@@ -20,8 +20,7 @@ import java.util.HashMap;
 public class ControlConfigureView extends AbstractMenuView {
 
     //Options title
-    private Label.LabelStyle titleStyle;
-    private Label titleLabel;
+    private final Label titleLabel;
 
     //A hashMap to contain all the button and one to contain all the button names.
     private HashMap<String,TextButton> keysBindingHashMap;
@@ -51,8 +50,7 @@ public class ControlConfigureView extends AbstractMenuView {
 
         //Creating Options title
         //initialize the titleStyle and titleLabel
-        titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("Configure Controls", titleStyle);
+        titleLabel = new Label("Configure Controls", textStyle);
         titleLabel.setFontScale(2);
 
 
@@ -77,7 +75,7 @@ public class ControlConfigureView extends AbstractMenuView {
          * as a key to retrive the right button
          */
         for(int i = 0; i<keyTitleArray.length; i++){
-            buttonConfigureTable.add(new Label(keyTitleArray[i], titleStyle)).right().padRight(15).padBottom(10);
+            buttonConfigureTable.add(new Label(keyTitleArray[i], textStyle)).right().padRight(15).padBottom(10);
             buttonConfigureTable.add(keysBindingHashMap.get(keyTitleArray[i])).width(buttonWidth).padBottom(15);
             buttonConfigureTable.row();
         }

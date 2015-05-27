@@ -14,7 +14,6 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 public class DefeatView extends AbstractMenuView{
 
     //Label title
-    private Label.LabelStyle titleStyle;
     private Label titleLabel;
     private Label scoreLabel;
     private Label timeLabel;
@@ -30,12 +29,11 @@ public class DefeatView extends AbstractMenuView{
          * Creating Options title
          */
         //initialize the titleStyle and titleLabel
-        titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("You Died", titleStyle);
+        titleLabel = new Label("You Died", textStyle);
         titleLabel.setFontScale(2);
 
-        scoreLabel = new Label("0",titleStyle);
-        timeLabel = new Label("0",titleStyle);
+        scoreLabel = new Label("0",textStyle);
+        timeLabel = new Label("0",textStyle);
 
         /**
          * Initialize buttons
@@ -52,16 +50,16 @@ public class DefeatView extends AbstractMenuView{
         Table contentTable = new Table();
 
         Table textTable = new Table();
-        textTable.add(new Label("Score: ", titleStyle)).padBottom(20);
+        textTable.add(new Label("Score: ", textStyle)).padBottom(20);
         textTable.add(scoreLabel).padRight(10).padBottom(20);
         textTable.row();
-        textTable.add(new Label("Time; ", titleStyle));
+        textTable.add(new Label("Time; ", textStyle));
         textTable.add(timeLabel).padRight(10);
 
         contentTable.add(textTable).left();
 
         Table killedByTable = new Table();
-        killedByTable.add(new Label("Killed by: ", titleStyle));
+        killedByTable.add(new Label("Killed by: ", textStyle));
 
         contentTable.add(killedByTable).right().expandX();
 

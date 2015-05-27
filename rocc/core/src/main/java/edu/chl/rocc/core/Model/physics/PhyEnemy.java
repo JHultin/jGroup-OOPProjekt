@@ -74,8 +74,6 @@ public class PhyEnemy implements IEnemy {
         fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY | BitMask.BIT_BULLET;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("enemyUpperSensor");  //change to name of enemy?
-
-        System.out.println(getDirection());
     }
 
     @Override
@@ -170,7 +168,4 @@ public class PhyEnemy implements IEnemy {
         this.enemy.death(deathEvent);
     }
 
-    /*
-        add a method for enemies that will shoot, can have value in txt
-     */
 }

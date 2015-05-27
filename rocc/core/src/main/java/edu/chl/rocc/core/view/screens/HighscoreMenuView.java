@@ -13,7 +13,6 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 public class HighscoreMenuView extends AbstractMenuView {
 
     //Options title
-    private Label.LabelStyle titleStyle;
     private Label titleLabel;
 
     private TextButton backButton;
@@ -25,8 +24,7 @@ public class HighscoreMenuView extends AbstractMenuView {
          * Creating Options title
          */
         //initialize the titleStyle and titleLabel
-        titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("Highscore", titleStyle);
+        titleLabel = new Label("Highscore", textStyle);
         titleLabel.setFontScale(2);
 
 

@@ -218,27 +218,16 @@ public class PhyRoCCModel implements IRoCCModel {
 
     private void createEnemies(IDeathListener listener){
         if (tMap.getLayers().get("enemy") != null) {
-            int i = 0;
-            //Add enemy in the world
-            List<String> enemiesName = new ArrayList<String>();
-            enemiesName.add("zombie");
-            enemiesName.add("bigZombie");
 
             MapLayer enemyLayer = tMap.getLayers().get("enemy");
 
             for (MapObject mapObject : enemyLayer.getObjects()) {
                 float x = ((Float) mapObject.getProperties().get("x")) / PPM;
                 float y = ((Float) mapObject.getProperties().get("y")) / PPM;
-
-                if(i >= enemiesName.size()){
-                    i=0;
-                }
-
-                IEnemy enemy = new PhyEnemy(this.world, x, y, enemiesName.get(i));
+                IEnemy enemy = new PhyEnemy(this.world, x, y, "" + mapObject.getProperties().get("Name"));
                 if (listener != null) {
                     enemy.addDeathListener(listener);
                 }
-                i++;
                 model.addEnemy(enemy);
             }
         }

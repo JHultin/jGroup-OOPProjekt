@@ -8,10 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -24,23 +21,25 @@ import java.util.ArrayList;
 public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     protected ArrayList<IViewObserver> observerArrayList;
-    protected IRoCCModel model;
+    protected final IRoCCModel model;
 
-    protected Stage stage;
-    protected TextureAtlas textureAtlas;
-    protected Skin skin;
-    protected Table table;
+    protected final Stage stage;
+    protected final TextureAtlas textureAtlas;
+    protected final Skin skin;
+    protected final Table table;
 
     //Background
-    private Image backgroundImage;
-    private Texture backgroundTexture;
+    private final Image backgroundImage;
+    private final Texture backgroundTexture;
 
 
     //TextButtonStyle
-    protected BitmapFont font = new BitmapFont();
-    protected TextButton.TextButtonStyle textButtonStyle;
+    protected final BitmapFont font = new BitmapFont();
+    protected final TextButton.TextButtonStyle textButtonStyle;
     private boolean resize;
 
+    //Textstyle
+    protected Label.LabelStyle textStyle;
 
     protected AbstractMenuView(IRoCCModel model){
         this.model = model;
@@ -66,6 +65,8 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
         textButtonStyle.pressedOffsetX = 1;
         textButtonStyle.font = font;
         textButtonStyle.fontColor = Color.BLACK;
+
+        textStyle = new Label.LabelStyle(font,Color.BLACK);
 
         //Instead of putting coordinates for every button we have a table which does it for us.
         table = new Table(skin);
