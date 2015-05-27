@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.observers.IDeathEvent;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.observers.IDeathListener;
@@ -34,7 +35,7 @@ public class RoCCController{
     private final RoCCView main;
     private final GameViewManager gvm;
     private CollisionListener collisionListener;
-    private final IDeathListener deathListener;
+    private final DeathListener deathListener;
     private String currentView;
 
     // Inputprocessor for while ingame
@@ -68,7 +69,7 @@ public class RoCCController{
     public RoCCController(RoCCView main){
         this.tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
         this.model = new PhyRoCCModel(tiledMap);
-        this.deathListener = new DeathListener(model);
+        this.deathListener = new DeathListener();
         this.main = main;
         this.gvm = new GameViewManager(model);
 
@@ -234,9 +235,9 @@ public class RoCCController{
             model.moveSideways(dir);
 
             // Then all other characters
-             model.moveFollowers(dir);
+            model.moveFollowers(dir);
 
-            // Do all shots cerated since last update
+            // Do all shots created since last update
             for(Vec2 v : shots){
                 model.shoot(v.x, v.y);
             }
@@ -256,6 +257,10 @@ public class RoCCController{
             model.changeDirectionOnEnemies(collisionListener.getEnemiesToChangeDirection());
 
             model.removeBullets(collisionListener.getBulletsToRemove());
+
+            for(IDeathEvent deathEvent : deathListener.getDeathsToHandle()){
+                model.handleDeath(deathEvent);
+            }
 
 
         }

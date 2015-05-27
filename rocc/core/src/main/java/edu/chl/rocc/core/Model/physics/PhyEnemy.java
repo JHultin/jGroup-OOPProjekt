@@ -145,8 +145,8 @@ public class PhyEnemy implements IEnemy {
     public void dispose() {
         this.enemy.dispose();
         body.getWorld().destroyBody(body);
-        //world.destroyBody(body);
-        System.out.println("disposing " + getName());
+        world.destroyBody(body);
+        System.out.println(body + " " + getName());
     }
 
     @Override
