@@ -52,39 +52,13 @@ public class PlayerTest {
         assertTrue(this.player.getWeapons().size() == 0);
 
         this.player.addWeapon("weapon");
+        IWeapon newWeapon = this.player.getWeapon();
+
+        assertFalse(this.player.getWeapons() == null);
         assertTrue(this.player.getWeapons().size() == 1);
-
-        assertTrue(this.player.getWeapon() instanceof IWeapon);
-        assertTrue(this.player.getWeapon().equals(this.player.getWeapon()));
-
-        assertTrue(this.player.getWeapons() instanceof List);
-        assertTrue(this.player.getWeapons().equals(this.player.getWeapons()));
+        assertFalse(this.player.getWeapon() == null);
+        assertTrue(this.player.getWeapon().getName().equals(newWeapon.getName()));
     }
-
-    /*
-     * Är det bättre att dela upp testerna i olika metoder?
-     * Har man mycket i samma kan man slippa att ha samma kod på flera ställen, värt?
-     *
-    @Test
-    public void testAddWeapon() throws Exception {
-        assertTrue(this.player.getWeapons().size() == 0);
-
-        this.player.addWeapon("weapon");
-        assertTrue(this.player.getWeapons().size() == 1);
-    }
-
-    @Test
-    public void testGetWeapon() throws Exception {
-        this.player.addWeapon("weapon");
-        assertTrue(this.player.getWeapon() instanceof IWeapon);
-    }
-
-    @Test
-    public void testGetWeapons() throws Exception {
-        this.player.addWeapon("weapon");
-        assertTrue(this.player.getWeapons() instanceof List);
-    }
-    */
 
     @Test
     public void testActiveCharacter() throws Exception {
