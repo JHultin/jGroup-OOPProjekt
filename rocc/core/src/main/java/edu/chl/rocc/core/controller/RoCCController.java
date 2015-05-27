@@ -77,7 +77,7 @@ public class RoCCController{
         this.keyOptions = KeyOptions.getInstance();
 
         // Start up the game with the menuscreen
-        this.gvm.setActiveView("defeat");
+        this.gvm.setActiveView("menu");
         this.main.setScreen(this.gvm.getActiveView());
         this.inGame = false;
 
