@@ -170,7 +170,4 @@ public class PhyEnemy implements IEnemy {
         this.enemy.death(deathEvent);
     }
 
-    /*
-        add a method for enemies that will shoot, can have value in txt
-     */
 }
