@@ -184,6 +184,7 @@ public class PlayView implements Screen,IViewObservable{
          */
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
+
                 if (!profileImageHashMap.containsKey(character.getName())) {
                     profileImageHashMap.put(character.getName(),
                             new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
@@ -195,8 +196,30 @@ public class PlayView implements Screen,IViewObservable{
                     characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
                     characterProfileTable.row();
                 }
+
                 healthBarHashMap.get(character.getName()).setValue(character.getHP());
             }
+
+         /*   for (Image i : profileImageHashMap.values()) {
+
+                boolean checkMissing = false;
+
+                for (ICharacter character : model.getCharacters()) {
+                    if (character.getName().equals(i.getName())) {
+                        checkMissing = false;
+                    } else {
+                        if (!checkMissing) {
+                            checkMissing = true;
+                        }
+                    }
+
+                    if(checkMissing) {
+                        System.out.println(profileImageHashMap.get());
+                   //     System.out.println(i.getName());
+                       //profileImageHashMap.get(i).remove();
+                    }
+                }
+            }*/
         }
 
         synchronized (model.getCharacters()) {
@@ -211,7 +234,7 @@ public class PlayView implements Screen,IViewObservable{
 
         //Draws the weapon
         batch.draw(weaponHashMap.get((model.getWeapon().getName())).get(""+model.getActiveCharacter().getLastDirection())
-                , model.getCharacterXPos(), model.getCharacterYPos() + 5);
+                , model.getCharacterXPos(), model.getCharacterYPos() + 3);
 
         synchronized (model.getPickupables()) {
             for (IPickupable pickupable : model.getPickupables()) {
