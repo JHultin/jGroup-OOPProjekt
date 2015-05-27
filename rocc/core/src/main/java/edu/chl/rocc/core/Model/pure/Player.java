@@ -132,13 +132,12 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void removeLead() {
-        characters.get(activeCharacterIndex).dispose();
+    public void removeCharacter(ICharacter character) {
+        character.dispose();
         if (characters.size() > 1) {
-            int playerToRemove = activeCharacterIndex;
             this.cycleActivePlayer();
-            characters.remove(playerToRemove);
-            activeCharacterIndex = activeWeaponIndex % characters.size();
+            characters.remove(character);
+            activeCharacterIndex %= characters.size();
         } else {
         }
     }

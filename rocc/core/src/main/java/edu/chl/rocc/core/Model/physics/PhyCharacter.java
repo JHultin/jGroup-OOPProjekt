@@ -2,6 +2,7 @@ package edu.chl.rocc.core.model.physics;
 
 import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
+import edu.chl.rocc.core.observers.DeathEvent;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.model.m2phyInterfaces.ICharacter;
@@ -99,6 +100,9 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void decHP(int value) {
+        if (character.getHP() <= value){
+            this.death("No more HP");
+        }
         this.character.decHP(value);
     }
 
@@ -291,7 +295,7 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void death(String message) {
-        this.character.death(message);
+        this.character.death(new DeathEvent(this, message));
     }
 
     @Override

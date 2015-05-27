@@ -56,6 +56,5 @@ public class PhyFood implements IFood {
     @Override
     public void destroy() {
         this.world.destroyBody(body);
-        System.out.println(body);
     }
 }

@@ -39,7 +39,7 @@ public interface IPlayer {
 
     public void addCharacter(String name, IDeathListener listener);
 
-    public void removeLead();
+    public void removeCharacter(ICharacter character);
 
     /**
      * @return list of all characters.
