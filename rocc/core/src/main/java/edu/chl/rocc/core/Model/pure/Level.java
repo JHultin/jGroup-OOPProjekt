@@ -88,6 +88,7 @@ public class Level implements ILevel {
 
     @Override
     public void removeEnemy(IEnemy enemy) {
+        enemy.dispose();
         enemies.remove(enemy);
     }
 

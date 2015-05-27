@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model.physics;
 
+import edu.chl.rocc.core.observers.DeathEvent;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.model.m2phyInterfaces.IEnemy;
@@ -124,6 +125,9 @@ public class PhyEnemy implements IEnemy {
 
     @Override
     public void decHP(int value) {
+        if (enemy.getHP() <= value){
+            this.death("No more hp");
+        }
         this.enemy.decHP(value);
     }
 
@@ -140,7 +144,9 @@ public class PhyEnemy implements IEnemy {
     @Override
     public void dispose() {
         this.enemy.dispose();
-        world.destroyBody(body);
+        body.getWorld().destroyBody(body);
+        //world.destroyBody(body);
+        System.out.println("disposing " + getName());
     }
 
     @Override
@@ -160,7 +166,7 @@ public class PhyEnemy implements IEnemy {
 
     @Override
     public void death(String message) {
-        this.enemy.death(message);
+        this.enemy.death(new DeathEvent(this, message));
     }
 
     @Override
