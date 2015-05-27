@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     protected ArrayList<IViewObserver> observerArrayList;
-    protected IRoCCModel model;
+    protected final IRoCCModel model;
 
-    protected Stage stage;
+    protected final Stage stage;
     protected final TextureAtlas textureAtlas;
     protected final Skin skin;
     protected final Table table;
@@ -39,7 +39,7 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
     private boolean resize;
 
     //Textstyle
-    protected final Label.LabelStyle textStyle;
+    protected Label.LabelStyle textStyle;
 
     protected AbstractMenuView(IRoCCModel model){
         this.model = model;
@@ -66,7 +66,7 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
         textButtonStyle.font = font;
         textButtonStyle.fontColor = Color.BLACK;
 
-        textStyle = new Label.LabelStyle();
+        textStyle = new Label.LabelStyle(font,Color.BLACK);
 
         //Instead of putting coordinates for every button we have a table which does it for us.
         table = new Table(skin);

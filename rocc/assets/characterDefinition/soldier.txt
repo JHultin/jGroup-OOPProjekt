@@ -3,7 +3,7 @@ Speed
 NumberOfJumps
 3
 JumpForce
-250
+200
 AirForce
 100
 MaxHP

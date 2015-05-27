@@ -1,5 +1,5 @@
 soundVolume
-60
+50
 musicVolume
 50
 isFullscreen

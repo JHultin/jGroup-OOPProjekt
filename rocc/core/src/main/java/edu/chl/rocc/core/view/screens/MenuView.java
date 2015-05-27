@@ -30,7 +30,7 @@ public class MenuView extends AbstractMenuView {
         //Create all of the buttons
         createButtons();
 
-        /**
+        /*
          * Check GeneralOptions if fullscreen has previously been selected.
          */
         if( GeneralOptions.getInstance().getOption("isFullscreen") == 1) {
@@ -39,17 +39,14 @@ public class MenuView extends AbstractMenuView {
             Gdx.graphics.setDisplayMode(720, 480, false);
         }
 
-
-
-
-        /**
+        /*
          * Creating title
          */
         //Initialize the titleStyle and titleLabel
         titleLabel = new Label(title, textStyle);
         titleLabel.setFontScale(2);
 
-        /**
+        /*
          * Adds to table
          */
         //Adds title
@@ -101,7 +98,7 @@ public class MenuView extends AbstractMenuView {
 
 
 
-        /**
+        /*
          * Add listener to buttons
          */
         newGameButton.addListener(new ClickListener(){

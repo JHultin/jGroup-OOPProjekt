@@ -7,5 +7,5 @@ Switch Character
 Jump
 62
 Move Right
-29
+32
 .
