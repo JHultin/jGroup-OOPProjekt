@@ -13,6 +13,9 @@ public class RoCCModelTest {
     @Before
     public void before(){
         this.model = new RoCCModel(new RoCCFactory());
+        this.model.addCharacter("mother");
+        this.model.addCharacter("soldier");
+        this.model.addCharacter("doctor");
     }
 
     @Test
@@ -37,7 +40,6 @@ public class RoCCModelTest {
 
     @Test
     public void testMoveSideways() throws Exception {
-        // hämtar karaktär utan att någon blivit skapad
         ICharacter frontCharacter = this.model.getCharacters().get(0);
 
         this.model.moveSideways(Direction.RIGHT);
