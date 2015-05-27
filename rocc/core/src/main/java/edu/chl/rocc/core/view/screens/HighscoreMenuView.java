@@ -12,31 +12,19 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
  */
 public class HighscoreMenuView extends AbstractMenuView {
 
-    //Options title
-    private Label titleLabel;
-
+    private final Label titleLabel;
     private TextButton backButton;
 
     public HighscoreMenuView(IRoCCModel model){
         super(model);
 
-        /**
-         * Creating Options title
-         */
-        //initialize the titleStyle and titleLabel
         titleLabel = new Label("Highscore", textStyle);
         titleLabel.setFontScale(2);
 
-
-        /*
-         * Initialize buttons
-         */
         createButtons();
 
-        /*
-         * adds to table
-         */
-        //adds title
+
+        //adds to table
         table.add(titleLabel);
         table.row();
 
@@ -58,16 +46,11 @@ public class HighscoreMenuView extends AbstractMenuView {
         //Padding to button
         backButton.pad(20);
 
-
-        /*
-         * add listener to buttons
-         */
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
                 notifyObserver("menu");
             }
         });
-
     }
 }

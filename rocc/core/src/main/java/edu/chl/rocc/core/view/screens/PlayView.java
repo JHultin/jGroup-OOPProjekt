@@ -44,7 +44,7 @@ public class PlayView implements Screen,IViewObservable{
 
     private BitmapFont font = new BitmapFont();
     private Label.LabelStyle labelStyle;
-    private Label scoreLabel, timeLabel;
+    private final Label scoreLabel, timeLabel;
 
     private Stage stage;
     private Table table;

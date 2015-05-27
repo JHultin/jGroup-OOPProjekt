@@ -12,46 +12,34 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 public class VictoryView extends AbstractMenuView{
 
     //Label title
-    private Label.LabelStyle titleStyle;
-    private Label titleLabel;
-    private Label scoreLabel;
-    private Label timeLabel;
+    private final Label titleLabel, scoreLabel, timeLabel;
 
-    private TextButton nextLevelButton;
-    private TextButton backButton;
+    private TextButton nextLevelButton, backButton;
 
 
     public VictoryView(IRoCCModel model){
         super(model);
 
-        /**
-         * Creating Options title
-         */
+        //Creating Options title
         //initialize the titleStyle and titleLabel
-        titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("Victory!", titleStyle);
+        titleLabel = new Label("Victory!", textStyle);
         titleLabel.setFontScale(2);
 
-        scoreLabel = new Label("0",titleStyle);
-        timeLabel = new Label("0",titleStyle);
+        scoreLabel = new Label("0",textStyle);
+        timeLabel = new Label("0",textStyle);
 
-        /**
-         * Initialize buttons
-         */
         createButtons();
 
-        /**
-         * adds to table
-         */
+        //adds to table
         //adds title
         table.add(titleLabel).padBottom(50);
         table.row();
 
         Table textTable = new Table();
-        textTable.add(new Label("Score: ", titleStyle)).padBottom(20);
+        textTable.add(new Label("Score: ", textStyle)).padBottom(20);
         textTable.add(scoreLabel).padRight(10).padBottom(20);
         textTable.row();
-        textTable.add(new Label("Time; ", titleStyle));
+        textTable.add(new Label("Time; ", textStyle));
         textTable.add(timeLabel).padRight(10);
 
         table.add(textTable).padBottom(100);
@@ -64,7 +52,6 @@ public class VictoryView extends AbstractMenuView{
 
         table.add(bottomTable);
 
-        //table.debug();
         stage.addActor(table);
     }
 
@@ -84,15 +71,12 @@ public class VictoryView extends AbstractMenuView{
         nextLevelButton.pad(15);
         backButton.pad(15);
 
-        /**
-         * add listener to buttons
-         */
+        //add listener to buttons
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
                 notifyObserver("menu");
             }
         });
-
     }
 }

@@ -26,19 +26,12 @@ public class ControlConfigureView extends AbstractMenuView {
     private HashMap<String,TextButton> keysBindingHashMap;
     private String[] keyTitleArray;
 
-    private TextButton moveLeftButton;
-    private TextButton moveRightButton;
-    private TextButton jumpButton;
-    private TextButton pauseButton;
-    private TextButton switchCharacterButton;
+    private TextButton moveLeftButton, moveRightButton, jumpButton, pauseButton, switchCharacterButton;
+    private TextButton defaultButton, backButton;
 
     private String keyToChange;
 
-    private KeyOptions keyOptions;
-
-    private TextButton defaultButton;
-    private TextButton backButton;
-
+    private final KeyOptions keyOptions;
     private boolean resize;
 
     public ControlConfigureView(IRoCCModel model){
@@ -49,7 +42,6 @@ public class ControlConfigureView extends AbstractMenuView {
         keyOptions = KeyOptions.getInstance();
 
         //Creating Options title
-        //initialize the titleStyle and titleLabel
         titleLabel = new Label("Configure Controls", textStyle);
         titleLabel.setFontScale(2);
 
@@ -62,7 +54,6 @@ public class ControlConfigureView extends AbstractMenuView {
 
 
         //adds to table
-        //adds title
         table.add(titleLabel).padBottom(20);
         table.row();
 
@@ -118,7 +109,6 @@ public class ControlConfigureView extends AbstractMenuView {
 
     @Override
     public void show() {
-       // super.show();
         Gdx.input.setInputProcessor(stage);
         System.out.println(Gdx.input.getInputProcessor());
     }

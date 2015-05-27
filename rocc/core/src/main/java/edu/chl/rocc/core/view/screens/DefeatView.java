@@ -14,36 +14,24 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 public class DefeatView extends AbstractMenuView{
 
     //Label title
-    private Label titleLabel;
-    private Label scoreLabel;
-    private Label timeLabel;
-
-    private TextButton nextLevelButton;
-    private TextButton backButton;
+    private final Label titleLabel, scoreLabel, timeLabel;
+    private TextButton retryLevelButton, backButton;
 
 
     public DefeatView(IRoCCModel model){
         super(model);
 
-        /**
-         * Creating Options title
-         */
         //initialize the titleStyle and titleLabel
         titleLabel = new Label("You Died", textStyle);
         titleLabel.setFontScale(2);
-
         scoreLabel = new Label("0",textStyle);
         timeLabel = new Label("0",textStyle);
 
-        /**
-         * Initialize buttons
-         */
+        //Initialize buttons
         createButtons();
 
-        /**
-         * adds to table
-         */
-        //adds title
+
+        //adds to table
         table.add(titleLabel).padBottom(50);
         table.row();
 
@@ -58,26 +46,16 @@ public class DefeatView extends AbstractMenuView{
 
         contentTable.add(textTable).left();
 
-        Table killedByTable = new Table();
-        killedByTable.add(new Label("Killed by: ", textStyle));
-
-        contentTable.add(killedByTable).right().expandX();
-
-
-
         table.add(contentTable).padBottom(100).expandX();
-
-
         table.row();
 
         float buttonWidth = 150;
         Table bottomTable = new Table();
         bottomTable.add(backButton).width(buttonWidth).left().padRight(50);
-        bottomTable.add(nextLevelButton).width(buttonWidth).right().padLeft(50);
+        bottomTable.add(retryLevelButton).width(buttonWidth).right().padLeft(50);
 
         table.add(bottomTable);
 
-        //table.debug();
         stage.addActor(table);
     }
 
@@ -90,16 +68,20 @@ public class DefeatView extends AbstractMenuView{
 
 
     public void createButtons(){
-        nextLevelButton = new TextButton("Try Again", textButtonStyle);
+        retryLevelButton = new TextButton("Try Again", textButtonStyle);
         backButton = new TextButton("Back to Menu", textButtonStyle);
 
         //Padding to button
-        nextLevelButton.pad(15);
+        retryLevelButton.pad(15);
         backButton.pad(15);
 
-        /**
-         * add listener to buttons
-         */
+        retryLevelButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event,float x, float y){
+                notifyObserver("game");
+            }
+        });
+
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){

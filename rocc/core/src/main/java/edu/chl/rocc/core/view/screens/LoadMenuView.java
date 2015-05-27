@@ -12,30 +12,19 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
  */
 public class LoadMenuView extends AbstractMenuView {
 
-    //Options title
-    private Label titleLabel;
+    private final Label titleLabel;
 
     private TextButton backButton;
 
     public LoadMenuView(IRoCCModel model){
         super(model);
 
-        /**
-         * Creating Options title
-         */
-        //initialize the titleStyle and titleLabel
         titleLabel = new Label("Load Game", textStyle);
         titleLabel.setFontScale(2);
 
-
-        /**
-         * Initialize buttons
-         */
         createButtons();
 
-        /**
-         * adds to table
-         */
+        //Adds to table
         //adds title
         table.add(titleLabel);
         table.row();
@@ -58,10 +47,6 @@ public class LoadMenuView extends AbstractMenuView {
         //Padding to button
         backButton.pad(20);
 
-
-        /**
-         * add listener to buttons
-         */
         backButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){

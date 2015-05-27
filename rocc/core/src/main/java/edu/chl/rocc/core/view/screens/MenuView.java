@@ -16,43 +16,36 @@ import edu.chl.rocc.core.utility.GeneralOptions;
  */
 public class MenuView extends AbstractMenuView {
 
-    private String title = "Ruins of Corrosa City";
+    private final String title = "Ruins of Corrosa City";
 
 
     private TextButton newGameButton, loadGameButton, optionsButton,highscoreButton,exitButton;
-    private Label titleLabel;
+    private final Label titleLabel;
 
 
     public MenuView(IRoCCModel model){
         super(model);
 
-
         //Create all of the buttons
         createButtons();
 
-        /*
-         * Check GeneralOptions if fullscreen has previously been selected.
-         */
+
+        //Check GeneralOptions if fullscreen has previously been selected.
         if( GeneralOptions.getInstance().getOption("isFullscreen") == 1) {
             Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
         }else{
             Gdx.graphics.setDisplayMode(720, 480, false);
         }
 
-        /*
-         * Creating title
-         */
-        //Initialize the titleStyle and titleLabel
+        //Creating title
         titleLabel = new Label(title, textStyle);
         titleLabel.setFontScale(2);
 
-        /*
-         * Adds to table
-         */
+        //Adds to table
         //Adds title
         table.add(titleLabel);
         table.row();
-        //Adds the button to the table
+        //Adds the buttons to the table
         float buttonWidth = 200;
         table.add(newGameButton).width(buttonWidth);
         table.row();
@@ -96,11 +89,7 @@ public class MenuView extends AbstractMenuView {
         highscoreButton.pad(20);
         exitButton.pad(20);
 
-
-
-        /*
-         * Add listener to buttons
-         */
+        //Add listeners to buttons
         newGameButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){

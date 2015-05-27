@@ -14,36 +14,27 @@ import edu.chl.rocc.core.utility.GeneralOptions;
  */
 public class OptionsMenuView extends AbstractMenuView{
 
-    //Options title
-    private Label titleLabel;
+    private final Label titleLabel;
 
-    private TextButton backButton;
-    private TextButton controlsButton;
+    private TextButton backButton, controlsButton;
     private CheckBox fullscreenCheckBox;
     private Slider soundSlider;
-    private Label soundVolumeLabel;
-    private Label musicVolumeLabel;
+    private Label soundVolumeLabel, musicVolumeLabel;
     private Slider musicSlider;
 
+    private final GeneralOptions generalOptions;
 
-    private GeneralOptions generalOptions;
 
     public OptionsMenuView(IRoCCModel model){
         super(model);
 
         generalOptions = GeneralOptions.getInstance();
 
-        /*
-         * Creating Options title
-         */
-        //initialize the titleStyle and titleLabel
+
+        //Creating Options title
         titleLabel = new Label("Options", textStyle);
         titleLabel.setFontScale(2);
 
-
-        /*
-         * Initialize buttons
-         */
         createButtons();
 
         //adds title to table
@@ -71,16 +62,10 @@ public class OptionsMenuView extends AbstractMenuView{
         float buttonWidth = 200;
         table.add(backButton).width(buttonWidth);
 
-
-        //table.debug();//used to show grid lines
-
-
         stage.addActor(table);
     }
 
     public void createButtons(){
-
-        //Regular button
         backButton = new TextButton("Back", textButtonStyle);
         backButton.pad(20);
 
