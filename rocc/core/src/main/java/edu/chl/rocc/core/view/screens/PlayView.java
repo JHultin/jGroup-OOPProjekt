@@ -127,7 +127,7 @@ public class PlayView implements Screen,IViewObservable{
 
         //Adds the different weapon textures
         weaponHashMap = new HashMap<String, HashMap<String, Texture>>();
-        weaponNames = new String[]{"ak-47","plasmaGun"};
+        weaponNames = new String[]{"default", "ak-47", "plasmaGun"};
         weaponTextures = new String[]{"LEFT","RIGHT","bullet"};
 
         for(int i = 0; i<weaponNames.length; i++){

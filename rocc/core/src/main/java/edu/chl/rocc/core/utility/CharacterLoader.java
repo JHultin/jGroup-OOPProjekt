@@ -32,5 +32,6 @@ public class CharacterLoader extends AbsInformationHandler {
         super.setInfo("NumberOfJumps", "1");
         super.setInfo("JumpForce"    , "250");
         super.setInfo("AirForce"     , "100");
+        super.setInfo("Weapon"       , "0");
     }
 }

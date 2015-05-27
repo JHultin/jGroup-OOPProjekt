@@ -95,8 +95,8 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
-    public void changeWeapon(String characterName){
-
+    public void changeWeapon(){
+        this.player.changeWeapon();
     }
 
     @Override
@@ -117,6 +117,11 @@ public class PhyPlayer implements IPlayer {
     @Override
     public void setActiveCharacter(int i){
         this.player.setActiveCharacter(i);
+    }
+
+    @Override
+    public ICharacter getActiveCharacter(){
+        return this.player.getActiveCharacter();
     }
 
     @Override

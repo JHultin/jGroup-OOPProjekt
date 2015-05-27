@@ -19,6 +19,7 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
+import org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCodeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -332,6 +333,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public ICharacter getActiveCharacter(){
+        return this.model.getActiveCharacter();
+    }
+
+    @Override
     public void addWeapon(String name){
         this.model.addWeapon(name);
     }
@@ -339,6 +345,11 @@ public class PhyRoCCModel implements IRoCCModel {
     @Override
     public IWeapon getWeapon(){
         return this.model.getWeapon();
+    }
+
+    @Override
+    public void changeWeapon(){
+        this.model.changeWeapon();
     }
 
     @Override

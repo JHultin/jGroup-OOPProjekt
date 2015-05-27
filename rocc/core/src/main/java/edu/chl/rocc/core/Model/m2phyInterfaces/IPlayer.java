@@ -69,7 +69,7 @@ public interface IPlayer {
     /**
      * Change the currently used weapon.
      */
-    public void changeWeapon(String characterName);
+    public void changeWeapon();
 
     /**
      * @return the x-coordinate of where the bullets spawn.
@@ -102,6 +102,11 @@ public interface IPlayer {
      * Change which character the player is playing as.
      */
     public void setActiveCharacter(int i);
+
+    /**
+     * @return the active character.
+     */
+    public ICharacter getActiveCharacter();
 
     public void cycleActivePlayer();
 

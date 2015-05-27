@@ -93,6 +93,11 @@ public interface IRoCCModel{
     public IWeapon getWeapon();
 
     /**
+     * Change the currently used weapon.
+     */
+    public void changeWeapon();
+
+    /**
      * @return the x-coordinate of where the bullets spawn.
      */
     public int getBulletSpawnX();
@@ -157,4 +162,9 @@ public interface IRoCCModel{
     public void addFinish(IFinishPoint finish);
 
     public void setActiveCharacter(int activeIndex);
+
+    /**
+     * @return the active character.
+     */
+    public ICharacter getActiveCharacter();
 }

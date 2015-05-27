@@ -24,11 +24,14 @@ public class PhyCharacter implements ICharacter {
     private int characterOnGround;
     private Direction direction;
     private Direction airDir;
+
+    // Characteristics
     private final int speed;
     private final int numberOfJumps;
     private int currentJump = 0;
     private final int jumpForce;
     private final int airForce;
+    private final int weapon;
 
     private boolean isOnJumpPoint;
     private boolean isMoving;
@@ -49,6 +52,7 @@ public class PhyCharacter implements ICharacter {
         this.numberOfJumps = cl.getCharecaristic("NumberOfJumps");
         this.jumpForce     = cl.getCharecaristic("JumpForce");
         this.airForce      = cl.getCharecaristic("AirForce");
+        this.weapon        = cl.getCharecaristic("Weapon");
 
         airDir = Direction.NONE;
 
@@ -204,6 +208,11 @@ public class PhyCharacter implements ICharacter {
     @Override
     public String getName() {
         return character.getName();
+    }
+
+    @Override
+    public int getWeapon(){
+        return this.weapon;
     }
 
     @Override

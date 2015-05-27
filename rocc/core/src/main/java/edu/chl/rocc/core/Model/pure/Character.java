@@ -120,6 +120,11 @@ public class Character implements ICharacter {
     }
 
     @Override
+    public int getWeapon(){
+        return 0;
+    }
+
+    @Override
     public void dispose() {
 
     }

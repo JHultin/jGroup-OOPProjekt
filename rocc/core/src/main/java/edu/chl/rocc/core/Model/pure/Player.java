@@ -171,8 +171,8 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void changeWeapon(String characterName){
-
+    public void changeWeapon(){
+        this.activeWeaponIndex = this.getActiveCharacter().getWeapon();
     }
 
     @Override
@@ -204,6 +204,11 @@ public class Player implements IPlayer {
         this.characters.get(activeCharacterIndex).setAsFollower();
         this.activeCharacterIndex = i;
         this.characters.get(i).setAsLead();
+    }
+
+    @Override
+    public ICharacter getActiveCharacter(){
+        return this.characters.get(activeCharacterIndex);
     }
 
     @Override

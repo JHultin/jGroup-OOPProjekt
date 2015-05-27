@@ -129,6 +129,11 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void changeWeapon(){
+        this.player.changeWeapon();
+    }
+
+    @Override
     public int getBulletSpawnX(){
         return this.player.getBulletSpawnX();
     }
@@ -225,6 +230,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void setActiveCharacter(int activeIndex) {
         player.setActiveCharacter(activeIndex);
+    }
+
+    @Override
+    public ICharacter getActiveCharacter(){
+        return this.player.getActiveCharacter();
     }
 
     @Override

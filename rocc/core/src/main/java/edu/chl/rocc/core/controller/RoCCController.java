@@ -132,8 +132,8 @@ public class RoCCController{
 
             this.model.setActiveCharacter(0);
 
-            // Create weapon
-            this.model.addWeapon("plasmaGun");
+            createWeapons();
+            this.model.changeWeapon();
 
             Gdx.input.setInputProcessor(gameProcessor);
 
@@ -192,6 +192,15 @@ public class RoCCController{
     public void dispose(){
         this.gvm.dispose();
         this.model.dispose();
+    }
+
+    /**
+     * Create all weapons and add them to the weapon list.
+     */
+    private void createWeapons(){
+        this.model.addWeapon("default");
+        this.model.addWeapon("plasmaGun");
+        this.model.addWeapon("ak-47");
     }
 
     // Handles input when ingame
@@ -264,6 +273,7 @@ public class RoCCController{
                 model.jump();
             else if (keycode == keyOptions.getKey("Switch Character")){
                 model.changeLead();
+                model.changeWeapon();
             }else if (!keys.contains(keycode))
                 keys.add(keycode);
             return false;

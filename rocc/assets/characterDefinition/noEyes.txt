@@ -8,4 +8,6 @@ NumberOfJumps
 2
 JumpForce
 250
+Weapon
+0
 .

@@ -58,6 +58,8 @@ public interface ICharacter extends IMortal {
 
     public String getName();
 
+    public int getWeapon();
+
     public void dispose();
 
     public Direction getDirection();
