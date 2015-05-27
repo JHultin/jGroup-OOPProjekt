@@ -8,7 +8,6 @@ import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.observers.IDeathEvent;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.RoCCView;
-import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.utility.KeyOptions;
 import edu.chl.rocc.core.model.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
@@ -17,6 +16,7 @@ import edu.chl.rocc.core.view.observers.IViewObserver;
 import edu.chl.rocc.core.view.screens.ControlConfigureView;
 import edu.chl.rocc.core.view.screens.PlayView;
 import org.jbox2d.common.Vec2;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,35 +114,7 @@ public class RoCCController{
     public void setState(String str){
         // If a game is started
         if ("game".equals(str) && !"game".equals(currentView)) {
-            // Tell the GameViewManager to choose the correct screen
-            gvm.setActiveView(str);
-
-            // Set up the game
-            // First construct the world, the level and all pickupables.
-            ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
-            this.model.constructWorld(deathListener);
-
-            // Add correct listener to handle the collisions in the world
-            this.collisionListener = new CollisionListener();
-            this.model.setCollisionListener(this.collisionListener);
-
-            // Then create the characters
-            // This should be done with the help of a profile
-            this.model.addCharacter("mother" , deathListener);
-            this.model.addCharacter("soldier", deathListener);
-
-            this.model.setActiveCharacter(0);
-
-            createWeapons();
-            this.model.changeWeapon();
-
-            Gdx.input.setInputProcessor(gameProcessor);
-
-            this.inGame = true;
-
-            this.viewChooser.setObservable(gvm.getViewObserver());
-            // Tell main to update to correct screen
-            this.main.setScreen(this.gvm.getActiveView());
+            setToGameState(str);
         // If we went to a menu instead
         } else if("resume".equals(str)){
             Gdx.input.setInputProcessor(gameProcessor);
@@ -151,39 +123,59 @@ public class RoCCController{
         }else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))){
             // Tell the GameViewManager to choose the correct screen
-            this.gvm.setActiveView(str);
-            this.inGame = false;
-            this.model.dispose();
-
-            this.viewChooser.setObservable(gvm.getViewObserver());
-            this.main.setScreen(this.gvm.getActiveView());
+            setToMenuState(str);
         } else if("configureControls".equals(str)){
-            this.inGame = false;
-            this.model.dispose();
-            this.gvm.setActiveView(str);
-
-            this.viewChooser.setObservable(gvm.getViewObserver());
-            // Tell main to update to correct screen
-            this.main.setScreen(this.gvm.getActiveView());
+            setToMenuState(str);
         }else if("keySetter".equals(str)){
             this.gvm.getActiveView().hide();
             Gdx.input.setInputProcessor(configureControlsProcessor);
-        } else if("victory".equals(str)){
-            this.inGame = false;
-            this.model.dispose();
-            this.gvm.setActiveView(str);
-
-            this.viewChooser.setObservable(gvm.getViewObserver());
-            this.main.setScreen(this.gvm.getActiveView());
+        } else if("victory".equals(str)) {
+            setToMenuState(str);
         } else if("defeat".equals(str)){
-            this.inGame = false;
-            this.model.dispose();
-            this.gvm.setActiveView(str);
-
-            this.viewChooser.setObservable(gvm.getViewObserver());
-            this.main.setScreen(this.gvm.getActiveView());
+            setToMenuState(str);
         }
         currentView = str;
+    }
+
+    private void setToGameState(String str){
+        // Tell the GameViewManager to choose the correct screen
+        gvm.setActiveView(str);
+
+        // Set up the game
+        // First construct the world, the level and all pickupables.
+        ((PlayView) this.gvm.getActiveView()).setMap(tiledMap);
+        this.model.constructWorld(deathListener);
+
+        // Add correct listener to handle the collisions in the world
+        this.collisionListener = new CollisionListener();
+        this.model.setCollisionListener(this.collisionListener);
+
+        // Then create the characters
+        // This should be done with the help of a profile
+        this.model.addCharacter("mother" , deathListener);
+        this.model.addCharacter("soldier", deathListener);
+
+        this.model.setActiveCharacter(0);
+
+        createWeapons();
+        this.model.changeWeapon();
+
+        Gdx.input.setInputProcessor(gameProcessor);
+
+        this.inGame = true;
+
+        this.viewChooser.setObservable(gvm.getViewObserver());
+        // Tell main to update to correct screen
+        this.main.setScreen(this.gvm.getActiveView());
+    }
+
+    private void setToMenuState(String str){
+        this.inGame = false;
+        this.model.dispose();
+        this.gvm.setActiveView(str);
+
+        this.viewChooser.setObservable(gvm.getViewObserver());
+        this.main.setScreen(this.gvm.getActiveView());
     }
 
     /**
