@@ -44,16 +44,16 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             ((ICharacter) fb.getBody().getUserData()).hitGround();
         }
 
-        if (isCorrectFixtureType(fa, "food", IFood.class)) {
+        if (isCorrectFixtureType(fa, "food")) {
             itemsToRemove.add((IFood) (fa.getBody().getUserData()));
         }
-        if (isCorrectFixtureType(fb, "food", IFood.class)) {
+        if (isCorrectFixtureType(fb, "food")) {
             itemsToRemove.add((IFood) (fb.getBody().getUserData()));
         }
-        if (isCorrectFixtureType(fa, "pickupChacter", IPickupableCharacter.class)) {
+        if (isCorrectFixtureType(fa, "pickupChacter")) {
             itemsToRemove.add((IPickupableCharacter) (fa.getBody().getUserData()));
         }
-        if (isCorrectFixtureType(fb, "pickupChacter", IPickupableCharacter.class)) {
+        if (isCorrectFixtureType(fb, "pickupChacter")) {
             itemsToRemove.add((IPickupableCharacter) (fb.getBody().getUserData()));
         }
         if ("jumpPointSensor".equals(fa.getUserData())) {
@@ -114,8 +114,8 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         }
     }
 
-    private static boolean isCorrectFixtureType(Fixture fix, String str, Class c){
-        return (str.equals(fix.getUserData()) && fix.getBody().getUserData().getClass().equals(c));
+    private static boolean isCorrectFixtureType(Fixture fix, String str){
+        return (str.equals(fix.getUserData()));// && fix.getBody().getUserData().getClass().equals(c));
     }
 
     //Called when contact between two fixtures ends
