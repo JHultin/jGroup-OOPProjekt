@@ -202,8 +202,8 @@ public class PlayView implements Screen,IViewObservable{
         }
 
         //Draws the weapon
-        batch.draw(weaponHashMap.get((model.getWeapon().getName())).get(""+Direction.RIGHT)
-                , model.getCharacterXPos() + 3, model.getCharacterYPos() + 10);
+        batch.draw(weaponHashMap.get((model.getWeapon().getName())).get(""+model.getActiveCharacter().getLastDirection())
+                , model.getCharacterXPos(), model.getCharacterYPos() + 5);
 
         synchronized (model.getPickupables()) {
             for (IPickupable pickupable : model.getPickupables()) {
@@ -256,7 +256,6 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void resume() {
-        //notifyObserver("resume");
         pauseWindow.remove(); //used to remove pausewindow
     }
 
