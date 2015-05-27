@@ -26,6 +26,7 @@ public class PhyCharacter implements ICharacter {
     private Direction airDir;
     private final int speed;
     private final int numberOfJumps;
+    private int currentJump = 0;
     private final int jumpForce;
     private final int airForce;
 
@@ -75,6 +76,8 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("footSensor");
+
+        System.out.println(name + " " + numberOfJumps);
     }
 
     @Override
@@ -147,12 +150,13 @@ public class PhyCharacter implements ICharacter {
 
     @Override
     public void jump() {
-       if(characterOnGround > 0) {
+       if(currentJump < numberOfJumps) {
            this.body.setLinearVelocity(new Vec2(0, 0));
            this.body.applyForceToCenter(new Vec2(0, jumpForce));
            airDir = Direction.UP;
 
            character.leftGround();
+           this.currentJump ++;
        }
     }
 
@@ -180,6 +184,8 @@ public class PhyCharacter implements ICharacter {
             direction = airDir;
 
             this.character.hitGround();
+
+            this.currentJump = 0;
         }
         characterOnGround++;
 
@@ -192,6 +198,7 @@ public class PhyCharacter implements ICharacter {
         if (characterOnGround == 0){
             if(airDir != Direction.UP) {
                 this.body.setLinearVelocity(new Vec2(0, 0));
+                this.currentJump ++;
             }
             airDir = Direction.NONE;
             this.character.leftGround();

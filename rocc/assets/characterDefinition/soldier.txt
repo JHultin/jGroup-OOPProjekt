@@ -1,7 +1,7 @@
 Speed
 180
 NumberOfJumps
-1
+3
 JumpForce
 250
 AirForce
