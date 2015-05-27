@@ -44,16 +44,16 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             ((ICharacter) fb.getBody().getUserData()).hitGround();
         }
 
-        if ("food".equals(fa.getUserData()) && fa.getBody().getUserData() instanceof IFood) {
+        if (isCorrectFixtureType(fa, "food", IFood.class)) {
             itemsToRemove.add((IFood) (fa.getBody().getUserData()));
         }
-        if ("food".equals(fb.getUserData()) && fb.getBody().getUserData() instanceof IFood) {
+        if (isCorrectFixtureType(fb, "food", IFood.class)) {
             itemsToRemove.add((IFood) (fb.getBody().getUserData()));
         }
-        if ("pickupCharacter".equals(fa.getUserData()) && fa.getBody().getUserData() instanceof IPickupableCharacter) {
+        if (isCorrectFixtureType(fa, "pickupChacter", IPickupableCharacter.class)) {
             itemsToRemove.add((IPickupableCharacter) (fa.getBody().getUserData()));
         }
-        if ("pickupCharacter".equals(fb.getUserData()) && fb.getBody().getUserData() instanceof IPickupableCharacter) {
+        if (isCorrectFixtureType(fb, "pickupChacter", IPickupableCharacter.class)) {
             itemsToRemove.add((IPickupableCharacter) (fb.getBody().getUserData()));
         }
         if ("jumpPointSensor".equals(fa.getUserData())) {
@@ -69,7 +69,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             this.newState = "victory";
         }
 
-        /**
+        /*
          * When enemy walks into a body or a wall into change direction
          */
         if ("enemyUpperSensor".equals(fa.getUserData())){
@@ -114,6 +114,9 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         }
     }
 
+    private static boolean isCorrectFixtureType(Fixture fix, String str, Class c){
+        return (str.equals(fix.getUserData()) && fix.getBody().getUserData().getClass().equals(c));
+    }
 
     //Called when contact between two fixtures ends
     @Override
