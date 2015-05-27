@@ -220,6 +220,25 @@ public class RoCCController{
         // Tells the model when and how to update
         private void sendUpdate(){
             // Find correct direction for the active character to move in
+            moveUpdate();
+
+            // Do all shots created since last update
+            for(Vec2 v : shots){
+                model.shoot(v.x, v.y);
+            }
+            shots.clear();
+
+            // Then update the world
+            model.updateWorld(updateSpeed);
+
+
+            // Lastly do all operations that triggered from the update
+            // but can't be reacted to during the update
+            doPostWorldUpdateRemoval();
+
+        }
+
+        private void moveUpdate(){
             Direction dir;
             if (keys.contains(keyOptions.getKey("Move Right")))
                 if (keys.contains(keyOptions.getKey("Move Left")))
@@ -236,19 +255,9 @@ public class RoCCController{
 
             // Then all other characters
             model.moveFollowers(dir);
+        }
 
-            // Do all shots created since last update
-            for(Vec2 v : shots){
-                model.shoot(v.x, v.y);
-            }
-            shots.clear();
-
-            // Then update the world
-            model.updateWorld(updateSpeed);
-
-
-            // Lastly do all operations that triggered from the update
-            // but can't be reacted to during the update
+        private void doPostWorldUpdateRemoval(){
             model.removeItems(collisionListener.getItemsToRemove());
             String newState = collisionListener.getNewState();
             if (newState != null) {
@@ -261,8 +270,6 @@ public class RoCCController{
             for(IDeathEvent deathEvent : deathListener.getDeathsToHandle()){
                 model.handleDeath(deathEvent);
             }
-
-
         }
 
         // Add key to keylist or jump
