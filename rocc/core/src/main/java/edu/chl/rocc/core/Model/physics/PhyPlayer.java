@@ -80,6 +80,11 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
+    public void removeWeapon(String name){
+        this.player.removeWeapon(name);
+    }
+
+    @Override
     public IWeapon getWeapon(){
         return this.player.getWeapon();
     }
@@ -87,6 +92,11 @@ public class PhyPlayer implements IPlayer {
     @Override
     public List<IWeapon> getWeapons(){
         return this.player.getWeapons();
+    }
+
+    @Override
+    public void changeWeapon(String characterName){
+
     }
 
     @Override

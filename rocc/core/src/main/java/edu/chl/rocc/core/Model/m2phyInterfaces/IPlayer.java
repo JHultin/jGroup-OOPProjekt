@@ -52,6 +52,11 @@ public interface IPlayer {
     public void addWeapon(String name);
 
     /**
+     * Remove a weapon from the weapon list.
+     */
+    public void removeWeapon(String name);
+
+    /**
      * @return the weapon at the given index in the weapon list.
      */
     public IWeapon getWeapon();
@@ -60,6 +65,11 @@ public interface IPlayer {
      * @return a list of all the players weapons.
      */
     public List<IWeapon> getWeapons();
+
+    /**
+     * Change the currently used weapon.
+     */
+    public void changeWeapon(String characterName);
 
     /**
      * @return the x-coordinate of where the bullets spawn.

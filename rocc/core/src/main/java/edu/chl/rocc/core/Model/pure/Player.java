@@ -156,6 +156,11 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public void removeWeapon(String name){
+
+    }
+
+    @Override
     public IWeapon getWeapon(){
         return this.weapons.get(activeWeaponIndex);
     }
@@ -163,6 +168,11 @@ public class Player implements IPlayer {
     @Override
     public List<IWeapon> getWeapons(){
         return this.weapons;
+    }
+
+    @Override
+    public void changeWeapon(String characterName){
+
     }
 
     @Override
