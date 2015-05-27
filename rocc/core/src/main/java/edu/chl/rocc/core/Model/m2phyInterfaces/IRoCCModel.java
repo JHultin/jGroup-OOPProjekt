@@ -93,6 +93,16 @@ public interface IRoCCModel{
     public IWeapon getWeapon();
 
     /**
+     * @return the x-coordinate of where the bullets spawn.
+     */
+    public int getBulletSpawnX();
+
+    /**
+     * @return the y-coordinate of where the bullets spawn.
+     */
+    public int getBulletSpawnY();
+
+    /**
     * @return list of all current existing projectiles in the level.
     */
     public List<IBullet> getBullets();

@@ -18,7 +18,7 @@ public class Weapon implements IWeapon {
     private final float width, height;
     //private float x, y;
     private final IBulletFactory bulletFactory;
-    private final float bulletSpawnX, bulletSpawnY;
+    private final int bulletSpawnX, bulletSpawnY;
 
     public Weapon(IBulletFactory bFac, String name){
         this.bulletFactory = bFac;
@@ -40,6 +40,16 @@ public class Weapon implements IWeapon {
     @Override
     public String getName(){
         return this.name;
+    }
+
+    @Override
+    public int getBulletSpawnX(){
+        return this.bulletSpawnX;
+    }
+
+    @Override
+    public int getBulletSpawnY(){
+        return this.bulletSpawnY;
     }
 
     @Override

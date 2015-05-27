@@ -166,6 +166,16 @@ public class Player implements IPlayer {
     }
 
     @Override
+    public int getBulletSpawnX(){
+        return this.weapons.get(activeWeaponIndex).getBulletSpawnX();
+    }
+
+    @Override
+    public int getBulletSpawnY(){
+        return this.weapons.get(activeWeaponIndex).getBulletSpawnY();
+    }
+
+    @Override
     public IBullet shoot(float xDir, float yDir){
         return this.getWeapon().createBullet(this.getCharacterXPos(), this.getCharacterYPos(), xDir, yDir);
     }

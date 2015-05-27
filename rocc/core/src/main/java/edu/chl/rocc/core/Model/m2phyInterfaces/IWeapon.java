@@ -17,6 +17,16 @@ public interface IWeapon {
      */
     public String getName();
 
+    /**
+     * @return the x-coordinate of where the bullets spawn.
+     */
+    public int getBulletSpawnX();
+
+    /**
+     * @return the y-coordinate of where the bullets spawn.
+     */
+    public int getBulletSpawnY();
+
     public void dispose();
 
 }

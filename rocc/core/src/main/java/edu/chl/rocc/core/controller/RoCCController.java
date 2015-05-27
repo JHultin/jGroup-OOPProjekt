@@ -57,6 +57,8 @@ public class RoCCController{
 
     private TiledMap tiledMap;
 
+    private int bulletSpawnX, bulletSpawnY;
+
     /**
      * Constructor for the controller.
      * Everything that need to exist when the game starts here.
@@ -284,9 +286,13 @@ public class RoCCController{
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
-            // Get the mouse-coordinates compared to the character
-            double xd = screenX - Gdx.graphics.getWidth() / 2;
-            double yd = Gdx.graphics.getHeight() / 2 - screenY;
+            // Get the x- and y-coordinates for the weapon where the bullets will spawn
+            bulletSpawnX = model.getBulletSpawnX();
+            bulletSpawnY = model.getBulletSpawnY();
+
+            // Get the mouse-coordinates compared to the weapon
+            double xd = screenX - Gdx.graphics.getWidth() / 2 - bulletSpawnX;
+            double yd = Gdx.graphics.getHeight() / 2 - screenY - bulletSpawnY;
 
             // Make ON-base, pythagoras
             double k = 1.0 / Math.sqrt(Math.pow(xd, 2) + Math.pow(yd, 2));

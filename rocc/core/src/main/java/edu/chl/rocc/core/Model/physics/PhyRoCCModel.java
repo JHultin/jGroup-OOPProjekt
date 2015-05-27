@@ -353,6 +353,16 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public int getBulletSpawnX(){
+        return this.model.getBulletSpawnX();
+    }
+
+    @Override
+    public int getBulletSpawnY(){
+        return this.model.getBulletSpawnY();
+    }
+
+    @Override
     public List<IBullet> getBullets() {
         return this.model.getBullets();
     }

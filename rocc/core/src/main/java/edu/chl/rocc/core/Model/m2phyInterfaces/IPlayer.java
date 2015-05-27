@@ -61,6 +61,16 @@ public interface IPlayer {
      */
     public List<IWeapon> getWeapons();
 
+    /**
+     * @return the x-coordinate of where the bullets spawn.
+     */
+    public int getBulletSpawnX();
+
+    /**
+     * @return the y-coordinate of where the bullets spawn.
+     */
+    public int getBulletSpawnY();
+
     public IBullet shoot(float xDir, float yDir);
 
     public void dispose();

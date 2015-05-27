@@ -31,6 +31,16 @@ public class PhyWeapon implements IWeapon {
     }
 
     @Override
+    public int getBulletSpawnX(){
+        return this.weapon.getBulletSpawnX();
+    }
+
+    @Override
+    public int getBulletSpawnY(){
+        return this.weapon.getBulletSpawnY();
+    }
+
+    @Override
     public void dispose() {
 
     }

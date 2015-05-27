@@ -129,6 +129,16 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
+    public int getBulletSpawnX(){
+        return this.player.getBulletSpawnX();
+    }
+
+    @Override
+    public int getBulletSpawnY(){
+        return this.player.getBulletSpawnY();
+    }
+
+    @Override
     public List<IBullet> getBullets(){
         return this.level.getBullets();
     }
