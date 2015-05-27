@@ -109,7 +109,6 @@ public class PlayView implements Screen,IViewObservable{
 
         observerArrayList = new ArrayList<IViewObserver>();
 
-
          // Initializes the Hashmap and create temporary hashmaps which are then placed in the main hashmap.
         charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
 
@@ -147,7 +146,16 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void show() {
+        for(Image i : profileImageHashMap.values()){
+            i.remove();
+        }
+        profileImageHashMap.clear();
+        for(ProgressBar i : healthBarHashMap.values()){
+            i.remove();
+        }
+        healthBarHashMap.clear();
 
+        characterProfileTable.clear();
     }
 
     @Override
@@ -271,6 +279,18 @@ public class PlayView implements Screen,IViewObservable{
                 animation.getFrame().getTexture().dispose();
             }
         }
+
+
+        for(Image i : profileImageHashMap.values()){
+            i.remove();
+        }
+        profileImageHashMap.clear();
+        for(ProgressBar i : healthBarHashMap.values()){
+            i.remove();
+        }
+        healthBarHashMap.clear();
+
+        characterProfileTable.clear();
 
         for (Texture texture : textures.values()){
             texture.dispose();

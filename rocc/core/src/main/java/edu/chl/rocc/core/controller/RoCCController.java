@@ -149,7 +149,6 @@ public class RoCCController{
             this.inGame = true;
         }else if (("menu".equals(str))||("loadGame".equals(str))||
                 ("options".equals(str))||("highscore".equals(str))){
-
             // Tell the GameViewManager to choose the correct screen
             this.gvm.setActiveView(str);
             this.inGame = false;
