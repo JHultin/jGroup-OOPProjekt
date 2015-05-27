@@ -76,8 +76,6 @@ public class PhyCharacter implements ICharacter {
         fDef.filter.maskBits = BitMask.BIT_GROUND;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("footSensor");
-
-        System.out.println(name + " " + numberOfJumps);
     }
 
     @Override
@@ -109,10 +107,6 @@ public class PhyCharacter implements ICharacter {
             } else if (dir.equals(Direction.RIGHT)) {
                 body.setLinearVelocity(new Vec2( speed / PPM, 0));
                 this.isMoving = true;
-            } else if (dir.equals(Direction.UP)) {
-
-            } else if (dir.equals(Direction.DOWN)) {
-
             } else if (dir.equals(Direction.NONE)) {
                 body.setLinearVelocity(new Vec2(0, 0));
                 this.isMoving = false;
@@ -123,10 +117,6 @@ public class PhyCharacter implements ICharacter {
                 body.applyForceToCenter(new Vec2(-airForce, 0));
             } else if (dir.equals(Direction.RIGHT)) {
                 body.applyForceToCenter(new Vec2( airForce, 0));
-            } else if (dir.equals(Direction.UP)) {
-
-            } else if (dir.equals(Direction.DOWN)) {
-
             } else if (dir.equals(Direction.NONE)) {
                 if (airDir == Direction.LEFT) {
                     body.applyForceToCenter(new Vec2( airForce, 0));
@@ -173,10 +163,6 @@ public class PhyCharacter implements ICharacter {
                 body.setLinearVelocity(new Vec2(-speed / PPM, 0));
             } else if (airDir.equals(Direction.RIGHT)) {
                 body.setLinearVelocity(new Vec2( speed / PPM, 0));
-            } else if (airDir.equals(Direction.UP)) {
-
-            } else if (airDir.equals(Direction.DOWN)) {
-
             } else if (airDir.equals(Direction.NONE)) {
                 body.setLinearVelocity(new Vec2(0, 0));
                 this.isMoving = false;

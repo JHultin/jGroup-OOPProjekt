@@ -23,17 +23,6 @@ public class PhyBullet implements IBullet {
     private final float velocity;
     private final int bulletDamage;
 
-    //private final Vector2 direction;
-
-    /*
-        public PhyBullet(World world, float x, float y, float xDir, float yDir, String name){
-            this(World world, float x, float y, float xDir, float yDir, String name, false);
-        }
-     */
-
-
-    //public PhyBullet(World world, float x, float y, float xDir, float yDir, String name /*, boolean isEnemyBullet*/){
-
     public PhyBullet(World world, String name, float x, float y, float xDir, float yDir /*, boolean isEnemyBullet*/){
         this.world = world;
 
@@ -91,26 +80,6 @@ public class PhyBullet implements IBullet {
     public int getBulletDamage() {
         return bulletDamage;
     }
-
-    /*
-        public boolean getIsEnemyBullet(){
-
-        }
-     */
-
-    /*
-    public Vector2 getDirection(){
-        return this.direction;
-    }
-
-    public void setVelocity(Vec2 vec){
-        this.velocity = vec;
-    }
-
-
-    public Vec2 getVelocity(){
-        return new Vec2(500 / PPM, 0);
-        */
 
     @Override
     public void destroy() {

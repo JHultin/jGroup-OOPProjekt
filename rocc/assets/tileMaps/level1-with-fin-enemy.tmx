@@ -106,7 +106,15 @@
   <object id="36" x="3854" y="826" width="95" height="95"/>
  </objectgroup>
  <objectgroup name="enemy">
-  <object id="37" x="2931" y="979" width="44" height="37"/>
-  <object id="38" x="2299.47" y="929.485" width="38.8356" height="31.0965" rotation="1.35456"/>
+  <object id="37" x="2931" y="979" width="44" height="37">
+   <properties>
+    <property name="Name" value="zombie"/>
+   </properties>
+  </object>
+  <object id="38" x="2301.47" y="927.485" width="38.8356" height="31.0965" rotation="1.35456">
+   <properties>
+    <property name="Name" value="bigZombie"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
