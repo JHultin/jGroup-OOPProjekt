@@ -1,6 +1,5 @@
 package edu.chl.rocc.core.model.pure;
 
-import edu.chl.rocc.core.model.pure.Enemy;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +33,7 @@ public class EnemyTest {
 
         hPToSet = -40;
         enemy.setHP(hPToSet);
-        assertFalse(enemy.getHP() >= 0 && enemy.getHP() < 0);
+        assertTrue(enemy.getHP() == 0);
     }
 
     @Test
@@ -50,7 +49,7 @@ public class EnemyTest {
 
         lose = 100;
         enemy.decHP(lose);
-        assertFalse(enemy.getHP() >= 0 && enemy.getHP() < 0);
+        assertTrue(enemy.getHP() == 0);
     }
 
     @Test

@@ -12,12 +12,15 @@ public class RoCCModelTest {
 
     @Before
     public void before(){
-        model = new RoCCModel(new RoCCFactory());
+        this.model = new RoCCModel(new RoCCFactory());
+        this.model.addCharacter("mother");
+        this.model.addCharacter("soldier");
+        this.model.addCharacter("doctor");
     }
 
     @Test
     public void testCreatesCharacter(){
-        assertFalse(this.model.getCharacters().isEmpty());
+        assertTrue(this.model.getCharacters().isEmpty());
     }
 
     @Test
@@ -59,7 +62,9 @@ public class RoCCModelTest {
         float updateSpeed = 1 / 60f;
         int timeBefore = this.model.getTime();
 
-        this.model.updateWorld(updateSpeed);
+        for(int i=0; i<60; i++){
+            this.model.updateWorld(updateSpeed);
+        }
         assertFalse(this.model.getTime() == timeBefore);
     }
 }
