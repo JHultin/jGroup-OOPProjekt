@@ -78,18 +78,6 @@ public class CharacterTest {
     }
 
     @Test
-    public void testToggleFollowerOnJumpPoint() throws Exception {
-        /*
-         * OBS! Metoden isOnJumpPoint() finns ej längre i PhyCharacter!
-         *
-        boolean before = character.isOnJumpPoint();
-        character.toggleFollowerOnJumpPoint();
-        boolean after = character.isOnJumpPoint();
-        assertTrue(before != after);
-        */
-    }
-
-    @Test
     public void testInAir() throws Exception {
         assertFalse(character.inAir());
         character.leftGround();
@@ -117,6 +105,7 @@ public class CharacterTest {
 
     @Test
     public void testDeath() throws Exception {
+
         class TestDeathListener implements IDeathListener{
             boolean triggered;
 
@@ -133,6 +122,7 @@ public class CharacterTest {
                 triggered = true;
             }
         }
+
         TestDeathListener listener = new TestDeathListener();
 
         character.addDeathListener(listener);

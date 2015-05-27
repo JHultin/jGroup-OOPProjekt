@@ -5,7 +5,7 @@ Speed
 MaxHP
 100
 NumberOfJumps
-1
+2
 JumpForce
 250
 .
