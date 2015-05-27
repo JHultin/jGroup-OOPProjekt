@@ -15,7 +15,6 @@ import edu.chl.rocc.core.utility.GeneralOptions;
 public class OptionsMenuView extends AbstractMenuView{
 
     //Options title
-    private Label.LabelStyle titleStyle;
     private Label titleLabel;
 
     private TextButton backButton;
@@ -38,8 +37,7 @@ public class OptionsMenuView extends AbstractMenuView{
          * Creating Options title
          */
         //initialize the titleStyle and titleLabel
-        titleStyle = new Label.LabelStyle(font, Color.BLACK);
-        titleLabel = new Label("Options", titleStyle);
+        titleLabel = new Label("Options", textStyle);
         titleLabel.setFontScale(2);
 
 

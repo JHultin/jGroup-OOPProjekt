@@ -20,7 +20,6 @@ public class MenuView extends AbstractMenuView {
 
 
     private TextButton newGameButton, loadGameButton, optionsButton,highscoreButton,exitButton;
-    private Label.LabelStyle titleStyle;
     private Label titleLabel;
 
 
@@ -47,8 +46,7 @@ public class MenuView extends AbstractMenuView {
          * Creating title
          */
         //Initialize the titleStyle and titleLabel
-        titleStyle = new Label.LabelStyle(font,Color.BLACK);
-        titleLabel = new Label(title, titleStyle);
+        titleLabel = new Label(title, textStyle);
         titleLabel.setFontScale(2);
 
         /**
