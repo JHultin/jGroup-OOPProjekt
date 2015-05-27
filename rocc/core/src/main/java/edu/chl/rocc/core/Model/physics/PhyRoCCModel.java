@@ -60,7 +60,7 @@ public class PhyRoCCModel implements IRoCCModel {
             Gdx.input.setCursorImage(pm, 16, 16);
             pm.dispose();
         } catch (com.badlogic.gdx.utils.GdxRuntimeException rte){
-            
+
         }
     }
 
