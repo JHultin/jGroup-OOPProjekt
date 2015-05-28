@@ -1,0 +1,12 @@
+moveright
+moveleft
+idleright
+idleleft
+jumpright
+jumpleft
+moverightDamage
+moveleftDamage
+idlerightDamage
+idleleftDamage
+jumprightDamage
+jumpleftDamage
