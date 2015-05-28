@@ -53,36 +53,30 @@ public class ViewTextureLoader {
         }
 
         weaponHashMap = new HashMap<String, HashMap<String, Texture>>();
-        ArrayList<String> weaponNames = new ArrayList<String>(); //{"default", "ak-47", "plasmaGun"};
         ArrayList<String> weaponTextures = new ArrayList<String>(); //{"LEFT","RIGHT","bullet"};
+        fillList("textureDefinitions/weaponTextures.txt", weaponTextures);
+
+        for (FileHandle file : Gdx.files.internal("weapons/").list()){
+            HashMap<String, Texture> textureHashmap = new HashMap<String, Texture>();
+
+            for(String tex : weaponTextures){
+                Texture texture = new Texture(Gdx.files.internal(file.pathWithoutExtension() + "/" + tex + ".png"));
+                textureHashmap.put(tex, texture);
+            }
+            weaponHashMap.put(file.name(), textureHashmap);
+        }
+    }
+
+    private void fillList(String path, ArrayList<String> names){
         try{
-            FileHandle handle = Gdx.files.internal("textureDefinitions/animations.txt");
+            FileHandle handle = Gdx.files.internal(path);
             BufferedReader br = handle.reader(2);
             String str;
             while ((str = br.readLine()) != null){
-                animationNames.add(str);
+                names.add(str);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        for (FileHandle file : Gdx.files.internal("characters/").list()){
-            if (file.isDirectory()){
-                HashMap<String, AnimationHandler> animationHashMap = new HashMap<String, AnimationHandler>(20);
-                for (String name : animationNames){
-                    if (name != null) {
-                        TextureRegion[] textureRegions;
-                        Texture texture = new Texture(file.pathWithoutExtension() + "/" + name + ".png");
-                        if (texture.getWidth() > 50) {//Checks if texture contains several images and needs to split
-                            textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
-                        } else {
-                            textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-                        }
-                        animationHashMap.put(name, new AnimationHandler(textureRegions, 1 / 12f));
-                    }
-                }
-                charactersAnimationHashMap.put(file.name(), animationHashMap);
-            }
         }
     }
 
