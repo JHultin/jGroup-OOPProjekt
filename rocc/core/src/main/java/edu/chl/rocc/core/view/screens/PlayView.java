@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import edu.chl.rocc.core.fileHandlers.AnimationTextureLoader;
 import edu.chl.rocc.core.fileHandlers.WeaponTextureLoader;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
@@ -113,12 +114,13 @@ public class PlayView implements Screen,IViewObservable{
         observerArrayList = new ArrayList<IViewObserver>();
 
          // Initializes the Hashmap and create temporary hashmaps which are then placed in the main hashmap.
-        charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
+        charactersAnimationHashMap = new AnimationTextureLoader().getHashMap();
+        //charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
 
         //Adds the different animation state names in a array
-        currentAnimation = new String[]{"falseRIGHTfalse","falseLEFTfalse","falseNONERIGHTfalse","falseNONELEFTfalse"
-                ,"trueRIGHTfalse","trueLEFTfalse","trueNONERIGHTfalse","trueNONELEFTfalse", "falseRIGHTtrue","falseLEFTtrue","falseNONERIGHTtrue","falseNONELEFTtrue"
-                ,"trueRIGHTtrue","trueLEFTtrue","trueNONERIGHTtrue","trueNONELEFTtrue"};
+        currentAnimation = new String[]{"RIGHT","LEFT","NONERIGHT","NONELEFT"
+                ,"AirRIGHT","AirLEFT","AirNONERIGHT","AirNONELEFT", "RIGHTDamaged","LEFTDamaged","NONERIGHTDamaged","NONELEFTDamaged"
+                ,"AirRIGHTDamaged","AirLEFTDamaged","AirNONERIGHTDamaged","AirNONELEFTDamaged"};
         characterNames = new String[]{"mother","soldier","zombie","bigZombie","doctor","noEyes"};
 
         //Gets the characters and initiates their textures,
@@ -334,6 +336,7 @@ public class PlayView implements Screen,IViewObservable{
      * A method which places all the animation textures in a hashMap.
      */
     private void addToAnimationHashMap(String character){
+        /*
         CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character);
         HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
 
@@ -352,6 +355,7 @@ public class PlayView implements Screen,IViewObservable{
         }
 
         charactersAnimationHashMap.put(character, animationHashmap);
+        */
     }//addToAnimationHashMap end
 
     /**

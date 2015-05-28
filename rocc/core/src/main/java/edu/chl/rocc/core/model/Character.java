@@ -217,11 +217,10 @@ public class Character implements ICharacter {
                 timeCount = 0;
             }
         }
-        if (!this.getDirection().equals(Direction.NONE)) {
-            return "" + inAir + getDirection().toString()+ tmpDamageTaken;
-        } else {
-            return "" + inAir + getDirection().toString() + getLastDirection().toString() + tmpDamageTaken;
-        }
+        String preName = (inAir ? "jump" : (this.getDirection().equals(Direction.NONE) ? "idle" : "move"));
+        String surName = ((this.getDirection().equals(Direction.NONE)) ?
+                getLastDirection().toString().toLowerCase() : getDirection().toString().toLowerCase());
+        return preName + surName + (tmpDamageTaken ? "Damage" : "");
     }
 
 }

@@ -113,7 +113,7 @@ public class Enemy implements IEnemy{
             }
         }
 
-        return "" + false + getDirection().toString() + tmpDamageTaken;
+        return "move" + getDirection().toString().toLowerCase() + (tmpDamageTaken ? "Damage" : "");
     }
 
     @Override
