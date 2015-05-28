@@ -1,11 +1,14 @@
 package edu.chl.rocc.core.logic.model;
 
+import edu.chl.rocc.core.observers.IGameLossListener;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.ICollisionListener;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.logic.factories.IRoCCFactory;
 import edu.chl.rocc.core.logic.m2phyInterfaces.*;
 import edu.chl.rocc.core.observers.IDeathEvent;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +26,9 @@ public class RoCCModel implements IRoCCModel {
 
     String deadCharacterName;
 
+    private final List<IGameLossListener> gameLossListeners;
+
+
     /**
      * Constructor for the model, creates a player and a level defined by a factory
      *
@@ -31,6 +37,8 @@ public class RoCCModel implements IRoCCModel {
     public RoCCModel(IRoCCFactory factory){
         level = factory.createLevel("");
         player = factory.createPlayer("");
+
+        this.gameLossListeners = new ArrayList<IGameLossListener>();
     }
 
     @Override
@@ -241,9 +249,14 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void handleDeath(IDeathEvent deathEvent) {
+        System.out.println(player.getCharacters().size());
         if (deathEvent.getSource() instanceof ICharacter) {
-            player.removeCharacter((ICharacter)deathEvent.getSource());
-            deadCharacterName = ((ICharacter) deathEvent.getSource()).getName();
+            if (player.getCharacters().size() == 1){
+                this.gameLost();
+            } else {
+                player.removeCharacter((ICharacter) deathEvent.getSource());
+                deadCharacterName = ((ICharacter) deathEvent.getSource()).getName();
+            }
         } else if (deathEvent.getSource() instanceof IEnemy) {
             player.addToScore(25);
             level.removeEnemy((IEnemy)(deathEvent.getSource()));
@@ -255,4 +268,20 @@ public class RoCCModel implements IRoCCModel {
         return deadCharacterName;
     }
 
+    @Override
+    public void addListener(IGameLossListener listener) {
+        this.gameLossListeners.add(listener);
+    }
+
+    @Override
+    public void removeListener(IGameLossListener listener) {
+        this.gameLossListeners.remove(listener);
+    }
+
+    @Override
+    public void gameLost() {
+        for (IGameLossListener listener : gameLossListeners){
+            listener.gameLost();
+        }
+    }
 }

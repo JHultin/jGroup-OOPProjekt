@@ -2,6 +2,7 @@ package edu.chl.rocc.core.logic.m2phyInterfaces;
 
 import edu.chl.rocc.core.observers.ICollisionListener;
 import edu.chl.rocc.core.observers.IDeathListener;
+import edu.chl.rocc.core.observers.IGameLossable;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathEvent;
 
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * Created by Joel on 2015-05-03.
  */
-public interface IRoCCModel{
+public interface IRoCCModel extends IGameLossable{
 
     /**
      * Creates the world, all pickupable items and teh blocks making the level.

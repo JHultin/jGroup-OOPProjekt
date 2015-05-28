@@ -27,7 +27,7 @@ import java.util.List;
  *
  * Created by Joel on 2015-05-03.
  */
-public class PhyRoCCModel implements IRoCCModel, IGameLossable {
+public class PhyRoCCModel implements IRoCCModel {
 
     private IRoCCFactory factory;
 
@@ -39,8 +39,6 @@ public class PhyRoCCModel implements IRoCCModel, IGameLossable {
 
     private final TiledMap tMap;
 
-    private final List<IGameLossListener> gameLossListeners;
-
     /**
      * Constructor for the model
      */
@@ -49,7 +47,6 @@ public class PhyRoCCModel implements IRoCCModel, IGameLossable {
         this.setCrosshair("crosshair");
 
         this.tMap = tMap;
-        this.gameLossListeners = new ArrayList<IGameLossListener>();
     }
 
     /**
@@ -425,9 +422,6 @@ public class PhyRoCCModel implements IRoCCModel, IGameLossable {
 
     @Override
     public void handleDeath(IDeathEvent deathEvent) {
-        if(model.getCharacters().size() <= 1){
-            this.gameLost();
-        }
         this.model.handleDeath(deathEvent);
     }
 
@@ -438,19 +432,17 @@ public class PhyRoCCModel implements IRoCCModel, IGameLossable {
 
     @Override
     public void addListener(IGameLossListener listener) {
-        this.gameLossListeners.add(listener);
+        this.model.addListener(listener);
     }
 
     @Override
     public void removeListener(IGameLossListener listener) {
-        this.gameLossListeners.remove(listener);
+        this.model.removeListener(listener);
     }
 
     @Override
     public void gameLost() {
-        for (IGameLossListener listener : gameLossListeners){
-            listener.gameLost();
-        }
+        this.model.gameLost();
     }
 }
 

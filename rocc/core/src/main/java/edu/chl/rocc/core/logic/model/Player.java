@@ -138,7 +138,6 @@ public class Player implements IPlayer {
             this.cycleActivePlayer();
             characters.remove(character);
             activeCharacterIndex %= characters.size();
-        } else {
         }
     }
 

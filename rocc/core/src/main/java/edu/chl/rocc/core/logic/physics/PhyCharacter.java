@@ -102,8 +102,9 @@ public class PhyCharacter implements ICharacter {
     public void decHP(int value) {
         if (character.getHP() <= value){
             this.death("No more HP");
+        } else {
+            this.character.decHP(value);
         }
-        this.character.decHP(value);
     }
 
     @Override

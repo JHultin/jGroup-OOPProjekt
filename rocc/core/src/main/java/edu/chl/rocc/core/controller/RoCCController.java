@@ -35,6 +35,7 @@ public class RoCCController{
     private final GameViewManager gvm;
     private CollisionListener collisionListener;
     private final DeathListener deathListener;
+    private final GameLossListener gameLossListener;
     private String currentView;
 
     // Inputprocessor for while ingame
@@ -69,6 +70,7 @@ public class RoCCController{
         this.tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
         this.model = new PhyRoCCModel(tiledMap);
         this.deathListener = new DeathListener();
+        this.gameLossListener = new GameLossListener(this);
         this.main = main;
         this.gvm = new GameViewManager(model);
 
@@ -158,6 +160,8 @@ public class RoCCController{
 
         createWeapons();
         this.model.changeWeapon();
+
+        this.model.addListener(gameLossListener);
 
         Gdx.input.setInputProcessor(gameProcessor);
 
