@@ -249,7 +249,6 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void handleDeath(IDeathEvent deathEvent) {
-        System.out.println(player.getCharacters().size());
         if (deathEvent.getSource() instanceof ICharacter) {
             if (player.getCharacters().size() == 1){
                 this.gameLost();
@@ -258,7 +257,7 @@ public class RoCCModel implements IRoCCModel {
                 deadCharacterName = ((ICharacter) deathEvent.getSource()).getName();
             }
         } else if (deathEvent.getSource() instanceof IEnemy) {
-            player.addToScore(25);
+            player.addToScore(((IEnemy) deathEvent.getSource()).getValue());
             level.removeEnemy((IEnemy)(deathEvent.getSource()));
         }
     }

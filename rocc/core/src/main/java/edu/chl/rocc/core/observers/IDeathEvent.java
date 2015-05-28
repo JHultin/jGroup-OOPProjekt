@@ -9,4 +9,6 @@ public interface IDeathEvent {
     public String getMessage();
 
     public IMortal getSource();
+
+    public Object getKiller();
 }

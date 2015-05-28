@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.utility;
+package edu.chl.rocc.core.fileHandlers;
 
 import java.io.File;
 
@@ -7,7 +7,7 @@ import java.io.File;
  * animation texture paths. Credit to Joel.
  * Created by Jacob on 2015-05-19.
  */
-public class CharacterTextureLoader extends AbsInformationHandler {
+public class CharacterTextureLoader extends AbstractTextFileHandler {
 
 
         public CharacterTextureLoader(String name){

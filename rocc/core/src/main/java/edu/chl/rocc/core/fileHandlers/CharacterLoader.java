@@ -1,11 +1,11 @@
-package edu.chl.rocc.core.utility;
+package edu.chl.rocc.core.fileHandlers;
 
 import java.io.*;
 
 /**
  * Created by Joel on 2015-05-13.
  */
-public class CharacterLoader extends AbsInformationHandler {
+public class CharacterLoader extends AbstractTextFileHandler {
 
     public CharacterLoader(String name) {
         this(name, false);
@@ -33,5 +33,6 @@ public class CharacterLoader extends AbsInformationHandler {
         super.setInfo("JumpForce"    , "250");
         super.setInfo("AirForce"     , "100");
         super.setInfo("Weapon"       , "0");
+        super.setInfo("Value"        , "25");
     }
 }

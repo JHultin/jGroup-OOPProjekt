@@ -10,3 +10,6 @@ DamageDeal
 20
 Health
 100
+Value
+35
+.

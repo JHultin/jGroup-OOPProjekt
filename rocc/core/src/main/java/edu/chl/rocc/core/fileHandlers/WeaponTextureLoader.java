@@ -1,11 +1,11 @@
-package edu.chl.rocc.core.utility;
+package edu.chl.rocc.core.fileHandlers;
 
 import java.io.File;
 
 /**
  * Created by Jacob on 2015-05-21.
  */
-public class WeaponTextureLoader extends AbsInformationHandler{
+public class WeaponTextureLoader extends AbstractTextFileHandler {
     public WeaponTextureLoader(String name){
         super("weaponTexture/" + name + ".txt", new File("weaponTexture"));
     }

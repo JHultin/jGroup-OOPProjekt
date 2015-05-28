@@ -1,11 +1,11 @@
-package edu.chl.rocc.core.utility;
+package edu.chl.rocc.core.fileHandlers;
 
 import java.io.*;
 
 /**
  * Created by Joel on 2015-05-12.
  */
-public class GeneralOptions extends AbsInformationHandler {
+public class GeneralOptions extends AbstractTextFileHandler {
 
     // The only instance
     private static final GeneralOptions instance = new GeneralOptions();

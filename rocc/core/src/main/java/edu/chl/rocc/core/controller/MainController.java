@@ -7,8 +7,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.observers.IDeathEvent;
 import edu.chl.rocc.core.utility.Direction;
-import edu.chl.rocc.core.RoCCView;
-import edu.chl.rocc.core.utility.KeyOptions;
+import edu.chl.rocc.core.fileHandlers.KeyOptions;
 import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.observers.IViewObservable;
@@ -27,11 +26,11 @@ import java.util.List;
  *
  * Created by Joel on 2015-04-22.
  */
-public class RoCCController{
+public class MainController {
 
     // The different moduels in the project
     private final IRoCCModel model;
-    private final RoCCView main;
+    private final ViewController main;
     private final GameViewManager gvm;
     private CollisionListener collisionListener;
     private final DeathListener deathListener;
@@ -66,7 +65,7 @@ public class RoCCController{
      *
      * @param main the main view to update throughout
      */
-    public RoCCController(RoCCView main){
+    public MainController(ViewController main){
         this.tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
         this.model = new PhyRoCCModel(tiledMap);
         this.deathListener = new DeathListener();
@@ -90,7 +89,7 @@ public class RoCCController{
         this.thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (RoCCController.this.isRunning){
+                while (MainController.this.isRunning){
                     try {
                         // If we're ingame use the input from the gameprocessor
                         if (inGame) {
@@ -98,7 +97,7 @@ public class RoCCController{
                         }
                         Thread.sleep((long)(updateSpeed * 1000));
                     } catch (InterruptedException e) {
-                        RoCCController.this.isRunning = false;
+                        MainController.this.isRunning = false;
                     }
                 }
             }
@@ -256,7 +255,7 @@ public class RoCCController{
             model.removeItems(collisionListener.getItemsToRemove());
             String newState = collisionListener.getNewState();
             if (newState != null) {
-                RoCCController.this.setState(newState);
+                MainController.this.setState(newState);
             }
             model.changeDirectionOnEnemies(collisionListener.getEnemiesToChangeDirection());
 

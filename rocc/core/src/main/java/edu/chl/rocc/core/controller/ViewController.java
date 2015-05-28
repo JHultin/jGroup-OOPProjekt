@@ -1,15 +1,14 @@
-package edu.chl.rocc.core;
+package edu.chl.rocc.core.controller;
 
 import com.badlogic.gdx.Game;
-import edu.chl.rocc.core.controller.RoCCController;
 
 
-public class RoCCView extends Game {
-    private RoCCController controller;
+public class ViewController extends Game {
+    private MainController controller;
 
     @Override
 	public void create () {
-        controller = new RoCCController(this);
+        controller = new MainController(this);
         controller.start();
     }
 

@@ -5,7 +5,7 @@ import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.m2phyInterfaces.IEnemy;
 import edu.chl.rocc.core.model.Enemy;
-import edu.chl.rocc.core.utility.CharacterLoader;
+import edu.chl.rocc.core.fileHandlers.CharacterLoader;
 import edu.chl.rocc.core.observers.IDeathEvent;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -29,6 +29,7 @@ public class PhyEnemy implements IEnemy {
     private final int damageHP;
     private final int airForce;
     private final int health;
+    private final int value;
     // dåligt variabelnamn
     private int i = 0;
 
@@ -41,6 +42,7 @@ public class PhyEnemy implements IEnemy {
         this.airForce        = cl.getCharecaristic("AirForce");
         this.damageHP        = cl.getCharecaristic("DamageDeal");
         this.health          = cl.getCharecaristic("Health");
+        this.value           = cl.getCharecaristic("Value");
 
         // Enemy may also have a weapon
         this.world = world;
@@ -127,8 +129,9 @@ public class PhyEnemy implements IEnemy {
     public void decHP(int value) {
         if (enemy.getHP() <= value){
             this.death("No more hp");
+        } else {
+            this.enemy.decHP(value);
         }
-        this.enemy.decHP(value);
     }
 
     @Override
@@ -150,6 +153,11 @@ public class PhyEnemy implements IEnemy {
     @Override
     public String getMoveState(){
         return enemy.getMoveState();
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 
     @Override

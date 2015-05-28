@@ -53,11 +53,6 @@ public class Player implements IPlayer {
     public void move(Direction dir) {
         if (this.activeCharacterIndex < characters.size()){
             characters.get(this.activeCharacterIndex).move(dir);
-            /*
-        if (this.frontCharacterIndex < characters.size()){
-            characters.get(this.frontCharacterIndex).move(dir);
-            characters.get(this.frontCharacterIndex).setCurrentDirection(dir);
-            */
         }
     }
 
@@ -135,9 +130,9 @@ public class Player implements IPlayer {
     public void removeCharacter(ICharacter character) {
         character.dispose();
         if (characters.size() > 1) {
-            this.cycleActivePlayer();
             characters.remove(character);
             activeCharacterIndex %= characters.size();
+            this.setActiveCharacter(activeCharacterIndex);
         }
     }
 
