@@ -8,18 +8,17 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import edu.chl.rocc.core.observers.ICollisionListener;
-import edu.chl.rocc.core.observers.IDeathListener;
+import edu.chl.rocc.core.observers.*;
 import edu.chl.rocc.core.logic.factories.*;
 import edu.chl.rocc.core.logic.m2phyInterfaces.*;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.logic.model.RoCCModel;
-import edu.chl.rocc.core.observers.IDeathEvent;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +27,7 @@ import java.util.List;
  *
  * Created by Joel on 2015-05-03.
  */
-public class PhyRoCCModel implements IRoCCModel {
+public class PhyRoCCModel implements IRoCCModel, IGameLossable {
 
     private IRoCCFactory factory;
 
@@ -38,7 +37,9 @@ public class PhyRoCCModel implements IRoCCModel {
     // The physics world in which all physics items exist
     private World world;
 
-    private TiledMap tMap;
+    private final TiledMap tMap;
+
+    private final List<IGameLossListener> gameLossListeners;
 
     /**
      * Constructor for the model
@@ -48,6 +49,7 @@ public class PhyRoCCModel implements IRoCCModel {
         this.setCrosshair("crosshair");
 
         this.tMap = tMap;
+        this.gameLossListeners = new ArrayList<IGameLossListener>();
     }
 
     /**
@@ -382,7 +384,7 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public void setCollisionListener(ICollisionListener collisionListener) {
-        this.world.setContactListener((ContactListener)collisionListener);
+        this.world.setContactListener((ContactListener) collisionListener);
     }
 
     @Override
@@ -423,12 +425,32 @@ public class PhyRoCCModel implements IRoCCModel {
 
     @Override
     public void handleDeath(IDeathEvent deathEvent) {
+        if(model.getCharacters().size() <= 1){
+            this.gameLost();
+        }
         this.model.handleDeath(deathEvent);
     }
 
     @Override
     public String getDeadCharacterName(){
         return model.getDeadCharacterName();
+    }
+
+    @Override
+    public void addListener(IGameLossListener listener) {
+        this.gameLossListeners.add(listener);
+    }
+
+    @Override
+    public void removeListener(IGameLossListener listener) {
+        this.gameLossListeners.remove(listener);
+    }
+
+    @Override
+    public void gameLost() {
+        for (IGameLossListener listener : gameLossListeners){
+            listener.gameLost();
+        }
     }
 }
 

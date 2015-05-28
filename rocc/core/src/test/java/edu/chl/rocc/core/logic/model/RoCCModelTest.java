@@ -1,7 +1,5 @@
 package edu.chl.rocc.core.logic.model;
 
-import edu.chl.rocc.core.logic.model.RoCCFactory;
-import edu.chl.rocc.core.logic.model.RoCCModel;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.logic.m2phyInterfaces.ICharacter;
 import org.junit.Before;
