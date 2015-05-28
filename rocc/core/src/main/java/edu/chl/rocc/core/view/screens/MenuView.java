@@ -1,11 +1,10 @@
 package edu.chl.rocc.core.view.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.logic.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.utility.GeneralOptions;
 
 

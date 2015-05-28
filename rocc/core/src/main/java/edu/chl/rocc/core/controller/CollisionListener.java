@@ -1,6 +1,6 @@
 package edu.chl.rocc.core.controller;
 
-import edu.chl.rocc.core.model.m2phyInterfaces.*;
+import edu.chl.rocc.core.logic.m2phyInterfaces.*;
 import edu.chl.rocc.core.observers.ICollisionListener;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;

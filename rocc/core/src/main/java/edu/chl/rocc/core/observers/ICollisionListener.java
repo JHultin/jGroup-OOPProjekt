@@ -1,9 +1,9 @@
 package edu.chl.rocc.core.observers;
 
-import edu.chl.rocc.core.model.m2phyInterfaces.IContact;
-import edu.chl.rocc.core.model.m2phyInterfaces.IBullet;
-import edu.chl.rocc.core.model.m2phyInterfaces.IEnemy;
-import edu.chl.rocc.core.model.m2phyInterfaces.IPickupable;
+import edu.chl.rocc.core.logic.m2phyInterfaces.IContact;
+import edu.chl.rocc.core.logic.m2phyInterfaces.IBullet;
+import edu.chl.rocc.core.logic.m2phyInterfaces.IEnemy;
+import edu.chl.rocc.core.logic.m2phyInterfaces.IPickupable;
 
 import java.util.List;
 

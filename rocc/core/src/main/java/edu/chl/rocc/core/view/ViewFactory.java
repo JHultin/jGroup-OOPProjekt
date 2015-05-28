@@ -1,7 +1,7 @@
 package edu.chl.rocc.core.view;
 
 import com.badlogic.gdx.Screen;
-import edu.chl.rocc.core.model.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.logic.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.view.screens.*;
 
 /**
