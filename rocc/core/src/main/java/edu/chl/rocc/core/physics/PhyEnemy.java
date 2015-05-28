@@ -29,6 +29,7 @@ public class PhyEnemy implements IEnemy {
     private final int damageHP;
     private final int airForce;
     private final int health;
+    private final int value;
     // dåligt variabelnamn
     private int i = 0;
 
@@ -41,6 +42,7 @@ public class PhyEnemy implements IEnemy {
         this.airForce        = cl.getCharecaristic("AirForce");
         this.damageHP        = cl.getCharecaristic("DamageDeal");
         this.health          = cl.getCharecaristic("Health");
+        this.value           = cl.getCharecaristic("Value");
 
         // Enemy may also have a weapon
         this.world = world;
@@ -151,6 +153,11 @@ public class PhyEnemy implements IEnemy {
     @Override
     public String getMoveState(){
         return enemy.getMoveState();
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 
     @Override

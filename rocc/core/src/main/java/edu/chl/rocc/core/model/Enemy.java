@@ -117,6 +117,11 @@ public class Enemy implements IEnemy{
     }
 
     @Override
+    public int getValue() {
+        return 25;
+    }
+
+    @Override
     public void addDeathListener(IDeathListener listener) {
         this.deathListeners.add(listener);
     }

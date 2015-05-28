@@ -70,4 +70,9 @@ public interface IEnemy extends IMortal {
      * @return the enemy moveState as a string
      */
     public String getMoveState();
+
+    /**
+     * @return the score gained by killing this enemy
+     */
+    public int getValue();
 }

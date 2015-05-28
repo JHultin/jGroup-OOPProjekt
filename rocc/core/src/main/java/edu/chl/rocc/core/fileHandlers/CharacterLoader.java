@@ -33,5 +33,6 @@ public class CharacterLoader extends AbstractTextFileHandler {
         super.setInfo("JumpForce"    , "250");
         super.setInfo("AirForce"     , "100");
         super.setInfo("Weapon"       , "0");
+        super.setInfo("Value"        , "25");
     }
 }
