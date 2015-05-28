@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import edu.chl.rocc.core.logic.m2phyInterfaces.IRoCCModel;
+import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.observers.IDeathEvent;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.RoCCView;
 import edu.chl.rocc.core.utility.KeyOptions;
-import edu.chl.rocc.core.logic.physics.PhyRoCCModel;
+import edu.chl.rocc.core.physics.PhyRoCCModel;
 import edu.chl.rocc.core.view.GameViewManager;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -107,7 +107,7 @@ public class RoCCController{
     }
 
     /**
-     * Update the input to the correct for the current part of the game.
+     * Update the input to the correct state for the current part of the game.
      * Constructs the level if selected
      *
      * @param str
