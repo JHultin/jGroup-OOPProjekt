@@ -167,4 +167,9 @@ public interface IRoCCModel{
      * @return the active character.
      */
     public ICharacter getActiveCharacter();
+
+    /**
+     * @return the latest dead character
+     */
+    public String getDeadCharacterName();
 }

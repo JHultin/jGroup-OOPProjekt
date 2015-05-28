@@ -21,6 +21,8 @@ public class RoCCModel implements IRoCCModel {
     // Handles all characters and weapons
     final IPlayer player;
 
+    String deadCharacterName;
+
     /**
      * Constructor for the model, creates a player and a level defined by a factory
      *
@@ -241,10 +243,16 @@ public class RoCCModel implements IRoCCModel {
     public void handleDeath(IDeathEvent deathEvent) {
         if (deathEvent.getSource() instanceof ICharacter) {
             player.removeCharacter((ICharacter)deathEvent.getSource());
+            deadCharacterName = ((ICharacter) deathEvent.getSource()).getName();
         } else if (deathEvent.getSource() instanceof IEnemy) {
             player.addToScore(25);
             level.removeEnemy((IEnemy)(deathEvent.getSource()));
         }
+    }
+
+    @Override
+    public String getDeadCharacterName(){
+        return deadCharacterName;
     }
 
 }

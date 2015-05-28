@@ -183,6 +183,7 @@ public class PlayView implements Screen,IViewObservable{
          */
         synchronized (model.getCharacters()) {
             for (ICharacter character : model.getCharacters()) {
+
                 if (!profileImageHashMap.containsKey(character.getName())) {
                     profileImageHashMap.put(character.getName(),
                             new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
@@ -194,7 +195,14 @@ public class PlayView implements Screen,IViewObservable{
                     characterProfileTable.add(healthBarHashMap.get(character.getName())).pad(2).width(40);
                     characterProfileTable.row();
                 }
+
                 healthBarHashMap.get(character.getName()).setValue(character.getHP());
+
+                //Gets the name from the latest died character and removes its profilePic and healthbar
+                if(profileImageHashMap.containsKey(model.getDeadCharacterName())){
+                    profileImageHashMap.get(model.getDeadCharacterName()).remove();
+                    healthBarHashMap.get(model.getDeadCharacterName()).remove();
+                }
             }
         }
 
@@ -210,7 +218,7 @@ public class PlayView implements Screen,IViewObservable{
 
         //Draws the weapon
         batch.draw(weaponHashMap.get((model.getWeapon().getName())).get(""+model.getActiveCharacter().getLastDirection())
-                , model.getCharacterXPos(), model.getCharacterYPos() + 5);
+                , model.getCharacterXPos(), model.getCharacterYPos() + 3);
 
         synchronized (model.getPickupables()) {
             for (IPickupable pickupable : model.getPickupables()) {
