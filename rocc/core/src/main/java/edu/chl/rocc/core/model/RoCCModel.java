@@ -249,7 +249,6 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void handleDeath(IDeathEvent deathEvent) {
-        System.out.println(player.getCharacters().size());
         if (deathEvent.getSource() instanceof ICharacter) {
             if (player.getCharacters().size() == 1){
                 this.gameLost();
