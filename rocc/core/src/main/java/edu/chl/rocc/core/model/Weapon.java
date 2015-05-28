@@ -15,8 +15,6 @@ import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 public class Weapon implements IWeapon {
 
     private final String name;
-    private final float width, height;
-    //private float x, y;
     private final IBulletFactory bulletFactory;
     private final int bulletSpawnX, bulletSpawnY;
 
@@ -27,8 +25,6 @@ public class Weapon implements IWeapon {
         // Hämta från textfil baserat på "name"
         this.bulletSpawnX = 45;
         this.bulletSpawnY = 22;
-        this.width = 32 / PPM;
-        this.height = 32 / PPM;
     }
 
     @Override
