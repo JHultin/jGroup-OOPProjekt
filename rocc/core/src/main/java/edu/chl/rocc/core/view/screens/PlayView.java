@@ -198,28 +198,13 @@ public class PlayView implements Screen,IViewObservable{
                 }
 
                 healthBarHashMap.get(character.getName()).setValue(character.getHP());
-            }
 
-         /*   for (Image i : profileImageHashMap.values()) {
-
-                boolean checkMissing = false;
-
-                for (ICharacter character : model.getCharacters()) {
-                    if (character.getName().equals(i.getName())) {
-                        checkMissing = false;
-                    } else {
-                        if (!checkMissing) {
-                            checkMissing = true;
-                        }
-                    }
-
-                    if(checkMissing) {
-                        System.out.println(profileImageHashMap.get());
-                   //     System.out.println(i.getName());
-                       //profileImageHashMap.get(i).remove();
-                    }
+                //Gets the name from the latest died character and removes its profilePic and healthbar
+                if(profileImageHashMap.containsKey(model.getDeadCharacterName())){
+                    profileImageHashMap.get(model.getDeadCharacterName()).remove();
+                    healthBarHashMap.get(model.getDeadCharacterName()).remove();
                 }
-            }*/
+            }
         }
 
         synchronized (model.getCharacters()) {

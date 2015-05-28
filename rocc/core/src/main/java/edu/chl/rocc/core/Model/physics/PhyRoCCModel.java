@@ -427,5 +427,10 @@ public class PhyRoCCModel implements IRoCCModel {
     public void handleDeath(IDeathEvent deathEvent) {
         this.model.handleDeath(deathEvent);
     }
+
+    @Override
+    public String getDeadCharacterName(){
+        return model.getDeadCharacterName();
+    }
 }
 
