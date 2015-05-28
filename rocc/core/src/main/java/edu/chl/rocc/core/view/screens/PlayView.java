@@ -53,8 +53,6 @@ public class PlayView implements Screen,IViewObservable{
     //ANIMATION
     private HashMap<String,HashMap<String,AnimationHandler>> charactersAnimationHashMap;
     private TextureRegion textureRegion;
-    private String[] characterNames;
-    private String[] currentAnimation;
 
     private HashMap<String, Texture> pickupableHashMap;
     private String[] pickupableNames;
@@ -115,19 +113,6 @@ public class PlayView implements Screen,IViewObservable{
 
          // Initializes the Hashmap and create temporary hashmaps which are then placed in the main hashmap.
         charactersAnimationHashMap = new AnimationTextureLoader().getHashMap();
-        //charactersAnimationHashMap = new HashMap<String, HashMap<String, AnimationHandler>>();
-
-        //Adds the different animation state names in a array
-        currentAnimation = new String[]{"RIGHT","LEFT","NONERIGHT","NONELEFT"
-                ,"AirRIGHT","AirLEFT","AirNONERIGHT","AirNONELEFT", "RIGHTDamaged","LEFTDamaged","NONERIGHTDamaged","NONELEFTDamaged"
-                ,"AirRIGHTDamaged","AirLEFTDamaged","AirNONERIGHTDamaged","AirNONELEFTDamaged"};
-        characterNames = new String[]{"mother","soldier","zombie","bigZombie","doctor","noEyes"};
-
-        //Gets the characters and initiates their textures,
-        //this has to be in show because otherwise the model.getCharacters aren't initiated.
-        for(int i = 0; i<characterNames.length; i++) {
-            addToAnimationHashMap(characterNames[i]);
-        }
 
         //Adds the different weapon textures
         weaponHashMap = new HashMap<String, HashMap<String, Texture>>();
@@ -329,34 +314,6 @@ public class PlayView implements Screen,IViewObservable{
         this.map = tMap;
         this.renderer = new OrthogonalTiledMapRenderer(map);
     }
-
-
-
-    /**
-     * A method which places all the animation textures in a hashMap.
-     */
-    private void addToAnimationHashMap(String character){
-        /*
-        CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character);
-        HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
-
-        for(int i = 0; i<currentAnimation.length; i++){
-            TextureRegion[] textureRegions;
-            Texture texture = new Texture(Gdx.files.internal(characterTextureLoader.getCharacterTexture(
-                    currentAnimation[i])));
-
-            if(texture.getWidth() > 50){//Checks if texture contains several images and needs to split
-                textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
-            }else{
-                textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
-            }
-
-            animationHashmap.put(currentAnimation[i], new AnimationHandler(textureRegions, 1 / 12f));
-        }
-
-        charactersAnimationHashMap.put(character, animationHashmap);
-        */
-    }//addToAnimationHashMap end
 
     /**
      * A method which places all the weapon textures in a hashMap.

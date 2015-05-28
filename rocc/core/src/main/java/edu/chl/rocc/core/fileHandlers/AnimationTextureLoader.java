@@ -47,7 +47,6 @@ public class AnimationTextureLoader {
                         animationHashMap.put(name, new AnimationHandler(textureRegions, 1 / 12f));
                     }
                 }
-                System.out.println(file.name());
                 charactersAnimationHashMap.put(file.name(), animationHashMap);
             }
         }
