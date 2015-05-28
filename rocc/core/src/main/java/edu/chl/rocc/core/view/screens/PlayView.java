@@ -16,12 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import edu.chl.rocc.core.fileHandlers.AnimationTextureLoader;
+import edu.chl.rocc.core.fileHandlers.ViewTextureLoader;
 import edu.chl.rocc.core.fileHandlers.WeaponTextureLoader;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.fileHandlers.PickupableTextureLoader;
-import edu.chl.rocc.core.fileHandlers.CharacterTextureLoader;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -112,7 +111,7 @@ public class PlayView implements Screen,IViewObservable{
         observerArrayList = new ArrayList<IViewObserver>();
 
          // Initializes the Hashmap and create temporary hashmaps which are then placed in the main hashmap.
-        charactersAnimationHashMap = new AnimationTextureLoader().getHashMap();
+        charactersAnimationHashMap = new ViewTextureLoader().getHashMap();
 
         //Adds the different weapon textures
         weaponHashMap = new HashMap<String, HashMap<String, Texture>>();

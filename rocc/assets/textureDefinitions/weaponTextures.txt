@@ -1,0 +1,3 @@
+weaponleft
+weaponright
+bullet
