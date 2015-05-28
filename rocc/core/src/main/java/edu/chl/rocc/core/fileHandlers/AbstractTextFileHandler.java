@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.utility;
+package edu.chl.rocc.core.fileHandlers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Joel on 2015-05-24.
  */
-public abstract class AbsInformationHandler{
+public abstract class AbstractTextFileHandler {
 
     private final File folder;
 
@@ -22,7 +22,7 @@ public abstract class AbsInformationHandler{
     private final String filePath;
 
 
-    protected AbsInformationHandler(String filePath, File folder) {
+    protected AbstractTextFileHandler(String filePath, File folder) {
         this.folder = folder;
         this.filePath = filePath;
 

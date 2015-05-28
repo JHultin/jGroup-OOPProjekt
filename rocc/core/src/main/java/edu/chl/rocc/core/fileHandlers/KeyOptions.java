@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.utility;
+package edu.chl.rocc.core.fileHandlers;
 
 import com.badlogic.gdx.Input;
 
@@ -10,7 +10,7 @@ import java.io.*;
  *
  * Created by Joel on 2015-05-12.
  */
-public class KeyOptions extends AbsInformationHandler{
+public class KeyOptions extends AbstractTextFileHandler {
 
     // The only instance
     private static final KeyOptions instance = new KeyOptions();

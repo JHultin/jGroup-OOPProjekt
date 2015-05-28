@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
-import edu.chl.rocc.core.utility.GeneralOptions;
+import edu.chl.rocc.core.fileHandlers.GeneralOptions;
 
 
 /**

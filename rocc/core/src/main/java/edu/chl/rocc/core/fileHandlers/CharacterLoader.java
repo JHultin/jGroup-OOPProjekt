@@ -1,11 +1,11 @@
-package edu.chl.rocc.core.utility;
+package edu.chl.rocc.core.fileHandlers;
 
 import java.io.*;
 
 /**
  * Created by Joel on 2015-05-13.
  */
-public class CharacterLoader extends AbsInformationHandler {
+public class CharacterLoader extends AbstractTextFileHandler {
 
     public CharacterLoader(String name) {
         this(name, false);
