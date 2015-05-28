@@ -35,7 +35,7 @@ public class MainController {
     private CollisionListener collisionListener;
     private final DeathListener deathListener;
     private final GameLossListener gameLossListener;
-    private String currentView;
+    private String currentState;
 
     // Inputprocessor for while ingame
     private final GameProcessor gameProcessor;
@@ -109,37 +109,37 @@ public class MainController {
      * Update the input to the correct state for the current part of the game.
      * Constructs the level if selected
      *
-     * @param str
+     * @param state
      */
-    public void setState(String str){
+    public void setState(String state){
         // If a game is started
-        if ("game".equals(str) && !"game".equals(currentView)) {
-            setToGameState(str);
+        if ("game".equals(state) && !"game".equals(currentState)) {
+            setStateToGameState(state);
         // If we went to a menu instead
-        } else if("resume".equals(str)){
+        } else if("resume".equals(state)){
             Gdx.input.setInputProcessor(gameProcessor);
             gvm.getActiveView().resume();
             this.inGame = true;
-        }else if (("menu".equals(str))||("loadGame".equals(str))||
-                ("options".equals(str))||("highscore".equals(str))){
+        }else if (("menu".equals(state))||("loadGame".equals(state))||
+                ("options".equals(state))||("highscore".equals(state))){
             // Tell the GameViewManager to choose the correct screen
-            setToMenuState(str);
-        } else if("configureControls".equals(str)){
-            setToMenuState(str);
-        }else if("keySetter".equals(str)){
+            setStateToMenuState(state);
+        } else if("configureControls".equals(state)){
+            setStateToMenuState(state);
+        }else if("keySetter".equals(state)){
             this.gvm.getActiveView().hide();
             Gdx.input.setInputProcessor(configureControlsProcessor);
-        } else if("victory".equals(str)) {
-            setToMenuState(str);
-        } else if("defeat".equals(str)){
-            setToMenuState(str);
+        } else if("victory".equals(state)) {
+            setStateToMenuState(state);
+        } else if("defeat".equals(state)){
+            setStateToMenuState(state);
         }
-        currentView = str;
+        currentState = state;
     }
 
-    private void setToGameState(String str){
+    private void setStateToGameState(String state){
         // Tell the GameViewManager to choose the correct screen
-        gvm.setActiveView(str);
+        gvm.setActiveView(state);
 
         // Set up the game
         // First construct the world, the level and all pickupables.
@@ -171,10 +171,10 @@ public class MainController {
         this.main.setScreen(this.gvm.getActiveView());
     }
 
-    private void setToMenuState(String str){
+    private void setStateToMenuState(String state){
         this.inGame = false;
         this.model.dispose();
-        this.gvm.setActiveView(str);
+        this.gvm.setActiveView(state);
 
         this.viewChooser.setObservable(gvm.getViewObserver());
         this.main.setScreen(this.gvm.getActiveView());
