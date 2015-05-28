@@ -1,3 +1,0 @@
-default
-ak-47
-plasmaGun

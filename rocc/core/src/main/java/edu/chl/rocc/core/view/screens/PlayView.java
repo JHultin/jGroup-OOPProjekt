@@ -57,8 +57,6 @@ public class PlayView implements Screen,IViewObservable{
     private String[] pickupableNames;
 
     //WeaponTexture
-    private String[] weaponNames;
-    private String[] weaponTextures;
     private HashMap<String, HashMap<String,Texture>> weaponHashMap;
 
 
@@ -111,16 +109,11 @@ public class PlayView implements Screen,IViewObservable{
         observerArrayList = new ArrayList<IViewObserver>();
 
          // Initializes the Hashmap and create temporary hashmaps which are then placed in the main hashmap.
-        charactersAnimationHashMap = new ViewTextureLoader().getHashMap();
+        ViewTextureLoader loader = new ViewTextureLoader();
+        charactersAnimationHashMap = new ViewTextureLoader().getCharactersAnimationHashMap();
 
         //Adds the different weapon textures
-        weaponHashMap = new HashMap<String, HashMap<String, Texture>>();
-        weaponNames = new String[]{"default", "ak-47", "plasmaGun"};
-        weaponTextures = new String[]{"LEFT","RIGHT","bullet"};
-
-        for(int i = 0; i<weaponNames.length; i++){
-            addToWeaponTextureHashMap(weaponNames[i]);
-        }
+        weaponHashMap =  new ViewTextureLoader().getWeaponHashMap();
 
         pickupableHashMap = new HashMap<String, Texture>();
         pickupableNames = new String[]{"mother", "doctor", "soldier", "noEyes", "food"};
@@ -204,7 +197,7 @@ public class PlayView implements Screen,IViewObservable{
         }
 
         //Draws the weapon
-        batch.draw(weaponHashMap.get((model.getWeapon().getName())).get(""+model.getActiveCharacter().getLastDirection())
+        batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" + model.getActiveCharacter().getLastDirection().toString().toLowerCase())
                 , model.getCharacterXPos(), model.getCharacterYPos() + 3);
 
         synchronized (model.getPickupables()) {
@@ -312,21 +305,6 @@ public class PlayView implements Screen,IViewObservable{
     public void setMap(TiledMap tMap){
         this.map = tMap;
         this.renderer = new OrthogonalTiledMapRenderer(map);
-    }
-
-    /**
-     * A method which places all the weapon textures in a hashMap.
-     */
-    private void addToWeaponTextureHashMap(String weapon){
-        WeaponTextureLoader weaponTextureLoader = new WeaponTextureLoader(weapon);
-        HashMap<String, Texture> textureHashmap = new HashMap<String, Texture>();
-
-        for(int i = 0; i<weaponTextures.length; i++){
-            Texture texture = new Texture(Gdx.files.internal(weaponTextureLoader.getWeaponTexture(weaponTextures[i])));
-            textureHashmap.put(weaponTextures[i],texture);
-        }
-
-        weaponHashMap.put(weapon, textureHashmap);
     }
 
     private void addToPickupableHashMap(String pickupable){

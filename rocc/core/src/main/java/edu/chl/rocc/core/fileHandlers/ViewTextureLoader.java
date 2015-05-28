@@ -80,7 +80,11 @@ public class ViewTextureLoader {
         }
     }
 
-    public HashMap<String,HashMap<String,AnimationHandler>> getHashMap(){
+    public HashMap<String,HashMap<String,AnimationHandler>> getCharactersAnimationHashMap(){
         return charactersAnimationHashMap;
+    }
+
+    public HashMap<String, HashMap<String, Texture>> getWeaponHashMap(){
+        return weaponHashMap;
     }
 }
