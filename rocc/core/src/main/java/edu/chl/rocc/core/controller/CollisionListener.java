@@ -50,10 +50,10 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         if (isCorrectFixtureType(fb, "food")) {
             itemsToRemove.add((IFood) (fb.getBody().getUserData()));
         }
-        if (isCorrectFixtureType(fa, "pickupChacter")) {
+        if (isCorrectFixtureType(fa, "pickupCharacter")) {
             itemsToRemove.add((IPickupableCharacter) (fa.getBody().getUserData()));
         }
-        if (isCorrectFixtureType(fb, "pickupChacter")) {
+        if (isCorrectFixtureType(fb, "pickupCharacter")) {
             itemsToRemove.add((IPickupableCharacter) (fb.getBody().getUserData()));
         }
         if ("jumpPointSensor".equals(fa.getUserData())) {
