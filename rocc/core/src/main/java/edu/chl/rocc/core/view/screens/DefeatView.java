@@ -61,8 +61,8 @@ public class DefeatView extends AbstractMenuView{
     @Override
     public void show() {
         super.show();
-//        scoreLabel.setText("" + model.getScore());
- //       timeLabel.setText("" + model.getTime());
+        scoreLabel.setText("" + model.getScore());
+        timeLabel.setText("" + model.getTime());
     }
 
 
