@@ -7,9 +7,9 @@ import edu.chl.rocc.core.observers.IGameLossListener;
  */
 public class GameLossListener implements IGameLossListener {
 
-    private final RoCCController controller;
+    private final MainController controller;
 
-    public GameLossListener(RoCCController controller) {
+    public GameLossListener(MainController controller) {
         this.controller = controller;
     }
 
