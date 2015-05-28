@@ -1,4 +1,4 @@
-package edu.chl.rocc.core.logic.pure;
+package edu.chl.rocc.core.logic.model;
 
 import edu.chl.rocc.core.logic.m2phyInterfaces.IBullet;
 import edu.chl.rocc.core.logic.m2phyInterfaces.IFinishPoint;
