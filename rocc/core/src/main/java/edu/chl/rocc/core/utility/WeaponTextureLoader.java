@@ -16,7 +16,7 @@ public class WeaponTextureLoader extends AbsInformationHandler{
      * @param characterAnimation
      * @return set value for the action
      */
-    public String getCharacterTexture(String characterAnimation){
+    public String getWeaponTexture(String characterAnimation){
         return super.getInfo(characterAnimation);
     }
 

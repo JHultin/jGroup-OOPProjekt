@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.utility.CharacterTextureLoader;
+import edu.chl.rocc.core.utility.PickupableTextureLoader;
 import edu.chl.rocc.core.utility.WeaponTextureLoader;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
@@ -30,17 +31,17 @@ import edu.chl.rocc.core.view.observers.IViewObserver;
  */
 public class PlayView implements Screen,IViewObservable{
 
-    private final SpriteBatch batch;
-    private OrthographicCamera cam;
+    private final IRoCCModel model;
 
-    private Map<String, Texture> textures;
+    private final SpriteBatch batch;
+    private final OrthographicCamera cam;
+
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
-    private final IRoCCModel model;
-
     private ArrayList<IViewObserver> observerArrayList;
 
+    //Label
     private BitmapFont font = new BitmapFont();
     private Label.LabelStyle labelStyle;
     private final Label scoreLabel, timeLabel;
@@ -54,16 +55,20 @@ public class PlayView implements Screen,IViewObservable{
     private String[] characterNames;
     private String[] currentAnimation;
 
+    private HashMap<String, Texture> pickupableHashMap;
+    private String[] pickupableNames;
+
     //WeaponTexture
     private String[] weaponNames;
     private String[] weaponTextures;
     private HashMap<String, HashMap<String,Texture>> weaponHashMap;
 
+
     //Pause windowtest
     private Window pauseWindow;
     //pausetest
 
-    //Profile Image hashmap
+    //ProfileImage and HealthBar hashmap
     private HashMap<String,Image> profileImageHashMap;
     private Table characterProfileTable;
     private HashMap<String,ProgressBar> healthBarHashMap;
@@ -75,7 +80,6 @@ public class PlayView implements Screen,IViewObservable{
         cam = new OrthographicCamera();
 
         stage = new Stage();
-        //Gdx.input.setInputProcessor(stage);
         table = new Table();
         table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -132,14 +136,11 @@ public class PlayView implements Screen,IViewObservable{
             addToWeaponTextureHashMap(weaponNames[i]);
         }
 
-
-        textures = new HashMap<String, Texture>();
-        textures.put("food"   , new Texture(Gdx.files.internal("shaitpizza.png")));
-        textures.put("weapon" , new Texture(Gdx.files.internal("weapons/plasmaGun/weaponLeft.png")));
-        textures.put("bullet" , new Texture(Gdx.files.internal("weapons/plasmaGun/bullet.png")));
-        textures.put("noEyes"  , new Texture(Gdx.files.internal("characters/noEyes/idleLeft.png")));
-        textures.put("zombie"   , new Texture(Gdx.files.internal("characters/zombie/idleLeft.png")));
-        textures.put("doctor", new Texture(Gdx.files.internal("characters/doctor/idleLeft.png")));
+        pickupableHashMap = new HashMap<String, Texture>();
+        pickupableNames = new String[]{"mother", "doctor", "soldier", "noEyes", "food"};
+        for(int i = 0; i<pickupableNames.length; i++){
+            addToPickupableHashMap(pickupableNames[i]);
+        }
     }
 
 
@@ -222,7 +223,7 @@ public class PlayView implements Screen,IViewObservable{
 
         synchronized (model.getPickupables()) {
             for (IPickupable pickupable : model.getPickupables()) {
-                batch.draw(textures.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
+                batch.draw(pickupableHashMap.get(pickupable.getName()), pickupable.getX(), pickupable.getY());
             }
         }
 
@@ -241,8 +242,6 @@ public class PlayView implements Screen,IViewObservable{
                             charactersAnimationHashMap.get(enemy.getName()).get(enemy.getMoveState()).getFrame());
 
                     batch.draw(textureRegion, enemy.getX(), enemy.getY());
-                }else{
-                    batch.draw(textures.get("zombie"), enemy.getX(), enemy.getY());
                 }
             }
         }
@@ -271,7 +270,7 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void resume() {
-        pauseWindow.remove(); //used to remove pausewindow
+        pauseWindow.remove();
     }
 
     @Override
@@ -299,9 +298,6 @@ public class PlayView implements Screen,IViewObservable{
 
         characterProfileTable.clear();
 
-        for (Texture texture : textures.values()){
-            texture.dispose();
-        }
         batch.dispose();
         stage.dispose();
     }
@@ -337,7 +333,7 @@ public class PlayView implements Screen,IViewObservable{
     /**
      * A method which places all the animation textures in a hashMap.
      */
-    public void addToAnimationHashMap(String character){
+    private void addToAnimationHashMap(String character){
         CharacterTextureLoader characterTextureLoader = new CharacterTextureLoader(character);
         HashMap<String, AnimationHandler> animationHashmap = new HashMap<String, AnimationHandler>();
 
@@ -361,20 +357,25 @@ public class PlayView implements Screen,IViewObservable{
     /**
      * A method which places all the weapon textures in a hashMap.
      */
-    public void addToWeaponTextureHashMap(String weapon){
+    private void addToWeaponTextureHashMap(String weapon){
         WeaponTextureLoader weaponTextureLoader = new WeaponTextureLoader(weapon);
         HashMap<String, Texture> textureHashmap = new HashMap<String, Texture>();
 
         for(int i = 0; i<weaponTextures.length; i++){
-            Texture texture = new Texture(Gdx.files.internal(weaponTextureLoader.getCharacterTexture(weaponTextures[i])));
+            Texture texture = new Texture(Gdx.files.internal(weaponTextureLoader.getWeaponTexture(weaponTextures[i])));
             textureHashmap.put(weaponTextures[i],texture);
         }
 
         weaponHashMap.put(weapon, textureHashmap);
     }
 
+    private void addToPickupableHashMap(String pickupable){
+        PickupableTextureLoader pickupableTextureLoader = new PickupableTextureLoader(pickupable);
+        Texture texture = new Texture(Gdx.files.internal(pickupableTextureLoader.getPickupableTexture(pickupable)));
+        pickupableHashMap.put(pickupable, texture);
+    }
 
-    public void createPauseWindow(){
+    private void createPauseWindow(){
         Window.WindowStyle pauseWindowStyle = new Window.WindowStyle();
         pauseWindowStyle.titleFont = font;
         pauseWindowStyle.titleFontColor = Color.BLACK;
@@ -455,7 +456,7 @@ public class PlayView implements Screen,IViewObservable{
      * HealthBarHashMap.
      * @param character
      */
-    public void createHealthBar(ICharacter character){
+    private void createHealthBar(ICharacter character){
         Skin skin = new Skin();
         Pixmap pixmap = new Pixmap(10, 10, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
@@ -476,5 +477,4 @@ public class PlayView implements Screen,IViewObservable{
 
         healthBarHashMap.put(character.getName(),bar);
     }
-
 }

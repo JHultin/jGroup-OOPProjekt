@@ -1,0 +1,3 @@
+noEyes
+characters/noEyes/idleLeft.png
+.
