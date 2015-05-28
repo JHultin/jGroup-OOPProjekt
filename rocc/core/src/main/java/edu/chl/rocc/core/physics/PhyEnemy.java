@@ -127,8 +127,9 @@ public class PhyEnemy implements IEnemy {
     public void decHP(int value) {
         if (enemy.getHP() <= value){
             this.death("No more hp");
+        } else {
+            this.enemy.decHP(value);
         }
-        this.enemy.decHP(value);
     }
 
     @Override
