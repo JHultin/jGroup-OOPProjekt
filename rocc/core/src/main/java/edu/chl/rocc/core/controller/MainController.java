@@ -114,6 +114,7 @@ public class MainController {
      * @param state
      */
     public void setState(String state){
+
         // If a game is started
         if ("game".equals(state) && !"game".equals(currentState)) {
             setStateToGameState(state);
@@ -122,7 +123,7 @@ public class MainController {
             Gdx.input.setInputProcessor(gameProcessor);
             gvm.getActiveView().resume();
             this.inGame = true;
-        }else if (("menu".equals(state))||("loadGame".equals(state))||
+        }else if (("menu".equals(state))||("chooseLevel".equals(state))||
                 ("options".equals(state))||("highscore".equals(state))){
             // Tell the GameViewManager to choose the correct screen
             setStateToMenuState(state);
