@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import edu.chl.rocc.core.fileHandlers.MapLoader;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.observers.IDeathEvent;
 import edu.chl.rocc.core.utility.Direction;
@@ -66,7 +67,8 @@ public class MainController {
      * @param main the main view to update throughout
      */
     public MainController(ViewController main){
-        this.tiledMap = new TmxMapLoader().load("tileMaps/level1-with-fin-enemy.tmx");
+        MapLoader loader = new MapLoader();
+        this.tiledMap = new TmxMapLoader().load(loader.getTiledMapList().get(0));
         this.model = new PhyRoCCModel(tiledMap);
         this.deathListener = new DeathListener();
         this.gameLossListener = new GameLossListener(this);
