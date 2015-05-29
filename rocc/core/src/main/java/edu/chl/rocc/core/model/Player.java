@@ -71,10 +71,9 @@ public class Player implements IPlayer {
                     if(Math.abs(distance) >= 300){
                         characters.get(i).teleport(getCharacterXPos(), getCharacterYPos());
                     }
-
                     // Check if the follower is far away enough from the active character.
                     // If yes, move towards the active character. If no, stand still.
-                    if (distance > 20 + count * 60) {
+                    else if (distance > 20 + count * 60) {
                         characters.get(i).move(Direction.RIGHT);
                     } else if (distance < -(20 + count * 60)) {
                         characters.get(i).move(Direction.LEFT);
