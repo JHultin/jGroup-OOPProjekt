@@ -92,6 +92,11 @@ public class Character implements ICharacter {
     public void jump(){}
 
     @Override
+    public void teleport(float x, float y){
+
+    }
+
+    @Override
     public void toggleFollowerOnJumpPoint(){ }
 
     @Override

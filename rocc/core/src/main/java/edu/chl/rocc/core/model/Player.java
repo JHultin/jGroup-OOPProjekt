@@ -1,5 +1,6 @@
 package edu.chl.rocc.core.model;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.factories.IRoCCFactory;
@@ -65,6 +66,14 @@ public class Player implements IPlayer {
                     count ++;
                     float distance = characters.get(this.activeCharacterIndex).getX() - characters.get(i).getX();
 
+                    // Check if the follower is very far away from the active character.
+                    // If yes, teleport it to the active character.
+                    if(Math.abs(distance) >= 300){
+                        characters.get(i).teleport(getCharacterXPos(), getCharacterYPos());
+                    }
+
+                    // Check if the follower is far away enough from the active character.
+                    // If yes, move towards the active character. If no, stand still.
                     if (distance > 20 + count * 60) {
                         characters.get(i).move(Direction.RIGHT);
                     } else if (distance < -(20 + count * 60)) {
