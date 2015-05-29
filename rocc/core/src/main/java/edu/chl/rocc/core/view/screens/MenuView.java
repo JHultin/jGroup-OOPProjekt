@@ -18,7 +18,7 @@ public class MenuView extends AbstractMenuView {
     private final String title = "Ruins of Corrosa City";
 
 
-    private TextButton newGameButton, loadGameButton, chooseLevelButton, optionsButton,highscoreButton,exitButton;
+    private TextButton newGameButton, chooseLevelButton, optionsButton,highscoreButton,exitButton;
     private final Label titleLabel;
 
 
@@ -77,14 +77,12 @@ public class MenuView extends AbstractMenuView {
      */
     public void createButtons(){
         newGameButton = new TextButton("New Game", textButtonStyle);
-        //loadGameButton = new TextButton("Load Game", textButtonStyle);
         chooseLevelButton = new TextButton("Choose Level", textButtonStyle);
         optionsButton = new TextButton("Options", textButtonStyle);
         highscoreButton = new TextButton("Highscore", textButtonStyle);
         exitButton = new TextButton("Exit", textButtonStyle);
         //set padding on button in pixels
         newGameButton.pad(20);
-//        loadGameButton.pad(20);
         chooseLevelButton.pad(20);
         optionsButton.pad(20);
         highscoreButton.pad(20);
@@ -97,13 +95,6 @@ public class MenuView extends AbstractMenuView {
                 notifyObserver("game");
             }
         });
-
-        /*Button.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event,float x, float y){
-                notifyObserver("loadGame");
-            }
-        });*/
 
         chooseLevelButton.addListener(new ClickListener(){
             @Override

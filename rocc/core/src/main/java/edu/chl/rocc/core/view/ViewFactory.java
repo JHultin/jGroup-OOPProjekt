@@ -16,9 +16,6 @@ public class ViewFactory {
         if(view.equals("menu")){
             return new MenuView(model);
         }
-     /*   if(view.equals("loadGame")){
-            return new LoadMenuView(model);
-        }*/
         if(view.equals("chooseLevel")){
             return new LevelChooserView(model);
         }
