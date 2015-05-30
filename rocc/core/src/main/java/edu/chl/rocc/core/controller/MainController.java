@@ -107,14 +107,17 @@ public class MainController {
         this.thread.start();
     }
 
+    public void setState(String state){
+        this.setState(state, -1);
+    }
+
     /**
      * Update the input to the correct state for the current part of the game.
      * Constructs the level if selected
      *
      * @param state
      */
-    public void setState(String state){
-
+    public void setState(String state, int index){
         // If a game is started
         if ("game".equals(state) && !"game".equals(currentState)) {
             setStateToGameState(state);
