@@ -21,6 +21,7 @@ import edu.chl.rocc.core.fileHandlers.WeaponTextureLoader;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.fileHandlers.PickupableTextureLoader;
+import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
@@ -197,8 +198,13 @@ public class PlayView implements Screen,IViewObservable{
         }
 
         //Draws the weapon
-        batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" + model.getActiveCharacter().getLastDirection().toString().toLowerCase())
-                , model.getCharacterXPos(), model.getCharacterYPos() + 3);
+        if(model.getActiveCharacter().getLastDirection().equals(Direction.LEFT)) {
+            batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" + model.getActiveCharacter().getLastDirection().toString().toLowerCase())
+                    , model.getCharacterXPos() - 15, model.getCharacterYPos() + 3);
+        }else{
+            batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" + model.getActiveCharacter().getLastDirection().toString().toLowerCase())
+                    , model.getCharacterXPos() + 5, model.getCharacterYPos() + 3);
+        }
 
         synchronized (model.getPickupables()) {
             for (IPickupable pickupable : model.getPickupables()) {
@@ -245,6 +251,7 @@ public class PlayView implements Screen,IViewObservable{
     public void pause() {
         Gdx.input.setInputProcessor(stage);
         stage.addActor(pauseWindow);
+        notifyObserver("pause");
     }
 
     @Override
