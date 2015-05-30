@@ -18,7 +18,7 @@ public class MenuView extends AbstractMenuView {
     private final String title = "Ruins of Corrosa City";
 
 
-    private TextButton newGameButton, loadGameButton, optionsButton,highscoreButton,exitButton;
+    private TextButton newGameButton, chooseLevelButton, optionsButton,highscoreButton,exitButton;
     private final Label titleLabel;
 
 
@@ -48,7 +48,7 @@ public class MenuView extends AbstractMenuView {
         float buttonWidth = 200;
         table.add(newGameButton).width(buttonWidth);
         table.row();
-        table.add(loadGameButton).width(buttonWidth);
+        table.add(chooseLevelButton).width(buttonWidth);
         table.row();
         table.add(optionsButton).width(buttonWidth);
         table.row();
@@ -76,14 +76,14 @@ public class MenuView extends AbstractMenuView {
      * Creating buttons
      */
     public void createButtons(){
-        newGameButton = new TextButton("New Game",textButtonStyle);
-        loadGameButton = new TextButton("Load Game",textButtonStyle);
+        newGameButton = new TextButton("New Game", textButtonStyle);
+        chooseLevelButton = new TextButton("Choose Level", textButtonStyle);
         optionsButton = new TextButton("Options", textButtonStyle);
-        highscoreButton = new TextButton("Highscore",textButtonStyle);
-        exitButton = new TextButton("Exit",textButtonStyle);
+        highscoreButton = new TextButton("Highscore", textButtonStyle);
+        exitButton = new TextButton("Exit", textButtonStyle);
         //set padding on button in pixels
         newGameButton.pad(20);
-        loadGameButton.pad(20);
+        chooseLevelButton.pad(20);
         optionsButton.pad(20);
         highscoreButton.pad(20);
         exitButton.pad(20);
@@ -96,10 +96,10 @@ public class MenuView extends AbstractMenuView {
             }
         });
 
-        loadGameButton.addListener(new ClickListener(){
+        chooseLevelButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                notifyObserver("loadGame");
+                notifyObserver("chooseLevel");
             }
         });
 

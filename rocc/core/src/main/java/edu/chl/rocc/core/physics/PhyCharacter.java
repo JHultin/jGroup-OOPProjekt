@@ -159,7 +159,11 @@ public class PhyCharacter implements ICharacter {
        }
     }
 
-    //Write on one line
+    @Override
+    public void teleport(float x, float y){
+        this.body.setTransform(new Vec2(x / PPM, y / PPM), 0);
+    }
+
     @Override
     public void toggleFollowerOnJumpPoint(){
         this.isOnJumpPoint = !this.isOnJumpPoint;

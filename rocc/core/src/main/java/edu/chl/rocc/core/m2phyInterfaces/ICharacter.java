@@ -40,6 +40,11 @@ public interface ICharacter extends IMortal {
     */
     public void jump();
 
+    /**
+     * Teleport the character to a given location.
+     */
+    public void teleport(float x, float y);
+
     public void toggleFollowerOnJumpPoint();
 
     public void hitGround();

@@ -25,7 +25,7 @@ public class GameViewManager {
          */
         viewHashMap.put("game", ViewFactory.createView("game", model));
         viewHashMap.put("menu", ViewFactory.createView("menu", model));
-        viewHashMap.put("loadGame",ViewFactory.createView("loadGame",model));
+        viewHashMap.put("chooseLevel", ViewFactory.createView("chooseLevel", model));
         viewHashMap.put("options", ViewFactory.createView("options", model));
         viewHashMap.put("configureControls", ViewFactory.createView("configureControls", model));
         viewHashMap.put("highscore", ViewFactory.createView("highscore", model));
