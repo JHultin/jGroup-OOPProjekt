@@ -16,8 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import edu.chl.rocc.core.fileHandlers.AnimationHandler;
 import edu.chl.rocc.core.fileHandlers.ViewTextureLoader;
-import edu.chl.rocc.core.fileHandlers.WeaponTextureLoader;
 import edu.chl.rocc.core.m2phyInterfaces.*;
 
 import edu.chl.rocc.core.fileHandlers.PickupableTextureLoader;

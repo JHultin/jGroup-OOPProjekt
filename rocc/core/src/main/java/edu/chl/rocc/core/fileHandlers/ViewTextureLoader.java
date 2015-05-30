@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import edu.chl.rocc.core.view.screens.AnimationHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
