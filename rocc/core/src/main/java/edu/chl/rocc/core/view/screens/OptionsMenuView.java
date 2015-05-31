@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 import edu.chl.rocc.core.fileHandlers.GeneralOptions;
 
@@ -72,17 +73,21 @@ public class OptionsMenuView extends AbstractMenuView{
         controlsButton = new TextButton("Configure Controls", textButtonStyle);
         controlsButton.pad(20);
 
-        //Checkbox
-        TextureAtlas checkBoxAtlas = new TextureAtlas(Gdx.files.internal("button/checkBox/checkBox.pack"));
-        Skin checkBoxSkin = new Skin(checkBoxAtlas);
+        try {
+            //Checkbox
+            TextureAtlas checkBoxAtlas = new TextureAtlas(Gdx.files.internal("button/checkBox/checkBox.pack"));
+            Skin checkBoxSkin = new Skin(checkBoxAtlas);
 
-        CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
-        checkBoxStyle.checkboxOff = checkBoxSkin.getDrawable("checkBoxUnChecked");
-        checkBoxStyle.checkboxOn = checkBoxSkin.getDrawable("checkBoxChecked");
-        checkBoxStyle.font = font;
-        checkBoxStyle.fontColor = Color.BLACK;
+            CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
+            checkBoxStyle.checkboxOff = checkBoxSkin.getDrawable("checkBoxUnChecked");
+            checkBoxStyle.checkboxOn = checkBoxSkin.getDrawable("checkBoxChecked");
+            checkBoxStyle.font = font;
+            checkBoxStyle.fontColor = Color.BLACK;
 
-        fullscreenCheckBox = new CheckBox(" Fullscreen",checkBoxStyle);
+            fullscreenCheckBox = new CheckBox(" Fullscreen", checkBoxStyle);
+        } catch (GdxRuntimeException ex){
+
+        }
 
         //Slider
         TextureAtlas sliderAtlas = new TextureAtlas("button/slider/slider.pack");
@@ -109,7 +114,8 @@ public class OptionsMenuView extends AbstractMenuView{
          * Checks GeneralOptions for presets
          * Write on one line
          */
-        fullscreenCheckBox.setChecked(generalOptions.getOption("isFullscreen") == 1);
+        if(fullscreenCheckBox != null)
+            fullscreenCheckBox.setChecked(generalOptions.getOption("isFullscreen") == 1);
         soundSlider.setValue(generalOptions.getOption("soundVolume"));
         musicSlider.setValue(generalOptions.getOption("musicVolume"));
 
@@ -117,20 +123,22 @@ public class OptionsMenuView extends AbstractMenuView{
         /*
          * add listener to buttons
          */
-        fullscreenCheckBox.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event,float x, float y){
-                if(fullscreenCheckBox.isChecked()){
-                    Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width,
-                            Gdx.graphics.getDesktopDisplayMode().height, true);
-                    generalOptions.setOption("isFullscreen", 1);
-                }else{
-                    Gdx.graphics.setDisplayMode(720, 480, false);
-                    generalOptions.setOption("isFullscreen",0);
-                }
+        if(fullscreenCheckBox != null) {
+            fullscreenCheckBox.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (fullscreenCheckBox.isChecked()) {
+                        Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width,
+                                Gdx.graphics.getDesktopDisplayMode().height, true);
+                        generalOptions.setOption("isFullscreen", 1);
+                    } else {
+                        Gdx.graphics.setDisplayMode(720, 480, false);
+                        generalOptions.setOption("isFullscreen", 0);
+                    }
 
-            }
-        });
+                }
+            });
+        }
         soundSlider.addListener(new ClickListener(){
            @Override
             public void clicked(InputEvent event, float x, float y){
