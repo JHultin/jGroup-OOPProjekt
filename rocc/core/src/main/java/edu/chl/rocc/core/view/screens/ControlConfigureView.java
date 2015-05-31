@@ -49,7 +49,7 @@ public class ControlConfigureView extends AbstractMenuView {
         createButtons();
 
         keyToChange = "";
-        keyTitleArray = new String[]{"Move Left","Move Right","Jump","Pause","Switch Character"};
+        keyTitleArray = new String[]{"Move Left", "Move Right", "Jump", "Pause", "Switch Character"};
 
         //adds to table
         table.add(titleLabel).padBottom(20);
@@ -90,7 +90,6 @@ public class ControlConfigureView extends AbstractMenuView {
             resize = false;
         }
 
-
         for (int i = 0; i<keyTitleArray.length; i++) {
             // If a key is selected do nothing
             if (keyToChange.equals(keyTitleArray[i])) {
@@ -98,7 +97,8 @@ public class ControlConfigureView extends AbstractMenuView {
             }
             // Else set the button text to its saved value
             else {
-                keysBindingHashMap.get(keyTitleArray[i]).setText(Input.Keys.toString(keyOptions.getKey(keyTitleArray[i])));
+                keysBindingHashMap.get(keyTitleArray[i]).setText(
+                        Input.Keys.toString(keyOptions.getKey(keyTitleArray[i])));
             }
         }
 
@@ -130,7 +130,7 @@ public class ControlConfigureView extends AbstractMenuView {
 
     public void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
-        // Add space between text and button edge
+        // Add space between text and button edge (padding)
         backButton.pad(10);
 
         defaultButton = new TextButton("Defaults", textButtonStyle);
@@ -139,16 +139,16 @@ public class ControlConfigureView extends AbstractMenuView {
         keysBindingHashMap = new HashMap<String, TextButton>();
 
         // Initiates the buttons
-        moveLeftButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Move Left"))
-                , textButtonStyle);
-        moveRightButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Move Right"))
-                , textButtonStyle);
-        jumpButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Jump"))
-                , textButtonStyle);
-        pauseButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Pause"))
-                , textButtonStyle);
-        switchCharacterButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Switch Character"))
-                , textButtonStyle);
+        moveLeftButton = new TextButton(Input.Keys.toString(
+                keyOptions.getKey("Move Left")), textButtonStyle);
+        moveRightButton = new TextButton(Input.Keys.toString(
+                keyOptions.getKey("Move Right")), textButtonStyle);
+        jumpButton = new TextButton(Input.Keys.toString(
+                keyOptions.getKey("Jump")), textButtonStyle);
+        pauseButton = new TextButton(Input.Keys.toString(
+                keyOptions.getKey("Pause")), textButtonStyle);
+        switchCharacterButton = new TextButton(Input.Keys.toString(
+                keyOptions.getKey("Switch Character")), textButtonStyle);
 
         // Add space between text and button edges
         moveLeftButton.pad(10);
@@ -165,7 +165,6 @@ public class ControlConfigureView extends AbstractMenuView {
                 keyToChange = "Move Left";
                 notifyObserver("keySetter");
             }
-
         });
 
         moveRightButton.addListener(new ClickListener(){
@@ -184,7 +183,6 @@ public class ControlConfigureView extends AbstractMenuView {
                 keyToChange = "Jump";
                 notifyObserver("keySetter");
             }
-
         });
 
         pauseButton.addListener(new ClickListener() {
@@ -194,7 +192,6 @@ public class ControlConfigureView extends AbstractMenuView {
                 keyToChange = "Pause";
                 notifyObserver("keySetter");
             }
-
         });
 
         switchCharacterButton.addListener(new ClickListener() {
@@ -204,7 +201,6 @@ public class ControlConfigureView extends AbstractMenuView {
                 keyToChange = "Switch Character";
                 notifyObserver("keySetter");
             }
-
         });
 
         keysBindingHashMap.put("Move Left", moveLeftButton);
@@ -227,7 +223,6 @@ public class ControlConfigureView extends AbstractMenuView {
                 notifyObserver("options");
             }
         });
-
     }
 
     /**

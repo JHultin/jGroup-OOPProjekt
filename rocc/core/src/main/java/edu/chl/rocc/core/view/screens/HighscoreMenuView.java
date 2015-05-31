@@ -23,7 +23,6 @@ public class HighscoreMenuView extends AbstractMenuView {
 
         createButtons();
 
-
         //adds to table
         table.add(titleLabel);
         table.row();
@@ -38,7 +37,6 @@ public class HighscoreMenuView extends AbstractMenuView {
     public void show() {
         super.show();
     }
-
 
     public void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);

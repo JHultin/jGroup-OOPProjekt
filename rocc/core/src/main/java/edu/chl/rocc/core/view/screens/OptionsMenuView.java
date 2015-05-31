@@ -25,12 +25,10 @@ public class OptionsMenuView extends AbstractMenuView{
 
     private final GeneralOptions generalOptions;
 
-
     public OptionsMenuView(IRoCCModel model){
         super(model);
 
         generalOptions = GeneralOptions.getInstance();
-
 
         //Creating Options title
         titleLabel = new Label("Options", textStyle);
@@ -45,7 +43,6 @@ public class OptionsMenuView extends AbstractMenuView{
         Table screenControlTable = new Table();
         screenControlTable.add(fullscreenCheckBox).padRight(50);
         screenControlTable.add(controlsButton).padLeft(50);
-
 
         table.add(screenControlTable).padBottom(50);
         table.row();
@@ -118,8 +115,6 @@ public class OptionsMenuView extends AbstractMenuView{
             fullscreenCheckBox.setChecked(generalOptions.getOption("isFullscreen") == 1);
         soundSlider.setValue(generalOptions.getOption("soundVolume"));
         musicSlider.setValue(generalOptions.getOption("musicVolume"));
-
-
 
         //add listener to buttons
         if(fullscreenCheckBox != null) {
