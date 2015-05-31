@@ -50,5 +50,4 @@ public interface IRoCCFactory {
      * @return the created enemy.
      */
     public IEnemy createEnemy(String name, int x, int y, int hp);
-
 }

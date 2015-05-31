@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Interface for all main model classes.
+ * <br>Extends IGameLossable.
  *
  * Created by Joel on 2015-05-03.
  */

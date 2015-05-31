@@ -5,6 +5,7 @@ import edu.chl.rocc.core.observers.IMortal;
 
 /**
  * Interface that describes an enemy.
+ * <br>Extends IMortal.
  *
  * Created by Yen on 2015-05-09.
  */
@@ -26,14 +27,14 @@ public interface IEnemy extends IMortal {
     public int getHP();
 
     /**
-     * Sets the HP of enemy to value
-     * @param value
+     * Sets the HP of enemy to value.
+     * @param value value to set the health as.
      */
     public void setHP(int value);
 
     /**
      * Increases the HP of enemy with value
-     * @param value
+     * @param value value to decrease the health with.
      */
     public void decHP(int value);
 
@@ -64,7 +65,7 @@ public interface IEnemy extends IMortal {
 
     /**
      * Created for handle the direction for the visual enemy
-     * @param dir
+     * @param dir direction to move the enemy towards.
      */
     public void move(Direction dir);
 

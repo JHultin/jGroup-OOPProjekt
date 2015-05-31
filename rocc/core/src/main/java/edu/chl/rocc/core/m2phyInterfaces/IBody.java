@@ -33,13 +33,13 @@ public interface IBody {
     public float getPositionY();
 
     /**
-     * Sets the userdata of the body
-     * @param userData
+     * Sets the userdata of the body.
+     * @param userData userdata to be set.
      */
     public void setUserData(String userData);
 
     /**
-     * Destroys body
+     * Destroys body.
      */
     public void destroy();
 }
