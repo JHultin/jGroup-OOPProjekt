@@ -14,6 +14,7 @@ import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
  * A class to handle enemies (including box2D stuff)
+ * <br>Implements IEnemy.
  *
  * Created by Yen on 2015-05-09.
  */
@@ -26,18 +27,17 @@ public class PhyEnemy implements IEnemy {
     private final BodyDef def;
     private final FixtureDef fDef;
     private Direction direction;
+
     private final int damageHP;
     private final int airForce;
     private final int health;
     private final int value;
     private int nbrOfCollisions = 0;
 
+
     public PhyEnemy(World world, float x, float y, String name){
 
         CharacterLoader cl = new CharacterLoader(name, true);
-        //this.speed         = cl.getCharecaristic("Speed");
-        //this.numberOfJumps = cl.getCharecaristic("NumberOfJumps");
-        //this.jumpForce     = cl.getCharecaristic("JumpForce");
         this.airForce        = cl.getCharecaristic("AirForce");
         this.damageHP        = cl.getCharecaristic("DamageDeal");
         this.health          = cl.getCharecaristic("Health");
@@ -49,8 +49,6 @@ public class PhyEnemy implements IEnemy {
         this.height = 25 / PPM;
         this.enemy = new Enemy(health, name, 0, 0);
         this.direction = Direction.LEFT;
-
-
 
         //Defining & creating body
         def = new BodyDef();
@@ -70,12 +68,12 @@ public class PhyEnemy implements IEnemy {
         body.createFixture(fDef).setUserData("enemyBody");
 
         //create upperbody sideSensor
-        shape.setAsBox(width, height/2 , new Vec2(0, 0) ,0);    //ingen aning hur stor den är eller vart den är?
+        shape.setAsBox(width, height/2 , new Vec2(0, 0) ,0);
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_ENEMY;
         fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY | BitMask.BIT_BULLET;
         fDef.isSensor = true;
-        body.createFixture(fDef).setUserData("enemyUpperSensor");  //change to name of enemy?
+        body.createFixture(fDef).setUserData("enemyUpperSensor");
     }
 
     @Override

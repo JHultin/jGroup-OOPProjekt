@@ -14,6 +14,9 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 /**
+ * Class for characters handling the physics.
+ * <br>Implements ICharacter.
+ *
  * Created by Joel on 2015-05-03.
  */
 public class PhyCharacter implements ICharacter {
@@ -187,8 +190,6 @@ public class PhyCharacter implements ICharacter {
             this.currentJump = 0;
         }
         characterOnGround++;
-
-
     }
 
     @Override

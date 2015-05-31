@@ -8,6 +8,9 @@ import org.jbox2d.dynamics.*;
 import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
+ * Class for food objects handling the physics.
+ * <br>Implements IFood.
+ *
  * Created by Joel on 2015-05-08.
  */
 public class PhyFood implements IFood {

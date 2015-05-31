@@ -5,6 +5,9 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
 
 /**
+ * Class for finish points handling physics.
+ * <br>Implements IFinishPoint.
+ *
  * Created by Joel on 2015-05-15.
  */
 public class PhyFinishPoint implements IFinishPoint {
@@ -31,7 +34,6 @@ public class PhyFinishPoint implements IFinishPoint {
         fDef.isSensor = true;
 
         body.createFixture(fDef).setUserData("finish");
-
     }
 
     @Override
