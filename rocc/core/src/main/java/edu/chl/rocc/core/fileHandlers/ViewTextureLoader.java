@@ -44,17 +44,19 @@ public class ViewTextureLoader {
         }
 
         weaponHashMap = new HashMap<String, HashMap<String, Texture>>();
-        ArrayList<String> weaponTextures = new ArrayList<String>(); //{"LEFT","RIGHT","bullet"};
+        ArrayList<String> weaponTextures = new ArrayList<String>();
         fillList("textureDefinitions/weaponTextures.txt", weaponTextures);
+        ArrayList<String> weaponNames = new ArrayList<String>();
+        fillList("textureDefinitions/weaponNames.txt", weaponNames);
 
-        for (FileHandle file : Gdx.files.internal("weapons/").list()){
+        for (String weaponName : weaponNames){
             HashMap<String, Texture> textureHashmap = new HashMap<String, Texture>();
 
-            for(String tex : weaponTextures){
-                Texture texture = new Texture(Gdx.files.internal(file.pathWithoutExtension() + "/" + tex + ".png"));
-                textureHashmap.put(tex, texture);
+            for(String textureType : weaponTextures){
+                Texture texture = new Texture(Gdx.files.internal("weapons/" + weaponName + "/" + textureType + ".png"));
+                textureHashmap.put(textureType, texture);
             }
-            weaponHashMap.put(file.name(), textureHashmap);
+            weaponHashMap.put(weaponName, textureHashmap);
         }
     }
 
