@@ -224,7 +224,7 @@ public class Player implements IPlayer {
 
     @Override
     public void addToScore(int value){
-        this.score +=value;
+        this.score = Math.max(score + value, 0);
     }
 
     @Override

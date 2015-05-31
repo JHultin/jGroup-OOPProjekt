@@ -20,7 +20,7 @@ public class RoCCModelTest {
 
     @Test
     public void testCreatesCharacter(){
-        assertTrue(this.model.getCharacters().isEmpty());
+        assertTrue(this.model.getCharacters().size() == 3);
     }
 
     @Test
@@ -47,22 +47,11 @@ public class RoCCModelTest {
     }
 
     @Test
-    public void testMoveFollowers() throws Exception {
-        ICharacter follower;
-
-        this.model.moveFollowers(Direction.RIGHT);
-        for(int i=0; i<this.model.getCharacters().size(); i++){
-            follower = this.model.getCharacters().get(i);
-            assertTrue(this.model.characterIsMoving(follower));
-        }
-    }
-
-    @Test
     public void testTimer() throws Exception {
         float updateSpeed = 1 / 60f;
         int timeBefore = this.model.getTime();
 
-        for(int i=0; i<=60; i++){
+        for(int i=0; i<=60 + 1; i++){
             this.model.updateWorld(updateSpeed);
         }
         assertFalse(this.model.getTime() == timeBefore);

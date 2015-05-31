@@ -128,7 +128,6 @@ public class Level implements ILevel {
         } else {
             timeCheck -= 1;
             time++;
-            System.out.println(timeCheck + " " + time);
         }
     }
 }

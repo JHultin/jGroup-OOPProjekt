@@ -49,6 +49,7 @@ public class PlayerTest {
     public void testWeapon() throws Exception {
         assertTrue(this.player.getWeapons().size() == 0);
 
+        this.player.addCharacter("mother");
         this.player.addWeapon("weapon");
         IWeapon newWeapon = this.player.getWeapon();
 

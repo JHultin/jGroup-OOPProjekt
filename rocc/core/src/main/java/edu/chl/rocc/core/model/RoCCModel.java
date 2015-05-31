@@ -91,14 +91,6 @@ public class RoCCModel implements IRoCCModel {
         return player.getCharacterYPos();
     }
 
-    /*
-    * Adds a character to the character list.
-    */
-    /*public void addCharacter(ICharacter c){
-        this.player.addCharacter(c);
-    }*/
-
-
     @Override
     public void updateWorld(float dt){
         level.updateWorld(dt);
