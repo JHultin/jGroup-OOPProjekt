@@ -22,8 +22,14 @@ public interface IBullet {
      */
     public String getName();
 
+    /**
+     * Method that makes it easier for Java's garbage collector to delete objects.
+     */
     public void dispose();
 
+    /**
+     * @return the amount of damage that the bullet does.
+     */
     public int getBulletDamage();
 
     /**
