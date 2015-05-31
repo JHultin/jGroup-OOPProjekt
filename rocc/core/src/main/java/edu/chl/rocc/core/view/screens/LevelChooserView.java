@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 /**
+ * The level chooser view.
  * Created by Jacob on 2015-05-30.
  */
 public class LevelChooserView extends AbstractMenuView {
@@ -61,7 +62,6 @@ public class LevelChooserView extends AbstractMenuView {
         lvl2Button = new TextButton("Level 2", textButtonStyle);
         lvl3Button = new TextButton("Level 3", textButtonStyle);
 
-
         //Padding to button
         backButton.pad(20);
 
@@ -92,8 +92,5 @@ public class LevelChooserView extends AbstractMenuView {
                 notifyObserver("level3");
             }
         });
-
-
-
     }
 }
