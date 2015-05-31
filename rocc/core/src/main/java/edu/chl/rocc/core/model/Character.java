@@ -33,16 +33,18 @@ public class Character implements ICharacter {
     private boolean isFollower;
 
     private final List<IDeathListener> deathListeners;
+    private boolean isMoving;
 
 
     public Character(String name){
         this.setHP(maxHealth);
         this.name = name;
 
-        this.direction = Direction.RIGHT;
-        this.lastDir = this.direction;
+        this.direction = Direction.NONE;
+        this.lastDir = Direction.RIGHT;
 
-        isFollower = true;
+        this.isFollower = true;
+        this.isMoving = false;
 
         this.deathListeners = new ArrayList<IDeathListener>();
     }
@@ -77,7 +79,8 @@ public class Character implements ICharacter {
 
     @Override
     public void move(Direction dir){
-        if(!direction.equals(Direction.NONE)) {
+        this.isMoving = !dir.equals(Direction.NONE);
+        if (!direction.equals(Direction.NONE)) {
             lastDir = direction;
         }
         direction = dir;
@@ -85,7 +88,7 @@ public class Character implements ICharacter {
 
     @Override
     public boolean isMoving(){
-        return false;
+        return isMoving;
     }
 
     @Override

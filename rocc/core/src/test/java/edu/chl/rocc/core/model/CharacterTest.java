@@ -91,7 +91,7 @@ public class CharacterTest {
         assertTrue(character.getDirection() == Direction.NONE);
         Direction mDir = Direction.LEFT;
         character.move(mDir);
-        assertTrue(character.getDirection() == mDir);
+        assertTrue(character.getDirection().equals(mDir));
     }
 
     @Test
