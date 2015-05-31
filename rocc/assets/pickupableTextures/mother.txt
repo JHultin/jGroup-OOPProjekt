@@ -1,0 +1,3 @@
+mother
+characters/mother/idleleft.png
+.
