@@ -43,7 +43,6 @@ public class PhyEnemy implements IEnemy {
         this.health          = cl.getCharecaristic("Health");
         this.value           = cl.getCharecaristic("Value");
 
-        // Enemy may also have a weapon
         this.world = world;
         this.width = 16 / PPM;
         this.height = 25 / PPM;
