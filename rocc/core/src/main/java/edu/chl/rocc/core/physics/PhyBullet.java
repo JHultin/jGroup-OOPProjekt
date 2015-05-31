@@ -45,12 +45,7 @@ public class PhyBullet implements IBullet {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BULLET;
-        /*if(isEnemyBullet){
-            fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
-        }else{
-             fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_ENEMY;
-        }*/
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_ENEMY | BitMask.BIT_FRAME;
+        fDef.filter.maskBits = BitMask.BIT_ENEMY | BitMask.BIT_FRAME;
         body.createFixture(fDef).setUserData("bullet");
         body.setLinearVelocity(new Vec2(xDir * velocity, yDir * velocity));
     }
