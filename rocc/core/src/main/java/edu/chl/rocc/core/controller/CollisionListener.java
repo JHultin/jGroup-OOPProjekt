@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * Created by Yen on 2015-05-02.
+ *
+ * Handles collision between two fixtures
  */
 public class CollisionListener implements ContactListener, ICollisionListener {
 
@@ -22,25 +24,26 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     private final List<IEnemy> enemyToChangeDirection;
     private final List<IBullet> bulletsToRemove;
 
-    private final List<Fixture> fixtureList;
-
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();
         enemyToChangeDirection = new ArrayList<IEnemy>();
         bulletsToRemove = new ArrayList<IBullet>();
-        fixtureList = new ArrayList<Fixture>();
-
     }
 
-    //called when contact between two fixtures begins
+
+
+    /**
+     * Handles when two fixture comes in contact
+     * @param contact
+     */
     @Override
     public void beginContact(Contact contact) {
+        List<Fixture> fixtureList = new ArrayList<Fixture>();
 
-        //Fetches the two fixtures
-        Fixture fa = contact.getFixtureA();
-        Fixture fb = contact.getFixtureB();
-        fixtureList.add(fa);
-        fixtureList.add(fb);
+        //Fetches the two fixtures and adds them to the fixtureList
+        fixtureList.add(contact.getFixtureA());
+        fixtureList.add(contact.getFixtureB());
+
 
         //Handles if character on ground
         for(int i=0; i<2; i++) {
@@ -56,6 +59,7 @@ public class CollisionListener implements ContactListener, ICollisionListener {
             if (isCorrectFixtureType(fixtureList.get(i), "finish")) {
                 this.newState = "victory";
             }
+            //If sidecharacter is in contact with a jumpPointSensor, then jump
             if (isCorrectFixtureType(fixtureList.get(i), "jumpPointSensor")) {
                 ((ICharacter) fixtureList.get(1-i).getBody().getUserData()).toggleFollowerOnJumpPoint();
             }
@@ -72,8 +76,10 @@ public class CollisionListener implements ContactListener, ICollisionListener {
                 bulletsToRemove.add((IBullet) (fixtureList.get(i).getBody().getUserData()));
             }
         }
+        fixtureList.clear();
     }
 
+    // Checks if Fixture is equal to str. Return boolean
     private static boolean isCorrectFixtureType(Fixture fix, String str){
         return (str.equals(fix.getUserData()));// && fix.getBody().getUserData().getClass().equals(c));
     }
@@ -89,46 +95,75 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     }
 
     //Called when contact between two fixtures ends
+
+    /**
+     * Handles when two fixture ends contact
+     * @param contact
+     */
     @Override
     public void endContact(Contact contact){
-        Fixture fa = contact.getFixtureA();
-        Fixture fb = contact.getFixtureB();
+        List<Fixture> fixtureList = new ArrayList<Fixture>();
+        fixtureList.add(contact.getFixtureA());
+        fixtureList.add(contact.getFixtureB());
 
-        if ("footSensor".equals(fa.getUserData())) {
-            ((ICharacter) fa.getBody().getUserData()).leftGround();
+        for(int i=0; i<2; i++) {
+            if ("footSensor".equals(fixtureList.get(i).getUserData())) {
+                ((ICharacter) fixtureList.get(i).getBody().getUserData()).leftGround();
+            }
+            if ("jumpPointSensor".equals(fixtureList.get(i).getUserData())) {
+                ((ICharacter) fixtureList.get(1-i).getBody().getUserData()).toggleFollowerOnJumpPoint();
+            }
         }
-        if ("footSensor".equals(fb.getUserData())) {
-            ((ICharacter) fb.getBody().getUserData()).leftGround();
-        }
-        if ("jumpPointSensor".equals(fa.getUserData())) {
-            ((ICharacter) fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
-        }
-        if ("jumpPointSensor".equals(fb.getUserData())) {
-            ((ICharacter) fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
-        }
+        fixtureList.clear();
     }
 
+    /**
+     * Ain't in use
+     *
+     * @param contact
+     * @param manifold
+     */
     @Override
     public void preSolve(Contact contact, Manifold manifold) {
 
     }
 
+    /**
+     * Ain't in use
+     *
+     * @param contact
+     * @param contactImpulse
+     */
     @Override
     public void postSolve(Contact contact, ContactImpulse contactImpulse) {
 
     }
 
-
+    /**
+     * Calls upon beginContact in this. From ICollisionListener
+     *
+     * @param contact
+     */
     @Override
     public void beginContact(IContact contact) {
         beginContact((Contact) contact);
     }
 
+    /**
+     * Calls upon endContact in this. From ICollisionListener
+     *
+     * @param contact
+     */
     @Override
     public void endContact(IContact contact) {
         endContact((Contact) contact);
     }
 
+    /**
+     * Returns the items that should be removed in a list
+     *
+     * @return listToReturn
+     */
     @Override
     public List<IPickupable> getItemsToRemove(){
         List<IPickupable> listToReturn = new ArrayList<IPickupable>(itemsToRemove.size());
@@ -139,7 +174,11 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         return listToReturn;
     }
 
-
+    /**
+     * Gets the newState
+     *
+     * @return ret
+     */
     @Override
     public String getNewState() {
         String ret = null;
@@ -150,6 +189,11 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         return ret;
     }
 
+    /**
+     * Returns the list of enemies that should change direction
+     *
+     * @return listToReturn
+     */
     @Override
     public List<IEnemy> getEnemiesToChangeDirection() {
         List<IEnemy> listToReturn = new ArrayList<IEnemy>(enemyToChangeDirection.size());
@@ -160,6 +204,11 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         return listToReturn;
     }
 
+    /**
+     * Returns the list of bullets that should be removed
+     *
+     * @return listToReturn
+     */
     @Override
     public List<IBullet> getBulletsToRemove(){
         List<IBullet> listToReturn = new ArrayList<IBullet>(bulletsToRemove.size());
