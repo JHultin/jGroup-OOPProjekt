@@ -8,6 +8,9 @@ import org.jbox2d.dynamics.*;
 import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
+ * Class for pickupable characters handling their physics.
+ * <br>Implements IPickupableCharacter.
+ *
  * Created by Joel on 2015-05-12.
  */
 public class PhyPickupableCharacter implements IPickupableCharacter {
@@ -36,7 +39,6 @@ public class PhyPickupableCharacter implements IPickupableCharacter {
         fDef.filter.maskBits = BitMask.BIT_BODY;
         fDef.isSensor = true;
         body.createFixture(fDef).setUserData("pickupCharacter");
-
     }
 
     @Override
