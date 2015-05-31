@@ -2,7 +2,10 @@ package edu.chl.rocc.core.controller;
 
 import com.badlogic.gdx.Game;
 
-
+/**
+ * ViewController is where the application is started.
+ * This class also function as the controller for the views in the application.
+ */
 public class ViewController extends Game {
     private MainController controller;
 
@@ -39,7 +42,7 @@ public class ViewController extends Game {
             this.controller.dispose();
 	}
 
-
+    @Override
     public void setScreen(com.badlogic.gdx.Screen screen){
         super.setScreen(screen);
     }
