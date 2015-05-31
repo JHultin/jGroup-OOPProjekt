@@ -21,6 +21,11 @@ public class PhyPlayer implements IPlayer {
 
     private final IPlayer player;
 
+    /**
+     * Creates player. Constructor.
+     *
+     * @param world
+     */
     public PhyPlayer(World world){
         this.player = new Player(new PhyRoCCFactory(world));
     }

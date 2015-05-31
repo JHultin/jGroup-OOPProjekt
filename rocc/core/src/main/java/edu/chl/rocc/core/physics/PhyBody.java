@@ -14,6 +14,10 @@ public class PhyBody implements IBody{
 
     private final Body body;
 
+    /**
+     * Sets body to in-parameter body. Constructor.
+     * @param body
+     */
     public PhyBody(Body body){
         this.body = body;
     }

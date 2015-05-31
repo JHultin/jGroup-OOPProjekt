@@ -34,7 +34,14 @@ public class PhyEnemy implements IEnemy {
     private final int value;
     private int nbrOfCollisions = 0;
 
-
+    /**
+     * Creates a enemy. Constructor.
+     *
+     * @param world
+     * @param x
+     * @param y
+     * @param name
+     */
     public PhyEnemy(World world, float x, float y, String name){
 
         CharacterLoader cl = new CharacterLoader(name, true);

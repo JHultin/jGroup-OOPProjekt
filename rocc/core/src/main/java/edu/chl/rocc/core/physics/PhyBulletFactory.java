@@ -15,6 +15,10 @@ public class PhyBulletFactory implements IBulletFactory {
     private final World world;
     private final int width, height;
 
+    /**
+     * Constructor.
+     * @param world
+     */
     public PhyBulletFactory(World world){
         this.world = world;
 
