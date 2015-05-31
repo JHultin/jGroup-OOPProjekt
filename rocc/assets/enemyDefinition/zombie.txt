@@ -9,7 +9,7 @@ AirForce
 DamageDeal
 10
 Health
-50
+30
 Value
 25
 .
