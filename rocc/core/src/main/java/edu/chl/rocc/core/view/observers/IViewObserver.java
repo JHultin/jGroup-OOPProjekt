@@ -1,6 +1,5 @@
 package edu.chl.rocc.core.view.observers;
 
-
 /**
  * The observers update method is called
  * when the ViewSubject changes.

@@ -28,11 +28,14 @@ public class ViewTextureLoader {
 
         for (String name : characterNames){
             HashMap<String, AnimationHandler> animationHashMap = new HashMap<String, AnimationHandler>(20);
+
             for (String animationName : animationNames){
                 if (animationName != null) {
                     TextureRegion[] textureRegions;
                     Texture texture = new Texture(Gdx.files.internal("characters/" + name + "/" + animationName + ".png"));
-                    if (texture.getWidth() > 50) {//Checks if texture contains several images and needs to split
+
+                    //Checks if texture contains several images and needs to split
+                    if (texture.getWidth() > 50) {
                         textureRegions = TextureRegion.split(texture, texture.getWidth() / 3, texture.getHeight())[0];
                     } else {
                         textureRegions = TextureRegion.split(texture, texture.getWidth(), texture.getHeight())[0];
@@ -73,7 +76,7 @@ public class ViewTextureLoader {
         }
     }
 
-    public HashMap<String,HashMap<String,AnimationHandler>> getCharactersAnimationHashMap(){
+    public HashMap<String, HashMap<String, AnimationHandler>> getCharactersAnimationHashMap(){
         return charactersAnimationHashMap;
     }
 

@@ -27,10 +27,7 @@ public class MapLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-
 
     public ArrayList<String> getTiledMapList(){
         return mapNames;
