@@ -21,6 +21,7 @@ public class HighscoreMenuView extends AbstractMenuView {
         titleLabel = new Label("Highscore", textStyle);
         titleLabel.setFontScale(2);
 
+        //Initialize buttons
         createButtons();
 
 

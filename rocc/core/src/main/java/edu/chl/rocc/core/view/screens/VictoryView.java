@@ -28,6 +28,7 @@ public class VictoryView extends AbstractMenuView{
         scoreLabel = new Label("0",textStyle);
         timeLabel = new Label("0",textStyle);
 
+        //Initialize buttons
         createButtons();
 
         //adds to table

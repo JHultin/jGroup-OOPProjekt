@@ -34,6 +34,7 @@ public class OptionsMenuView extends AbstractMenuView{
         titleLabel = new Label("Options", textStyle);
         titleLabel.setFontScale(2);
 
+        //Initialize buttons
         createButtons();
 
         //adds title to table

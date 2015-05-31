@@ -29,6 +29,7 @@ public class LevelChooserView extends AbstractMenuView {
         titleLabel = new Label("Choose Level", textStyle);
         titleLabel.setFontScale(2);
 
+        //Initialize buttons
         createButtons();
 
         //Adds to table
