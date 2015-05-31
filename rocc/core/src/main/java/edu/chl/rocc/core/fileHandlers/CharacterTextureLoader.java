@@ -9,11 +9,9 @@ import java.io.File;
  */
 public class CharacterTextureLoader extends AbstractTextFileHandler {
 
-
         public CharacterTextureLoader(String name){
             super("characterAnimation/" + name + ".txt", new File("characterAnimation"));
         }
-
 
         /**
          * Get the value for requested character animation

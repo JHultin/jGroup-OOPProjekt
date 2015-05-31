@@ -1,8 +1,5 @@
 package edu.chl.rocc.core.observers;
 
-import edu.chl.rocc.core.observers.IDeathListener;
-import edu.chl.rocc.core.observers.IDeathEvent;
-
 /**
  * Interface for mortal objects, things in the game that have a death-trigger that should be listened to
  *

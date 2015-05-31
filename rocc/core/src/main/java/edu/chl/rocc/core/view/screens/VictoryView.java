@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 
 /**
+ * The Victory view which appears when the game is won.
  * Created by Jacob on 2015-05-21.
  */
 public class VictoryView extends AbstractMenuView{

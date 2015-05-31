@@ -34,7 +34,6 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
     private final Image backgroundImage;
     private final Texture backgroundTexture;
 
-
     //TextButtonStyle
     protected final BitmapFont font = new BitmapFont();
     protected final TextButton.TextButtonStyle textButtonStyle;
