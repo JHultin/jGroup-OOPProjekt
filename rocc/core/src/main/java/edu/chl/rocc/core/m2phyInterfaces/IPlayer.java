@@ -129,7 +129,10 @@ public interface IPlayer {
      */
     public ICharacter getActiveCharacter();
 
-    public void cycleActivePlayer();
+    /**
+     * Change which the active character is, cycles according to the character list.
+     */
+    public void cycleActiveCharacter();
 
     /**
      * @return the index of the front character in the character list.

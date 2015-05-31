@@ -213,7 +213,7 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void cycleActivePlayer() {
+    public void cycleActiveCharacter() {
         this.setActiveCharacter((activeCharacterIndex + 1) % characters.size());
     }
 

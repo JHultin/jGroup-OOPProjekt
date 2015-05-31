@@ -193,7 +193,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void changeLead() {
-        this.player.cycleActivePlayer();
+        this.player.cycleActiveCharacter();
     }
 
     @Override

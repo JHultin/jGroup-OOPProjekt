@@ -125,8 +125,8 @@ public class PhyPlayer implements IPlayer {
     }
 
     @Override
-    public void cycleActivePlayer(){
-        this.player.cycleActivePlayer();
+    public void cycleActiveCharacter(){
+        this.player.cycleActiveCharacter();
     }
 
     @Override
