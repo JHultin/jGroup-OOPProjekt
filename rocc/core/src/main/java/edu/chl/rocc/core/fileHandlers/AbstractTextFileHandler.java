@@ -77,8 +77,9 @@ public abstract class AbstractTextFileHandler {
 
         // Try to write the current settings to file
         try {
-            FileWriter fw = new FileWriter(Gdx.files.internal(filePath).toString());
-            PrintWriter pw = new PrintWriter(fw);
+            OutputStream output = new FileOutputStream(Gdx.files.internal(filePath).toString());
+            Writer writer = new OutputStreamWriter(output);
+            PrintWriter pw = new PrintWriter(writer);
 
             // Write the key followed by responding value
             for (Map.Entry<String, String> optionEntry : info.entrySet()){

@@ -19,7 +19,7 @@ public class GeneralOptions extends AbstractTextFileHandler {
     }
 
     private GeneralOptions() {
-        super("assets/options/general.txt", new File("assets/options"));
+        super("options/general.txt", new File("assets/options"));
     }
 
     /**

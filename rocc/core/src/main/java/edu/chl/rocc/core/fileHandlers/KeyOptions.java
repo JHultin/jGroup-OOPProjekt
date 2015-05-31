@@ -24,7 +24,7 @@ public class KeyOptions extends AbstractTextFileHandler {
     }
 
     private KeyOptions() {
-        super("assets/options/keys.txt", new File("assets/options"));
+        super("options/keys.txt", new File("assets/options"));
     }
 
     /**

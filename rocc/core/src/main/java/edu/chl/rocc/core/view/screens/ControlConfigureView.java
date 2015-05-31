@@ -109,7 +109,6 @@ public class ControlConfigureView extends AbstractMenuView {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
-        System.out.println(Gdx.input.getInputProcessor());
     }
 
     @Override
