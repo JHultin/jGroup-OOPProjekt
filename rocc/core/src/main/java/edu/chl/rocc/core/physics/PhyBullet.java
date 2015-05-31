@@ -23,11 +23,10 @@ public class PhyBullet implements IBullet {
     private final float velocity;
     private final int bulletDamage;
 
-    public PhyBullet(World world, String name, float x, float y, float xDir, float yDir /*, boolean isEnemyBullet*/){
+    public PhyBullet(World world, String name, float x, float y, float xDir, float yDir){
         this.world = world;
 
-        //this.direction = vec;
-        bulletDamage = 5;
+        this.bulletDamage = 5;
 
         this.bullet = new Bullet(name, x / PPM, y / PPM);
         this.velocity = 500 / PPM;
