@@ -15,6 +15,12 @@ public class PhyWeapon implements IWeapon {
 
     private final IWeapon weapon;
 
+    /**
+     * Creates weapon. Constructor.
+     *
+     * @param bFac
+     * @param name
+     */
     public PhyWeapon(IBulletFactory bFac, String name){
         this.weapon = new Weapon(bFac, name);
     }

@@ -65,8 +65,8 @@ public class DefeatView extends AbstractMenuView{
         timeLabel.setText("" + model.getTime());
     }
 
-
-    public void createButtons(){
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         retryLevelButton = new TextButton("Try Again", textButtonStyle);
         backButton = new TextButton("Back to Menu", textButtonStyle);
 

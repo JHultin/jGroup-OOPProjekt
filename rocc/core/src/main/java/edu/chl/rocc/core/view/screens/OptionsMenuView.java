@@ -14,7 +14,7 @@ import edu.chl.rocc.core.fileHandlers.GeneralOptions;
  * Created by Jacob on 2015-05-11.
  */
 public class OptionsMenuView extends AbstractMenuView{
-
+    //Title
     private final Label titleLabel;
 
     private TextButton backButton, controlsButton;
@@ -63,15 +63,16 @@ public class OptionsMenuView extends AbstractMenuView{
         stage.addActor(table);
     }
 
-    public void createButtons(){
+    //Creates all of the buttons, checkbox and sliders and adds listeners
+    private void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
         backButton.pad(20);
 
         controlsButton = new TextButton("Configure Controls", textButtonStyle);
         controlsButton.pad(20);
 
-        try {
-            //Checkbox
+        //Checkbox
+        try {//Is used to prevent the game from chrashing if the checkBox files isn't found
             TextureAtlas checkBoxAtlas = new TextureAtlas(Gdx.files.internal("button/checkBox/checkBox.pack"));
             Skin checkBoxSkin = new Skin(checkBoxAtlas);
 
@@ -121,7 +122,7 @@ public class OptionsMenuView extends AbstractMenuView{
             fullscreenCheckBox.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (fullscreenCheckBox.isChecked()) {
+                    if (fullscreenCheckBox.isChecked()) {//sets fullscreen if checked
                         Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width,
                                 Gdx.graphics.getDesktopDisplayMode().height, true);
                         generalOptions.setOption("isFullscreen", 1);

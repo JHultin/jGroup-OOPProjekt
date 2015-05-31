@@ -19,6 +19,14 @@ public class PhyPickupableCharacter implements IPickupableCharacter {
     private final Body body;
     private final World world;
 
+    /**
+     * Creates PickupableCharacter. Constructor.
+     *
+     * @param name
+     * @param world
+     * @param x
+     * @param y
+     */
     public PhyPickupableCharacter(String name, World world, float x, float y){
         this.pCharacter = new PickupableCharacter(name);
         this.world = world;

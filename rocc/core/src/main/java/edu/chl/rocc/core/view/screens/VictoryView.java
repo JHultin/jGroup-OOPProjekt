@@ -61,7 +61,9 @@ public class VictoryView extends AbstractMenuView{
         timeLabel.setText("" + model.getTime());
     }
 
-    public void createButtons(){
+
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         nextLevelButton = new TextButton("Next Level", textButtonStyle);
         backButton = new TextButton("Back to Menu", textButtonStyle);
 

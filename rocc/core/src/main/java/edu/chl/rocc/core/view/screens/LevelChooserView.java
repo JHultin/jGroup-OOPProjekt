@@ -15,8 +15,10 @@ import java.util.ArrayList;
  * Created by Jacob on 2015-05-30.
  */
 public class LevelChooserView extends AbstractMenuView {
+    //Title
     private final Label titleLabel;
 
+    //Buttons
     private TextButton backButton;
     private TextButton lvl1Button, lvl2Button, lvl3Button;
 
@@ -53,8 +55,8 @@ public class LevelChooserView extends AbstractMenuView {
         super.show();
     }
 
-
-    public void createButtons(){
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
 
         lvl1Button = new TextButton("Level 1", textButtonStyle);
