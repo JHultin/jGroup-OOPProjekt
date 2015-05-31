@@ -63,7 +63,6 @@ public class RoCCModel implements IRoCCModel {
         player.move(dir);
     }
 
-    @Override
     public void moveFollowers(Direction dir){
         player.moveFollowers(dir);
     }

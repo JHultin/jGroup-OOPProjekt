@@ -22,10 +22,14 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     private final List<IEnemy> enemyToChangeDirection;
     private final List<IBullet> bulletsToRemove;
 
+    private final List<Fixture> fixtureList;
+
     public CollisionListener(){
         itemsToRemove = new ArrayList<IPickupable>();
         enemyToChangeDirection = new ArrayList<IEnemy>();
         bulletsToRemove = new ArrayList<IBullet>();
+        fixtureList = new ArrayList<Fixture>();
+
     }
 
     //called when contact between two fixtures begins
@@ -35,87 +39,53 @@ public class CollisionListener implements ContactListener, ICollisionListener {
         //Fetches the two fixtures
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
+        fixtureList.add(fa);
+        fixtureList.add(fb);
 
         //Handles if character on ground
-        if ("footSensor".equals(fa.getUserData())) {
-            ((ICharacter) fa.getBody().getUserData()).hitGround();
-        }
-        if ("footSensor".equals(fb.getUserData())) {
-            ((ICharacter) fb.getBody().getUserData()).hitGround();
-        }
-
-        if (isCorrectFixtureType(fa, "food")) {
-            itemsToRemove.add((IFood) (fa.getBody().getUserData()));
-        }
-        if (isCorrectFixtureType(fb, "food")) {
-            itemsToRemove.add((IFood) (fb.getBody().getUserData()));
-        }
-        if (isCorrectFixtureType(fa, "pickupCharacter")) {
-            itemsToRemove.add((IPickupableCharacter) (fa.getBody().getUserData()));
-        }
-        if (isCorrectFixtureType(fb, "pickupCharacter")) {
-            itemsToRemove.add((IPickupableCharacter) (fb.getBody().getUserData()));
-        }
-        if ("jumpPointSensor".equals(fa.getUserData())) {
-            ((ICharacter) fb.getBody().getUserData()).toggleFollowerOnJumpPoint();
-        }
-        if ("jumpPointSensor".equals(fb.getUserData())) {
-            ((ICharacter) fa.getBody().getUserData()).toggleFollowerOnJumpPoint();
-        }
-        if ("finish".equals(fa.getUserData())) {
-            this.newState = "victory";
-        }
-        if ("finish".equals(fb.getUserData())) {
-            this.newState = "victory";
-        }
-
-        /*
-         * When enemy walks into a body or a wall into change direction
-         */
-        if ("enemyUpperSensor".equals(fa.getUserData())){
-            if("ground".equals(fb.getBody().getUserData())){
-                enemyToChangeDirection.add((IEnemy) (fa.getBody().getUserData()));
-            }else if("body".equals(fb.getUserData())){
-                enemyToChangeDirection.add((IEnemy)(fa.getBody().getUserData()));
-                ((ICharacter)fb.getBody().getUserData()).decHP(((IEnemy) (fa.getBody().getUserData())).getDamageDeal());
+        for(int i=0; i<2; i++) {
+            if (isCorrectFixtureType(fixtureList.get(i), "footSensor")) {
+                ((ICharacter) fixtureList.get(i).getBody().getUserData()).hitGround();
             }
-        }
-        if ("enemyUpperSensor".equals(fb.getUserData())){
-            if("ground".equals(fa.getBody().getUserData())) {
-                enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
-            }else if("body".equals(fa.getUserData())){
-                enemyToChangeDirection.add((IEnemy) (fb.getBody().getUserData()));
-                ((ICharacter)fa.getBody().getUserData()).decHP(((IEnemy) (fb.getBody().getUserData())).getDamageDeal());
+            if (isCorrectFixtureType(fixtureList.get(i), "food")) {
+                itemsToRemove.add((IFood) (fixtureList.get(i).getBody().getUserData()));
             }
-        }
-
-        //When bullet hits enemy it takes damage
-        if("bullet".equals(fa.getUserData())){
-            if("enemyUpperSensor".equals(fb.getUserData())){
-                ((IEnemy) fb.getBody().getUserData()).decHP(((IBullet) (fa.getBody())).getBulletDamage());
-                System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
+            if (isCorrectFixtureType(fixtureList.get(i), "pickupCharacter")) {
+                itemsToRemove.add((IPickupableCharacter) (fixtureList.get(i).getBody().getUserData()));
             }
-            if("ground".equals(fb.getUserData())){
-                System.out.println(fa.getBody());
+            if (isCorrectFixtureType(fixtureList.get(i), "finish")) {
+                this.newState = "victory";
             }
-            //removes bullet
-            bulletsToRemove.add((IBullet) (fa.getBody().getUserData()));
-        }
-        if("bullet".equals(fb.getUserData())){
-            if("enemyUpperSensor".equals(fa.getUserData())){
-                ((IEnemy) (fa.getBody().getUserData())).decHP(((IBullet) (fb.getBody().getUserData())).getBulletDamage());
-                System.out.println("HP " + ((IEnemy) fa.getBody().getUserData()).getHP());
+            if (isCorrectFixtureType(fixtureList.get(i), "jumpPointSensor")) {
+                ((ICharacter) fixtureList.get(1-i).getBody().getUserData()).toggleFollowerOnJumpPoint();
             }
-            if("ground".equals(fa.getUserData())){
-                System.out.println(fa.getBody().getUserData());
+            //When enemy walks into a body or a wall into change direction
+            if (isCorrectFixtureType(fixtureList.get(i), "enemyUpperSensor")) {
+                handlesEnemyCollision(fixtureList.get(i), fixtureList.get(1-i));
             }
-            //removes bullet
-            bulletsToRemove.add((IBullet) (fb.getBody().getUserData()));
+            //When bullet hits enemy it takes damage
+            if ("bullet".equals(fixtureList.get(i).getUserData())) {
+                if ("enemyUpperSensor".equals(fixtureList.get(1-i).getUserData())) {
+                    ((IEnemy) fixtureList.get(1-i).getBody().getUserData()).decHP(((IBullet) (fixtureList.get(i).getBody())).getBulletDamage());
+                }
+                //removes bullet
+                bulletsToRemove.add((IBullet) (fixtureList.get(i).getBody().getUserData()));
+            }
         }
     }
 
     private static boolean isCorrectFixtureType(Fixture fix, String str){
         return (str.equals(fix.getUserData()));// && fix.getBody().getUserData().getClass().equals(c));
+    }
+
+    //Handles the enemy collision with suitable action
+    private void handlesEnemyCollision(Fixture fixA, Fixture fixB){
+        if("ground".equals(fixB.getBody().getUserData())){
+            enemyToChangeDirection.add((IEnemy) (fixA.getBody().getUserData()));
+        }else if("body".equals(fixB.getUserData())){
+            enemyToChangeDirection.add((IEnemy)(fixA.getBody().getUserData()));
+            ((ICharacter)fixB.getBody().getUserData()).decHP(((IEnemy) (fixA.getBody().getUserData())).getDamageDeal());
+        }
     }
 
     //Called when contact between two fixtures ends

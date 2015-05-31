@@ -8,6 +8,8 @@ import edu.chl.rocc.core.observers.IDeathEvent;
 import java.util.List;
 
 /**
+ * Interface for all main model classes.
+ *
  * Created by Joel on 2015-05-03.
  */
 public interface IRoCCModel extends IGameLossable{
@@ -28,15 +30,21 @@ public interface IRoCCModel extends IGameLossable{
     public void addBlock(IBody body);
 
     /**
-    * Move the character in a given direction.
-    */
+     * Move the character in a given direction.
+     * @param dir direction in which the character will be moved.
+     */
     public void moveSideways(Direction dir);
 
     /**
-    * Move the followers in a given direction.
-    */
+     * Move the followers in a given direction.
+     * @param dir direction in which the followers will be moved.
+     */
     public void moveFollowers(Direction dir);
 
+    /**
+     * @return true if the given character is moving, false otherwise.
+     * @param character the character to be controlled
+     */
     public boolean characterIsMoving(ICharacter character);
 
     /**
@@ -44,6 +52,11 @@ public interface IRoCCModel extends IGameLossable{
     */
     public void jump();
 
+    /**
+     * Make the active character shoot/fire a bullet.
+     * @param x the x-coordinate the bullet will be fired towards
+     * @param y the y-coordinate the bullet will be fired towards
+     */
     public void shoot(float x, float y);
 
     /**
@@ -55,7 +68,6 @@ public interface IRoCCModel extends IGameLossable{
     * @return y-coordinate of the lead character.
     */
     public float getCharacterYPos();
-
 
     /**
      * Updates the physical world, eg. all collisions and movement.
@@ -71,7 +83,8 @@ public interface IRoCCModel extends IGameLossable{
     public List<IPickupable> getPickupables();
 
     /**
-     *
+     * Add a pickupable.
+     * @param pickup pickupable to be added
      */
     public void addPickupable(IPickupable pickup);
 
@@ -84,6 +97,7 @@ public interface IRoCCModel extends IGameLossable{
 
     /**
      * Add a weapon.
+     * @param name name/ID of the weapon
      */
     public void addWeapon(String name);
 
@@ -117,22 +131,34 @@ public interface IRoCCModel extends IGameLossable{
     */
     public List<ICharacter> getCharacters();
 
+    /**
+     * @return a list of all enemies in the level.
+     */
     public List<IEnemy> getEnemies();
 
+    /**
+     * Add an enemy to the level.
+     * @param enemy enemy to be added
+     */
     public void addEnemy(IEnemy enemy);
 
     /**
-     * Sets a collitionlistener to the world, this will then handle all collistions
+     * Sets a collitionlistener to the world, this will then handle all collistions.
      * @param collisionListener listener to set to the world
      */
     public void setCollisionListener(ICollisionListener collisionListener);
 
     /**
-     * Creates a new character, adds it to the player and the world
+     * Creates a new character, adds it to the player and the world.
      * @param name description or id for the character
      */
     public void addCharacter(String name);
 
+    /**
+     * Creates a new character, adds it to the player and the world.
+     * @param name description or id for the character
+     * @param listener deathlistener
+     */
     public void addCharacter(String name, IDeathListener listener);
 
     public void setDeathListener(IDeathListener deathListener);
@@ -143,26 +169,52 @@ public interface IRoCCModel extends IGameLossable{
     public void changeLead();
 
     /**
-     * Called to lower memory leak
+     * Called to lower memory leak.
      */
     public void dispose();
 
+    /**
+     * @return the score of the player.
+     */
     public int getScore();
 
+    /**
+     * Increase the player's score.
+     * @param inc the amount to increase the score with
+     */
     public void incScore(int inc);
 
+    /**
+     * @return for how long the game has been run.
+     */
     public int getTime();
 
     public void handleDeath(IDeathEvent deathEvent);
 
     public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange);
 
+    /**
+     * Remove bullets.
+     * @param bulletsToRemove list of bullets to remove.
+     */
     public void removeBullets(List<IBullet> bulletsToRemove);
 
+    /**
+     * Add a jump point to the level.
+     * @param jumpPoint jump point to be added
+     */
     public void addJumpPoint(IJumpPoint jumpPoint);
 
+    /**
+     * Add a finish point to the level.
+     * @param finish finish point to be added
+     */
     public void addFinish(IFinishPoint finish);
 
+    /**
+     * Set a character to be the active character.
+     * @param activeIndex index in the character list of the character to be set as active.
+     */
     public void setActiveCharacter(int activeIndex);
 
     /**

@@ -1,21 +1,24 @@
 package edu.chl.rocc.core.m2phyInterfaces;
 
 /**
+ * Interface for body objects.
+ * Used because model classes cannot have dependencies to extern libraries.
+ *
  * Created by Yen on 2015-05-11.
  */
 public interface IBody {
 
     /**
-     * Set linear velocity on body with x-force and y-force
-     * @param x
-     * @param y
+     * Set linear velocity on center body with x-force and y-force
+     * @param x x-coordinate of the center
+     * @param y y-coordinate of the center
      */
     public void setLinearVelocity(float x, float y);
 
     /**
      * Applies force to center of the body with x-force and y-force
-     * @param x
-     * @param y
+     * @param x x-coordinate of the center
+     * @param y y-coordinate of the center
      */
     public void applyForceToCenter(float x, float y);
 
