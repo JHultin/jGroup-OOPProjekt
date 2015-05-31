@@ -167,7 +167,8 @@ public class PlayView implements Screen,IViewObservable{
                                                 // the list needs to be synchronized
             for (ICharacter character : model.getCharacters()) {
 
-                if (!profileImageHashMap.containsKey(character.getName())) {//Adds a new profile image and healthbar
+                if (!profileImageHashMap.containsKey(character.getName())) {    //Adds a new profile image and healthbar
+                                                                                // if a new character is added.
                     profileImageHashMap.put(character.getName(),
                             new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
 
@@ -181,7 +182,7 @@ public class PlayView implements Screen,IViewObservable{
 
                 healthBarHashMap.get(character.getName()).setValue(character.getHP());
 
-                //Gets the name from the latest died character and removes its profilePic and healthbar
+                //Gets the name from the latest deceased character and removes its profilePic and healthbar
                 if(profileImageHashMap.containsKey(model.getDeadCharacterName())){
                     profileImageHashMap.get(model.getDeadCharacterName()).remove();
                     healthBarHashMap.get(model.getDeadCharacterName()).remove();
@@ -198,8 +199,9 @@ public class PlayView implements Screen,IViewObservable{
                 characterName = character.getName();
                 characterState = character.getMoveState();
                 handlerHashMap = charactersAnimationHashMap.get(characterName);
-                animationHandler = handlerHashMap.get(characterState);
-                animationHandler.update();
+                animationHandler = handlerHashMap.get(characterState);  //Sets the current animation to the
+                                                                        //current TextureRegion in handlerHashMap
+                animationHandler.update(); //Updates the Animation sequence
                 textureRegion = new TextureRegion(
                         animationHandler.getFrame());
 
@@ -208,6 +210,7 @@ public class PlayView implements Screen,IViewObservable{
         }
 
         //Draws the weapon
+        //Checks the current direction and positions the weapon accordingly.
         if(model.getActiveCharacter().getLastDirection().equals(Direction.LEFT)) {
             batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" + model.getActiveCharacter().getLastDirection().toString().toLowerCase())
                     , model.getCharacterXPos() - 15, model.getCharacterYPos() + 3);
@@ -350,7 +353,7 @@ public class PlayView implements Screen,IViewObservable{
         textButtonStyle.font = font;
         textButtonStyle.fontColor = Color.BLACK;
 
-
+        //Initiates buttons
         TextButton resumeButton = new TextButton("Resume",textButtonStyle);
         TextButton restartButton = new TextButton("Restart",textButtonStyle);
         TextButton optionsButton = new TextButton("Options", textButtonStyle);
@@ -369,14 +372,13 @@ public class PlayView implements Screen,IViewObservable{
         restartButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-                notifyObserver("game");
+
             }
         });
 
         optionsButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x, float y){
-//                notifyObserver("options");
             }
         });
 
@@ -388,14 +390,14 @@ public class PlayView implements Screen,IViewObservable{
             }
         });
 
-        pauseWindow.padTop(64);
+        pauseWindow.padTop(60);
 
         pauseWindow.add(resumeButton).width(100).height(40).row();
         pauseWindow.add(restartButton).width(100).height(40).row();
         pauseWindow.add(optionsButton).width(100).height(40).row();
         pauseWindow.add(quitButton).width(100).height(40).row();
 
-        //Adds spacing to bottom
+        //Adds spacing to the bottom of all components
         for(Cell cell : pauseWindow.getCells()){
             pauseWindow.getCell(cell.getActor()).spaceBottom(10);
         }
@@ -405,12 +407,6 @@ public class PlayView implements Screen,IViewObservable{
         pauseWindow.setPosition(stage.getWidth()/2 - pauseWindow.getWidth()/2,stage.getHeight()/2 - pauseWindow.getHeight()/2);
     }
 
-
-    /**
-     * Creates a healthBar and places it in a
-     * HealthBarHashMap.
-     * @param character
-     */
     private void createHealthBar(ICharacter character){
         Skin skin = new Skin();
         Pixmap pixmap = new Pixmap(10, 10, Pixmap.Format.RGBA8888);
