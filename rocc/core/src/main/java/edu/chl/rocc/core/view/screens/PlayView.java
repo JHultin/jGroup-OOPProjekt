@@ -188,10 +188,18 @@ public class PlayView implements Screen,IViewObservable{
         }
 
         synchronized (model.getCharacters()) {
+            String characterName;
+            String characterState;
+            HashMap<String, AnimationHandler> handlerHashMap;
+            AnimationHandler animationHandler;
             for (ICharacter character : model.getCharacters()) {
-                charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).update();
+                characterName = character.getName();
+                characterState = character.getMoveState();
+                handlerHashMap = charactersAnimationHashMap.get(characterName);
+                animationHandler = handlerHashMap.get(characterState);
+                animationHandler.update();
                 textureRegion = new TextureRegion(
-                        charactersAnimationHashMap.get(character.getName()).get(character.getMoveState()).getFrame());
+                        animationHandler.getFrame());
 
                 batch.draw(textureRegion, character.getX(), character.getY());
             }

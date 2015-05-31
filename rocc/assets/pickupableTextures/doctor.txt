@@ -1,3 +1,3 @@
 doctor
-characters/doctor/idleLeft.png
+characters/doctor/idleleft.png
 .
