@@ -6,7 +6,7 @@ import edu.chl.rocc.core.m2phyInterfaces.*;
 
 
 /**
- * Class for representing levels.
+ * Class for representing levels handling everything logical.
  * <br>Implements ILevel.
  *
  * Created by Yen on 2015-04-22.

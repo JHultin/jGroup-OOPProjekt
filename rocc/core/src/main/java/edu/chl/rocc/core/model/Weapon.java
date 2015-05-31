@@ -7,7 +7,7 @@ import edu.chl.rocc.core.m2phyInterfaces.IWeapon;
 import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
- * Class for weapons.
+ * Class for weapons handling everything logical.
  * <br>Implements IWeapon.
  *
  * @author Jenny Orell

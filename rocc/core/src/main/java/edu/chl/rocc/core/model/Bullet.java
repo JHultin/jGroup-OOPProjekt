@@ -5,7 +5,7 @@ import edu.chl.rocc.core.m2phyInterfaces.IBullet;
 import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
- * Class for projectiles.
+ * Class for projectiles handling everything logical.
  * <br>Implements IBullet.
  *
  * @author Jenny Orell

@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * A class for the playable characters, handeling data and setters/getters.
+ * <br>Handles everything logical.
  * <br>Implements ICharacter.
  *
  * @author Jenny Orell

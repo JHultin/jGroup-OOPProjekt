@@ -3,7 +3,7 @@ package edu.chl.rocc.core.model;
 import edu.chl.rocc.core.m2phyInterfaces.IPickupableCharacter;
 
 /**
- * Class for pickupable characters.
+ * Class for pickupable characters handling everything logical.
  * <br>Implements IPickupableCharacter.
  *
  * Created by Joel on 2015-05-12.
