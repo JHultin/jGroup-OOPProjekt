@@ -32,9 +32,8 @@ public class PhyEnemy implements IEnemy {
     private final int airForce;
     private final int health;
     private final int value;
+    private int nbrOfCollisions = 0;
 
-    // dåligt variabelnamn
-    private int i = 0;
 
     public PhyEnemy(World world, float x, float y, String name){
 
@@ -79,7 +78,7 @@ public class PhyEnemy implements IEnemy {
 
     @Override
     public void changeMoveDirection(){
-            if(i==1) {
+            if(nbrOfCollisions==1) {
                 if (this.direction.equals(Direction.LEFT)) {
                     body.setLinearVelocity(new Vec2(airForce, 0));
                     this.direction = Direction.RIGHT;
@@ -87,10 +86,10 @@ public class PhyEnemy implements IEnemy {
                     body.setLinearVelocity(new Vec2(-airForce, 0));
                     this.direction = Direction.LEFT;
                 }
-                i = i - 2;
+                nbrOfCollisions = nbrOfCollisions - 2;
                 this.enemy.move(this.direction);
             }
-        i++;
+        nbrOfCollisions++;
     }
 
     @Override

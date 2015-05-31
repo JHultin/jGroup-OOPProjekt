@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Class handling the physics for levels.
+ * <br>Implements ILevel.
+ *
  * Created by Joel on 2015-05-03.
  */
 public class PhyLevel implements ILevel {
@@ -97,7 +100,6 @@ public class PhyLevel implements ILevel {
     public int hashCode(){
         int hash = 0;
         hash += world.hashCode();
-        // hash += level.hashCode(); // For when level gets a hashCode
         return hash;
     }
 

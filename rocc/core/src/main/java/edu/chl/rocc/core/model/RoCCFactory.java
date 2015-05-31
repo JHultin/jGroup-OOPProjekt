@@ -7,6 +7,7 @@ import java.lang.*;
 
 /**
  * Interface for factory creating all objects handling all non-physics related logic in our game.
+ * <br>Implements IRoCCFactory.
  *
  * Created by Joel on 2015-05-08.
  */

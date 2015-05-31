@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class handeling the player.
+ * Class handeling the player handling everything logical.
  * <br>Implements IPlayer.
  *
  * Created by Jacob on 2015-04-22.

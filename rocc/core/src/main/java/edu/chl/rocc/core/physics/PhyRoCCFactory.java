@@ -5,7 +5,8 @@ import edu.chl.rocc.core.m2phyInterfaces.*;
 import org.jbox2d.dynamics.World;
 
 /**
- * Iterface for factory creating all objects handling the physics in our game
+ * Interface for factory creating all objects handling the physics in our game.
+ * <br>Implements IRoCCFactory.
  *
  * Created by Joel on 2015-05-08.
  */

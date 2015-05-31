@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class handling the game model.
+ * A class for the game model handling everything logical.
  * <br>Implements IRoCCModel.
  *
  * Created by Yen on 2015-04-22.
