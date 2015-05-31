@@ -5,34 +5,39 @@ import edu.chl.rocc.core.observers.IMortal;
 
 /**
  * An interface describing a character.
+ * <br>Extends IMortal.
  *
  * Created by Joel on 2015-05-03.
  */
 public interface ICharacter extends IMortal {
 
     /**
-    * @return the character's health.
-    */
+     * @return the character's health.
+     */
     public int getHP();
 
     /**
-    * Set character's health with a chosen value.
-    */
+     * Set character's health with a chosen value.
+     * @param value value to set the health as.
+     */
     public void setHP(int value);
 
     /**
-    * Increase character's health with a given value.
-    */
+     * Increase character's health with a given value.
+     * @param value value to increase the health with.
+     */
     public void incHP(int value);
 
     /**
-    * Decrease character's health with a given value.
-    */
+     * Decrease character's health with a given value.
+     * @param value value to decrease the health with.
+     */
     public void decHP(int value);
 
     /**
-    * Move the character in a given direction.
-    */
+     * Move the character in a given direction.
+     * @param dir direction to move the character towards.
+     */
     public void move(Direction dir);
 
     /**
@@ -47,6 +52,8 @@ public interface ICharacter extends IMortal {
 
     /**
      * Teleport the character to a given location.
+     * @param x x-coordinate of the location
+     * @param y y-coordinate of the location
      */
     public void teleport(float x, float y);
 
