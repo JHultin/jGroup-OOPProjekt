@@ -22,7 +22,6 @@ public class Weapon implements IWeapon {
         this.bulletFactory = bFac;
         this.name = name;
 
-        // Hämta från textfil baserat på "name"
         this.bulletSpawnX = 45;
         this.bulletSpawnY = 22;
     }
@@ -50,10 +49,6 @@ public class Weapon implements IWeapon {
 
     @Override
     public void dispose() {
-        /*
-        for (IBullet bullet : bullets){
-            bullet.dispose();
-        }
-         */
+
     }
 }
