@@ -31,7 +31,6 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     }
 
 
-
     /**
      * Handles when two fixture comes in contact
      * @param contact
@@ -68,9 +67,9 @@ public class CollisionListener implements ContactListener, ICollisionListener {
                 handlesEnemyCollision(fixtureList.get(i), fixtureList.get(1-i));
             }
             //When bullet hits enemy it takes damage
-            if ("bullet".equals(fixtureList.get(i).getUserData())) {
-                if ("enemyUpperSensor".equals(fixtureList.get(1-i).getUserData())) {
-                    ((IEnemy) fixtureList.get(1-i).getBody().getUserData()).decHP(((IBullet) (fixtureList.get(i).getBody())).getBulletDamage());
+            if (isCorrectFixtureType(fixtureList.get(i), "bullet")) {
+                if (isCorrectFixtureType(fixtureList.get(1 - i), "enemyUpperSensor")) {
+                    ((IEnemy) fixtureList.get(1-i).getBody().getUserData()).decHP(((IBullet) (fixtureList.get(i).getBody()).getUserData()).getBulletDamage());
                 }
                 //removes bullet
                 bulletsToRemove.add((IBullet) (fixtureList.get(i).getBody().getUserData()));

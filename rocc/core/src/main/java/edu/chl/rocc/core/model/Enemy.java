@@ -12,8 +12,8 @@ import java.util.List;
 import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 
 /**
- * A class for handeling enemies(except for box2D stuff)
- * Handeling data and setters/getters.
+ * A class for enemies handling everything logical.
+ * Handles data and setters/getters.
  *
  * Created by Yen on 2015-05-09.
  */

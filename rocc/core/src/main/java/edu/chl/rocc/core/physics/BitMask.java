@@ -1,6 +1,8 @@
 package edu.chl.rocc.core.physics;
 
 /**
+ * Contains all the bitmasking for the fixtures
+ *
  * Created by Yen on 2015-05-05.
  */
 public enum BitMask {

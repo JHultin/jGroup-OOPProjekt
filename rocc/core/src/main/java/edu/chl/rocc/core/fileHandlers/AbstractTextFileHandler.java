@@ -22,7 +22,6 @@ public abstract class AbstractTextFileHandler {
     // Path to file where settings are saved
     private final String filePath;
 
-
     /**
      * Constructor describing the file to read and the folder it's placed in
      * @param filePath path for file to read or write to
@@ -135,5 +134,4 @@ public abstract class AbstractTextFileHandler {
             info.put(key, value);
         }
     }
-
 }

@@ -18,15 +18,16 @@ public class PhyFinishPoint implements IFinishPoint {
     public PhyFinishPoint (World world, float x, float y, float width, float height ){
         this.world = world;
 
+        //Defining & creating body
         BodyDef bDef = new BodyDef();
         bDef.position.set(x, y);
         bDef.type = BodyType.STATIC;
         this.body = world.createBody(bDef);
         this.body.setUserData(this);
 
+        //Defining & creating fixture
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width, height);
-
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_FINISH;

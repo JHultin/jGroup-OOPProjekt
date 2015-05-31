@@ -14,7 +14,6 @@ import edu.chl.rocc.core.model.Weapon;
 public class PhyWeapon implements IWeapon {
 
     private final IWeapon weapon;
-    //private final float width, height;
 
     public PhyWeapon(IBulletFactory bFac, String name){
         this.weapon = new Weapon(bFac, name);

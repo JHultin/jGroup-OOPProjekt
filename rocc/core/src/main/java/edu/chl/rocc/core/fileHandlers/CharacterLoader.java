@@ -27,7 +27,6 @@ public class CharacterLoader extends AbstractTextFileHandler {
                 (isEnemy ? new File("enemyDefinition") : new File("characterDefinition")));
     }
 
-
     /**
      * Get the value for responding charecaristic
      * @param charecaristic charecaristic

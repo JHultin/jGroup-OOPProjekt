@@ -12,16 +12,17 @@ import org.jbox2d.dynamics.World;
 import java.util.List;
 
 /**
+ * Class for handling the player's physics.
+ * <br>Implements IPlayer.
+ *
  * Created by Joel on 2015-05-03.
  */
 public class PhyPlayer implements IPlayer {
 
     private final IPlayer player;
-    private final World world;
 
     public PhyPlayer(World world){
         this.player = new Player(new PhyRoCCFactory(world));
-        this.world = world;
     }
 
     @Override
