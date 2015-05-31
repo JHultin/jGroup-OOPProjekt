@@ -1,0 +1,6 @@
+bigZombie
+doctor
+mother
+noEyes
+soldier
+zombie
