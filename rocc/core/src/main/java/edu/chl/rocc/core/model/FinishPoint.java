@@ -3,7 +3,7 @@ package edu.chl.rocc.core.model;
 import edu.chl.rocc.core.m2phyInterfaces.IFinishPoint;
 
 /**
- * Class for finish points.
+ * Class for finish points handling everything logical.
  *
  * Created by Joel on 2015-05-15.
  */

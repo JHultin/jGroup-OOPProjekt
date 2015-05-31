@@ -4,7 +4,7 @@ import static edu.chl.rocc.core.utility.GlobalConstants.PPM;
 import edu.chl.rocc.core.m2phyInterfaces.IFood;
 
 /**
- * Class for food objects.
+ * Class for food objects handling everything logical.
  * <br>Implements IFood.
  *
  * Created by Joel on 2015-05-08.

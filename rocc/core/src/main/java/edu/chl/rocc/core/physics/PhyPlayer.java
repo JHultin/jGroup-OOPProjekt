@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Class for handling the player's physics.
  * <br>Implements IPlayer.
- * 
+ *
  * Created by Joel on 2015-05-03.
  */
 public class PhyPlayer implements IPlayer {
