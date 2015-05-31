@@ -20,6 +20,12 @@ public class DeathEvent implements IDeathEvent {
         this(source, message, null);
     }
 
+    /**
+     * Constructor
+     * @param source which mortal died
+     * @param message message describing
+     * @param killer which object killed the mortal
+     */
     public DeathEvent(IMortal source, final String message, Object killer){
         this.source = source;
         this.message = message;
