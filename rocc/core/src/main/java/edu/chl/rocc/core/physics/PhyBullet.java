@@ -23,11 +23,10 @@ public class PhyBullet implements IBullet {
     private final float velocity;
     private final int bulletDamage;
 
-    public PhyBullet(World world, String name, float x, float y, float xDir, float yDir /*, boolean isEnemyBullet*/){
+    public PhyBullet(World world, String name, float x, float y, float xDir, float yDir){
         this.world = world;
 
-        //this.direction = vec;
-        bulletDamage = 5;
+        this.bulletDamage = 5;
 
         this.bullet = new Bullet(name, x / PPM, y / PPM);
         this.velocity = 500 / PPM;
@@ -45,12 +44,7 @@ public class PhyBullet implements IBullet {
         FixtureDef fDef = new FixtureDef();
         fDef.shape = shape;
         fDef.filter.categoryBits = BitMask.BIT_BULLET;
-        /*if(isEnemyBullet){
-            fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_BODY;
-        }else{
-             fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_ENEMY;
-        }*/
-        fDef.filter.maskBits = BitMask.BIT_GROUND | BitMask.BIT_ENEMY | BitMask.BIT_FRAME;
+        fDef.filter.maskBits = BitMask.BIT_ENEMY | BitMask.BIT_FRAME;
         body.createFixture(fDef).setUserData("bullet");
         body.setLinearVelocity(new Vec2(xDir * velocity, yDir * velocity));
     }

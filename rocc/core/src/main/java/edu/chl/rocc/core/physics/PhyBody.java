@@ -5,6 +5,9 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 /**
+ * Class for bodies only handling the physics.
+ * <br>Implements IBody.
+ *
  * Created by Yen on 2015-05-11.
  */
 public class PhyBody implements IBody{

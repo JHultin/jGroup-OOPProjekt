@@ -83,7 +83,7 @@ public class PhyRoCCModel implements IRoCCModel {
         // Get the layer with information about the solid ground
         this.createTileLayer("ground",
                 BitMask.BIT_GROUND,
-                (short) (BitMask.BIT_BODY | BitMask.BIT_BULLET | BitMask.BIT_ENEMY | BitMask.BIT_FOLLOWER)
+                (short) (BitMask.BIT_BODY | BitMask.BIT_ENEMY | BitMask.BIT_FOLLOWER)
         );
 
         this.createTileLayer("mapFrame", BitMask.BIT_FRAME, BitMask.BIT_BULLET);

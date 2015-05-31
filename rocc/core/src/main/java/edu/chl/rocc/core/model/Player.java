@@ -1,6 +1,5 @@
 package edu.chl.rocc.core.model;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IDeathListener;
 import edu.chl.rocc.core.factories.IRoCCFactory;
@@ -13,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Class handeling the player.
+ * <br>Implements IPlayer.
+ *
  * Created by Jacob on 2015-04-22.
  */
 public class Player implements IPlayer {

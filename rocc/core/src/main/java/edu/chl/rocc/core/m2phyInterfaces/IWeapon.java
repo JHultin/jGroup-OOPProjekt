@@ -27,6 +27,8 @@ public interface IWeapon {
      */
     public int getBulletSpawnY();
 
+    /**
+     * Method that makes it easier for Java's garbage collector to delete objects.
+     */
     public void dispose();
-
 }

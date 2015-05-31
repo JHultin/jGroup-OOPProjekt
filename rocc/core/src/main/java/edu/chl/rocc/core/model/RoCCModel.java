@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * A class handling the game model.
+ * <br>Implements IRoCCModel.
  *
  * Created by Yen on 2015-04-22.
  */
@@ -20,14 +21,11 @@ public class RoCCModel implements IRoCCModel {
 
     // The level keeps track of all items in the game
     final ILevel level;
-
     // Handles all characters and weapons
     final IPlayer player;
 
     String deadCharacterName;
-
     private final List<IGameLossListener> gameLossListeners;
-
     private IDeathListener deathListener;
 
 
@@ -217,9 +215,8 @@ public class RoCCModel implements IRoCCModel {
         return level.getTime();
     }
 
-
+    @Override
     public void changeDirectionOnEnemies(List<IEnemy> enemyDirToChange) {
-
 
     }
 

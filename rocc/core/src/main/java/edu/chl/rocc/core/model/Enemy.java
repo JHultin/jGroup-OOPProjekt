@@ -23,7 +23,7 @@ public class Enemy implements IEnemy{
     private final float x, y;
     private final String name;
     private Direction direction;
-    private boolean damageTaken;//A boolean to keep track if damageBeingTaken
+    private boolean damageTaken; // A boolean to keep track if damageBeingTaken
 
     private int timeCount;
 
