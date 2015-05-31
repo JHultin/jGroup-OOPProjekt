@@ -8,6 +8,8 @@ import edu.chl.rocc.core.observers.IDeathEvent;
 import java.util.List;
 
 /**
+ * Interface for all main model classes.
+ *
  * Created by Joel on 2015-05-03.
  */
 public interface IRoCCModel extends IGameLossable{
