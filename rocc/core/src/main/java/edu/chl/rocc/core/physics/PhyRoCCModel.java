@@ -48,7 +48,7 @@ public class PhyRoCCModel implements IRoCCModel {
         this.tMap = tMap;
     }
 
-    /**
+    /*
      * Changes the cursor/crosshair.
      */
     private void setCrosshair(String imgName){
@@ -97,6 +97,7 @@ public class PhyRoCCModel implements IRoCCModel {
         // Create layer for jump points
         this.createJumpPoints();
 
+        // Create a finish point.
         this.createFinish();
 
         this.createEnemies(listener);

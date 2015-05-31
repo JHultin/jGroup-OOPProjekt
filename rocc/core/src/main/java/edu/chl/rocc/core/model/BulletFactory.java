@@ -11,10 +11,6 @@ import edu.chl.rocc.core.m2phyInterfaces.IBullet;
  */
 public class BulletFactory implements IBulletFactory {
 
-    public BulletFactory(){
-
-    }
-
     @Override
     public IBullet createBullet(String name, float x, float y, float xDir, float yDir){
         return new Bullet(name, x, y);

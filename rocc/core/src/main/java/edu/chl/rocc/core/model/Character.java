@@ -35,6 +35,10 @@ public class Character implements ICharacter {
     private final List<IDeathListener> deathListeners;
     private boolean isMoving;
 
+    /**
+     * Constructor for a character described by name
+     * @param name identification of character
+     */
     public Character(String name){
         this.setHP(maxHealth);
         this.name = name;
@@ -210,6 +214,11 @@ public class Character implements ICharacter {
         }
     }
 
+    /**
+     * Returns a string describing the current state of the characters movement,
+     * used to find a correct texture
+     * @return a string describing the current moveState
+     */
     @Override
     public String getMoveState(){
         boolean tmpDamageTaken = damageTaken;
@@ -222,9 +231,13 @@ public class Character implements ICharacter {
                 timeCount = 0;
             }
         }
+
+        // Checks if the character is in the air, stands till or is moving
         String preName = (inAir ? "jump" : (this.getDirection().equals(Direction.NONE) ? "idle" : "move"));
+        // Checks the current direction, and if that is none, the last direction before that
         String surName = ((this.getDirection().equals(Direction.NONE)) ?
                 getLastDirection().toString().toLowerCase() : getDirection().toString().toLowerCase());
+        // Adds this together with a mark if the character was recently damaged
         return preName + surName + (tmpDamageTaken ? "Damage" : "");
     }
 }
