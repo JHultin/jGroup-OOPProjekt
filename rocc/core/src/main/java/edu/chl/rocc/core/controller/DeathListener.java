@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Listens to if something dies, HP down to zero
  * Created by Joel on 2015-05-18.
  */
 public class DeathListener implements IDeathListener {
@@ -22,6 +23,12 @@ public class DeathListener implements IDeathListener {
         deathsToHandle.add(death);
     }
 
+    /**
+     * Have to be called after the world is updated, not during.
+     * Gets a list of deaths to handle
+     *
+     * @return listToReturn
+     */
     public List<IDeathEvent> getDeathsToHandle(){
         List<IDeathEvent> listToReturn = new ArrayList<IDeathEvent>(deathsToHandle.size());
         for (IDeathEvent deathEvent : deathsToHandle){

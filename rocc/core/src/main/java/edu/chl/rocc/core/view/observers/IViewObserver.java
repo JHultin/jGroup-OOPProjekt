@@ -1,6 +1,5 @@
 package edu.chl.rocc.core.view.observers;
 
-
 /**
  * Created by Jacob on 2015-05-06.
  */

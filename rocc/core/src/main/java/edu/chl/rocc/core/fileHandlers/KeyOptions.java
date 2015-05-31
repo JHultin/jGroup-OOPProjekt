@@ -6,7 +6,7 @@ import java.io.*;
 
 /**
  * A class handling choosing and storing keysettings.
- * Get hold of the instance by getInstance(), no public constructor.
+ * Created using the singleton pattern
  *
  * Created by Joel on 2015-05-12.
  */
@@ -35,7 +35,9 @@ public class KeyOptions extends AbstractTextFileHandler {
         return super.saveInfo();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     public void setToDefault(){
         super.setInfo("Move Left", Integer.toString(Input.Keys.A));
         super.setInfo("Move Right", Integer.toString(Input.Keys.D));

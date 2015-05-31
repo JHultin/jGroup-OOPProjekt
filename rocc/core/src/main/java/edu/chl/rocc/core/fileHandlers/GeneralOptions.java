@@ -3,6 +3,8 @@ package edu.chl.rocc.core.fileHandlers;
 import java.io.*;
 
 /**
+ * Class for reading and saving options, such as volume.
+ * Uses the singleton pattern.
  * Created by Joel on 2015-05-12.
  */
 public class GeneralOptions extends AbstractTextFileHandler {
@@ -11,7 +13,7 @@ public class GeneralOptions extends AbstractTextFileHandler {
     private static final GeneralOptions instance = new GeneralOptions();
 
     /**
-     * Getter for the shared instance
+     * Getter for the shared instance.
      * @return the instance
      */
     public static GeneralOptions getInstance(){
@@ -48,6 +50,9 @@ public class GeneralOptions extends AbstractTextFileHandler {
         super.setInfo(option, Integer.toString(value));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void setToDefault() {
         super.setInfo("soundVolume", "100");
