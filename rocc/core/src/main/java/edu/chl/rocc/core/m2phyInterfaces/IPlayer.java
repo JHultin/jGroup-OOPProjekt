@@ -6,10 +6,15 @@ import edu.chl.rocc.core.utility.Direction;
 import java.util.List;
 
 /**
+ * An interface describing a player.
+ *
  * Created by Joel on 2015-05-03.
  */
 public interface IPlayer {
 
+    /**
+     * Make the active character jump.
+     */
     public void jump();
 
     /**
@@ -37,8 +42,14 @@ public interface IPlayer {
     */
     public void addCharacter(String name);
 
+    /**
+     * Adds a character to the character list.
+     */
     public void addCharacter(String name, IDeathListener listener);
 
+    /**
+     * Remove a character from the character list.
+     */
     public void removeCharacter(ICharacter character);
 
     /**
@@ -81,8 +92,15 @@ public interface IPlayer {
      */
     public int getBulletSpawnY();
 
+    /**
+     * Make the active character shoot/fire a bullet.
+     * @return the bullet that has been fired.
+     */
     public IBullet shoot(float xDir, float yDir);
 
+    /**
+     * Method that makes it easier for Java's garbage collector to delete objects.
+     */
     public void dispose();
 
     /**
@@ -96,6 +114,9 @@ public interface IPlayer {
      */
     public int getScore();
 
+    /**
+     * Increase the player's score.
+     */
     public void incScore(int inc);
 
     /**
