@@ -155,6 +155,8 @@ public class MainController {
         // Add correct listener to handle the collisions in the world
         this.collisionListener = new CollisionListener();
         this.model.setCollisionListener(this.collisionListener);
+        
+        this.model.setDeathListener(deathListener);
 
         // Then create the characters
         // This should be done with the help of a profile
@@ -166,7 +168,7 @@ public class MainController {
         createWeapons();
         this.model.changeWeapon();
 
-        this.model.addListener(gameLossListener);
+        this.model.addLoseListener(gameLossListener);
 
         Gdx.input.setInputProcessor(gameProcessor);
 

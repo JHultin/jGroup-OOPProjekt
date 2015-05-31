@@ -118,8 +118,8 @@ public class PlayView implements Screen,IViewObservable{
 
         pickupableHashMap = new HashMap<String, Texture>();
         pickupableNames = new String[]{"mother", "doctor", "soldier", "noEyes", "food"};
-        for(int i = 0; i<pickupableNames.length; i++){
-            addToPickupableHashMap(pickupableNames[i]);
+        for (String pickupableName : pickupableNames) {
+            addToPickupableHashMap(pickupableName);
         }
     }
 

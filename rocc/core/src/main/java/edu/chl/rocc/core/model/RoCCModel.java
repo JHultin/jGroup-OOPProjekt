@@ -28,6 +28,8 @@ public class RoCCModel implements IRoCCModel {
 
     private final List<IGameLossListener> gameLossListeners;
 
+    private IDeathListener deathListener;
+
 
     /**
      * Constructor for the model, creates a player and a level defined by a factory
@@ -112,7 +114,11 @@ public class RoCCModel implements IRoCCModel {
     public void removeItems(List<IPickupable> itemsToRemove) {
         for (IPickupable pickup : itemsToRemove){
             if(pickup instanceof IPickupableCharacter){
-                this.addCharacter(pickup.getName());
+                if (deathListener != null){
+                    this.addCharacter(pickup.getName(), deathListener);
+                } else {
+                    this.addCharacter(pickup.getName());
+                }
             } else if (pickup instanceof IFood) {
                 player.incScore(10);
             }
@@ -178,6 +184,11 @@ public class RoCCModel implements IRoCCModel {
     @Override
     public void addCharacter(String name, IDeathListener listener) {
         this.player.addCharacter(name, listener);
+    }
+
+    @Override
+    public void setDeathListener(IDeathListener deathListener) {
+        this.deathListener = deathListener;
     }
 
     @Override
@@ -260,12 +271,12 @@ public class RoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void addListener(IGameLossListener listener) {
+    public void addLoseListener(IGameLossListener listener) {
         this.gameLossListeners.add(listener);
     }
 
     @Override
-    public void removeListener(IGameLossListener listener) {
+    public void removeLoseListener(IGameLossListener listener) {
         this.gameLossListeners.remove(listener);
     }
 

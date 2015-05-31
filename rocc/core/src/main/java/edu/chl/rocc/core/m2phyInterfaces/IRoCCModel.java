@@ -135,6 +135,8 @@ public interface IRoCCModel extends IGameLossable{
 
     public void addCharacter(String name, IDeathListener listener);
 
+    public void setDeathListener(IDeathListener deathListener);
+
     /**
      * Randomly sets which character is in the front
      */

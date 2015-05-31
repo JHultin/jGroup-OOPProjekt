@@ -394,6 +394,11 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
+    public void setDeathListener(IDeathListener deathListener) {
+        this.model.setDeathListener(deathListener);
+    }
+
+    @Override
     public void changeLead() {
         this.model.changeLead();
     }
@@ -430,13 +435,13 @@ public class PhyRoCCModel implements IRoCCModel {
     }
 
     @Override
-    public void addListener(IGameLossListener listener) {
-        this.model.addListener(listener);
+    public void addLoseListener(IGameLossListener listener) {
+        this.model.addLoseListener(listener);
     }
 
     @Override
-    public void removeListener(IGameLossListener listener) {
-        this.model.removeListener(listener);
+    public void removeLoseListener(IGameLossListener listener) {
+        this.model.removeLoseListener(listener);
     }
 
     @Override

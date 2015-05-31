@@ -5,9 +5,9 @@ package edu.chl.rocc.core.observers;
  */
 public interface IGameLossable {
 
-    public void addListener(IGameLossListener listener);
+    public void addLoseListener(IGameLossListener listener);
 
-    public void removeListener(IGameLossListener listener);
+    public void removeLoseListener(IGameLossListener listener);
 
     public void gameLost();
 }
