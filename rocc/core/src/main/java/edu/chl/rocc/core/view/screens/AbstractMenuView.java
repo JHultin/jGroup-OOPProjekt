@@ -16,6 +16,8 @@ import edu.chl.rocc.core.view.observers.IViewObserver;
 import java.util.ArrayList;
 
 /**
+ * An abstract class which contains the common variables and
+ * methods for the menu screen.
  * Created by Jacob on 2015-05-11.
  */
 public abstract class AbstractMenuView implements Screen, IViewObservable {
@@ -90,12 +92,10 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
 
     @Override
     public void notifyObserver(String screen) {
-      //  System.out.println("notified");
             for (IViewObserver observer : observerArrayList) {
                 observer.viewUpdated(screen);
             }
     }
-
 
     @Override
     public void show() {
@@ -107,7 +107,7 @@ public abstract class AbstractMenuView implements Screen, IViewObservable {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        if(resize) {
+        if(resize) {//checks if the window has resized and then updates the proportions
             stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
             resize = false;
         }

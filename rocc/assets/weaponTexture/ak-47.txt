@@ -1,7 +1,0 @@
-LEFT
-weapons/ak-47/weaponLeft.png
-RIGHT
-weapons/ak-47/weaponRight.png
-bullet
-weapons/ak-47/bullet.png
-.
