@@ -14,11 +14,12 @@ import edu.chl.rocc.core.fileHandlers.KeyOptions;
 import java.util.HashMap;
 
 /**
+ * The view in which the user can configure the keys.
  * Created by Jacob on 2015-05-14.
  */
 public class ControlConfigureView extends AbstractMenuView {
 
-    //Options title
+    //Label title
     private final Label titleLabel;
 
     //A hashMap to contain all the button and one to contain all the button names.
@@ -88,16 +89,16 @@ public class ControlConfigureView extends AbstractMenuView {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        if(resize) {
+        if(resize) {//checks if the window has resized and then updates the proportions
             stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
             resize = false;
         }
 
 
         for (int i = 0; i<keyTitleArray.length; i++) {
-            if (keyToChange.equals(keyTitleArray[i])) {
+            if (keyToChange.equals(keyTitleArray[i])) {//if a key is selected do nothing
 
-            } else {
+            } else {//else set the button text to its saved value
                 keysBindingHashMap.get(keyTitleArray[i]).setText(Input.Keys.toString(keyOptions.getKey(keyTitleArray[i])));
             }
         }
@@ -127,6 +128,7 @@ public class ControlConfigureView extends AbstractMenuView {
         super.hide();
         Gdx.input.setInputProcessor(null);
     }
+
     public void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
         //Padding to button
@@ -137,6 +139,7 @@ public class ControlConfigureView extends AbstractMenuView {
 
         keysBindingHashMap = new HashMap<String, TextButton>();
 
+        //initiates the buttons
         moveLeftButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Move Left"))
                 , textButtonStyle);
         moveRightButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Move Right"))
@@ -148,8 +151,7 @@ public class ControlConfigureView extends AbstractMenuView {
         switchCharacterButton = new TextButton(Input.Keys.toString(keyOptions.getKey("Switch Character"))
                 , textButtonStyle);
 
-
-
+        //pads the buttons
         moveLeftButton.pad(10);
         moveRightButton.pad(10);
         jumpButton.pad(10);
@@ -234,6 +236,11 @@ public class ControlConfigureView extends AbstractMenuView {
 
     }
 
+    /**
+     * This method is used to set the new key
+     * of the currently selected action button.
+     * @param keycode
+     */
     public void setKey(int keycode){
         if(!keyToChange.equals("")){
             keyOptions.setKey(keyToChange, keycode);

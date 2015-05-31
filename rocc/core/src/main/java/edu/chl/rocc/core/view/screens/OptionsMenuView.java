@@ -120,9 +120,8 @@ public class OptionsMenuView extends AbstractMenuView{
         musicSlider.setValue(generalOptions.getOption("musicVolume"));
 
 
-        /*
-         * add listener to buttons
-         */
+
+        //add listener to buttons
         if(fullscreenCheckBox != null) {
             fullscreenCheckBox.addListener(new ClickListener() {
                 @Override
@@ -167,6 +166,5 @@ public class OptionsMenuView extends AbstractMenuView{
                 notifyObserver("menu");
             }
         });
-
     }
 }

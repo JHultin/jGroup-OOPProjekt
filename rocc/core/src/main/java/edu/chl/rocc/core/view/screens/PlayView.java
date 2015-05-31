@@ -26,7 +26,7 @@ import edu.chl.rocc.core.view.observers.IViewObservable;
 import edu.chl.rocc.core.view.observers.IViewObserver;
 
 /**
- * This class is supposed to contain the
+ * This class contains all the
  * graphical data required for playing a level.
  * Created by Jacob on 2015-04-28.
  */
@@ -61,9 +61,8 @@ public class PlayView implements Screen,IViewObservable{
     private HashMap<String, HashMap<String,Texture>> weaponHashMap;
 
 
-    //Pause windowtest
+    //PauseWindow
     private Window pauseWindow;
-    //pausetest
 
     //ProfileImage and HealthBar hashmap
     private HashMap<String,Image> profileImageHashMap;
@@ -126,6 +125,8 @@ public class PlayView implements Screen,IViewObservable{
 
     @Override
     public void show() {
+        //When the view becomes active it clears the profileImageHashMap and
+        //healthbarHashMap so that it won't show up old character pics.
         for(Image i : profileImageHashMap.values()){
             i.remove();
         }
@@ -162,10 +163,11 @@ public class PlayView implements Screen,IViewObservable{
          * Adds an image and healthbar for all the characters.
          * Updates the value of the HealthBar.
          */
-        synchronized (model.getCharacters()) {
+        synchronized (model.getCharacters()) {  //To avoid ConcurrentModificationException
+                                                // the list needs to be synchronized
             for (ICharacter character : model.getCharacters()) {
 
-                if (!profileImageHashMap.containsKey(character.getName())) {
+                if (!profileImageHashMap.containsKey(character.getName())) {//Adds a new profile image and healthbar
                     profileImageHashMap.put(character.getName(),
                             new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
 

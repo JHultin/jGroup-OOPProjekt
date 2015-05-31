@@ -11,6 +11,7 @@ import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
  */
 public class HighscoreMenuView extends AbstractMenuView {
 
+    //title
     private final Label titleLabel;
     private TextButton backButton;
 

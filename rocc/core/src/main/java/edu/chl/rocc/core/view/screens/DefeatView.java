@@ -8,12 +8,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import edu.chl.rocc.core.m2phyInterfaces.IRoCCModel;
 
 /**
+ * The defeatView which appears when the game is lost.
  * Created by Jacob on 2015-05-24.
  */
 public class DefeatView extends AbstractMenuView{
 
     //Label title
     private final Label titleLabel, scoreLabel, timeLabel;
+    //Buttons
     private TextButton retryLevelButton, backButton;
 
 
