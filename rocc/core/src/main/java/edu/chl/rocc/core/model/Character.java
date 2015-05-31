@@ -29,12 +29,10 @@ public class Character implements ICharacter {
 
     private int timeCount;
 
-
     private boolean isFollower;
 
     private final List<IDeathListener> deathListeners;
     private boolean isMoving;
-
 
     public Character(String name){
         this.setHP(maxHealth);
@@ -168,12 +166,10 @@ public class Character implements ICharacter {
         return lastDir;
     }
 
-
     @Override
     public boolean inAir(){
         return inAir;
     }
-
 
     @Override
     public boolean isFollower(){
@@ -218,7 +214,7 @@ public class Character implements ICharacter {
         boolean tmpDamageTaken = damageTaken;
 
         if(damageTaken) {
-            if (timeCount < 60) {//is used to decide for how long damageState will continue
+            if (timeCount < 60) { // Is used to decide for how long damageState will continue
                 timeCount++;
             } else {
                 damageTaken = false;
@@ -230,5 +226,4 @@ public class Character implements ICharacter {
                 getLastDirection().toString().toLowerCase() : getDirection().toString().toLowerCase());
         return preName + surName + (tmpDamageTaken ? "Damage" : "");
     }
-
 }

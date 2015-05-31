@@ -3,6 +3,8 @@ package edu.chl.rocc.core.m2phyInterfaces;
 import java.util.List;
 
 /**
+ * Interface for a level.
+ *
  * Created by Joel on 2015-05-03.
  */
 public interface ILevel {

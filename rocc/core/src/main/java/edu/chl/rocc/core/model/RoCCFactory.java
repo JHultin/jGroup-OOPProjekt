@@ -6,7 +6,7 @@ import edu.chl.rocc.core.m2phyInterfaces.*;
 import java.lang.*;
 
 /**
- * Iterface for factory creating all objects handling all non-physics related logic in our game
+ * Interface for factory creating all objects handling all non-physics related logic in our game.
  *
  * Created by Joel on 2015-05-08.
  */
