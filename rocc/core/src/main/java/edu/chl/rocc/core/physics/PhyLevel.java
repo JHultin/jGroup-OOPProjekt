@@ -18,6 +18,11 @@ public class PhyLevel implements ILevel {
     private final World world;
     private final List<IBody> bodiesNeedingToDispose;
 
+    /**
+     * Creates level. Constructor
+     *
+     * @param world
+     */
     public PhyLevel(World world) {
         this.world = world;
         this.level = new Level();

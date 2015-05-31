@@ -19,6 +19,13 @@ public class PhyFood implements IFood {
     private final World world;
     private final Body body;
 
+    /**
+     * Creates food. Constructor.
+     *
+     * @param world
+     * @param x
+     * @param y
+     */
     public PhyFood(World world, float x, float y) {
         food = new Food(x, y);
         this.world = world;

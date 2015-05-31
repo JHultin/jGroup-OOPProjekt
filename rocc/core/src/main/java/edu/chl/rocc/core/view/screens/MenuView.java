@@ -72,7 +72,8 @@ public class MenuView extends AbstractMenuView {
 
     }
 
-    public void createButtons(){
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         newGameButton = new TextButton("New Game", textButtonStyle);
         chooseLevelButton = new TextButton("Choose Level", textButtonStyle);
         optionsButton = new TextButton("Options", textButtonStyle);

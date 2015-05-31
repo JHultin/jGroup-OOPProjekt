@@ -15,6 +15,15 @@ public class PhyFinishPoint implements IFinishPoint {
     private final World world;
     private final Body body;
 
+    /**
+     * Creates finishpoint. Constructor.
+     *
+     * @param world
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public PhyFinishPoint (World world, float x, float y, float width, float height ){
         this.world = world;
 

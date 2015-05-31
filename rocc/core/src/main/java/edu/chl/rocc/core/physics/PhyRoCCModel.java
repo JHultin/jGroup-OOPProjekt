@@ -103,6 +103,7 @@ public class PhyRoCCModel implements IRoCCModel {
         this.createEnemies(listener);
     }
 
+    //Creates tileLayer
     private void createTileLayer(String layer, Short categoryBits, Short maskBits){
         if (tMap.getLayers().get(layer) != null) {
             TiledMapTileLayer tileLayer = (TiledMapTileLayer) tMap.getLayers().get(layer);

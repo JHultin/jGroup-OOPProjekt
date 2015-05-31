@@ -42,6 +42,14 @@ public class PhyCharacter implements ICharacter {
 
     private final Fixture fixture;
 
+    /**
+     * Creates a character. Constructor.
+     *
+     * @param world
+     * @param x
+     * @param y
+     * @param name
+     */
     public PhyCharacter(World world, float x, float y, String name){
         this.world = world;
         this.width = 18 / PPM;

@@ -19,6 +19,14 @@ public class PhyJumpPoint implements IJumpPoint {
     private final Body body;
     private final Direction jumpDir;
 
+    /**
+     * Creates JumpPoint. Constructor.
+     *
+     * @param world
+     * @param dir
+     * @param x
+     * @param y
+     */
     public PhyJumpPoint(World world, Direction dir, float x, float y){
         this.world = world;
         this.jumpDir = dir;

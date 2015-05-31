@@ -23,6 +23,16 @@ public class PhyBullet implements IBullet {
     private final float velocity;
     private final int bulletDamage;
 
+    /**
+     * Creates a bullet. Constructor.
+     *
+     * @param world
+     * @param name
+     * @param x
+     * @param y
+     * @param xDir
+     * @param yDir
+     */
     public PhyBullet(World world, String name, float x, float y, float xDir, float yDir){
         this.world = world;
 

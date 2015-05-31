@@ -39,8 +39,8 @@ public class HighscoreMenuView extends AbstractMenuView {
         super.show();
     }
 
-
-    public void createButtons(){
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
 
         //Padding to button
