@@ -62,7 +62,7 @@ public class RoCCModelTest {
         float updateSpeed = 1 / 60f;
         int timeBefore = this.model.getTime();
 
-        for(int i=0; i<60; i++){
+        for(int i=0; i<=60; i++){
             this.model.updateWorld(updateSpeed);
         }
         assertFalse(this.model.getTime() == timeBefore);

@@ -90,8 +90,8 @@ public class LevelTest {
 
     @Test
     public void testUpdateTime() throws Exception {
-        for(int i = 0; i<=60*2; i++){
-            level.updateTime();
+        for(int i = 0; i<=2 * 60 + 2; i++){
+            level.updateTime(1f / 60);
         }
 
         assertTrue(level.getTime()==2);

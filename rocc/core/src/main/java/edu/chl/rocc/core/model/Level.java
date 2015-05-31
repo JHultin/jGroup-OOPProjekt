@@ -11,7 +11,7 @@ import edu.chl.rocc.core.m2phyInterfaces.*;
 public class Level implements ILevel {
 
     private int time;
-    private int timeCheck;
+    private float timeCheck;
 
     private int score;
     private final List<IPickupable> pickupables;
@@ -38,7 +38,7 @@ public class Level implements ILevel {
 
     @Override
     public void updateWorld(float dt){
-     //   updateTime();
+        updateTime(dt);
     }
 
     @Override
@@ -122,12 +122,13 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void updateTime() {
-        if (timeCheck < 60) {
-            timeCheck++;
-        } else if (timeCheck == 60) {
-            timeCheck = 1;
+    public void updateTime(float dt) {
+        if (timeCheck < 1) {
+            timeCheck += dt;
+        } else {
+            timeCheck -= 1;
             time++;
+            System.out.println(timeCheck + " " + time);
         }
     }
 }

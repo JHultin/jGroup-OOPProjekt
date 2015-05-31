@@ -29,7 +29,7 @@ public class PhyLevel implements ILevel {
     @Override
     public void updateWorld(float dt) {
         world.step(dt, 6, 2);
-        updateTime();
+        this.level.updateWorld(dt);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public void updateTime(){
-        level.updateTime();
+    public void updateTime(float dt){
+        level.updateTime(dt);
     }
 }

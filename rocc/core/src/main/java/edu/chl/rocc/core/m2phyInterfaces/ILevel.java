@@ -46,6 +46,6 @@ public interface ILevel {
 
     public int getTime();
 
-    public void updateTime();
+    public void updateTime(float dt);
 
 }
