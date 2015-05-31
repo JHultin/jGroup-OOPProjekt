@@ -24,7 +24,6 @@ public class HighscoreMenuView extends AbstractMenuView {
         //Initialize buttons
         createButtons();
 
-
         //adds to table
         table.add(titleLabel);
         table.row();

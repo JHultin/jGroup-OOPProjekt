@@ -45,7 +45,6 @@ public class OptionsMenuView extends AbstractMenuView{
         screenControlTable.add(fullscreenCheckBox).padRight(50);
         screenControlTable.add(controlsButton).padLeft(50);
 
-
         table.add(screenControlTable).padBottom(50);
         table.row();
 
@@ -119,13 +118,8 @@ public class OptionsMenuView extends AbstractMenuView{
         soundSlider.setValue(generalOptions.getOption("soundVolume"));
         musicSlider.setValue(generalOptions.getOption("musicVolume"));
 
-
-
-        /*
-         *   add listener to buttons
-         */
-
-        if(fullscreenCheckBox != null) {//if fullscreen is initiated a listener is added.
+        //add listener to buttons
+        if(fullscreenCheckBox != null) {
             fullscreenCheckBox.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {

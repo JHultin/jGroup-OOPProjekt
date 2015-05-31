@@ -1,7 +1,7 @@
 package edu.chl.rocc.core.observers;
 
 /**
- * Interface for mortal objects, things in the game that have a death-trigger that should be listened to
+ * Interface for mortal objects, things in the game that have a death-trigger that should be listened to.
  *
  * Created by Joel on 2015-05-18.
  */
@@ -15,7 +15,7 @@ public interface IMortal {
 
     /**
      * Stop telling the listener when the object dies.
-     * @param listener
+     * @param listener listener to remove
      */
     public void removeDeathListener(IDeathListener listener);
 
@@ -27,7 +27,7 @@ public interface IMortal {
 
     /**
      * Called when the object dies.
-     * @param deathEvent a event describing what and how that object died
+     * @param deathEvent an event describing what and how that object died
      */
     public void death(IDeathEvent deathEvent);
 }

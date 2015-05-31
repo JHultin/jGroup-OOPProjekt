@@ -67,26 +67,36 @@ public class MainController {
      * @param main the main view to update throughout
      */
     public MainController(ViewController main){
+        // Create the model with te correct tileMap
         MapLoader loader = new MapLoader();
         this.tiledMap = new TmxMapLoader().load(loader.getTiledMapList().get(0));
         this.model = new PhyRoCCModel(tiledMap);
+
+        // Create listeners
         this.deathListener = new DeathListener();
         this.gameLossListener = new GameLossListener(this);
+
+        // Construct other high level objects
         this.main = main;
         this.gvm = new GameViewManager(model);
 
+        // Create the processors
         this.gameProcessor = new GameProcessor();
         this.configureControlsProcessor = new ConfigureControlsProcessor();
+
+        // Get the keyOptions
         this.keyOptions = KeyOptions.getInstance();
 
         // Start up the game with the menuscreen
         this.gvm.setActiveView("menu");
         this.main.setScreen(this.gvm.getActiveView());
         this.inGame = false;
-
         this.viewChooser = new ViewChooser(gvm.getViewObserver());
     }
 
+    /**
+     * Starts the controller, before this no game can be run
+     */
     public void start(){
         this.thread = new Thread(new Runnable() {
             @Override
@@ -95,6 +105,7 @@ public class MainController {
                     try {
                         // If we're ingame use the input from the gameprocessor
                         if (inGame) {
+                            // Do all game logic
                             gameProcessor.sendUpdate();
                         }
                         Thread.sleep((long)(updateSpeed * 1000));
@@ -113,7 +124,8 @@ public class MainController {
 
     /**
      * Update the input to the correct state for the current part of the game.
-     * Constructs the level if selected
+     * Constructs the level if selected.
+     * Makes sure the correct InputProcessor is with to each Screen.
      *
      * @param state
      */
@@ -143,6 +155,7 @@ public class MainController {
         currentState = state;
     }
 
+    // Called when changing to a game
     private void setStateToGameState(String state){
         // Tell the GameViewManager to choose the correct screen
         gvm.setActiveView(state);
@@ -165,13 +178,17 @@ public class MainController {
 
         this.model.setActiveCharacter(0);
 
+        // Create all weapons
         createWeapons();
         this.model.changeWeapon();
 
+        // Add a listener for when the game ends
         this.model.addLoseListener(gameLossListener);
 
+        // Set the correct processor
         Gdx.input.setInputProcessor(gameProcessor);
 
+        // Allow for the model to be updated
         this.inGame = true;
 
         this.viewChooser.setObservable(gvm.getViewObserver());
@@ -179,6 +196,7 @@ public class MainController {
         this.main.setScreen(this.gvm.getActiveView());
     }
 
+    // When the view changes to a meny
     private void setStateToMenuState(String state){
         this.inGame = false;
         this.model.dispose();

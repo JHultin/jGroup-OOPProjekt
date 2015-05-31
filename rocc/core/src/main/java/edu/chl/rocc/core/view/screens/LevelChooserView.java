@@ -22,7 +22,6 @@ public class LevelChooserView extends AbstractMenuView {
     private TextButton backButton;
     private TextButton lvl1Button, lvl2Button, lvl3Button;
 
-
     public LevelChooserView(IRoCCModel model){
         super(model);
 

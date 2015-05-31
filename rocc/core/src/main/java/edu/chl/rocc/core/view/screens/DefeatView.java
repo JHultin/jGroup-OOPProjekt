@@ -18,7 +18,6 @@ public class DefeatView extends AbstractMenuView{
     //Buttons
     private TextButton retryLevelButton, backButton;
 
-
     public DefeatView(IRoCCModel model){
         super(model);
 
@@ -30,7 +29,6 @@ public class DefeatView extends AbstractMenuView{
 
         //Initialize buttons
         createButtons();
-
 
         //adds to table
         table.add(titleLabel).padBottom(50);
@@ -89,7 +87,6 @@ public class DefeatView extends AbstractMenuView{
                 notifyObserver("menu");
             }
         });
-
     }
 }
 
