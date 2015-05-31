@@ -48,6 +48,10 @@ public class GameViewManager {
         return activeView;
     }
 
+    /**
+     *
+     * @return the observable view
+     */
     public IViewObservable getViewObserver(){
         return (IViewObservable)activeView;
     }
