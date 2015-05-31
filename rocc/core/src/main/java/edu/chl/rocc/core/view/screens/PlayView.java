@@ -167,10 +167,12 @@ public class PlayView implements Screen,IViewObservable{
                                                 // the list needs to be synchronized
             for (ICharacter character : model.getCharacters()) {
 
-                if (!profileImageHashMap.containsKey(character.getName())) {    //Adds a new profile image and healthbar
-                                                                                // if a new character is added.
+                // Adds a new profile image and healthbar if a new character is added.
+                if (!profileImageHashMap.containsKey(character.getName())) {
+
                     profileImageHashMap.put(character.getName(),
-                            new Image(new Texture(Gdx.files.internal("characters/" + character.getName() + "/profile.png"))));
+                            new Image(new Texture(Gdx.files.internal(
+                                    "characters/" + character.getName() + "/profile.png"))));
 
                     createHealthBar(character);
 
@@ -199,9 +201,11 @@ public class PlayView implements Screen,IViewObservable{
                 characterName = character.getName();
                 characterState = character.getMoveState();
                 handlerHashMap = charactersAnimationHashMap.get(characterName);
-                animationHandler = handlerHashMap.get(characterState);  //Sets the current animation to the
-                                                                        //current TextureRegion in handlerHashMap
-                animationHandler.update(); //Updates the Animation sequence
+                // Sets the current animation to the current TextureRegion in handlerHashMap
+                animationHandler = handlerHashMap.get(characterState);
+
+                //Updates the Animation sequence
+                animationHandler.update();
                 textureRegion = new TextureRegion(
                         animationHandler.getFrame());
 
@@ -212,11 +216,13 @@ public class PlayView implements Screen,IViewObservable{
         //Draws the weapon
         //Checks the current direction and positions the weapon accordingly.
         if(model.getActiveCharacter().getLastDirection().equals(Direction.LEFT)) {
-            batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" + model.getActiveCharacter().getLastDirection().toString().toLowerCase())
-                    , model.getCharacterXPos() - 15, model.getCharacterYPos() + 3);
+            batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" +
+                    model.getActiveCharacter().getLastDirection().toString().toLowerCase()),
+                    model.getCharacterXPos() - 15, model.getCharacterYPos() + 3);
         }else{
-            batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" + model.getActiveCharacter().getLastDirection().toString().toLowerCase())
-                    , model.getCharacterXPos() + 5, model.getCharacterYPos() + 3);
+            batch.draw(weaponHashMap.get((model.getWeapon().getName())).get("weapon" +
+                    model.getActiveCharacter().getLastDirection().toString().toLowerCase()),
+                    model.getCharacterXPos() + 5, model.getCharacterYPos() + 3);
         }
 
         synchronized (model.getPickupables()) {
@@ -227,8 +233,8 @@ public class PlayView implements Screen,IViewObservable{
 
         synchronized (model.getBullets()) {
             for (IBullet bullet : model.getBullets()) {
-                batch.draw(weaponHashMap.get(model.getWeapon().getName()).get("bullet")
-                        , bullet.getX(), bullet.getY());
+                batch.draw(weaponHashMap.get(model.getWeapon().getName()).get("bullet"),
+                        bullet.getX(), bullet.getY());
             }
 
         }
@@ -404,7 +410,8 @@ public class PlayView implements Screen,IViewObservable{
 
         pauseWindow.pack();
 
-        pauseWindow.setPosition(stage.getWidth()/2 - pauseWindow.getWidth()/2,stage.getHeight()/2 - pauseWindow.getHeight()/2);
+        pauseWindow.setPosition(stage.getWidth()/2 - pauseWindow.getWidth()/2,
+                stage.getHeight()/2 - pauseWindow.getHeight()/2);
     }
 
     private void createHealthBar(ICharacter character){

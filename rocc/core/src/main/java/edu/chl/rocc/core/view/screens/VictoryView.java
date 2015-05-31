@@ -39,7 +39,7 @@ public class VictoryView extends AbstractMenuView{
         textTable.add(new Label("Score: ", textStyle)).padBottom(20);
         textTable.add(scoreLabel).padRight(10).padBottom(20);
         textTable.row();
-        textTable.add(new Label("Time; ", textStyle));
+        textTable.add(new Label("Time: ", textStyle));
         textTable.add(timeLabel).padRight(10);
 
         table.add(textTable).padBottom(100);
