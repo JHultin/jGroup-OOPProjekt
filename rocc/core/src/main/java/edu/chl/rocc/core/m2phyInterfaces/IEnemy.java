@@ -4,6 +4,8 @@ import edu.chl.rocc.core.utility.Direction;
 import edu.chl.rocc.core.observers.IMortal;
 
 /**
+ * Interface that describes an enemy.
+ *
  * Created by Yen on 2015-05-09.
  */
 public interface IEnemy extends IMortal {

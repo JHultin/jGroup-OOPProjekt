@@ -22,7 +22,7 @@ public class PhyLevel implements ILevel {
     }
 
     @Override
-    public void addBlock(IBody body) {
+    public void addBodyToDisposeList(IBody body) {
         bodiesNeedingToDispose.add(body);
     }
 
