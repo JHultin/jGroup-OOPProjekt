@@ -377,14 +377,14 @@ public class PlayView implements Screen,IViewObservable{
 
         restartButton.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event,float x, float y){
+            public void clicked(InputEvent event, float x, float y){
 
             }
         });
 
         optionsButton.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event,float x, float y){
+            public void clicked(InputEvent event, float x, float y){
             }
         });
 
@@ -433,6 +433,6 @@ public class PlayView implements Screen,IViewObservable{
 
         bar.setValue(character.getHP());
 
-        healthBarHashMap.put(character.getName(),bar);
+        healthBarHashMap.put(character.getName(), bar);
     }
 }
