@@ -16,7 +16,6 @@ public class VictoryView extends AbstractMenuView{
 
     private TextButton nextLevelButton, backButton;
 
-
     public VictoryView(IRoCCModel model){
         super(model);
 
@@ -28,6 +27,7 @@ public class VictoryView extends AbstractMenuView{
         scoreLabel = new Label("0",textStyle);
         timeLabel = new Label("0",textStyle);
 
+        //Initialize buttons
         createButtons();
 
         //adds to table
@@ -63,7 +63,8 @@ public class VictoryView extends AbstractMenuView{
     }
 
 
-    public void createButtons(){
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         nextLevelButton = new TextButton("Next Level", textButtonStyle);
         backButton = new TextButton("Back to Menu", textButtonStyle);
 

@@ -17,10 +17,8 @@ public class MenuView extends AbstractMenuView {
 
     private final String title = "Ruins of Corrosa City";
 
-
     private TextButton newGameButton, chooseLevelButton, optionsButton,highscoreButton,exitButton;
     private final Label titleLabel;
-
 
     public MenuView(IRoCCModel model){
         super(model);
@@ -28,10 +26,10 @@ public class MenuView extends AbstractMenuView {
         //Create all of the buttons
         createButtons();
 
-
         //Check GeneralOptions if fullscreen has previously been selected.
         if( GeneralOptions.getInstance().getOption("isFullscreen") == 1) {
-            Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+            Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width,
+                    Gdx.graphics.getDesktopDisplayMode().height, true);
         }else{
             Gdx.graphics.setDisplayMode(720, 480, false);
         }
@@ -65,14 +63,14 @@ public class MenuView extends AbstractMenuView {
         stage.addActor(table);
     }
 
-
     @Override
     public void show() {
         super.show();
 
     }
 
-    public void createButtons(){
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         newGameButton = new TextButton("New Game", textButtonStyle);
         chooseLevelButton = new TextButton("Choose Level", textButtonStyle);
         optionsButton = new TextButton("Options", textButtonStyle);

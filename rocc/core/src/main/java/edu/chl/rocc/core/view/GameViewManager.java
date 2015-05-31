@@ -48,10 +48,17 @@ public class GameViewManager {
         return activeView;
     }
 
+    /**
+     *
+     * @return the observable view
+     */
     public IViewObservable getViewObserver(){
         return (IViewObservable)activeView;
     }
 
+    /**
+     * Called to lower memory leak.
+     */
     public void dispose(){
         for (Screen screen : viewHashMap.values()){
             screen.dispose();

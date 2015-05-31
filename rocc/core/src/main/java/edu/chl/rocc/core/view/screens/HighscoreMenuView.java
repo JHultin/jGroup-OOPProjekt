@@ -21,8 +21,8 @@ public class HighscoreMenuView extends AbstractMenuView {
         titleLabel = new Label("Highscore", textStyle);
         titleLabel.setFontScale(2);
 
+        //Initialize buttons
         createButtons();
-
 
         //adds to table
         table.add(titleLabel);
@@ -39,8 +39,8 @@ public class HighscoreMenuView extends AbstractMenuView {
         super.show();
     }
 
-
-    public void createButtons(){
+    //Creates all of the buttons and adds listeners
+    private void createButtons(){
         backButton = new TextButton("Back", textButtonStyle);
 
         //Padding to button
