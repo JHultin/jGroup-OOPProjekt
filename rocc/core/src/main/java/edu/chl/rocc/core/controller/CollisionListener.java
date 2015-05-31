@@ -31,7 +31,6 @@ public class CollisionListener implements ContactListener, ICollisionListener {
     }
 
 
-
     /**
      * Handles when two fixture comes in contact
      * @param contact

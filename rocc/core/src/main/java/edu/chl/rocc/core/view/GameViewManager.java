@@ -19,10 +19,9 @@ public class GameViewManager {
     public GameViewManager(IRoCCModel model){
         viewHashMap = new HashMap<String,Screen>();
 
-        /**
-         *  Adds views to a HashMap so that they don't need
-         *  to be creating new everytime.
-         */
+
+        // Adds the different views to a HashMap so that they only needs to be
+        // initiated once.
         viewHashMap.put("game", ViewFactory.createView("game", model));
         viewHashMap.put("menu", ViewFactory.createView("menu", model));
         viewHashMap.put("chooseLevel", ViewFactory.createView("chooseLevel", model));
@@ -33,11 +32,18 @@ public class GameViewManager {
         viewHashMap.put("defeat", ViewFactory.createView("defeat", model));
      }
 
-
+    /**
+     * Is called with the key to the requested
+     * view to set it as active view.
+     * @param view
+     */
     public void setActiveView(String view){
         activeView = viewHashMap.get(view);
     }
 
+    /**
+     * @return the activeView
+     */
     public Screen getActiveView(){
         return activeView;
     }

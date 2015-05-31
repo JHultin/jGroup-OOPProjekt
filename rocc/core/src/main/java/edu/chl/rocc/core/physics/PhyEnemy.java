@@ -43,7 +43,6 @@ public class PhyEnemy implements IEnemy {
         this.health          = cl.getCharecaristic("Health");
         this.value           = cl.getCharecaristic("Value");
 
-        // Enemy may also have a weapon
         this.world = world;
         this.width = 16 / PPM;
         this.height = 25 / PPM;
@@ -76,6 +75,7 @@ public class PhyEnemy implements IEnemy {
         body.createFixture(fDef).setUserData("enemyUpperSensor");
     }
 
+
     @Override
     public void changeMoveDirection(){
             if(nbrOfCollisions==1) {
@@ -91,6 +91,7 @@ public class PhyEnemy implements IEnemy {
             }
         nbrOfCollisions++;
     }
+
 
     @Override
     public int getDamageDeal() {

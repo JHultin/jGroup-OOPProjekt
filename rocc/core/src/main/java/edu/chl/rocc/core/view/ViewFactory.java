@@ -9,6 +9,12 @@ import edu.chl.rocc.core.view.screens.*;
  */
 public class ViewFactory {
 
+    /**
+     * Creates the view with the given name
+     * @param view
+     * @param model
+     * @return the created view
+     */
     public static Screen createView(String view, IRoCCModel model){
         if(view.equals("game")){
              return new PlayView(model);
