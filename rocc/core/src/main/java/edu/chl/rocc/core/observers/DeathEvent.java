@@ -1,6 +1,8 @@
 package edu.chl.rocc.core.observers;
 
 /**
+ * An implementation of IDeathEvent.
+ * Describes a death of a mortal object
  * Created by Joel on 2015-05-18.
  */
 public class DeathEvent implements IDeathEvent {
@@ -9,6 +11,11 @@ public class DeathEvent implements IDeathEvent {
     private final String message;
     private final Object killer;
 
+    /**
+     * Constructor
+     * @param source which mortal died
+     * @param message message describing
+     */
     public DeathEvent(IMortal source, final String message){
         this(source, message, null);
     }

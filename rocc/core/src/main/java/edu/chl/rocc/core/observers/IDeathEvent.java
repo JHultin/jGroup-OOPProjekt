@@ -6,9 +6,18 @@ package edu.chl.rocc.core.observers;
  */
 public interface IDeathEvent {
 
+    /**
+     * @return the message describing the death
+     */
     public String getMessage();
 
+    /**
+     * @return the source of the deathEvent
+     */
     public IMortal getSource();
 
+    /**
+     * @return the killer
+     */
     public Object getKiller();
 }
