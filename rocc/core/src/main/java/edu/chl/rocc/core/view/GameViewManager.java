@@ -31,7 +31,6 @@ public class GameViewManager {
         viewHashMap.put("highscore", ViewFactory.createView("highscore", model));
         viewHashMap.put("victory", ViewFactory.createView("victory", model));
         viewHashMap.put("defeat", ViewFactory.createView("defeat", model));
-
      }
 
 
