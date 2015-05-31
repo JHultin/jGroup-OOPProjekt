@@ -1,3 +1,0 @@
-noEyes
-characters/noEyes/idleleft.png
-.

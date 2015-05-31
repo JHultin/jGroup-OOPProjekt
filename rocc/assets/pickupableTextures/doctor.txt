@@ -1,3 +1,0 @@
-doctor
-characters/doctor/idleleft.png
-.

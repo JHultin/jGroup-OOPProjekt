@@ -1,3 +1,0 @@
-soldier
-characters/soldier/idleleft.png
-.
