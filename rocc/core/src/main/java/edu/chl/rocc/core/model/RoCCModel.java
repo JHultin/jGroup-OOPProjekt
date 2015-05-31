@@ -55,7 +55,7 @@ public class RoCCModel implements IRoCCModel {
 
     @Override
     public void addBlock(IBody body){
-        level.addBlock(body);
+        level.addBodyToDisposeList(body);
     }
 
     @Override
