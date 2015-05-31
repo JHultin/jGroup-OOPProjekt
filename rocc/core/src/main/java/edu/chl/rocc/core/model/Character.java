@@ -35,6 +35,10 @@ public class Character implements ICharacter {
     private final List<IDeathListener> deathListeners;
     private boolean isMoving;
 
+    /**
+     * Constructor for a character described by name
+     * @param name identification of character
+     */
     public Character(String name){
         this.setHP(maxHealth);
         this.name = name;
