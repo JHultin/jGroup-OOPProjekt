@@ -32,7 +32,7 @@ public class Level implements ILevel {
 
     // Adds a block for the map to the world
     @Override
-    public void addBlock(IBody body){
+    public void addBodyToDisposeList(IBody body){
 
     }
 
