@@ -76,6 +76,7 @@ public class PhyEnemy implements IEnemy {
         body.createFixture(fDef).setUserData("enemyUpperSensor");
     }
 
+
     @Override
     public void changeMoveDirection(){
             if(nbrOfCollisions==1) {
@@ -91,6 +92,7 @@ public class PhyEnemy implements IEnemy {
             }
         nbrOfCollisions++;
     }
+
 
     @Override
     public int getDamageDeal() {

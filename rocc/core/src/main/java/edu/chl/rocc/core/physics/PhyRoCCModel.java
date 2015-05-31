@@ -152,6 +152,7 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    //Creates food to add to the map
     private void createFood(){
         if (tMap.getLayers().get("food") != null) {
             MapLayer foodLayer = tMap.getLayers().get("food");
@@ -167,6 +168,7 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    //creates characters to add to the map
     private void createCharacters(){
         if (tMap.getLayers().get("characters") != null) {
             MapLayer ipcLayer = tMap.getLayers().get("characters");
@@ -181,6 +183,7 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    //creates jumppoints to add to the map
     private void createJumpPoints(){
         if (tMap.getLayers().get("jumpPoints") != null) {
             MapLayer jumpLayer = tMap.getLayers().get("jumpPoints");
@@ -197,6 +200,7 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    //creates finishpoint to add to the map
     private void createFinish(){
         if (tMap.getLayers().get("finish") != null) {
             MapLayer finLayer = tMap.getLayers().get("finish");
@@ -213,6 +217,7 @@ public class PhyRoCCModel implements IRoCCModel {
         }
     }
 
+    //create enemies to add to the map
     private void createEnemies(IDeathListener listener){
         if (tMap.getLayers().get("enemy") != null) {
 
@@ -229,7 +234,7 @@ public class PhyRoCCModel implements IRoCCModel {
             }
         }
     }
-
+    
     @Override
     public void addBlock(IBody body) {
         this.model.addBlock(body);
