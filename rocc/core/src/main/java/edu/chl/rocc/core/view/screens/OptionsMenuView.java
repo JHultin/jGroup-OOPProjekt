@@ -73,7 +73,7 @@ public class OptionsMenuView extends AbstractMenuView{
         controlsButton.pad(20);
 
         //Checkbox
-        TextureAtlas checkBoxAtlas = new TextureAtlas("button/checkBox/checkBox.pack");
+        TextureAtlas checkBoxAtlas = new TextureAtlas(Gdx.files.internal("button/checkBox/checkBox.pack"));
         Skin checkBoxSkin = new Skin(checkBoxAtlas);
 
         CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
